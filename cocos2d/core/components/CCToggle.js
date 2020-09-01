@@ -75,8 +75,6 @@ let Toggle = cc.Class({
                 if (group && group.enabled) {
                     group.updateToggles(this);
                 }
-
-                this._emitToggleEvents();
             },
             tooltip: CC_DEV && 'i18n:COMPONENT.toggle.isChecked',
         },
@@ -153,6 +151,7 @@ let Toggle = cc.Class({
 
     toggle: function (event) {
         this.isChecked = !this.isChecked;
+        this._emitToggleEvents();
     },
 
     /**
@@ -162,6 +161,7 @@ let Toggle = cc.Class({
      */
     check: function () {
         this.isChecked = true;
+        this._emitToggleEvents();
     },
 
     /**
@@ -171,6 +171,7 @@ let Toggle = cc.Class({
      */
     uncheck: function () {
         this.isChecked = false;
+        this._emitToggleEvents();
     },
 
     _updateCheckMark: function () {
