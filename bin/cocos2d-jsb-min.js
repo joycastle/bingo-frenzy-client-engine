@@ -17552,11 +17552,13 @@ this._mouseWheelEventElapsedTime += t;
 if (this._mouseWheelEventElapsedTime > .1) {
 this._onScrollBarTouchEnded();
 this.unschedule(this._checkMouseWheel);
+this._dispatchEvent("scroll-ended");
 this._stopMouseWheel = !1;
 }
 } else {
 this._processInertiaScroll();
 this.unschedule(this._checkMouseWheel);
+this._dispatchEvent("scroll-ended");
 this._stopMouseWheel = !1;
 }
 },
@@ -18417,7 +18419,6 @@ if (!(e && e.enabled && this._N$isChecked) || e.allowSwitchOff) {
 this._N$isChecked = t;
 this._updateCheckMark();
 e && e.enabled && e.updateToggles(this);
-this._emitToggleEvents();
 }
 }
 },
@@ -18460,12 +18461,15 @@ this._updateCheckMark();
 },
 toggle: function(t) {
 this.isChecked = !this.isChecked;
+this._emitToggleEvents();
 },
 check: function() {
 this.isChecked = !0;
+this._emitToggleEvents();
 },
 uncheck: function() {
 this.isChecked = !1;
+this._emitToggleEvents();
 },
 _updateCheckMark: function() {
 this.checkMark && (this.checkMark.node.active = !!this.isChecked);
@@ -64893,6 +64897,6 @@ s("CC_WECHATGAMESUB", a);
 s("CC_WECHATGAME", c);
 s("CC_QQPLAY", l);
 0;
-n.CocosEngine = cc.ENGINE_VERSION = "2.0.0 alpha";
+n.CocosEngine = cc.ENGINE_VERSION = "2.2.2";
 }), {} ]
 }, {}, [ 386 ]);

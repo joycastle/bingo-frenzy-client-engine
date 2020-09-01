@@ -20006,6 +20006,7 @@
         if (!currentOutOfBoundary.fuzzyEquals(cc.v2(0, 0), EPSILON)) {
           this._processInertiaScroll();
           this.unschedule(this._checkMouseWheel);
+          this._dispatchEvent("scroll-ended");
           this._stopMouseWheel = false;
           return;
         }
@@ -20013,6 +20014,7 @@
         if (this._mouseWheelEventElapsedTime > maxElapsedTime) {
           this._onScrollBarTouchEnded();
           this.unschedule(this._checkMouseWheel);
+          this._dispatchEvent("scroll-ended");
           this._stopMouseWheel = false;
         }
       },
@@ -20947,7 +20949,6 @@
             this._N$isChecked = value;
             this._updateCheckMark();
             group && group.enabled && group.updateToggles(this);
-            this._emitToggleEvents();
           },
           tooltip: (true, "i18n:COMPONENT.toggle.isChecked")
         },
@@ -20990,12 +20991,15 @@
       },
       toggle: function toggle(event) {
         this.isChecked = !this.isChecked;
+        this._emitToggleEvents();
       },
       check: function check() {
         this.isChecked = true;
+        this._emitToggleEvents();
       },
       uncheck: function uncheck() {
         this.isChecked = false;
+        this._emitToggleEvents();
       },
       _updateCheckMark: function _updateCheckMark() {
         this.checkMark && (this.checkMark.node.active = !!this.isChecked);
@@ -95446,7 +95450,7 @@
     defineDeprecatedMacroGetter("CC_QQPLAY", QQPLAY);
     true;
     cc._Test = {};
-    var engineVersion = "2.0.0 alpha";
+    var engineVersion = "2.2.2";
     _global["CocosEngine"] = cc.ENGINE_VERSION = engineVersion;
   }), {} ]
 }, {}, [ 425 ]);
