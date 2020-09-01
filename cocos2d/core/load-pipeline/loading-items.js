@@ -333,22 +333,7 @@ LoadingItems.create = function (pipeline, urlList, onProgress, onComplete) {
         }
     }
 
-    var queue = _pool.pop();
-    if (queue) {
-        queue._pipeline = pipeline;
-        queue.onProgress = onProgress;
-        queue.onComplete = onComplete;
-        _queues[queue._id] = queue;
-        if (queue._pipeline) {
-            queue.active = true;
-        }
-        if (urlList) {
-            queue.append(urlList);
-        }
-    }
-    else {
-        queue = new LoadingItems(pipeline, urlList, onProgress, onComplete);
-    }
+    var queue = new LoadingItems(pipeline, urlList, onProgress, onComplete);
 
     return queue;
 };
@@ -618,7 +603,7 @@ proto.addListener = CallbacksInvoker.prototype.on;
 
 /**
  * !#en
- * Check if the specified key has any registered callback. 
+ * Check if the specified key has any registered callback.
  * If a callback is also specified, it will only return true if the callback is registered.
  * !#zh
  * 检查指定的加载项是否有完成事件监听器。
@@ -633,7 +618,7 @@ proto.hasListener = CallbacksInvoker.prototype.hasEventListener;
 
 /**
  * !#en
- * Removes a listener. 
+ * Removes a listener.
  * It will only remove when key, callback, target all match correctly.
  * !#zh
  * 移除指定加载项已经注册的完成事件监听器。
@@ -691,7 +676,7 @@ proto.itemComplete = function (id) {
     }
 
     // Register or unregister errors
-    
+
     var errorListId = id in this._errorUrls;
     if (item.error instanceof Error || js.isString(item.error)) {
         this._errorUrls[id] = item.error;
@@ -700,7 +685,7 @@ proto.itemComplete = function (id) {
         js.mixin(this._errorUrls, item.error);
     }
     else if (!item.error && errorListId) {
-        delete this._errorUrls[id] 
+        delete this._errorUrls[id]
     }
 
     this.completed[id] = item;
@@ -744,17 +729,13 @@ proto.destroy = function () {
 
     // Reinitialize CallbacksInvoker, generate three new objects, could be improved
     CallbacksInvoker.call(this);
-    
+
     if (_queueDeps[this._id]) {
         _queueDeps[this._id].completed.length = 0;
         _queueDeps[this._id].deps.length = 0;
     }
     delete _queues[this._id];
     delete _queueDeps[this._id];
-
-    if (_pool.indexOf(this) === -1 && _pool.length < _POOL_MAX_LENGTH) {
-        _pool.push(this);
-    }
 };
 
 cc.LoadingItems = module.exports = LoadingItems;
