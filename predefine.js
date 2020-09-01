@@ -132,7 +132,7 @@ function defineDeprecatedMacroGetter (name, defaultValue) {
                     recommandedUsage = 'cc.sys.platform === cc.sys.WECHAT_GAME_SUB';
                 }
                 else if (name === 'CC_WECHATGAME') {
-                    recommandedUsage = 'cc.sys.platform === cc.sys.WECHAT_GAME';                    
+                    recommandedUsage = 'cc.sys.platform === cc.sys.WECHAT_GAME';
                 }
                 else if (name === 'CC_QQPLAY') {
                     recommandedUsage = 'cc.sys.platform === cc.sys.QQ_PLAY';
@@ -176,7 +176,7 @@ defineMacro('CC_EDITOR', defined('Editor') && defined('process') && ('electron' 
 defineMacro('CC_PREVIEW', !CC_EDITOR);
 defineMacro('CC_RUNTIME', 'function' === typeof loadRuntime);
 defineMacro('CC_JSB', defined('jsb') && !CC_RUNTIME);
-// deprecated 
+// deprecated
 const WECHATGAMESUB = !!(defined('wx') && wx.getSharedCanvas);
 const WECHATGAME = !!(defined('wx') && (wx.getSystemInfoSync || wx.getSharedCanvas));
 const QQPLAY = defined('bk');
@@ -202,5 +202,5 @@ if (CC_DEV) {
  * If you post a bug to forum, please attach this flag.
  * @property {String} ENGINE_VERSION
  */
-const engineVersion = '2.0.0 alpha';
+const engineVersion = '2.2.2'
 _global['CocosEngine'] = cc.ENGINE_VERSION = engineVersion;

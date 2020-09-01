@@ -734,7 +734,7 @@ let ScrollView = cc.Class({
     getContentPosition () {
         return this.content.getPosition();
     },
-    
+
     /**
      * !#en Query whether the user is currently dragging the ScrollView to scroll it
      * !#zh 用户是否在拖拽当前滚动视图
@@ -754,7 +754,7 @@ let ScrollView = cc.Class({
     isAutoScrolling () {
         return this._autoScrolling;
     },
-    
+
     //private methods
     _registerEvent () {
         this.node.on(cc.Node.EventType.TOUCH_START, this._onTouchBegan, this, true);
@@ -807,6 +807,7 @@ let ScrollView = cc.Class({
         if (!currentOutOfBoundary.fuzzyEquals(cc.v2(0, 0), EPSILON)) {
             this._processInertiaScroll();
             this.unschedule(this._checkMouseWheel);
+            this._dispatchEvent("scroll-ended");
             this._stopMouseWheel = false;
             return;
         }
@@ -817,6 +818,7 @@ let ScrollView = cc.Class({
         if (this._mouseWheelEventElapsedTime > maxElapsedTime) {
             this._onScrollBarTouchEnded();
             this.unschedule(this._checkMouseWheel);
+            this._dispatchEvent("scroll-ended");
             this._stopMouseWheel = false;
         }
     },
