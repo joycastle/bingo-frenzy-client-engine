@@ -333,7 +333,22 @@ LoadingItems.create = function (pipeline, urlList, onProgress, onComplete) {
         }
     }
 
-    var queue = new LoadingItems(pipeline, urlList, onProgress, onComplete);
+    var queue = _pool.pop();
+    if (queue) {
+        queue._pipeline = pipeline;
+        queue.onProgress = onProgress;
+        queue.onComplete = onComplete;
+        _queues[queue._id] = queue;
+        if (queue._pipeline) {
+            queue.active = true;
+        }
+        if (urlList) {
+            queue.append(urlList);
+        }
+    }
+    else {
+        queue = new LoadingItems(pipeline, urlList, onProgress, onComplete);
+    }
 
     return queue;
 };
@@ -736,6 +751,10 @@ proto.destroy = function () {
     }
     delete _queues[this._id];
     delete _queueDeps[this._id];
+
+    if (_pool.indexOf(this) === -1 && _pool.length < _POOL_MAX_LENGTH) {
+        _pool.push(this);
+    }
 };
 
 cc.LoadingItems = module.exports = LoadingItems;
