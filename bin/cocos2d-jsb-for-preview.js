@@ -10505,10 +10505,8 @@
             if (this.zIndex !== value) {
               this._localZOrder = 65535 & this._localZOrder | value << 16;
               this.emit(EventType.SIBLING_ORDER_CHANGED);
-              this._parent && this._onSiblingIndexChanged();
+              this._onSiblingIndexChanged();
             }
-            true, true;
-            this._proxy.updateZOrder();
           }
         }
       },
@@ -10537,14 +10535,7 @@
         BuiltinGroupIndex: BuiltinGroupIndex
       },
       _onSiblingIndexChanged: function _onSiblingIndexChanged() {
-        var parent = this._parent;
-        var siblings = parent._children;
-        var i = 0, len = siblings.length, sibling;
-        for (;i < len; i++) {
-          sibling = siblings[i];
-          sibling._updateOrderOfArrival();
-        }
-        parent._delaySort();
+        this._parent && this._parent._delaySort();
       },
       _onPreDestroy: function _onPreDestroy() {
         var destroyByParent = this._onPreDestroyBase();
@@ -11402,13 +11393,6 @@
       _updateOrderOfArrival: function _updateOrderOfArrival() {
         var arrivalOrder = this._parent ? ++this._parent._childArrivalOrder : 0;
         this._localZOrder = 4294901760 & this._localZOrder | arrivalOrder;
-        if (65535 === arrivalOrder) {
-          var siblings = this._parent._children;
-          siblings.forEach((function(node, index) {
-            node._localZOrder = 4294901760 & node._localZOrder | index + 1;
-          }));
-          this._parent._childArrivalOrder = siblings.length;
-        }
         this.emit(EventType.SIBLING_ORDER_CHANGED);
       },
       addChild: function addChild(child, zIndex, name) {
@@ -11430,14 +11414,19 @@
       },
       sortAllChildren: function sortAllChildren() {
         if (this._reorderChildDirty) {
-          eventManager._setDirtyForNode(this);
           this._reorderChildDirty = false;
-          var _children = this._children;
+          var _children = this._children, child;
+          this._childArrivalOrder = 1;
+          for (var i = 0, len = _children.length; i < len; i++) {
+            child = _children[i];
+            child._updateOrderOfArrival();
+          }
+          eventManager._setDirtyForNode(this);
           if (_children.length > 1) {
-            var len = _children.length, i, j, child;
-            for (i = 1; i < len; i++) {
-              child = _children[i];
-              j = i - 1;
+            var j, child;
+            for (var _i = 1, _len = _children.length; _i < _len; _i++) {
+              child = _children[_i];
+              j = _i - 1;
               while (j >= 0) {
                 if (!(child._localZOrder < _children[j]._localZOrder)) break;
                 _children[j + 1] = _children[j];
@@ -16622,7 +16611,7 @@
       _onPreDestroy: function _onPreDestroy() {
         this.unscheduleAllCallbacks();
         var eventTargets = this.__eventTargets;
-        for (var i = 0, l = eventTargets.length; i < l; ++i) {
+        for (var i = eventTargets.length - 1; i >= 0; --i) {
           var target = eventTargets[i];
           target && target.targetOff(this);
         }
@@ -26108,7 +26097,15 @@
         onComplete = onProgress;
         onProgress = null;
       }
-      var queue = new LoadingItems(pipeline, urlList, onProgress, onComplete);
+      var queue = _pool.pop();
+      if (queue) {
+        queue._pipeline = pipeline;
+        queue.onProgress = onProgress;
+        queue.onComplete = onComplete;
+        _queues[queue._id] = queue;
+        queue._pipeline && (queue.active = true);
+        urlList && queue.append(urlList);
+      } else queue = new LoadingItems(pipeline, urlList, onProgress, onComplete);
       return queue;
     };
     LoadingItems.getQueue = function(item) {
@@ -26270,6 +26267,7 @@
       }
       delete _queues[this._id];
       delete _queueDeps[this._id];
+      -1 === _pool.indexOf(this) && _pool.length < _POOL_MAX_LENGTH && _pool.push(this);
     };
     cc.LoadingItems = module.exports = LoadingItems;
   }), {
@@ -37648,18 +37646,18 @@
       };
       BmfontAssembler.prototype._shrinkLabelToContentSize = function _shrinkLabelToContentSize(lambda) {
         var fontSize = _fontSize;
-        var i = 0;
-        var flag = true;
-        while (lambda()) {
-          ++i;
-          var newFontSize = fontSize - i;
-          flag = false;
+        var left = 0, right = 0 | fontSize, mid = 0;
+        while (left < right) {
+          mid = left + right + 1 >> 1;
+          var newFontSize = mid;
           if (newFontSize <= 0) break;
           _bmfontScale = newFontSize / _originFontSize;
           _lineBreakWithoutSpaces ? this._multilineTextWrapByChar() : this._multilineTextWrapByWord();
           this._computeAlignmentOffset();
+          lambda() ? right = mid - 1 : left = mid;
         }
-        flag || fontSize - i >= 0 && this._scaleFontSizeDown(fontSize - i);
+        var actualFontSize = left;
+        actualFontSize >= 0 && this._scaleFontSizeDown(actualFontSize);
       };
       BmfontAssembler.prototype._isVerticalClamp = function _isVerticalClamp() {
         return _textDesiredHeight > _contentSize.height;
@@ -38449,18 +38447,14 @@
             maxLength = canvasWidthNoMargin + 1;
             var actualFontSize = _fontSize + 1;
             var textFragment = "";
-            var tryDivideByTwo = true;
-            var startShrinkFontSize = 0 | actualFontSize;
-            while (totalHeight > canvasHeightNoMargin || maxLength > canvasWidthNoMargin) {
-              if (tryDivideByTwo) actualFontSize = startShrinkFontSize / 2 | 0; else {
-                actualFontSize = startShrinkFontSize - 1;
-                startShrinkFontSize = actualFontSize;
-              }
-              if (actualFontSize <= 0) {
+            var left = 0, right = 0 | actualFontSize, mid = 0;
+            while (left < right) {
+              mid = left + right + 1 >> 1;
+              if (mid <= 0) {
                 cc.logID(4003);
                 break;
               }
-              _fontSize = actualFontSize;
+              _fontSize = mid;
               _fontDesc = this._getFontDesc();
               _context.font = _fontDesc;
               totalHeight = 0;
@@ -38474,10 +38468,12 @@
                   ++j;
                 }
               }
-              if (tryDivideByTwo) if (totalHeight > canvasHeightNoMargin) startShrinkFontSize = 0 | actualFontSize; else {
-                tryDivideByTwo = false;
-                totalHeight = canvasHeightNoMargin + 1;
-              }
+              totalHeight > canvasHeightNoMargin ? right = mid - 1 : left = mid;
+            }
+            if (0 === left) cc.logID(4003); else {
+              _fontSize = left;
+              _fontDesc = this._getFontDesc();
+              _context.font = _fontDesc;
             }
           } else {
             totalHeight = paragraphedStrings.length * this._getLineHeight();
@@ -43826,8 +43822,87 @@
   } ],
   308: [ (function(require, module, exports) {
     "use strict";
+    var _js = require("../platform/js");
+    var _js2 = _interopRequireDefault(_js);
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : {
+        default: obj
+      };
+    }
     var _BASELINE_RATIO = .26;
     false;
+    var MAX_CACHE_SIZE = 100;
+    var pool = new _js2.default.Pool(2);
+    pool.get = function() {
+      var node = this._get() || {
+        key: null,
+        value: null,
+        prev: null,
+        next: null
+      };
+      return node;
+    };
+    function LRUCache(size) {
+      this.count = 0;
+      this.limit = size;
+      this.datas = {};
+      this.head = null;
+      this.tail = null;
+    }
+    LRUCache.prototype.moveToHead = function(node) {
+      node.next = this.head;
+      node.prev = null;
+      null !== this.head && (this.head.prev = node);
+      this.head = node;
+      null === this.tail && (this.tail = node);
+      this.count++;
+      this.datas[node.key] = node;
+    };
+    LRUCache.prototype.put = function(key, value) {
+      var node = pool.get();
+      node.key = key;
+      node.value = value;
+      if (this.count >= this.limit) {
+        var discard = this.tail;
+        delete this.datas[discard.key];
+        this.count--;
+        this.tail = discard.prev;
+        this.tail.next = null;
+        discard.prev = null;
+        discard.next = null;
+        pool.put(discard);
+      }
+      this.moveToHead(node);
+    };
+    LRUCache.prototype.remove = function(node) {
+      null !== node.prev ? node.prev.next = node.next : this.head = node.next;
+      null !== node.next ? node.next.prev = node.prev : this.tail = node.prev;
+      delete this.datas[node.key];
+      this.count--;
+    };
+    LRUCache.prototype.get = function(key) {
+      var node = this.datas[key];
+      if (node) {
+        this.remove(node);
+        this.moveToHead(node);
+        return node.value;
+      }
+      return null;
+    };
+    LRUCache.prototype.clear = function() {
+      this.count = 0;
+      this.datas = {};
+      this.head = null;
+      this.tail = null;
+    };
+    LRUCache.prototype.has = function(key) {
+      return !!this.datas[key];
+    };
+    LRUCache.prototype.delete = function(key) {
+      var node = this.datas[key];
+      this.remove(node);
+    };
+    var measureCache = new LRUCache(MAX_CACHE_SIZE);
     var textUtils = {
       BASELINE_RATIO: _BASELINE_RATIO,
       MIDDLE_RATIO: (_BASELINE_RATIO + 1) / 2 - _BASELINE_RATIO,
@@ -43836,8 +43911,6 @@
       label_lastWordRex: /([a-zA-Z0-9\xc4\xd6\xdc\xe4\xf6\xfc\xdf\xe9\xe8\xe7\xe0\xf9\xea\xe2\xee\xf4\xfb\u0430\xed\xec\xcd\xcc\xef\xc1\xc0\xe1\xe0\xc9\xc8\xd2\xd3\xf2\xf3\u0150\u0151\xd9\xda\u0170\xfa\u0171\xf1\xd1\xe6\xc6\u0153\u0152\xc3\xc2\xe3\xd4\xf5\u011b\u0161\u010d\u0159\u017e\xfd\xe1\xed\xe9\xf3\xfa\u016f\u0165\u010f\u0148\u011a\u0160\u010c\u0158\u017d\xc1\xcd\xc9\xd3\xda\u0164\u017c\u017a\u015b\xf3\u0144\u0142\u0119\u0107\u0105\u017b\u0179\u015a\xd3\u0143\u0141\u0118\u0106\u0104-\u044f\u0410-\u042f\u0401\u0451]+|\S)$/,
       label_lastEnglish: /[a-zA-Z0-9\xc4\xd6\xdc\xe4\xf6\xfc\xdf\xe9\xe8\xe7\xe0\xf9\xea\xe2\xee\xf4\xfb\u0430\xed\xec\xcd\xcc\xef\xc1\xc0\xe1\xe0\xc9\xc8\xd2\xd3\xf2\xf3\u0150\u0151\xd9\xda\u0170\xfa\u0171\xf1\xd1\xe6\xc6\u0153\u0152\xc3\xc2\xe3\xd4\xf5\u011b\u0161\u010d\u0159\u017e\xfd\xe1\xed\xe9\xf3\xfa\u016f\u0165\u010f\u0148\u011a\u0160\u010c\u0158\u017d\xc1\xcd\xc9\xd3\xda\u0164\u017c\u017a\u015b\xf3\u0144\u0142\u0119\u0107\u0105\u017b\u0179\u015a\xd3\u0143\u0141\u0118\u0106\u0104-\u044f\u0410-\u042f\u0401\u0451]+$/,
       label_firstEnglish: /^[a-zA-Z0-9\xc4\xd6\xdc\xe4\xf6\xfc\xdf\xe9\xe8\xe7\xe0\xf9\xea\xe2\xee\xf4\xfb\u0430\xed\xec\xcd\xcc\xef\xc1\xc0\xe1\xe0\xc9\xc8\xd2\xd3\xf2\xf3\u0150\u0151\xd9\xda\u0170\xfa\u0171\xf1\xd1\xe6\xc6\u0153\u0152\xc3\xc2\xe3\xd4\xf5\u011b\u0161\u010d\u0159\u017e\xfd\xe1\xed\xe9\xf3\xfa\u016f\u0165\u010f\u0148\u011a\u0160\u010c\u0158\u017d\xc1\xcd\xc9\xd3\xda\u0164\u017c\u017a\u015b\xf3\u0144\u0142\u0119\u0107\u0105\u017b\u0179\u015a\xd3\u0143\u0141\u0118\u0106\u0104-\u044f\u0410-\u042f\u0401\u0451]/,
-      label_firstEmoji: /^[\uD83C\uDF00-\uDFFF\uDC00-\uDE4F]/,
-      label_lastEmoji: /([\uDF00-\uDFFF\uDC00-\uDE4F]+|\S)$/,
       label_wrapinspection: true,
       __CHINESE_REG: /^[\u4E00-\u9FFF\u3400-\u4DFF]+$/,
       __JAPANESE_REG: /[\u3000-\u303F]|[\u3040-\u309F]|[\u30A0-\u30FF]|[\uFF00-\uFFEF]|[\u4E00-\u9FAF]|[\u2605-\u2606]|[\u2190-\u2195]|\u203B/g,
@@ -43849,9 +43922,23 @@
         ch = ch.charCodeAt(0);
         return ch >= 9 && ch <= 13 || 32 === ch || 133 === ch || 160 === ch || 5760 === ch || ch >= 8192 && ch <= 8202 || 8232 === ch || 8233 === ch || 8239 === ch || 8287 === ch || 12288 === ch;
       },
-      safeMeasureText: function safeMeasureText(ctx, string) {
+      safeMeasureText: function safeMeasureText(ctx, string, desc) {
+        var font = desc || ctx.font;
+        var key = font + "\ud83c\udfae" + string;
+        var cache = measureCache.get(key);
+        if (null !== cache) return cache;
         var metric = ctx.measureText(string);
-        return metric && metric.width || 0;
+        var width = metric && metric.width || 0;
+        measureCache.put(key, width);
+        return width;
+      },
+      _stringValidLength: function _stringValidLength(str) {
+        return Array.from(str).length;
+      },
+      _safeSubstring: function _safeSubstring(targetString, startIndex, endIndex) {
+        var stringArray = Array.from(targetString);
+        stringArray = stringArray.slice(startIndex, endIndex);
+        return stringArray.join("");
       },
       fragmentText: function fragmentText(stringToken, allWidth, maxWidth, measureText) {
         var wrappedWords = [];
@@ -43860,9 +43947,9 @@
           return wrappedWords;
         }
         var text = stringToken;
-        while (allWidth > maxWidth && text.length > 1) {
-          var fuzzyLen = text.length * (maxWidth / allWidth) | 0;
-          var tmpText = text.substring(fuzzyLen);
+        while (allWidth > maxWidth && this._stringValidLength(text) > 1) {
+          var fuzzyLen = this._stringValidLength(text) * (maxWidth / allWidth) | 0;
+          var tmpText = this._safeSubstring(text, fuzzyLen);
           var width = allWidth - measureText(tmpText);
           var sLine = tmpText;
           var pushNum = 0;
@@ -43871,47 +43958,39 @@
           while (width > maxWidth && checkWhile++ < checkCount) {
             fuzzyLen *= maxWidth / width;
             fuzzyLen |= 0;
-            tmpText = text.substring(fuzzyLen);
+            tmpText = this._safeSubstring(text, fuzzyLen);
             width = allWidth - measureText(tmpText);
           }
           checkWhile = 0;
           while (width <= maxWidth && checkWhile++ < checkCount) {
             if (tmpText) {
               var exec = this.label_wordRex.exec(tmpText);
-              pushNum = exec ? exec[0].length : 1;
+              pushNum = exec ? this._stringValidLength(exec[0]) : 1;
               sLine = tmpText;
             }
             fuzzyLen += pushNum;
-            tmpText = text.substring(fuzzyLen);
+            tmpText = this._safeSubstring(text, fuzzyLen);
             width = allWidth - measureText(tmpText);
           }
           fuzzyLen -= pushNum;
           if (0 === fuzzyLen) {
             fuzzyLen = 1;
-            sLine = sLine.substring(1);
+            sLine = this._safeSubstring(sLine, 1);
           }
-          var sText = text.substring(0, 0 + fuzzyLen), result;
+          var sText = this._safeSubstring(text, 0, fuzzyLen), result;
           if (this.label_wrapinspection && this.label_symbolRex.test(sLine || tmpText)) {
             result = this.label_lastWordRex.exec(sText);
-            fuzzyLen -= result ? result[0].length : 0;
+            fuzzyLen -= result ? this._stringValidLength(result[0]) : 0;
             0 === fuzzyLen && (fuzzyLen = 1);
-            sLine = text.substring(fuzzyLen);
-            sText = text.substring(0, 0 + fuzzyLen);
-          }
-          if (this.label_firstEmoji.test(sLine)) {
-            result = this.label_lastEmoji.exec(sText);
-            if (result && sText !== result[0]) {
-              fuzzyLen -= result[0].length;
-              sLine = text.substring(fuzzyLen);
-              sText = text.substring(0, 0 + fuzzyLen);
-            }
+            sLine = this._safeSubstring(text, fuzzyLen);
+            sText = this._safeSubstring(text, 0, fuzzyLen);
           }
           if (this.label_firstEnglish.test(sLine)) {
             result = this.label_lastEnglish.exec(sText);
             if (result && sText !== result[0]) {
-              fuzzyLen -= result[0].length;
-              sLine = text.substring(fuzzyLen);
-              sText = text.substring(0, 0 + fuzzyLen);
+              fuzzyLen -= this._stringValidLength(result[0]);
+              sLine = this._safeSubstring(text, fuzzyLen);
+              sText = this._safeSubstring(text, 0, fuzzyLen);
             }
           }
           if (0 === wrappedWords.length) wrappedWords.push(sText); else {
@@ -43929,7 +44008,9 @@
       }
     };
     cc.textUtils = module.exports = textUtils;
-  }), {} ],
+  }), {
+    "../platform/js": 221
+  } ],
   309: [ (function(require, module, exports) {
     "use strict";
     var Texture2D = require("../assets/CCTexture2D");
@@ -50669,7 +50750,7 @@
         this.startSizeVar = parseFloat(dict["startParticleSizeVariance"] || 0);
         this.endSize = parseFloat(dict["finishParticleSize"] || 0);
         this.endSizeVar = parseFloat(dict["finishParticleSizeVariance"] || 0);
-        this.positionType = parseFloat(dict["positionType"] || PositionType.RELATIVE);
+        this.positionType = parseFloat(void 0 !== dict["positionType"] ? dict["positionType"] : PositionType.RELATIVE);
         this.sourcePos.x = 0;
         this.sourcePos.y = 0;
         this.posVar.x = parseFloat(dict["sourcePositionVariancex"] || 0);

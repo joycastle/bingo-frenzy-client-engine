@@ -436,33 +436,35 @@ export default class BmfontAssembler extends Assembler2D {
 
     _shrinkLabelToContentSize (lambda) {
         let fontSize = _fontSize;
-    
-        let i = 0;
-        let flag = true;
 
-        while (lambda()) {
-            ++i;
+        let left = 0, right = fontSize | 0, mid = 0;
+        while (left < right) {
+            mid = (left + right + 1) >> 1;
 
-            let newFontSize = fontSize - i;
-            flag = false;
+            let newFontSize = mid;
             if (newFontSize <= 0) {
                 break;
             }
 
             _bmfontScale = newFontSize / _originFontSize;
-            
+
             if (!_lineBreakWithoutSpaces) {
                 this._multilineTextWrapByWord();
             } else {
                 this._multilineTextWrapByChar();
             }
             this._computeAlignmentOffset();
+
+            if (lambda()) {
+                right = mid - 1;
+            } else {
+                left = mid;
+            }
         }
 
-        if (!flag) {
-            if (fontSize - i >= 0) {
-                this._scaleFontSizeDown(fontSize - i);
-            }
+        let actualFontSize = left;
+        if (actualFontSize >= 0) {
+            this._scaleFontSizeDown(actualFontSize);
         }
     }
 

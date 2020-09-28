@@ -482,21 +482,17 @@ export default class TTFAssembler extends Assembler2D {
                 maxLength = canvasWidthNoMargin + 1;
                 let actualFontSize = _fontSize + 1;
                 let textFragment = "";
-                let tryDivideByTwo = true;
-                let startShrinkFontSize = actualFontSize | 0;
+                //let startShrinkFontSize = actualFontSize | 0;
+                let left = 0, right = actualFontSize | 0, mid = 0;
 
-                while (totalHeight > canvasHeightNoMargin || maxLength > canvasWidthNoMargin) {
-                    if (tryDivideByTwo) {
-                        actualFontSize = (startShrinkFontSize / 2) | 0;
-                    } else {
-                        actualFontSize = startShrinkFontSize - 1;
-                        startShrinkFontSize = actualFontSize;
-                    }
-                    if (actualFontSize <= 0) {
+                while (left < right) {
+                    mid = (left + right + 1) >> 1;
+
+                    if (mid <= 0) {
                         cc.logID(4003);
                         break;
                     }
-                    _fontSize = actualFontSize;
+                    _fontSize = mid;
                     _fontDesc = this._getFontDesc();
                     _context.font = _fontDesc;
 
@@ -515,14 +511,19 @@ export default class TTFAssembler extends Assembler2D {
                         }
                     }
 
-                    if (tryDivideByTwo) {
-                        if (totalHeight > canvasHeightNoMargin) {
-                            startShrinkFontSize = actualFontSize | 0;
-                        } else {
-                            tryDivideByTwo = false;
-                            totalHeight = canvasHeightNoMargin + 1;
-                        }
+                    if (totalHeight > canvasHeightNoMargin) {
+                        right = mid - 1;
+                    } else {
+                        left = mid;
                     }
+                }
+
+                if (left === 0) {
+                    cc.logID(4003);
+                } else {
+                    _fontSize = left;
+                    _fontDesc = this._getFontDesc();
+                    _context.font = _fontDesc;
                 }
             }
             else {
@@ -543,4 +544,3 @@ export default class TTFAssembler extends Assembler2D {
         }
     }
 }
-
