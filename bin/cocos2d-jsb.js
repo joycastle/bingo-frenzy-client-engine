@@ -26073,15 +26073,7 @@
         onComplete = onProgress;
         onProgress = null;
       }
-      var queue = _pool.pop();
-      if (queue) {
-        queue._pipeline = pipeline;
-        queue.onProgress = onProgress;
-        queue.onComplete = onComplete;
-        _queues[queue._id] = queue;
-        queue._pipeline && (queue.active = true);
-        urlList && queue.append(urlList);
-      } else queue = new LoadingItems(pipeline, urlList, onProgress, onComplete);
+      var queue = new LoadingItems(pipeline, urlList, onProgress, onComplete);
       return queue;
     };
     LoadingItems.getQueue = function(item) {
@@ -26243,7 +26235,6 @@
       }
       delete _queues[this._id];
       delete _queueDeps[this._id];
-      -1 === _pool.indexOf(this) && _pool.length < _POOL_MAX_LENGTH && _pool.push(this);
     };
     cc.LoadingItems = module.exports = LoadingItems;
   }), {

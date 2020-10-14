@@ -22998,15 +22998,15 @@ s.Loader = e.exports = I;
 "use strict";
 var n = t("../platform/callbacks-invoker");
 t("../utils/CCPath");
-var r = t("../platform/js"), s = 0 | 998 * Math.random(), o = r.createMap(!0), a = [], c = {
+var r = t("../platform/js"), s = 0 | 998 * Math.random(), o = r.createMap(!0), a = {
 WORKING: 1,
 COMPLETE: 2,
 ERROR: 3
-}, l = r.createMap(!0);
-function h(t) {
+}, c = r.createMap(!0);
+function l(t) {
 return "string" == typeof (t.url || t);
 }
-function u(t) {
+function h(t) {
 if (t) {
 var e = t.split("?");
 if (e && e[0] && e[1]) {
@@ -23019,13 +23019,13 @@ return i;
 }
 }
 }
-function _(t, e) {
+function u(t, e) {
 var i = "object" == typeof t ? t.url : t, n = {
 queueId: e,
 id: i,
 url: i,
 rawUrl: void 0,
-urlParam: u(i),
+urlParam: h(i),
 type: "",
 error: null,
 content: null,
@@ -23037,18 +23037,18 @@ if ("object" == typeof t) {
 r.mixin(n, t);
 if (t.skips) for (var s = 0; s < t.skips.length; s++) {
 var o = t.skips[s];
-n.states[o] = c.COMPLETE;
+n.states[o] = a.COMPLETE;
 }
 }
 n.rawUrl = n.url;
 i && !n.type && (n.type = cc.path.extname(i).toLowerCase().substr(1));
 return n;
 }
-var f = [];
-function d(t, e, i) {
+var _ = [];
+function f(t, e, i) {
 if (!t || !e) return !1;
 var n = !1;
-f.push(e.id);
+_.push(e.id);
 if (e.deps) {
 var r, s, o = e.deps;
 for (r = 0; r < o.length; r++) {
@@ -23056,16 +23056,16 @@ if ((s = o[r]).id === t.id) {
 n = !0;
 break;
 }
-if (!(f.indexOf(s.id) >= 0) && (s.deps && d(t, s, !0))) {
+if (!(_.indexOf(s.id) >= 0) && (s.deps && f(t, s, !0))) {
 n = !0;
 break;
 }
 }
 }
-i || (f.length = 0);
+i || (_.length = 0);
 return n;
 }
-var p = function(t, e, i, a) {
+var d = function(t, e, i, a) {
 n.call(this);
 this._id = ++s;
 o[this._id] = this;
@@ -23082,8 +23082,8 @@ this.completedCount = 0;
 this._pipeline ? this.active = !0 : this.active = !1;
 e && (e.length > 0 ? this.append(e) : this.allComplete());
 };
-p.ItemState = new cc.Enum(c);
-p.create = function(t, e, i, n) {
+d.ItemState = new cc.Enum(a);
+d.create = function(t, e, i, n) {
 if (void 0 === i) {
 if ("function" == typeof e) {
 n = e;
@@ -23097,80 +23097,71 @@ e = null;
 n = i;
 i = null;
 }
-var r = a.pop();
-if (r) {
-r._pipeline = t;
-r.onProgress = i;
-r.onComplete = n;
-o[r._id] = r;
-r._pipeline && (r.active = !0);
-e && r.append(e);
-} else r = new p(t, e, i, n);
-return r;
+return new d(t, e, i, n);
 };
-p.getQueue = function(t) {
+d.getQueue = function(t) {
 return t.queueId ? o[t.queueId] : null;
 };
-p.itemComplete = function(t) {
+d.itemComplete = function(t) {
 var e = o[t.queueId];
 e && e.itemComplete(t.id);
 };
-p.initQueueDeps = function(t) {
-var e = l[t._id];
+d.initQueueDeps = function(t) {
+var e = c[t._id];
 if (e) {
 e.completed.length = 0;
 e.deps.length = 0;
-} else e = l[t._id] = {
+} else e = c[t._id] = {
 completed: [],
 deps: []
 };
 };
-p.registerQueueDep = function(t, e) {
+d.registerQueueDep = function(t, e) {
 var i = t.queueId || t;
 if (!i) return !1;
-var n = l[i];
-if (n) -1 === n.deps.indexOf(e) && n.deps.push(e); else if (t.id) for (var r in l) {
-var s = l[r];
+var n = c[i];
+if (n) -1 === n.deps.indexOf(e) && n.deps.push(e); else if (t.id) for (var r in c) {
+var s = c[r];
 -1 !== s.deps.indexOf(t.id) && -1 === s.deps.indexOf(e) && s.deps.push(e);
 }
 };
-p.finishDep = function(t) {
-for (var e in l) {
-var i = l[e];
+d.finishDep = function(t) {
+for (var e in c) {
+var i = c[e];
 -1 !== i.deps.indexOf(t) && -1 === i.completed.indexOf(t) && i.completed.push(t);
 }
 };
-var m = p.prototype;
-r.mixin(m, n.prototype);
-m.append = function(t, e) {
+var p = d.prototype;
+r.mixin(p, n.prototype);
+p.append = function(t, e) {
 if (!this.active) return [];
 e && !e.deps && (e.deps = []);
 this._appending = !0;
 var i, n, r, s = [];
 for (i = 0; i < t.length; ++i) if (!(n = t[i]).queueId || this.map[n.id]) {
-if (h(n)) {
-var a = (r = _(n, this._id)).id;
+if (l(n)) {
+var a = (r = u(n, this._id)).id;
 if (!this.map[a]) {
 this.map[a] = r;
 this.totalCount++;
 e && e.deps.push(r);
-p.registerQueueDep(e || this._id, a);
+d.registerQueueDep(e || this._id, a);
 s.push(r);
 }
 }
 } else {
 this.map[n.id] = n;
 e && e.deps.push(n);
-if (n.complete || d(e, n)) {
+if (n.complete || f(e, n)) {
 this.totalCount++;
 this.itemComplete(n.id);
 continue;
 }
-var c = this, l = o[n.queueId];
-if (l) {
+var c = this, h = o[n.queueId];
+if (h) {
 this.totalCount++;
-p.registerQueueDep(e || this._id, n.id);
-l.addListener(n.id, (function(t) {
+d.registerQueueDep(e || this._id, n.id);
+h.addListener(n.id, (function(t) {
 c.itemComplete(t.id);
 }));
 }
@@ -23179,40 +23170,40 @@ this._appending = !1;
 this.completedCount === this.totalCount ? this.allComplete() : this._pipeline.flowIn(s);
 return s;
 };
-m._childOnProgress = function(t) {
+p._childOnProgress = function(t) {
 if (this.onProgress) {
-var e = l[this._id];
+var e = c[this._id];
 this.onProgress(e ? e.completed.length : this.completedCount, e ? e.deps.length : this.totalCount, t);
 }
 };
-m.allComplete = function() {
+p.allComplete = function() {
 var t = r.isEmptyObject(this._errorUrls) ? null : this._errorUrls;
 this.onComplete && this.onComplete(t, this);
 };
-m.isCompleted = function() {
+p.isCompleted = function() {
 return this.completedCount >= this.totalCount;
 };
-m.isItemCompleted = function(t) {
+p.isItemCompleted = function(t) {
 return !!this.completed[t];
 };
-m.exists = function(t) {
+p.exists = function(t) {
 return !!this.map[t];
 };
-m.getContent = function(t) {
+p.getContent = function(t) {
 var e = this.map[t], i = null;
 e && (e.content ? i = e.content : e.alias && (i = e.alias.content));
 return i;
 };
-m.getError = function(t) {
+p.getError = function(t) {
 var e = this.map[t], i = null;
 e && (e.error ? i = e.error : e.alias && (i = e.alias.error));
 return i;
 };
-m.addListener = n.prototype.on;
-m.hasListener = n.prototype.hasEventListener;
-m.removeListener = n.prototype.off;
-m.removeAllListeners = n.prototype.removeAll;
-m.removeItem = function(t) {
+p.addListener = n.prototype.on;
+p.hasListener = n.prototype.hasEventListener;
+p.removeListener = n.prototype.off;
+p.removeAllListeners = n.prototype.removeAll;
+p.removeItem = function(t) {
 var e = this.map[t];
 if (e && this.completed[e.alias || t]) {
 delete this.completed[t];
@@ -23225,16 +23216,16 @@ this.completedCount--;
 this.totalCount--;
 }
 };
-m.itemComplete = function(t) {
+p.itemComplete = function(t) {
 var e = this.map[t];
 if (e) {
 var i = t in this._errorUrls;
 e.error instanceof Error || r.isString(e.error) ? this._errorUrls[t] = e.error : e.error ? r.mixin(this._errorUrls, e.error) : !e.error && i && delete this._errorUrls[t];
 this.completed[t] = e;
 this.completedCount++;
-p.finishDep(e.id);
+d.finishDep(e.id);
 if (this.onProgress) {
-var n = l[this._id];
+var n = c[this._id];
 this.onProgress(n ? n.completed.length : this.completedCount, n ? n.deps.length : this.totalCount, e);
 }
 this.emit(t, e);
@@ -23242,7 +23233,7 @@ this.removeAll(t);
 !this._appending && this.completedCount >= this.totalCount && this.allComplete();
 }
 };
-m.destroy = function() {
+p.destroy = function() {
 this.active = !1;
 this._appending = !1;
 this._pipeline = null;
@@ -23255,15 +23246,14 @@ this.completed = {};
 this.totalCount = 0;
 this.completedCount = 0;
 n.call(this);
-if (l[this._id]) {
-l[this._id].completed.length = 0;
-l[this._id].deps.length = 0;
+if (c[this._id]) {
+c[this._id].completed.length = 0;
+c[this._id].deps.length = 0;
 }
 delete o[this._id];
-delete l[this._id];
--1 === a.indexOf(this) && a.length < 10 && a.push(this);
+delete c[this._id];
 };
-cc.LoadingItems = e.exports = p;
+cc.LoadingItems = e.exports = d;
 }), {
 "../platform/callbacks-invoker": 213,
 "../platform/js": 220,
