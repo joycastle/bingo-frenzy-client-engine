@@ -11622,8 +11622,8 @@ _getHash: function() {
 if (!this._hashDirty) return this._hash;
 var t = this._genMipmaps ? 1 : 0, e = this._premultiplyAlpha ? 1 : 0, i = this._flipY ? 1 : 0, n = this._minFilter === h.LINEAR ? 1 : 2, r = this._magFilter === h.LINEAR ? 1 : 2, s = this._wrapS === l.REPEAT ? 1 : this._wrapS === l.CLAMP_TO_EDGE ? 2 : 3, o = this._wrapT === l.REPEAT ? 1 : this._wrapT === l.CLAMP_TO_EDGE ? 2 : 3, a = this._format, c = this._image;
 if (c) {
-6408 !== c._glFormat && (a = 0);
-e = c._premultiplyAlpha;
+c._glFormat && 6408 !== c._glFormat && (a = 0);
+e = c._premultiplyAlpha ? 1 : 0;
 }
 this._hash = Number("" + n + r + a + s + o + t + e + i);
 this._hashDirty = !1;

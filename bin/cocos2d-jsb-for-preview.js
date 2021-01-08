@@ -13478,8 +13478,8 @@
         var pixelFormat = this._format;
         var image = this._image;
         if (true, image) {
-          image._glFormat !== GL_RGBA && (pixelFormat = 0);
-          premultiplyAlpha = image._premultiplyAlpha;
+          image._glFormat && image._glFormat !== GL_RGBA && (pixelFormat = 0);
+          premultiplyAlpha = image._premultiplyAlpha ? 1 : 0;
         }
         this._hash = Number("" + minFilter + magFilter + pixelFormat + wrapS + wrapT + genMipmaps + premultiplyAlpha + flipY);
         this._hashDirty = false;

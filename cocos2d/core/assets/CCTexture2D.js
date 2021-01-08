@@ -955,9 +955,9 @@ var Texture2D = cc.Class({
         let pixelFormat = this._format;
         let image = this._image;
         if (CC_JSB && image) {
-            if (image._glFormat !== GL_RGBA)
+            if (image._glFormat && image._glFormat !== GL_RGBA)
                 pixelFormat = 0;
-            premultiplyAlpha = image._premultiplyAlpha;
+            premultiplyAlpha = image._premultiplyAlpha ? 1 : 0;
         }
 
         this._hash = Number(`${minFilter}${magFilter}${pixelFormat}${wrapS}${wrapT}${genMipmaps}${premultiplyAlpha}${flipY}`);
