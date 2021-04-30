@@ -13636,7 +13636,8 @@
           var loaded = function loaded() {
             this._effect.setProperty(name, val);
             var format = val.getPixelFormat();
-            format !== PixelFormat.RGBA_ETC1 && format !== PixelFormat.RGB_A_PVRTC_4BPPV1 && format !== PixelFormat.RGB_A_PVRTC_2BPPV1 || this.define("CC_USE_ALPHA_ATLAS_" + name.toUpperCase(), true);
+            var separateAlpha = format === PixelFormat.RGBA_ETC1 || format === PixelFormat.RGB_A_PVRTC_4BPPV1 || format === PixelFormat.RGB_A_PVRTC_2BPPV1;
+            this.define("CC_USE_ALPHA_ATLAS_" + name.toUpperCase(), separateAlpha);
           };
           if (val.loaded) loaded.call(this); else {
             val.once("load", loaded, this);

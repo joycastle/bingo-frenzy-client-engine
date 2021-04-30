@@ -11766,8 +11766,8 @@ this._dirty = !0;
 if (this._effect) if (e instanceof c) {
 var n = function() {
 this._effect.setProperty(t, e);
-var i = e.getPixelFormat();
-i !== l.RGBA_ETC1 && i !== l.RGB_A_PVRTC_4BPPV1 && i !== l.RGB_A_PVRTC_2BPPV1 || this.define("CC_USE_ALPHA_ATLAS_" + t.toUpperCase(), !0);
+var i = e.getPixelFormat(), n = i === l.RGBA_ETC1 || i === l.RGB_A_PVRTC_4BPPV1 || i === l.RGB_A_PVRTC_2BPPV1;
+this.define("CC_USE_ALPHA_ATLAS_" + t.toUpperCase(), n);
 };
 if (e.loaded) n.call(this); else {
 e.once("load", n, this);
