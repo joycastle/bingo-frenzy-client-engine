@@ -159,11 +159,8 @@ let Material = cc.Class({
                 function loaded () {
                     this._effect.setProperty(name, val);
                     let format = val.getPixelFormat();
-                    if (format === PixelFormat.RGBA_ETC1 ||
-                        format === PixelFormat.RGB_A_PVRTC_4BPPV1 ||
-                        format === PixelFormat.RGB_A_PVRTC_2BPPV1) {
-                        this.define('CC_USE_ALPHA_ATLAS_' + name.toUpperCase(), true);
-                    }
+                    let separateAlpha = (format === PixelFormat.RGBA_ETC1 || format === PixelFormat.RGB_A_PVRTC_4BPPV1 || format === PixelFormat.RGB_A_PVRTC_2BPPV1);
+                    this.define('CC_USE_ALPHA_ATLAS_' + name.toUpperCase(), separateAlpha);
                 }
 
                 if (!val.loaded) {
