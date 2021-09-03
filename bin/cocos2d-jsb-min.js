@@ -11335,7 +11335,10 @@ get: function() {
 return this._image;
 },
 set: function(t) {
-t._compressed && t._data ? this.initWithData(t._data, this._format, t.width, t.height) : this.initWithElement(t);
+if (t._compressed && t._data) {
+this.initWithData(t._data, this._format, t.width, t.height);
+cc.macro.CLEANUP_IMAGE_CACHE && (t.src = "");
+} else this.initWithElement(t);
 },
 override: !0
 },

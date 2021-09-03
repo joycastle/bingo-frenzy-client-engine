@@ -306,6 +306,9 @@ var Texture2D = cc.Class({
             set (data) {
                 if (data._compressed && data._data) {
                     this.initWithData(data._data, this._format, data.width, data.height);
+                    if (cc.macro.CLEANUP_IMAGE_CACHE) {
+                        data.src = "";
+                    }
                 }
                 else {
                     this.initWithElement(data);

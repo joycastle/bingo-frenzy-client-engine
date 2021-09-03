@@ -13166,7 +13166,10 @@
             return this._image;
           },
           set: function set(data) {
-            data._compressed && data._data ? this.initWithData(data._data, this._format, data.width, data.height) : this.initWithElement(data);
+            if (data._compressed && data._data) {
+              this.initWithData(data._data, this._format, data.width, data.height);
+              cc.macro.CLEANUP_IMAGE_CACHE && (data.src = "");
+            } else this.initWithElement(data);
           },
           override: true
         },
