@@ -24953,7 +24953,7 @@
         if (extname) {
           url = url.slice(0, -extname.length);
           uuid = assetTable.getUuid(url, type);
-          uuid && !quiet && cc.warnID(4901, url, extname);
+          uuid && !quiet;
         }
       }
       return uuid;

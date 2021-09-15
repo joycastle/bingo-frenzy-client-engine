@@ -22116,7 +22116,7 @@ if (!o) {
 var a = cc.path.extname(t);
 if (a) {
 t = t.slice(0, -a.length);
-(o = r.getUuid(t, e)) && !n && cc.warnID(4901, t, a);
+o = r.getUuid(t, e);
 }
 }
 return o;

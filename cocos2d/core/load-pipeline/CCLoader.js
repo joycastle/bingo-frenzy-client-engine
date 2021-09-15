@@ -350,7 +350,7 @@ proto._getResUuid = function (url, type, mount, quiet) {
             url = url.slice(0, - extname.length);
             uuid = assetTable.getUuid(url, type);
             if (uuid && !quiet) {
-                cc.warnID(4901, url, extname);
+                // cc.warnID(4901, url, extname);
             }
         }
     }
