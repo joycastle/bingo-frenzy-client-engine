@@ -8516,13 +8516,7 @@ CHILD_REMOVED: "child-removed",
 CHILD_REORDER: "child-reorder",
 GROUP_CHANGED: "group-changed",
 SIBLING_ORDER_CHANGED: "sibling-order-changed"
-}), U = [ z.TOUCH_START, z.TOUCH_MOVE, z.TOUCH_END, z.TOUCH_CANCEL ], j = [ z.MOUSE_DOWN, z.MOUSE_ENTER, z.MOUSE_MOVE, z.MOUSE_LEAVE, z.MOUSE_UP, z.MOUSE_WHEEL ], H = !0, W = function(t, e) {
-if (0 !== t) {
-var i = "";
-H && cc.warn("`cc.Node.skewX/Y` is deprecated since v2.2.1, please use 3D node instead.", i);
-H = !1;
-}
-}, q = null, X = function(t, e) {
+}), U = [ z.TOUCH_START, z.TOUCH_MOVE, z.TOUCH_END, z.TOUCH_CANCEL ], j = [ z.MOUSE_DOWN, z.MOUSE_ENTER, z.MOUSE_MOVE, z.MOUSE_LEAVE, z.MOUSE_UP, z.MOUSE_WHEEL ], H = null, W = function(t, e) {
 var i = t.getLocation(), n = this.owner;
 if (n._hitTest(i, this)) {
 e.type = z.TOUCH_START;
@@ -8532,42 +8526,42 @@ n.dispatchEvent(e);
 return !0;
 }
 return !1;
-}, Y = function(t, e) {
+}, q = function(t, e) {
 var i = this.owner;
 e.type = z.TOUCH_MOVE;
 e.touch = t;
 e.bubbles = !0;
 i.dispatchEvent(e);
-}, J = function(t, e) {
+}, X = function(t, e) {
 var i = t.getLocation(), n = this.owner;
 n._hitTest(i, this) ? e.type = z.TOUCH_END : e.type = z.TOUCH_CANCEL;
 e.touch = t;
 e.bubbles = !0;
 n.dispatchEvent(e);
-}, Z = function(t, e) {
+}, Y = function(t, e) {
 t.getLocation();
 var i = this.owner;
 e.type = z.TOUCH_CANCEL;
 e.touch = t;
 e.bubbles = !0;
 i.dispatchEvent(e);
-}, K = function(t) {
+}, J = function(t) {
 var e = t.getLocation(), i = this.owner;
 if (i._hitTest(e, this)) {
 t.type = z.MOUSE_DOWN;
 t.bubbles = !0;
 i.dispatchEvent(t);
 }
-}, Q = function(t) {
+}, Z = function(t) {
 var e = t.getLocation(), i = this.owner;
 if (i._hitTest(e, this)) {
 if (!this._previousIn) {
-if (q && q._mouseListener) {
+if (H && H._mouseListener) {
 t.type = z.MOUSE_LEAVE;
-q.dispatchEvent(t);
-q._mouseListener._previousIn = !1;
+H.dispatchEvent(t);
+H._mouseListener._previousIn = !1;
 }
-q = this.owner;
+H = this.owner;
 t.type = z.MOUSE_ENTER;
 i.dispatchEvent(t);
 this._previousIn = !0;
@@ -8580,10 +8574,10 @@ if (!this._previousIn) return;
 t.type = z.MOUSE_LEAVE;
 i.dispatchEvent(t);
 this._previousIn = !1;
-q = null;
+H = null;
 }
 t.stopPropagation();
-}, $ = function(t) {
+}, K = function(t) {
 var e = t.getLocation(), i = this.owner;
 if (i._hitTest(e, this)) {
 t.type = z.MOUSE_UP;
@@ -8591,7 +8585,7 @@ t.bubbles = !0;
 i.dispatchEvent(t);
 t.stopPropagation();
 }
-}, tt = function(t) {
+}, Q = function(t) {
 var e = t.getLocation(), i = this.owner;
 if (i._hitTest(e, this)) {
 t.type = z.MOUSE_WHEEL;
@@ -8600,7 +8594,7 @@ i.dispatchEvent(t);
 t.stopPropagation();
 }
 };
-function et(t) {
+function $(t) {
 var e = cc.Mask;
 if (e) for (var i = 0, n = t; n && cc.Node.isNode(n); n = n._parent, ++i) if (n.getComponent(e)) return {
 index: i,
@@ -8608,7 +8602,7 @@ node: n
 };
 return null;
 }
-function it(t, e) {
+function tt(t, e) {
 if (!(t._objFlags & f)) {
 var i = 0;
 if (t._bubblingListeners) for (;i < e.length; ++i) if (t._bubblingListeners.hasEventListener(e[i])) return !0;
@@ -8617,7 +8611,7 @@ return !1;
 }
 return !0;
 }
-function nt(t, e) {
+function et(t, e) {
 var i, n;
 e.target = t;
 F.length = 0;
@@ -8650,18 +8644,18 @@ return;
 }
 F.length = 0;
 }
-function rt(t) {
+function it(t) {
 var e = t.groupIndex;
-0 === e && t.parent && (e = rt(t.parent));
+0 === e && t.parent && (e = it(t.parent));
 return e;
 }
-function st(t) {
-var e = rt(t);
+function nt(t) {
+var e = it(t);
 t._cullingMask = 1 << e;
 t._proxy && t._proxy.updateCullingMask();
-for (var i = 0; i < t._children.length; i++) st(t._children[i]);
+for (var i = 0; i < t._children.length; i++) nt(t._children[i]);
 }
-var ot = {
+var rt = {
 name: "cc.Node",
 extends: r,
 properties: {
@@ -8694,7 +8688,7 @@ return this._groupIndex;
 },
 set: function(t) {
 this._groupIndex = t;
-st(this);
+nt(this);
 this.emit(z.GROUP_CHANGED, this);
 }
 },
@@ -8822,7 +8816,6 @@ get: function() {
 return this._skewX;
 },
 set: function(t) {
-W(t);
 this._skewX = t;
 this.setLocalDirty(k.SKEW);
 this._proxy.updateSkew();
@@ -8833,7 +8826,6 @@ get: function() {
 return this._skewY;
 },
 set: function(t) {
-W(t);
 this._skewY = t;
 this.setLocalDirty(k.SKEW);
 this._proxy.updateSkew();
@@ -8951,7 +8943,7 @@ statics: {
 EventType: z,
 _LocalDirtyFlag: k,
 isNode: function(t) {
-return t instanceof at && (t.constructor === at || !(t instanceof cc.Scene));
+return t instanceof st && (t.constructor === st || !(t instanceof cc.Scene));
 },
 BuiltinGroupIndex: G
 },
@@ -8961,7 +8953,7 @@ this._parent && this._parent._delaySort();
 _onPreDestroy: function() {
 this._onPreDestroyBase();
 p && cc.director.getActionManager().removeAllActionsFromTarget(this);
-q === this && (q = null);
+H === this && (H = null);
 if (this._touchListener || this._mouseListener) {
 c.removeListeners(this);
 if (this._touchListener) {
@@ -8987,9 +8979,9 @@ this._renderFlag |= _.FLAG_WORLD_TRANSFORM;
 e && e.resumeTarget(this);
 c.resumeTarget(this);
 if (this._touchListener) {
-var i = this._touchListener.mask = et(this);
+var i = this._touchListener.mask = $(this);
 this._mouseListener && (this._mouseListener.mask = i);
-} else this._mouseListener && (this._mouseListener.mask = et(this));
+} else this._mouseListener && (this._mouseListener.mask = $(this));
 } else {
 e && e.pauseTarget(this);
 c.pauseTarget(this);
@@ -8997,7 +8989,7 @@ c.pauseTarget(this);
 },
 _onHierarchyChanged: function(t) {
 this._updateOrderOfArrival();
-st(this);
+nt(this);
 this._parent && this._parent._delaySort();
 this._renderFlag |= _.FLAG_WORLD_TRANSFORM;
 this._onHierarchyChangedBase(t);
@@ -9068,7 +9060,7 @@ s.syncWithPrefab(this);
 }
 this._upgrade_1x_to_2x();
 this._updateOrderOfArrival();
-this._cullingMask = 1 << rt(this);
+this._cullingMask = 1 << it(this);
 this._proxy && this._proxy.updateCullingMask();
 if (!this._activeInHierarchy) {
 p && cc.director.getActionManager().pauseTarget(this);
@@ -9080,7 +9072,7 @@ this._proxy.initNative();
 },
 _onBatchRestored: function() {
 this._upgrade_1x_to_2x();
-this._cullingMask = 1 << rt(this);
+this._cullingMask = 1 << it(this);
 this._proxy && this._proxy.updateCullingMask();
 if (!this._activeInHierarchy) {
 var t = cc.director.getActionManager();
@@ -9099,11 +9091,11 @@ this._touchListener = cc.EventListener.create({
 event: cc.EventListener.TOUCH_ONE_BY_ONE,
 swallowTouches: !0,
 owner: this,
-mask: et(this),
-onTouchBegan: X,
-onTouchMoved: Y,
-onTouchEnded: J,
-onTouchCancelled: Z
+mask: $(this),
+onTouchBegan: W,
+onTouchMoved: q,
+onTouchEnded: X,
+onTouchCancelled: Y
 });
 c.addListener(this._touchListener, this);
 e = !0;
@@ -9115,11 +9107,11 @@ this._mouseListener = cc.EventListener.create({
 event: cc.EventListener.MOUSE,
 _previousIn: !1,
 owner: this,
-mask: et(this),
-onMouseDown: K,
-onMouseMove: Q,
-onMouseUp: $,
-onMouseScroll: tt
+mask: $(this),
+onMouseDown: J,
+onMouseMove: Z,
+onMouseUp: K,
+onMouseScroll: Q
 });
 c.addListener(this._mouseListener, this);
 e = !0;
@@ -9183,11 +9175,11 @@ var r = -1 !== U.indexOf(t), s = !r && -1 !== j.indexOf(t);
 if (r || s) {
 this._offDispatch(t, e, i, n);
 if (r) {
-if (this._touchListener && !it(this, U)) {
+if (this._touchListener && !tt(this, U)) {
 c.removeListener(this._touchListener);
 this._touchListener = null;
 }
-} else if (s && this._mouseListener && !it(this, j)) {
+} else if (s && this._mouseListener && !tt(this, j)) {
 c.removeListener(this._mouseListener);
 this._mouseListener = null;
 }
@@ -9248,11 +9240,11 @@ e.targetOff(t);
 }
 this._capturingListeners && this._capturingListeners.targetOff(t);
 t && t.__eventTargets && h.array.fastRemove(t.__eventTargets, this);
-if (this._touchListener && !it(this, U)) {
+if (this._touchListener && !tt(this, U)) {
 c.removeListener(this._touchListener);
 this._touchListener = null;
 }
-if (this._mouseListener && !it(this, j)) {
+if (this._mouseListener && !tt(this, j)) {
 c.removeListener(this._mouseListener);
 this._mouseListener = null;
 }
@@ -9267,7 +9259,7 @@ emit: function(t, e, i, n, r, s) {
 this._bubblingListeners && this._bubblingListeners.emit(t, e, i, n, r, s);
 },
 dispatchEvent: function(t) {
-nt(this, t);
+et(this, t);
 F.length = 0;
 },
 pauseSystemEvents: function(t) {
@@ -9789,9 +9781,9 @@ _restoreProperties: !1,
 onRestore: !1
 };
 0;
-var at = cc.Class(ot), ct = at.prototype;
-h.getset(ct, "position", ct.getPosition, ct.setPosition, !1, !0);
-cc.Node = e.exports = at;
+var st = cc.Class(rt), ot = st.prototype;
+h.getset(ot, "position", ot.getPosition, ot.setPosition, !1, !0);
+cc.Node = e.exports = st;
 }), {
 "./event-manager": 131,
 "./event/event": 134,

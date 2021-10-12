@@ -1016,7 +1016,7 @@ let NodeDefines = {
                 return this._skewX;
             },
             set (value) {
-                _skewWarn(value, this);
+                // _skewWarn(value, this);
 
                 this._skewX = value;
                 this.setLocalDirty(LocalDirtyFlag.SKEW);
@@ -1041,7 +1041,7 @@ let NodeDefines = {
                 return this._skewY;
             },
             set (value) {
-                _skewWarn(value, this);
+                // _skewWarn(value, this);
 
                 this._skewY = value;
                 this.setLocalDirty(LocalDirtyFlag.SKEW);
@@ -1482,12 +1482,12 @@ let NodeDefines = {
             this._zIndex = undefined;
         }
 
-        if (CC_EDITOR) {
-            if (this._skewX !== 0 || this._skewY !== 0) {
-                var NodeUtils = Editor.require('scene://utils/node');
-                cc.warn("`cc.Node.skewX/Y` is deprecated since v2.2.1, please use 3D node instead.", `Node: ${NodeUtils.getNodePath(this)}.`);
-            }
-        }
+        // if (CC_EDITOR) {
+        //     if (this._skewX !== 0 || this._skewY !== 0) {
+        //         var NodeUtils = Editor.require('scene://utils/node');
+        //         cc.warn("`cc.Node.skewX/Y` is deprecated since v2.2.1, please use 3D node instead.", `Node: ${NodeUtils.getNodePath(this)}.`);
+        //     }
+        // }
 
         this._fromEuler();
 

@@ -10417,7 +10417,6 @@
             return this._skewX;
           },
           set: function set(value) {
-            _skewWarn(value, this);
             this._skewX = value;
             this.setLocalDirty(LocalDirtyFlag.SKEW);
             false;
@@ -10428,7 +10427,6 @@
             return this._skewY;
           },
           set: function set(value) {
-            _skewWarn(value, this);
             this._skewY = value;
             this.setLocalDirty(LocalDirtyFlag.SKEW);
             false;
@@ -10662,8 +10660,6 @@
           this._localZOrder = this._zIndex << 16;
           this._zIndex = void 0;
         }
-        var NodeUtils;
-        false;
         this._fromEuler();
         0 !== this._localZOrder && (this._zIndex = (4294901760 & this._localZOrder) >> 16);
         if (this._color.a < 255 && 255 === this._opacity) {
