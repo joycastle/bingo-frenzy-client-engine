@@ -58657,9 +58657,15 @@
         }
       },
       _updateSkeletonData: function _updateSkeletonData() {
-        if (!this.skeletonData) return;
+        if (!this.skeletonData) {
+          this.disableRender();
+          return;
+        }
         var data = this.skeletonData.getRuntimeData();
-        if (!data) return;
+        if (!data) {
+          this.disableRender();
+          return;
+        }
         try {
           this.setSkeletonData(data);
           this.isAnimationCached() || this.setAnimationStateData(new spine.AnimationStateData(this._skeleton.data));

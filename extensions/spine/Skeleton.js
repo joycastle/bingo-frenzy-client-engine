@@ -1300,10 +1300,16 @@ sp.Skeleton = cc.Class({
     },
 
     _updateSkeletonData () {
-        if (!this.skeletonData) return;
+        if (!this.skeletonData) {
+            this.disableRender();
+            return;
+        };
         let data = this.skeletonData.getRuntimeData();
-        if (!data) return;
-        
+        if (!data) {
+            this.disableRender();
+            return;
+        };
+
         try {
             this.setSkeletonData(data);
             if (!this.isAnimationCached()) {
