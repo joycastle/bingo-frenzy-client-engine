@@ -51130,7 +51130,7 @@ cc.warn(t);
 this._preCacheMode = this._cacheMode;
 this.animation = this.defaultAnimation;
 } else this.disableRender();
-} else this.disableRender();
+} else this.disableRender(); else cc.warn("node has been destroyed, can't set sp.skeletonData");
 },
 _refreshInspector: function() {
 this._updateAnimEnum();

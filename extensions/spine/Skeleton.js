@@ -1301,6 +1301,7 @@ sp.Skeleton = cc.Class({
 
     _updateSkeletonData() {
         if (!this.node) {
+            cc.warn("node has been destroyed, can't set sp.skeletonData");
             return;
         }
         if (!this.skeletonData) {

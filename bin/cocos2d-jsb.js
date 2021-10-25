@@ -58657,7 +58657,10 @@
         }
       },
       _updateSkeletonData: function _updateSkeletonData() {
-        if (!this.node) return;
+        if (!this.node) {
+          cc.warn("node has been destroyed, can't set sp.skeletonData");
+          return;
+        }
         if (!this.skeletonData) {
           this.disableRender();
           return;
