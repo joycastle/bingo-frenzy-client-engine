@@ -58913,6 +58913,7 @@
         }
       },
       _updateSkeletonData: function _updateSkeletonData() {
+        if (!this.node) return;
         if (!this.skeletonData) {
           this.disableRender();
           return;

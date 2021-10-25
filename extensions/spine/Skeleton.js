@@ -1299,7 +1299,10 @@ sp.Skeleton = cc.Class({
         }
     },
 
-    _updateSkeletonData () {
+    _updateSkeletonData() {
+        if (!this.node) {
+            return;
+        }
         if (!this.skeletonData) {
             this.disableRender();
             return;

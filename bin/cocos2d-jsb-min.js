@@ -51117,7 +51117,7 @@ this._state && this._state.addListener(this._listener);
 }
 },
 _updateSkeletonData: function() {
-if (this.skeletonData) {
+if (this.node) if (this.skeletonData) {
 var t = this.skeletonData.getRuntimeData();
 if (t) {
 try {
