@@ -38658,7 +38658,8 @@ return "rgba" === t ? "rgba(" + (0 | this.r) + "," + (0 | this.g) + "," + (0 | t
 };
 a.fromHEX = function(t) {
 t = 0 === t.indexOf("#") ? t.substring(1) : t;
-var e = parseInt(t.substr(0, 2), 16) || 0, i = parseInt(t.substr(2, 2), 16) || 0, n = parseInt(t.substr(4, 2), 16) || 0, r = parseInt(t.substr(6, 2), 16) || 255;
+var e = parseInt(t.substr(0, 2), 16) || 0, i = parseInt(t.substr(2, 2), 16) || 0, n = parseInt(t.substr(4, 2), 16) || 0, r = parseInt(t.substr(6, 2), 16);
+r = Number.isNaN(r) ? 255 : r;
 this._val = (r << 24 >>> 0) + (n << 16) + (i << 8) + e;
 return this;
 };

@@ -397,7 +397,8 @@ var Color = (function () {
         let r = parseInt(hexString.substr(0, 2), 16) || 0;
         let g = parseInt(hexString.substr(2, 2), 16) || 0;
         let b = parseInt(hexString.substr(4, 2), 16) || 0;
-        let a = parseInt(hexString.substr(6, 2), 16) || 255;
+        let a = parseInt(hexString.substr(6, 2), 16);
+        a = Number.isNaN(a) ? 255 : a;
         this._val = ((a<<24) >>> 0) + (b<<16) + (g<<8) + r;
         return this;
     };
