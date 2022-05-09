@@ -39985,8 +39985,7 @@
         var verts = renderData.vDatas[0], uintVerts = renderData.uintVDatas[0];
         this.verticesCount += 4;
         this.indicesCount = this.verticesCount / 2 * 3;
-        var texw = texture.width, texh = texture.height, rectWidth = rect.width, rectHeight = rect.height, color = this._getColor(comp);
-        outlineColor = this._getOutlineColor(comp);
+        var texw = texture.width, texh = texture.height, rectWidth = rect.width, rectHeight = rect.height, color = this._getColor(comp), outlineColor = this._getOutlineColor(comp);
         var l = void 0, b = void 0, r = void 0, t = void 0;
         var floatsPerVert = this.floatsPerVert;
         var uvDataOffset = _dataOffset + this.uvOffset;

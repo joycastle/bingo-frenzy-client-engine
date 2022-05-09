@@ -94,7 +94,7 @@ export default class WebglColorBmfontAssembler extends BmfontAssembler {
             texh = texture.height,
             rectWidth = rect.width,
             rectHeight = rect.height,
-            color = this._getColor(comp);
+            color = this._getColor(comp),
             outlineColor = this._getOutlineColor(comp);
 
         let l, b, r, t;
