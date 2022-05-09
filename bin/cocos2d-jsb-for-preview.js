@@ -679,7 +679,7 @@
     };
   }), {
     "../core/platform/CCClass": 201,
-    "../core/utils/misc": 301
+    "../core/utils/misc": 303
   } ],
   3: [ (function(require, module, exports) {
     "use strict";
@@ -3512,7 +3512,7 @@
     false;
     module.exports = AnimationAnimator;
   }), {
-    "../core/utils/binary-search": 293,
+    "../core/utils/binary-search": 295,
     "./animation-curves": 12,
     "./playable": 19,
     "./types": 20
@@ -3663,7 +3663,7 @@
     });
     cc.AnimationClip = module.exports = AnimationClip;
   }), {
-    "../core/utils/binary-search": 293,
+    "../core/utils/binary-search": 295,
     "./animation-curves": 12,
     "./motion-path-helper": 18,
     "./types": 20
@@ -3885,7 +3885,7 @@
       quickFindIndex: quickFindIndex
     };
   }), {
-    "../core/utils/binary-search": 293,
+    "../core/utils/binary-search": 295,
     "./bezier": 15,
     "./types": 20
   } ],
@@ -4638,7 +4638,7 @@
       Bezier: Bezier
     };
   }), {
-    "../core/utils/binary-search": 293,
+    "../core/utils/binary-search": 295,
     "./animation-curves": 12,
     "./bezier": 15
   } ],
@@ -5490,7 +5490,7 @@
     };
     module.exports = Base64;
   }), {
-    "../core/utils/misc": 301
+    "../core/utils/misc": 303
   } ],
   25: [ (function(require, module, exports) {
     "use strict";
@@ -7239,15 +7239,15 @@
     cc.Light = Light;
     module.exports = exports["default"];
   }), {
-    "../../renderer/enums": 353,
+    "../../renderer/enums": 355,
     "../../renderer/scene/light": void 0,
     "../components/CCComponent": 96,
     "../platform/CCClassDecorator": 202,
     "../platform/CCEnum": 203,
     "../renderer/index": 250,
-    "../value-types": 316,
-    "../vmath": 327,
-    "../vmath/mat4": 331
+    "../value-types": 318,
+    "../vmath": 329,
+    "../vmath/mat4": 333
   } ],
   28: [ (function(require, module, exports) {
     "use strict";
@@ -7602,7 +7602,7 @@
   }), {
     "../CCNode": 53,
     "../renderer/render-flow": 251,
-    "../vmath": 327
+    "../vmath": 329
   } ],
   32: [ (function(require, module, exports) {
     "use strict";
@@ -7691,7 +7691,7 @@
     var c7 = _vmath.vec3.create(0, 0, 0);
     module.exports = exports["default"];
   }), {
-    "../../vmath": 327,
+    "../../vmath": 329,
     "./vertex-data": 43
   } ],
   33: [ (function(require, module, exports) {
@@ -7839,7 +7839,7 @@
     var temp2 = _vmath.vec3.create(0, 0, 0);
     module.exports = exports["default"];
   }), {
-    "../../vmath": 327,
+    "../../vmath": 329,
     "./vertex-data": 43
   } ],
   34: [ (function(require, module, exports) {
@@ -8011,7 +8011,7 @@
     var temp2 = _vmath.vec3.create(0, 0, 0);
     module.exports = exports["default"];
   }), {
-    "../../vmath": 327,
+    "../../vmath": 329,
     "./vertex-data": 43
   } ],
   36: [ (function(require, module, exports) {
@@ -8128,7 +8128,7 @@
     var c01 = _vmath.vec3.create(0, 0, 0);
     module.exports = exports["default"];
   }), {
-    "../../vmath": 327,
+    "../../vmath": 329,
     "./vertex-data": 43
   } ],
   38: [ (function(require, module, exports) {
@@ -8256,7 +8256,7 @@
       return new _vertexData2.default(positions, normals, uvs, indices, minPos, maxPos, boundingRadius);
     };
   }), {
-    "../../vmath": 327,
+    "../../vmath": 329,
     "./utils": 42,
     "./vertex-data": 43
   } ],
@@ -8283,7 +8283,7 @@
     var boundingRadius = Math.sqrt(.5);
     module.exports = exports["default"];
   }), {
-    "../../vmath": 327,
+    "../../vmath": 329,
     "./vertex-data": 43
   } ],
   40: [ (function(require, module, exports) {
@@ -8339,7 +8339,7 @@
     }
     module.exports = exports["default"];
   }), {
-    "../../vmath": 327,
+    "../../vmath": 329,
     "./vertex-data": 43
   } ],
   41: [ (function(require, module, exports) {
@@ -8395,7 +8395,7 @@
     }
     module.exports = exports["default"];
   }), {
-    "../../vmath": 327,
+    "../../vmath": 329,
     "./vertex-data": 43
   } ],
   42: [ (function(require, module, exports) {
@@ -8499,7 +8499,7 @@
       return normals;
     }
   }), {
-    "../../vmath": 327
+    "../../vmath": 329
   } ],
   43: [ (function(require, module, exports) {
     "use strict";
@@ -8826,7 +8826,7 @@
     cc.SkeletonAnimationClip = module.exports = SkeletonAnimationClip;
   }), {
     "../../../animation/animation-clip": 11,
-    "../../vmath/mat4": 331,
+    "../../vmath/mat4": 333,
     "./CCJointMatrixCurve": 44
   } ],
   48: [ (function(require, module, exports) {
@@ -9048,7 +9048,7 @@
     });
     cc.SkinnedMeshRenderer = module.exports = SkinnedMeshRenderer;
   }), {
-    "../../../renderer/enums": 353,
+    "../../../renderer/enums": 355,
     "../../mesh/CCMeshRenderer": 169,
     "../../renderer/render-flow": 251,
     "./CCSkeleton": 45
@@ -11456,11 +11456,11 @@
     "./platform/CCMacro": 206,
     "./platform/js": 221,
     "./renderer/render-flow": 251,
-    "./utils/affine-transform": 291,
-    "./utils/base-node": 292,
-    "./utils/prefab-helper": 304,
-    "./utils/trans-pool": 310,
-    "./vmath": 327
+    "./utils/affine-transform": 293,
+    "./utils/base-node": 294,
+    "./utils/prefab-helper": 306,
+    "./utils/trans-pool": 312,
+    "./vmath": 329
   } ],
   54: [ (function(require, module, exports) {
     "use strict";
@@ -12397,7 +12397,7 @@
     });
     module.exports = cc.EffectAsset = EffectAsset;
   }), {
-    "../../renderer/core/effect": 349,
+    "../../renderer/core/effect": 351,
     "./CCAsset": 57
   } ],
   62: [ (function(require, module, exports) {
@@ -12610,7 +12610,7 @@
     });
     cc.RenderTexture = module.exports = RenderTexture;
   }), {
-    "../../renderer/gfx": 354,
+    "../../renderer/gfx": 356,
     "../renderer": 250,
     "./CCTexture2D": 74
   } ],
@@ -13016,7 +13016,7 @@
   }), {
     "../assets/CCAsset": 57,
     "../event/event-target": 134,
-    "../utils/texture-util": 309
+    "../utils/texture-util": 311
   } ],
   72: [ (function(require, module, exports) {
     "use strict";
@@ -13494,7 +13494,7 @@
     });
     cc.Texture2D = module.exports = Texture2D;
   }), {
-    "../../renderer/gfx": 354,
+    "../../renderer/gfx": 356,
     "../assets/CCAsset": 57,
     "../event/event-target": 134,
     "../platform/CCClass": 201,
@@ -13690,8 +13690,8 @@
     });
     module.exports = cc.Material = Material;
   }), {
-    "../../../renderer/murmurhash2_gc": 357,
-    "../../utils/texture-util": 309,
+    "../../../renderer/murmurhash2_gc": 359,
+    "../../utils/texture-util": 311,
     "../CCAsset": 57,
     "../CCEffectAsset": 61,
     "../CCTexture2D": 74,
@@ -13773,7 +13773,7 @@
     cc.CustomProperties = CustomProperties;
     module.exports = exports["default"];
   }), {
-    "../../../renderer/murmurhash2_gc": 357,
+    "../../../renderer/murmurhash2_gc": 359,
     "./utils": 79
   } ],
   78: [ (function(require, module, exports) {
@@ -13861,7 +13861,7 @@
     exports.default = materialPool;
     module.exports = exports["default"];
   }), {
-    "../../utils/pool": 303,
+    "../../utils/pool": 305,
     "./utils": 79
   } ],
   79: [ (function(require, module, exports) {
@@ -13912,7 +13912,7 @@
     };
     module.exports = exports["default"];
   }), {
-    "../../../renderer/enums": 353
+    "../../../renderer/enums": 355
   } ],
   80: [ (function(require, module, exports) {
     "use strict";
@@ -14603,7 +14603,7 @@
     "../geom-utils": 139,
     "../renderer/index": 250,
     "../renderer/render-flow": 251,
-    "../utils/affine-transform": 291
+    "../utils/affine-transform": 293
   } ],
   82: [ (function(require, module, exports) {
     "use strict";
@@ -15454,7 +15454,7 @@
     "./platform/CCClass": 201,
     "./platform/CCObject": 207,
     "./platform/js": 221,
-    "./utils/misc": 301
+    "./utils/misc": 303
   } ],
   91: [ (function(require, module, exports) {
     "use strict";
@@ -15894,7 +15894,7 @@
     cc.AudioSource = module.exports = AudioSource;
   }), {
     "../assets/CCAudioClip": 58,
-    "../utils/misc": 301,
+    "../utils/misc": 303,
     "./CCComponent": 96
   } ],
   93: [ (function(require, module, exports) {
@@ -16386,7 +16386,7 @@
     });
     cc.Button = module.exports = Button;
   }), {
-    "../utils/gray-sprite-state": 297,
+    "../utils/gray-sprite-state": 299,
     "./CCComponent": 96
   } ],
   95: [ (function(require, module, exports) {
@@ -18072,13 +18072,13 @@
     });
     cc.Mask = module.exports = Mask;
   }), {
-    "../../renderer/gfx": 354,
+    "../../renderer/gfx": 356,
     "../CCNode": 53,
     "../assets/material/CCMaterial": 76,
     "../graphics/graphics": 143,
     "../renderer/render-flow": 251,
-    "../utils/misc": 301,
-    "../vmath": 327,
+    "../utils/misc": 303,
+    "../vmath": 329,
     "./CCRenderComponent": 107
   } ],
   103: [ (function(require, module, exports) {
@@ -18219,10 +18219,10 @@
     });
     cc.MotionStreak = module.exports = MotionStreak;
   }), {
-    "../../core/utils/blend-func": 294,
+    "../../core/utils/blend-func": 296,
     "../assets/material/CCMaterial": 76,
     "../components/CCRenderComponent": 107,
-    "../utils/texture-util": 309
+    "../utils/texture-util": 311
   } ],
   104: [ (function(require, module, exports) {
     "use strict";
@@ -18770,7 +18770,7 @@
     });
     cc.ProgressBar = module.exports = ProgressBar;
   }), {
-    "../utils/misc": 301,
+    "../utils/misc": 303,
     "./CCComponent": 96
   } ],
   107: [ (function(require, module, exports) {
@@ -19453,8 +19453,8 @@
   }), {
     "../platform/CCMacro": 206,
     "../platform/js": 221,
-    "../utils/html-text-parser": 298,
-    "../utils/text-utils": 308
+    "../utils/html-text-parser": 300,
+    "../utils/text-utils": 310
   } ],
   109: [ (function(require, module, exports) {
     "use strict";
@@ -19655,7 +19655,7 @@
     });
     cc.Scrollbar = module.exports = Scrollbar;
   }), {
-    "../utils/misc": 301,
+    "../utils/misc": 303,
     "./CCComponent": 96
   } ],
   110: [ (function(require, module, exports) {
@@ -20583,7 +20583,7 @@
     });
     cc.Slider = module.exports = Slider;
   }), {
-    "../utils/misc": 301,
+    "../utils/misc": 303,
     "./CCComponent": 96
   } ],
   112: [ (function(require, module, exports) {
@@ -20828,8 +20828,8 @@
     "../CCNode": 53,
     "../assets/material/CCMaterial": 76,
     "../renderer/render-flow": 251,
-    "../utils/blend-func": 294,
-    "../utils/misc": 301,
+    "../utils/blend-func": 296,
+    "../utils/misc": 303,
     "./CCRenderComponent": 107
   } ],
   113: [ (function(require, module, exports) {
@@ -20901,7 +20901,7 @@
     });
     cc.StudioWidget = module.exports = StudioWidget;
   }), {
-    "../utils/prefab-helper": 304
+    "../utils/prefab-helper": 306
   } ],
   114: [ (function(require, module, exports) {
     "use strict";
@@ -21006,7 +21006,7 @@
     }));
   }), {
     "../platform/js": 221,
-    "../utils/gray-sprite-state": 297,
+    "../utils/gray-sprite-state": 299,
     "./CCButton": 94,
     "./CCToggleGroup": 116
   } ],
@@ -22782,7 +22782,7 @@
     });
     cc._MissingScript = module.exports = MissingScript;
   }), {
-    "../utils/misc": 301
+    "../utils/misc": 303
   } ],
   128: [ (function(require, module, exports) {
     "use strict";
@@ -24381,8 +24381,8 @@
     })();
     module.exports = intersect;
   }), {
-    "../../renderer/gfx": 354,
-    "../../renderer/memop/recycle-pool": 355,
+    "../../renderer/gfx": 356,
+    "../../renderer/memop/recycle-pool": 357,
     "./aabb": 138,
     "./ray": 141,
     "./triangle": 142
@@ -25245,7 +25245,7 @@
     Pipeline.AssetLoader = module.exports = AssetLoader;
   }), {
     "../CCDebug": 50,
-    "../utils/CCPath": 290,
+    "../utils/CCPath": 292,
     "./loading-items": 158,
     "./pipeline": 161
   } ],
@@ -25345,7 +25345,7 @@
     module.exports = AssetTable;
   }), {
     "../platform/js": 221,
-    "../utils/misc": 301
+    "../utils/misc": 303
   } ],
   151: [ (function(require, module, exports) {
     "use strict";
@@ -25676,7 +25676,7 @@
   }), {
     "../CCDebug": 50,
     "../platform/js": 221,
-    "../utils/CCPath": 290,
+    "../utils/CCPath": 292,
     "./audio-downloader": 151,
     "./binary-downloader": 153,
     "./pack-downloader": 160,
@@ -25808,7 +25808,7 @@
     };
     module.exports = fontLoader;
   }), {
-    "../utils/text-utils": 308
+    "../utils/text-utils": 310
   } ],
   156: [ (function(require, module, exports) {
     "use strict";
@@ -26264,7 +26264,7 @@
   }), {
     "../platform/callbacks-invoker": 214,
     "../platform/js": 221,
-    "../utils/CCPath": 290
+    "../utils/CCPath": 292
   } ],
   159: [ (function(require, module, exports) {
     "use strict";
@@ -26436,7 +26436,7 @@
     };
     false;
   }), {
-    "../utils/misc": 301,
+    "../utils/misc": 303,
     "./unpackers": 165
   } ],
   161: [ (function(require, module, exports) {
@@ -27144,8 +27144,8 @@
     });
     cc.Mesh = module.exports = Mesh;
   }), {
-    "../../renderer/core/input-assembler": 350,
-    "../../renderer/gfx": 354,
+    "../../renderer/core/input-assembler": 352,
+    "../../renderer/gfx": 356,
     "../event/event-target": 134,
     "../renderer": 250,
     "./mesh-data": 171
@@ -27355,15 +27355,15 @@
     });
     cc.MeshRenderer = module.exports = MeshRenderer;
   }), {
-    "../../renderer/core/input-assembler": 350,
-    "../../renderer/gfx": 354,
+    "../../renderer/core/input-assembler": 352,
+    "../../renderer/gfx": 356,
     "../assets/material/CCMaterial": 76,
     "../assets/material/custom-properties": 77,
     "../components/CCRenderComponent": 107,
     "../geom-utils": 139,
     "../renderer": 250,
     "../renderer/render-flow": 251,
-    "../utils/mesh-util": 300,
+    "../utils/mesh-util": 302,
     "./CCMesh": 168
   } ],
   170: [ (function(require, module, exports) {
@@ -27466,7 +27466,7 @@
       return this.iData;
     };
   }), {
-    "../../renderer/gfx": 354
+    "../../renderer/gfx": 356
   } ],
   172: [ (function(require, module, exports) {
     "use strict";
@@ -27593,9 +27593,9 @@
     _assembler2.default.register(MeshRenderer, MeshRendererAssembler);
     module.exports = exports["default"];
   }), {
-    "../../renderer/gfx": 354,
+    "../../renderer/gfx": 356,
     "../renderer/assembler": 230,
-    "../vmath/vec3": 336,
+    "../vmath/vec3": 338,
     "./CCMeshRenderer": 169
   } ],
   173: [ (function(require, module, exports) {
@@ -27776,7 +27776,7 @@
     "./component-scheduler": 90,
     "./platform/CCObject": 207,
     "./platform/js": 221,
-    "./utils/misc": 301
+    "./utils/misc": 303
   } ],
   174: [ (function(require, module, exports) {
     "use strict";
@@ -28936,7 +28936,7 @@
     }
     b2.maxPolygonVertices = 8;
   }), {
-    "../../../external/box2d/box2d": 386
+    "../../../external/box2d/box2d": 388
   } ],
   180: [ (function(require, module, exports) {
     "use strict";
@@ -30527,7 +30527,7 @@
     "../load-pipeline/md5-pipe": 159,
     "../load-pipeline/pack-downloader": 160,
     "../load-pipeline/subpackage-pipe": 163,
-    "../utils/decode-uuid": 295,
+    "../utils/decode-uuid": 297,
     "./js": 221,
     "./utils": 225
   } ],
@@ -33954,7 +33954,7 @@
       cc.warnID(5302, id);
     };
   }), {
-    "../utils/misc": 301,
+    "../utils/misc": 303,
     "./CCClass": 201,
     "./attribute": 213,
     "./js": 221
@@ -34458,7 +34458,7 @@
     cc.instantiate = instantiate;
     module.exports = instantiate;
   }), {
-    "../value-types/value-type": 321,
+    "../value-types/value-type": 323,
     "./CCObject": 207,
     "./js": 221,
     "./utils": 225
@@ -34857,7 +34857,7 @@
     cc.js = js;
     module.exports = js;
   }), {
-    "../utils/mutable-forward-iterator": 302,
+    "../utils/mutable-forward-iterator": 304,
     "./id-generater": 217
   } ],
   222: [ (function(require, module, exports) {
@@ -35200,8 +35200,8 @@
     "./platform/CCView": 211,
     "./platform/js": 221,
     "./renderer": 250,
-    "./utils": 299,
-    "./value-types": 316
+    "./utils": 301,
+    "./value-types": 318
   } ],
   227: [ (function(require, module, exports) {
     "use strict";
@@ -35358,7 +35358,7 @@
   }), {
     "./assembler": 230,
     "./utils/dynamic-atlas/manager": 253,
-    "./webgl/render-data": 288
+    "./webgl/render-data": 290
   } ],
   228: [ (function(require, module, exports) {
     "use strict";
@@ -35400,7 +35400,7 @@
     exports.default = Assembler3D;
     module.exports = exports["default"];
   }), {
-    "./webgl/vertex-format": 289
+    "./webgl/vertex-format": 291
   } ],
   229: [ (function(require, module, exports) {
     "use strict";
@@ -35493,7 +35493,7 @@
     exports.default = pool;
     module.exports = exports["default"];
   }), {
-    "../utils/pool": 303
+    "../utils/pool": 305
   } ],
   230: [ (function(require, module, exports) {
     "use strict";
@@ -35551,7 +35551,7 @@
     module.exports = exports["default"];
   }), {
     "./assembler-pool": 229,
-    "./webgl/vertex-format": 289
+    "./webgl/vertex-format": 291
   } ],
   231: [ (function(require, module, exports) {
     "use strict";
@@ -36894,10 +36894,10 @@
       }
     };
   }), {
-    "../../renderer/config": 348,
-    "../../renderer/core/input-assembler": 350,
-    "../../renderer/core/pass": 351,
-    "../../renderer/gfx": 354,
+    "../../renderer/config": 350,
+    "../../renderer/core/input-assembler": 352,
+    "../../renderer/core/pass": 353,
+    "../../renderer/gfx": 356,
     "../../renderer/renderers/forward-renderer": void 0,
     "../../renderer/scene/scene": void 0,
     "./canvas": 234,
@@ -37783,7 +37783,7 @@
   }), {
     "../../../components/CCLabel": 98,
     "../../../platform/CCMacro": 206,
-    "../../../utils/text-utils": 308,
+    "../../../utils/text-utils": 310,
     "../../assembler-2d": 227,
     "../utils": 258
   } ],
@@ -38101,7 +38101,7 @@
     "../../../components/CCComponent": 96,
     "../../../components/CCLabel": 98,
     "../../../components/CCLabelOutline": 99,
-    "../../../utils/text-utils": 308,
+    "../../../utils/text-utils": 310,
     "../../webgl/assemblers/label/2d/bmfont": 263,
     "../utils": 258
   } ],
@@ -38486,7 +38486,7 @@
     "../../../components/CCLabelOutline": 99,
     "../../../components/CCLabelShadow": 100,
     "../../../platform/CCMacro": 206,
-    "../../../utils/text-utils": 308,
+    "../../../utils/text-utils": 310,
     "../../assembler-2d": 227,
     "../utils": 258
   } ],
@@ -39551,13 +39551,13 @@
     _assembler2.default.register(cc.Graphics, GraphicsAssembler);
     module.exports = exports["default"];
   }), {
-    "../../../../../renderer/core/input-assembler": 350,
+    "../../../../../renderer/core/input-assembler": 352,
     "../../../../graphics/graphics": 143,
     "../../../../graphics/types": 146,
     "../../../assembler": 230,
     "../../../index": 250,
-    "../../mesh-buffer": 286,
-    "../../vertex-format": 289,
+    "../../mesh-buffer": 288,
+    "../../vertex-format": 291,
     "./earcut": 259,
     "./impl": 260
   } ],
@@ -39571,10 +39571,10 @@
     require("./motion-streak");
   }), {
     "./graphics": 261,
-    "./label": 269,
-    "./mask-assembler": 270,
-    "./motion-streak": 271,
-    "./sprite": 284
+    "./label": 271,
+    "./mask-assembler": 272,
+    "./motion-streak": 273,
+    "./sprite": 286
   } ],
   263: [ (function(require, module, exports) {
     "use strict";
@@ -39787,6 +39787,177 @@
     "use strict";
     exports.__esModule = true;
     exports.default = void 0;
+    var _bmfont = require("../../../../utils/label/bmfont");
+    var _bmfont2 = _interopRequireDefault(_bmfont);
+    var _vertexFormat = require("../../../vertex-format");
+    function _interopRequireDefault(obj) {
+      return obj && obj.__esModule ? obj : {
+        default: obj
+      };
+    }
+    function _classCallCheck(instance, Constructor) {
+      if (!(instance instanceof Constructor)) throw new TypeError("Cannot call a class as a function");
+    }
+    function _possibleConstructorReturn(self, call) {
+      if (!self) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+      return !call || "object" !== typeof call && "function" !== typeof call ? self : call;
+    }
+    function _inherits(subClass, superClass) {
+      if ("function" !== typeof superClass && null !== superClass) throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+      subClass.prototype = Object.create(superClass && superClass.prototype, {
+        constructor: {
+          value: subClass,
+          enumerable: false,
+          writable: true,
+          configurable: true
+        }
+      });
+      superClass && (Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass);
+    }
+    var _dataOffset = 0;
+    var WebglColorBmfontAssembler = (function(_BmfontAssembler) {
+      _inherits(WebglColorBmfontAssembler, _BmfontAssembler);
+      function WebglColorBmfontAssembler() {
+        var _temp, _this, _ret;
+        _classCallCheck(this, WebglColorBmfontAssembler);
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) args[_key] = arguments[_key];
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, _BmfontAssembler.call.apply(_BmfontAssembler, [ this ].concat(args))), 
+        _this), _this.floatsPerVert = 6, _temp), _possibleConstructorReturn(_this, _ret);
+      }
+      WebglColorBmfontAssembler.prototype.initData = function initData() {
+        this._renderData.createFlexData(0, 4, 6, this.getVfmt());
+      };
+      WebglColorBmfontAssembler.prototype.getBuffer = function getBuffer() {
+        return cc.renderer._handle.getBuffer("mesh", this.getVfmt());
+      };
+      WebglColorBmfontAssembler.prototype.getVfmt = function getVfmt() {
+        return _vertexFormat.vfmtPosUvTwoColor;
+      };
+      WebglColorBmfontAssembler.prototype._reserveQuads = function _reserveQuads(comp, count) {
+        var verticesCount = 4 * count;
+        var indicesCount = 6 * count;
+        var flexBuffer = this._renderData._flexBuffer;
+        flexBuffer.reserve(verticesCount, indicesCount);
+        flexBuffer.used(verticesCount, indicesCount);
+        var iData = this._renderData.iDatas[0];
+        for (var i = 0, vid = 0, l = indicesCount; i < l; i += 6, vid += 4) {
+          iData[i] = vid;
+          iData[i + 1] = vid + 1;
+          iData[i + 2] = vid + 2;
+          iData[i + 3] = vid + 1;
+          iData[i + 4] = vid + 3;
+          iData[i + 5] = vid + 2;
+        }
+        _dataOffset = 0;
+      };
+      WebglColorBmfontAssembler.prototype._quadsUpdated = function _quadsUpdated(comp) {
+        _dataOffset = 0;
+        var flexBuffer = this._renderData._flexBuffer;
+        flexBuffer.used(this.verticesCount, this.indicesCount);
+      };
+      WebglColorBmfontAssembler.prototype._getColor = function _getColor(comp) {
+        return comp.node._color._val;
+      };
+      WebglColorBmfontAssembler.prototype._getOutlineColor = function _getOutlineColor(comp) {
+        return (comp.borderColor || cc.Color.BLACK)._val;
+      };
+      WebglColorBmfontAssembler.prototype.appendQuad = function appendQuad(comp, texture, rect, rotated, x, y, scale) {
+        var renderData = this._renderData;
+        var verts = renderData.vDatas[0], uintVerts = renderData.uintVDatas[0];
+        this.verticesCount += 4;
+        this.indicesCount = this.verticesCount / 2 * 3;
+        var texw = texture.width, texh = texture.height, rectWidth = rect.width, rectHeight = rect.height, color = this._getColor(comp);
+        outlineColor = this._getOutlineColor(comp);
+        var l = void 0, b = void 0, r = void 0, t = void 0;
+        var floatsPerVert = this.floatsPerVert;
+        var uvDataOffset = _dataOffset + this.uvOffset;
+        if (rotated) {
+          l = rect.x / texw;
+          r = (rect.x + rectHeight) / texw;
+          b = (rect.y + rectWidth) / texh;
+          t = rect.y / texh;
+          verts[uvDataOffset] = l;
+          verts[uvDataOffset + 1] = t;
+          uvDataOffset += floatsPerVert;
+          verts[uvDataOffset] = l;
+          verts[uvDataOffset + 1] = b;
+          uvDataOffset += floatsPerVert;
+          verts[uvDataOffset] = r;
+          verts[uvDataOffset + 1] = t;
+          uvDataOffset += floatsPerVert;
+          verts[uvDataOffset] = r;
+          verts[uvDataOffset + 1] = b;
+        } else {
+          l = rect.x / texw;
+          r = (rect.x + rectWidth) / texw;
+          b = (rect.y + rectHeight) / texh;
+          t = rect.y / texh;
+          verts[uvDataOffset] = l;
+          verts[uvDataOffset + 1] = b;
+          uvDataOffset += floatsPerVert;
+          verts[uvDataOffset] = r;
+          verts[uvDataOffset + 1] = b;
+          uvDataOffset += floatsPerVert;
+          verts[uvDataOffset] = l;
+          verts[uvDataOffset + 1] = t;
+          uvDataOffset += floatsPerVert;
+          verts[uvDataOffset] = r;
+          verts[uvDataOffset + 1] = t;
+        }
+        l = x;
+        r = x + rectWidth * scale;
+        b = y - rectHeight * scale;
+        t = y;
+        this.appendVerts(comp, _dataOffset, l, r, b, t);
+        var colorOffset = _dataOffset + this.colorOffset;
+        for (var i = 0; i < 4; i++) {
+          uintVerts[colorOffset] = color;
+          uintVerts[colorOffset + 1] = outlineColor;
+          colorOffset += floatsPerVert;
+        }
+        _dataOffset += 4 * this.floatsPerVert;
+      };
+      WebglColorBmfontAssembler.prototype.appendVerts = function appendVerts(comp, offset, l, r, b, t) {
+        var local = this._local;
+        var floatsPerVert = this.floatsPerVert;
+        local[offset] = l;
+        local[offset + 1] = b;
+        offset += floatsPerVert;
+        local[offset] = r;
+        local[offset + 1] = b;
+        offset += floatsPerVert;
+        local[offset] = l;
+        local[offset + 1] = t;
+        offset += floatsPerVert;
+        local[offset] = r;
+        local[offset + 1] = t;
+      };
+      WebglColorBmfontAssembler.prototype.updateWorldVerts = function updateWorldVerts(comp) {
+        var node = comp.node;
+        var matrix = node._worldMatrix;
+        var matrixm = matrix.m, a = matrixm[0], b = matrixm[1], c = matrixm[4], d = matrixm[5], tx = matrixm[12], ty = matrixm[13];
+        var local = this._local;
+        var world = this._renderData.vDatas[0];
+        var floatsPerVert = this.floatsPerVert;
+        for (var offset = 0; offset < local.length; offset += floatsPerVert) {
+          var x = local[offset];
+          var y = local[offset + 1];
+          world[offset] = x * a + y * c + tx;
+          world[offset + 1] = x * b + y * d + ty;
+        }
+      };
+      return WebglColorBmfontAssembler;
+    })(_bmfont2.default);
+    exports.default = WebglColorBmfontAssembler;
+    module.exports = exports["default"];
+  }), {
+    "../../../../utils/label/bmfont": 254,
+    "../../../vertex-format": 291
+  } ],
+  266: [ (function(require, module, exports) {
+    "use strict";
+    exports.__esModule = true;
+    exports.default = void 0;
     var _ttf = require("../../../../utils/label/ttf");
     var _ttf2 = _interopRequireDefault(_ttf);
     function _interopRequireDefault(obj) {
@@ -39864,7 +40035,7 @@
     "../../../../../components/CCLabelShadow": 100,
     "../../../../utils/label/ttf": 257
   } ],
-  266: [ (function(require, module, exports) {
+  267: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     function _classCallCheck(instance, Constructor) {
@@ -39920,7 +40091,7 @@
     "../../../../assembler-3d": 228,
     "../2d/bmfont": 263
   } ],
-  267: [ (function(require, module, exports) {
+  268: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     function _classCallCheck(instance, Constructor) {
@@ -39959,7 +40130,63 @@
     "../../../../assembler-3d": 228,
     "../2d/letter": 264
   } ],
-  268: [ (function(require, module, exports) {
+  269: [ (function(require, module, exports) {
+    "use strict";
+    exports.__esModule = true;
+    function _classCallCheck(instance, Constructor) {
+      if (!(instance instanceof Constructor)) throw new TypeError("Cannot call a class as a function");
+    }
+    function _possibleConstructorReturn(self, call) {
+      if (!self) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+      return !call || "object" !== typeof call && "function" !== typeof call ? self : call;
+    }
+    function _inherits(subClass, superClass) {
+      if ("function" !== typeof superClass && null !== superClass) throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+      subClass.prototype = Object.create(superClass && superClass.prototype, {
+        constructor: {
+          value: subClass,
+          enumerable: false,
+          writable: true,
+          configurable: true
+        }
+      });
+      superClass && (Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass);
+    }
+    var Assembler3D = require("../../../../assembler-3d");
+    var WebglColorBmfontAssembler = require("../2d/outline-bmfont");
+    var vec3 = cc.vmath.vec3;
+    var vec3_temp_local = vec3.create();
+    var vec3_temp_world = vec3.create();
+    var WebglColorBmfontAssembler3D = (function(_WebglColorBmfontAsse) {
+      _inherits(WebglColorBmfontAssembler3D, _WebglColorBmfontAsse);
+      function WebglColorBmfontAssembler3D() {
+        _classCallCheck(this, WebglColorBmfontAssembler3D);
+        return _possibleConstructorReturn(this, _WebglColorBmfontAsse.apply(this, arguments));
+      }
+      return WebglColorBmfontAssembler3D;
+    })(WebglColorBmfontAssembler);
+    exports.default = WebglColorBmfontAssembler3D;
+    cc.js.mixin(WebglColorBmfontAssembler3D.prototype, Assembler3D, {
+      updateWorldVerts: function updateWorldVerts(comp) {
+        var matrix = comp.node._worldMatrix;
+        var local = this._local;
+        var world = this._renderData.vDatas[0];
+        var floatsPerVert = this.floatsPerVert;
+        for (var offset = 0; offset < world.length; offset += floatsPerVert) {
+          vec3.set(vec3_temp_local, local[offset], local[offset + 1], 0);
+          vec3.transformMat4(vec3_temp_world, vec3_temp_local, matrix);
+          world[offset] = vec3_temp_world.x;
+          world[offset + 1] = vec3_temp_world.y;
+          world[offset + 2] = vec3_temp_world.z;
+        }
+      }
+    });
+    module.exports = exports["default"];
+  }), {
+    "../../../../assembler-3d": 228,
+    "../2d/outline-bmfont": 265
+  } ],
+  270: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     function _classCallCheck(instance, Constructor) {
@@ -39996,9 +40223,9 @@
     module.exports = exports["default"];
   }), {
     "../../../../assembler-3d": 228,
-    "../2d/ttf": 265
+    "../2d/ttf": 266
   } ],
-  269: [ (function(require, module, exports) {
+  271: [ (function(require, module, exports) {
     "use strict";
     var _assembler = require("../../../assembler");
     var _assembler2 = _interopRequireDefault(_assembler);
@@ -40008,12 +40235,16 @@
     var _ttf2 = _interopRequireDefault(_ttf);
     var _bmfont = require("./2d/bmfont");
     var _bmfont2 = _interopRequireDefault(_bmfont);
+    var _outlineBmfont = require("./2d/outline-bmfont");
+    var _outlineBmfont2 = _interopRequireDefault(_outlineBmfont);
     var _letter = require("./2d/letter");
     var _letter2 = _interopRequireDefault(_letter);
     var _ttf3 = require("./3d/ttf");
     var _ttf4 = _interopRequireDefault(_ttf3);
     var _bmfont3 = require("./3d/bmfont");
     var _bmfont4 = _interopRequireDefault(_bmfont3);
+    var _outlineBmfont3 = require("./3d/outline-bmfont");
+    var _outlineBmfont4 = _interopRequireDefault(_outlineBmfont3);
     var _letter3 = require("./3d/letter");
     var _letter4 = _interopRequireDefault(_letter3);
     function _interopRequireDefault(obj) {
@@ -40044,14 +40275,16 @@
       getConstructor: function getConstructor(label) {
         var is3DNode = label.node.is3DNode;
         var ctor = is3DNode ? _ttf4.default : _ttf2.default;
-        label.font instanceof cc.BitmapFont ? ctor = is3DNode ? _bmfont4.default : _bmfont2.default : label.cacheMode === _CCLabel2.default.CacheMode.CHAR && (cc.sys.browserType === cc.sys.BROWSER_TYPE_WECHAT_GAME_SUB ? cc.warn("sorry, subdomain does not support CHAR mode currently!") : ctor = is3DNode ? _letter4.default : _letter2.default);
+        label.font instanceof cc.BitmapFont ? ctor = label._outline ? is3DNode ? _outlineBmfont4.default : _outlineBmfont2.default : is3DNode ? _bmfont4.default : _bmfont2.default : label.cacheMode === _CCLabel2.default.CacheMode.CHAR && (cc.sys.browserType === cc.sys.BROWSER_TYPE_WECHAT_GAME_SUB ? cc.warn("sorry, subdomain does not support CHAR mode currently!") : ctor = is3DNode ? _letter4.default : _letter2.default);
         return ctor;
       },
       TTF: _ttf2.default,
       Bmfont: _bmfont2.default,
+      OutlineBmfont: _outlineBmfont2.default,
       Letter: _letter2.default,
       TTF3D: _ttf4.default,
       Bmfont3D: _bmfont4.default,
+      OutlineBmfont3D: _outlineBmfont4.default,
       Letter3D: _letter4.default
     });
   }), {
@@ -40059,12 +40292,14 @@
     "../../../assembler": 230,
     "./2d/bmfont": 263,
     "./2d/letter": 264,
-    "./2d/ttf": 265,
-    "./3d/bmfont": 266,
-    "./3d/letter": 267,
-    "./3d/ttf": 268
+    "./2d/outline-bmfont": 265,
+    "./2d/ttf": 266,
+    "./3d/bmfont": 267,
+    "./3d/letter": 268,
+    "./3d/outline-bmfont": 269,
+    "./3d/ttf": 270
   } ],
-  270: [ (function(require, module, exports) {
+  272: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.MaskAssembler = void 0;
@@ -40208,15 +40443,15 @@
     })(SimpleSpriteAssembler);
     _assembler2.default.register(Mask, MaskAssembler);
   }), {
-    "../../../../renderer/gfx": 354,
+    "../../../../renderer/gfx": 356,
     "../../../components/CCMask": 102,
     "../../assembler": 230,
     "../../render-flow": 251,
-    "../vertex-format": 289,
+    "../vertex-format": 291,
     "./graphics": 261,
-    "./sprite/2d/simple": 275
+    "./sprite/2d/simple": 277
   } ],
-  271: [ (function(require, module, exports) {
+  273: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.default = void 0;
@@ -40394,7 +40629,7 @@
     "../../assembler-2d": 227,
     "../../render-flow": 251
   } ],
-  272: [ (function(require, module, exports) {
+  274: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.default = void 0;
@@ -40549,7 +40784,7 @@
     "../../../../../components/CCSprite": 112,
     "../../../../assembler-2d": 227
   } ],
-  273: [ (function(require, module, exports) {
+  275: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.default = void 0;
@@ -40664,7 +40899,7 @@
   }), {
     "../../../../assembler-2d": 227
   } ],
-  274: [ (function(require, module, exports) {
+  276: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.default = void 0;
@@ -40940,7 +41175,7 @@
   }), {
     "../../../../assembler-2d": 227
   } ],
-  275: [ (function(require, module, exports) {
+  277: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.default = void 0;
@@ -41030,7 +41265,7 @@
   }), {
     "../../../../assembler-2d": 227
   } ],
-  276: [ (function(require, module, exports) {
+  278: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.default = void 0;
@@ -41161,7 +41396,7 @@
   }), {
     "../../../../assembler-2d": 227
   } ],
-  277: [ (function(require, module, exports) {
+  279: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.default = void 0;
@@ -41347,7 +41582,7 @@
   }), {
     "../../../../assembler-2d": 227
   } ],
-  278: [ (function(require, module, exports) {
+  280: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     function _classCallCheck(instance, Constructor) {
@@ -41384,9 +41619,9 @@
     module.exports = exports["default"];
   }), {
     "../../../../assembler-3d": 228,
-    "../2d/bar-filled": 272
+    "../2d/bar-filled": 274
   } ],
-  279: [ (function(require, module, exports) {
+  281: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     function _classCallCheck(instance, Constructor) {
@@ -41440,9 +41675,9 @@
     module.exports = exports["default"];
   }), {
     "../../../../assembler-3d": 228,
-    "../2d/mesh": 273
+    "../2d/mesh": 275
   } ],
-  280: [ (function(require, module, exports) {
+  282: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     function _classCallCheck(instance, Constructor) {
@@ -41496,9 +41731,9 @@
     module.exports = exports["default"];
   }), {
     "../../../../assembler-3d": 228,
-    "../2d/radial-filled": 274
+    "../2d/radial-filled": 276
   } ],
-  281: [ (function(require, module, exports) {
+  283: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     function _classCallCheck(instance, Constructor) {
@@ -41535,9 +41770,9 @@
     module.exports = exports["default"];
   }), {
     "../../../../assembler-3d": 228,
-    "../2d/simple": 275
+    "../2d/simple": 277
   } ],
-  282: [ (function(require, module, exports) {
+  284: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     function _classCallCheck(instance, Constructor) {
@@ -41596,9 +41831,9 @@
     module.exports = exports["default"];
   }), {
     "../../../../assembler-3d": 228,
-    "../2d/sliced": 276
+    "../2d/sliced": 278
   } ],
-  283: [ (function(require, module, exports) {
+  285: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     function _classCallCheck(instance, Constructor) {
@@ -41669,9 +41904,9 @@
     module.exports = exports["default"];
   }), {
     "../../../../assembler-3d": 228,
-    "../2d/tiled": 277
+    "../2d/tiled": 279
   } ],
-  284: [ (function(require, module, exports) {
+  286: [ (function(require, module, exports) {
     "use strict";
     var _assembler = require("../../../assembler");
     var _assembler2 = _interopRequireDefault(_assembler);
@@ -41744,20 +41979,20 @@
   }), {
     "../../../../components/CCSprite": 112,
     "../../../assembler": 230,
-    "./2d/bar-filled": 272,
-    "./2d/mesh": 273,
-    "./2d/radial-filled": 274,
-    "./2d/simple": 275,
-    "./2d/sliced": 276,
-    "./2d/tiled": 277,
-    "./3d/bar-filled": 278,
-    "./3d/mesh": 279,
-    "./3d/radial-filled": 280,
-    "./3d/simple": 281,
-    "./3d/sliced": 282,
-    "./3d/tiled": 283
+    "./2d/bar-filled": 274,
+    "./2d/mesh": 275,
+    "./2d/radial-filled": 276,
+    "./2d/simple": 277,
+    "./2d/sliced": 278,
+    "./2d/tiled": 279,
+    "./3d/bar-filled": 280,
+    "./3d/mesh": 281,
+    "./3d/radial-filled": 282,
+    "./3d/simple": 283,
+    "./3d/sliced": 284,
+    "./3d/tiled": 285
   } ],
-  285: [ (function(require, module, exports) {
+  287: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     function _classCallCheck(instance, Constructor) {
@@ -41822,7 +42057,7 @@
     cc.FlexBuffer = FlexBuffer;
     module.exports = exports["default"];
   }), {} ],
-  286: [ (function(require, module, exports) {
+  288: [ (function(require, module, exports) {
     "use strict";
     var _gfx = require("../../../renderer/gfx");
     var _gfx2 = _interopRequireDefault(_gfx);
@@ -41983,9 +42218,9 @@
     });
     cc.MeshBuffer = module.exports = MeshBuffer;
   }), {
-    "../../../renderer/gfx": 354
+    "../../../renderer/gfx": 356
   } ],
-  287: [ (function(require, module, exports) {
+  289: [ (function(require, module, exports) {
     "use strict";
     var MeshBuffer = require("./mesh-buffer");
     var QuadBuffer = cc.Class({
@@ -42025,9 +42260,9 @@
     });
     cc.QuadBuffer = module.exports = QuadBuffer;
   }), {
-    "./mesh-buffer": 286
+    "./mesh-buffer": 288
   } ],
-  288: [ (function(require, module, exports) {
+  290: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.default = RenderData;
@@ -42093,10 +42328,10 @@
     cc.RenderData = RenderData;
     module.exports = exports["default"];
   }), {
-    "./flex-buffer": 285,
-    "./vertex-format": 289
+    "./flex-buffer": 287,
+    "./vertex-format": 291
   } ],
-  289: [ (function(require, module, exports) {
+  291: [ (function(require, module, exports) {
     "use strict";
     var _gfx = require("../../../renderer/gfx");
     var _gfx2 = _interopRequireDefault(_gfx);
@@ -42197,9 +42432,9 @@
       vfmtPos: vfmtPos
     };
   }), {
-    "../../../renderer/gfx": 354
+    "../../../renderer/gfx": 356
   } ],
-  290: [ (function(require, module, exports) {
+  292: [ (function(require, module, exports) {
     "use strict";
     require("../platform/CCSys");
     var EXTNAME_RE = /(\.[^\.\/\?\\]*)(\?.*)?$/;
@@ -42279,7 +42514,7 @@
   }), {
     "../platform/CCSys": 210
   } ],
-  291: [ (function(require, module, exports) {
+  293: [ (function(require, module, exports) {
     "use strict";
     var AffineTransform = function AffineTransform(a, b, c, d, tx, ty) {
       this.a = a;
@@ -42415,7 +42650,7 @@
     };
     cc.AffineTransform = module.exports = AffineTransform;
   }), {} ],
-  292: [ (function(require, module, exports) {
+  294: [ (function(require, module, exports) {
     "use strict";
     var Flags = require("../platform/CCObject").Flags;
     var misc = require("./misc");
@@ -42919,9 +43154,9 @@
     "../platform/id-generater": 217,
     "../platform/js": 221,
     "../renderer/render-flow": 251,
-    "./misc": 301
+    "./misc": 303
   } ],
-  293: [ (function(require, module, exports) {
+  295: [ (function(require, module, exports) {
     "use strict";
     var EPSILON = 1e-6;
     function binarySearchEpsilon(array, value) {
@@ -42938,7 +43173,7 @@
       binarySearchEpsilon: binarySearchEpsilon
     };
   }), {} ],
-  294: [ (function(require, module, exports) {
+  296: [ (function(require, module, exports) {
     "use strict";
     var RenderComponent = require("../components/CCRenderComponent");
     var BlendFactor = require("../platform/CCMacro").BlendFactor;
@@ -42995,11 +43230,11 @@
     });
     module.exports = cc.BlendFunc = BlendFunc;
   }), {
-    "../../renderer/gfx": 354,
+    "../../renderer/gfx": 356,
     "../components/CCRenderComponent": 107,
     "../platform/CCMacro": 206
   } ],
-  295: [ (function(require, module, exports) {
+  297: [ (function(require, module, exports) {
     "use strict";
     var Base64Values = require("./misc").BASE64_VALUES;
     var HexChars = "0123456789abcdef".split("");
@@ -43023,9 +43258,9 @@
     };
     false;
   }), {
-    "./misc": 301
+    "./misc": 303
   } ],
-  296: [ (function(require, module, exports) {
+  298: [ (function(require, module, exports) {
     "use strict";
     cc.find = module.exports = function(path, referenceNode) {
       if (null == path) {
@@ -43069,7 +43304,7 @@
       return match;
     };
   }), {} ],
-  297: [ (function(require, module, exports) {
+  299: [ (function(require, module, exports) {
     "use strict";
     var Material = require("../assets/material/CCMaterial");
     var GraySpriteState = cc.Class({
@@ -43120,7 +43355,7 @@
   }), {
     "../assets/material/CCMaterial": 76
   } ],
-  298: [ (function(require, module, exports) {
+  300: [ (function(require, module, exports) {
     "use strict";
     var eventRegx = /^(click)(\s)*=|(param)(\s)*=/;
     var imageAttrReg = /(\s)*src(\s)*=|(\s)*height(\s)*=|(\s)*width(\s)*=|(\s)*click(\s)*=|(\s)*param(\s)*=/;
@@ -43354,7 +43589,7 @@
     false;
     module.exports = HtmlTextParser;
   }), {} ],
-  299: [ (function(require, module, exports) {
+  301: [ (function(require, module, exports) {
     "use strict";
     require("./CCPath");
     true;
@@ -43362,12 +43597,12 @@
     require("./find");
     require("./mutable-forward-iterator");
   }), {
-    "./CCPath": 290,
-    "./find": 296,
-    "./mutable-forward-iterator": 302,
-    "./profiler/CCProfiler": 305
+    "./CCPath": 292,
+    "./find": 298,
+    "./mutable-forward-iterator": 304,
+    "./profiler/CCProfiler": 307
   } ],
-  300: [ (function(require, module, exports) {
+  302: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.postLoadMesh = postLoadMesh;
@@ -43382,7 +43617,7 @@
       }));
     }
   }), {} ],
-  301: [ (function(require, module, exports) {
+  303: [ (function(require, module, exports) {
     "use strict";
     var js = require("../platform/js");
     var misc = {};
@@ -43458,7 +43693,7 @@
   }), {
     "../platform/js": 221
   } ],
-  302: [ (function(require, module, exports) {
+  304: [ (function(require, module, exports) {
     "use strict";
     function MutableForwardIterator(array) {
       this.i = 0;
@@ -43488,7 +43723,7 @@
     };
     module.exports = MutableForwardIterator;
   }), {} ],
-  303: [ (function(require, module, exports) {
+  305: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     function _classCallCheck(instance, Constructor) {
@@ -43513,7 +43748,7 @@
     };
     module.exports = exports["default"];
   }), {} ],
-  304: [ (function(require, module, exports) {
+  306: [ (function(require, module, exports) {
     "use strict";
     var _vmath = require("../vmath");
     cc._PrefabInfo = cc.Class({
@@ -43578,9 +43813,9 @@
       }
     };
   }), {
-    "../vmath": 327
+    "../vmath": 329
   } ],
-  305: [ (function(require, module, exports) {
+  307: [ (function(require, module, exports) {
     "use strict";
     var macro = require("../../platform/CCMacro");
     var PerfCounter = require("./perf-counter");
@@ -43722,9 +43957,9 @@
     };
   }), {
     "../../platform/CCMacro": 206,
-    "./perf-counter": 307
+    "./perf-counter": 309
   } ],
-  306: [ (function(require, module, exports) {
+  308: [ (function(require, module, exports) {
     "use strict";
     var Counter = cc.Class({
       name: "cc.Counter",
@@ -43774,7 +44009,7 @@
     });
     module.exports = Counter;
   }), {} ],
-  307: [ (function(require, module, exports) {
+  309: [ (function(require, module, exports) {
     "use strict";
     var Counter = require("./counter");
     var PerfCounter = cc.Class({
@@ -43809,9 +44044,9 @@
     });
     module.exports = PerfCounter;
   }), {
-    "./counter": 306
+    "./counter": 308
   } ],
-  308: [ (function(require, module, exports) {
+  310: [ (function(require, module, exports) {
     "use strict";
     var _js = require("../platform/js");
     var _js2 = _interopRequireDefault(_js);
@@ -44002,7 +44237,7 @@
   }), {
     "../platform/js": 221
   } ],
-  309: [ (function(require, module, exports) {
+  311: [ (function(require, module, exports) {
     "use strict";
     var Texture2D = require("../assets/CCTexture2D");
     var textureUtil = {
@@ -44071,7 +44306,7 @@
   }), {
     "../assets/CCTexture2D": 74
   } ],
-  310: [ (function(require, module, exports) {
+  312: [ (function(require, module, exports) {
     "use strict";
     var NodeUnit = require("./node-unit");
     var NodeMemPool = require("./node-mem-pool");
@@ -44079,10 +44314,10 @@
       NodeMemPool: new NodeMemPool(NodeUnit)
     };
   }), {
-    "./node-mem-pool": 312,
-    "./node-unit": 313
+    "./node-mem-pool": 314,
+    "./node-unit": 315
   } ],
-  311: [ (function(require, module, exports) {
+  313: [ (function(require, module, exports) {
     "use strict";
     var MemPool = function MemPool(unitClass) {
       this._unitClass = unitClass;
@@ -44153,7 +44388,7 @@
     };
     module.exports = MemPool;
   }), {} ],
-  312: [ (function(require, module, exports) {
+  314: [ (function(require, module, exports) {
     "use strict";
     var MemPool = require("./mem-pool");
     var NodeMemPool = function NodeMemPool(unitClass) {
@@ -44175,9 +44410,9 @@
     };
     module.exports = NodeMemPool;
   }), {
-    "./mem-pool": 311
+    "./mem-pool": 313
   } ],
-  313: [ (function(require, module, exports) {
+  315: [ (function(require, module, exports) {
     "use strict";
     var _utils = require("../../vmath/utils");
     var Uint32_Bytes = 4;
@@ -44249,10 +44484,10 @@
     })();
     module.exports = NodeUnit;
   }), {
-    "../../vmath/utils": 334,
-    "./unit-base": 314
+    "../../vmath/utils": 336,
+    "./unit-base": 316
   } ],
-  314: [ (function(require, module, exports) {
+  316: [ (function(require, module, exports) {
     "use strict";
     var POINTER_INVALID_FLAG = 65535;
     var SPACE_FREE_FLAG = 0;
@@ -44333,7 +44568,7 @@
     };
     module.exports = UnitBase;
   }), {} ],
-  315: [ (function(require, module, exports) {
+  317: [ (function(require, module, exports) {
     "use strict";
     var _vmath = require("../vmath");
     var ValueType = require("./value-type");
@@ -44566,10 +44801,10 @@
   }), {
     "../platform/CCClass": 201,
     "../platform/js": 221,
-    "../vmath": 327,
-    "./value-type": 321
+    "../vmath": 329,
+    "./value-type": 323
   } ],
-  316: [ (function(require, module, exports) {
+  318: [ (function(require, module, exports) {
     "use strict";
     require("./value-type");
     cc.vmath = require("../vmath").default;
@@ -44584,18 +44819,18 @@
       Color: require("./color")
     };
   }), {
-    "../vmath": 327,
-    "./color": 315,
-    "./mat4": 317,
-    "./quat": 318,
-    "./rect": 319,
-    "./size": 320,
-    "./value-type": 321,
-    "./vec2": 322,
-    "./vec3": 323,
-    "./vec4": 324
+    "../vmath": 329,
+    "./color": 317,
+    "./mat4": 319,
+    "./quat": 320,
+    "./rect": 321,
+    "./size": 322,
+    "./value-type": 323,
+    "./vec2": 324,
+    "./vec3": 325,
+    "./vec4": 326
   } ],
-  317: [ (function(require, module, exports) {
+  319: [ (function(require, module, exports) {
     "use strict";
     var _vmath = require("../vmath");
     var _utils = require("../vmath/utils");
@@ -44766,11 +45001,11 @@
   }), {
     "../platform/CCClass": 201,
     "../platform/js": 221,
-    "../vmath": 327,
-    "../vmath/utils": 334,
-    "./value-type": 321
+    "../vmath": 329,
+    "../vmath/utils": 336,
+    "./value-type": 323
   } ],
-  318: [ (function(require, module, exports) {
+  320: [ (function(require, module, exports) {
     "use strict";
     var ValueType = require("./value-type");
     var js = require("../platform/js");
@@ -44841,10 +45076,10 @@
   }), {
     "../platform/CCClass": 201,
     "../platform/js": 221,
-    "../vmath/quat": 332,
-    "./value-type": 321
+    "../vmath/quat": 334,
+    "./value-type": 323
   } ],
-  319: [ (function(require, module, exports) {
+  321: [ (function(require, module, exports) {
     "use strict";
     var ValueType = require("./value-type");
     var js = require("../platform/js");
@@ -45002,9 +45237,9 @@
   }), {
     "../platform/CCClass": 201,
     "../platform/js": 221,
-    "./value-type": 321
+    "./value-type": 323
   } ],
-  320: [ (function(require, module, exports) {
+  322: [ (function(require, module, exports) {
     "use strict";
     var ValueType = require("./value-type");
     var js = require("../platform/js");
@@ -45053,9 +45288,9 @@
   }), {
     "../platform/CCClass": 201,
     "../platform/js": 221,
-    "./value-type": 321
+    "./value-type": 323
   } ],
-  321: [ (function(require, module, exports) {
+  323: [ (function(require, module, exports) {
     "use strict";
     var js = require("../platform/js");
     function ValueType() {}
@@ -45069,7 +45304,7 @@
   }), {
     "../platform/js": 221
   } ],
-  322: [ (function(require, module, exports) {
+  324: [ (function(require, module, exports) {
     "use strict";
     var _vmath = require("../vmath");
     var ValueType = require("./value-type");
@@ -45295,11 +45530,11 @@
   }), {
     "../platform/CCClass": 201,
     "../platform/js": 221,
-    "../utils/misc": 301,
-    "../vmath": 327,
-    "./value-type": 321
+    "../utils/misc": 303,
+    "../vmath": 329,
+    "./value-type": 323
   } ],
-  323: [ (function(require, module, exports) {
+  325: [ (function(require, module, exports) {
     "use strict";
     var _vmath = require("../vmath");
     var ValueType = require("./value-type");
@@ -45500,12 +45735,12 @@
   }), {
     "../platform/CCClass": 201,
     "../platform/js": 221,
-    "../utils/misc": 301,
-    "../vmath": 327,
-    "./value-type": 321,
-    "./vec2": 322
+    "../utils/misc": 303,
+    "../vmath": 329,
+    "./value-type": 323,
+    "./vec2": 324
   } ],
-  324: [ (function(require, module, exports) {
+  326: [ (function(require, module, exports) {
     "use strict";
     var _valueType = require("./value-type");
     var _valueType2 = _interopRequireDefault(_valueType);
@@ -45723,11 +45958,11 @@
     module.exports = cc.Vec4 = Vec4;
   }), {
     "../platform/CCClass": 201,
-    "../utils/misc": 301,
-    "../vmath": 327,
-    "./value-type": 321
+    "../utils/misc": 303,
+    "../vmath": 329,
+    "./value-type": 323
   } ],
-  325: [ (function(require, module, exports) {
+  327: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     var _utils = require("./utils");
@@ -45846,9 +46081,9 @@
     exports.default = color3;
     module.exports = exports["default"];
   }), {
-    "./utils": 334
+    "./utils": 336
   } ],
-  326: [ (function(require, module, exports) {
+  328: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     var _utils = require("./utils");
@@ -45981,9 +46216,9 @@
     exports.default = color4;
     module.exports = exports["default"];
   }), {
-    "./utils": 334
+    "./utils": 336
   } ],
-  327: [ (function(require, module, exports) {
+  329: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.color4 = exports.color3 = exports.mat4 = exports.mat3 = exports.mat23 = exports.mat2 = exports.trs = exports.quat = exports.vec4 = exports.vec3 = exports.vec2 = void 0;
@@ -46049,20 +46284,20 @@
       color4: _color4.default
     };
   }), {
-    "./color3": 325,
-    "./color4": 326,
-    "./mat2": 328,
-    "./mat23": 329,
-    "./mat3": 330,
-    "./mat4": 331,
-    "./quat": 332,
-    "./trs": 333,
-    "./utils": 334,
-    "./vec2": 335,
-    "./vec3": 336,
-    "./vec4": 337
+    "./color3": 327,
+    "./color4": 328,
+    "./mat2": 330,
+    "./mat23": 331,
+    "./mat3": 332,
+    "./mat4": 333,
+    "./quat": 334,
+    "./trs": 335,
+    "./utils": 336,
+    "./vec2": 337,
+    "./vec3": 338,
+    "./vec4": 339
   } ],
-  328: [ (function(require, module, exports) {
+  330: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     var _utils = require("./utils");
@@ -46279,9 +46514,9 @@
     exports.default = mat2;
     module.exports = exports["default"];
   }), {
-    "./utils": 334
+    "./utils": 336
   } ],
-  329: [ (function(require, module, exports) {
+  331: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     var _utils = require("./utils");
@@ -46551,9 +46786,9 @@
     exports.default = mat23;
     module.exports = exports["default"];
   }), {
-    "./utils": 334
+    "./utils": 336
   } ],
-  330: [ (function(require, module, exports) {
+  332: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     var _utils = require("./utils");
@@ -47004,10 +47239,10 @@
     exports.default = mat3;
     module.exports = exports["default"];
   }), {
-    "./utils": 334,
-    "./vec3": 336
+    "./utils": 336,
+    "./vec3": 338
   } ],
-  331: [ (function(require, module, exports) {
+  333: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     var _utils = require("./utils");
@@ -48079,9 +48314,9 @@
     exports.default = mat4;
     module.exports = exports["default"];
   }), {
-    "./utils": 334
+    "./utils": 336
   } ],
-  332: [ (function(require, module, exports) {
+  334: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     var _vec = require("./vec3");
@@ -48486,12 +48721,12 @@
     exports.default = quat;
     module.exports = exports["default"];
   }), {
-    "./mat3": 330,
-    "./utils": 334,
-    "./vec3": 336,
-    "./vec4": 337
+    "./mat3": 332,
+    "./utils": 336,
+    "./vec3": 338,
+    "./vec4": 339
   } ],
-  333: [ (function(require, module, exports) {
+  335: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.default = void 0;
@@ -48573,9 +48808,9 @@
     exports.default = trs;
     module.exports = exports["default"];
   }), {
-    "./quat": 332
+    "./quat": 334
   } ],
-  334: [ (function(require, module, exports) {
+  336: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.equals = equals;
@@ -48660,7 +48895,7 @@
       return (value - from) / (to - from);
     }
   }), {} ],
-  335: [ (function(require, module, exports) {
+  337: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     var _utils = require("./utils");
@@ -48922,9 +49157,9 @@
     exports.default = vec2;
     module.exports = exports["default"];
   }), {
-    "./utils": 334
+    "./utils": 336
   } ],
-  336: [ (function(require, module, exports) {
+  338: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     var _utils = require("./utils");
@@ -49283,9 +49518,9 @@
     exports.default = vec3;
     module.exports = exports["default"];
   }), {
-    "./utils": 334
+    "./utils": 336
   } ],
-  337: [ (function(require, module, exports) {
+  339: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     var _utils = require("./utils");
@@ -49573,9 +49808,9 @@
     exports.default = vec4;
     module.exports = exports["default"];
   }), {
-    "./utils": 334
+    "./utils": 336
   } ],
-  338: [ (function(require, module, exports) {
+  340: [ (function(require, module, exports) {
     "use strict";
     var js = cc.js;
     true;
@@ -50017,7 +50252,7 @@
       }
     };
   }), {} ],
-  339: [ (function(require, module, exports) {
+  341: [ (function(require, module, exports) {
     "use strict";
     require("./core/CCGame");
     require("./actions");
@@ -50025,7 +50260,7 @@
     "./actions": 8,
     "./core/CCGame": 52
   } ],
-  340: [ (function(require, module, exports) {
+  342: [ (function(require, module, exports) {
     "use strict";
     var zlib = require("../compression/zlib.min");
     var debug = require("../core/CCDebug");
@@ -50315,7 +50550,7 @@
     "../compression/zlib.min": 26,
     "../core/CCDebug": 50
   } ],
-  341: [ (function(require, module, exports) {
+  343: [ (function(require, module, exports) {
     "use strict";
     var Asset = require("../core/assets/CCAsset");
     var CCSpriteFrame = require("../core/assets/CCSpriteFrame");
@@ -50334,7 +50569,7 @@
     "../core/assets/CCAsset": 57,
     "../core/assets/CCSpriteFrame": 71
   } ],
-  342: [ (function(require, module, exports) {
+  344: [ (function(require, module, exports) {
     "use strict";
     var macro = require("../core/platform/CCMacro");
     var ParticleAsset = require("./CCParticleAsset");
@@ -50825,15 +51060,15 @@
     "../core/components/CCRenderComponent": 107,
     "../core/platform/CCMacro": 206,
     "../core/renderer/render-flow": 251,
-    "../core/utils/blend-func": 294,
-    "../core/utils/texture-util": 309,
-    "./CCPNGReader": 340,
-    "./CCParticleAsset": 341,
-    "./CCTIFFReader": 343,
-    "./particle-simulator": 345,
+    "../core/utils/blend-func": 296,
+    "../core/utils/texture-util": 311,
+    "./CCPNGReader": 342,
+    "./CCParticleAsset": 343,
+    "./CCTIFFReader": 345,
+    "./particle-simulator": 347,
     "fire-url": void 0
   } ],
-  343: [ (function(require, module, exports) {
+  345: [ (function(require, module, exports) {
     "use strict";
     var debug = require("../core/CCDebug");
     var tiffReader = {
@@ -51246,19 +51481,19 @@
   }), {
     "../core/CCDebug": 50
   } ],
-  344: [ (function(require, module, exports) {
+  346: [ (function(require, module, exports) {
     "use strict";
     require("./CCParticleAsset");
     require("./CCParticleSystem");
     require("./particle-simulator");
     require("./particle-system-assembler");
   }), {
-    "./CCParticleAsset": 341,
-    "./CCParticleSystem": 342,
-    "./particle-simulator": 345,
-    "./particle-system-assembler": 346
+    "./CCParticleAsset": 343,
+    "./CCParticleSystem": 344,
+    "./particle-simulator": 347,
+    "./particle-system-assembler": 348
   } ],
-  345: [ (function(require, module, exports) {
+  347: [ (function(require, module, exports) {
     "use strict";
     var AffineTrans = require("../core/utils/affine-transform");
     var js = require("../core/platform/js");
@@ -51574,10 +51809,10 @@
     module.exports = Simulator;
   }), {
     "../core/platform/js": 221,
-    "../core/utils/affine-transform": 291,
-    "../core/utils/misc": 301
+    "../core/utils/affine-transform": 293,
+    "../core/utils/misc": 303
   } ],
-  346: [ (function(require, module, exports) {
+  348: [ (function(require, module, exports) {
     "use strict";
     var _assembler = require("../core/renderer/assembler");
     var _assembler2 = _interopRequireDefault(_assembler);
@@ -51645,12 +51880,12 @@
   }), {
     "../core/renderer/": 250,
     "../core/renderer/assembler": 230,
-    "../core/renderer/webgl/quad-buffer": 287,
-    "../core/renderer/webgl/vertex-format": 289,
-    "../renderer/core/input-assembler": 350,
-    "./CCParticleSystem": 342
+    "../core/renderer/webgl/quad-buffer": 289,
+    "../core/renderer/webgl/vertex-format": 291,
+    "../renderer/core/input-assembler": 352,
+    "./CCParticleSystem": 344
   } ],
-  347: [ (function(require, module, exports) {
+  349: [ (function(require, module, exports) {
     "use strict";
     var enums = {
       USAGE_STATIC: 35044,
@@ -52476,7 +52711,7 @@
     };
     module.exports = mappings;
   }), {} ],
-  348: [ (function(require, module, exports) {
+  350: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     var _stageOffset = 0;
@@ -52505,7 +52740,7 @@
     };
     module.exports = exports["default"];
   }), {} ],
-  349: [ (function(require, module, exports) {
+  351: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     var _config = require("../config");
@@ -52748,14 +52983,14 @@
     exports.default = Effect;
     module.exports = exports["default"];
   }), {
-    "../config": 348,
-    "../core/pass": 351,
-    "../core/technique": 352,
-    "../enums": 353,
-    "../gfx": 354,
-    "../types": 358
+    "../config": 350,
+    "../core/pass": 353,
+    "../core/technique": 354,
+    "../enums": 355,
+    "../gfx": 356,
+    "../types": 360
   } ],
-  350: [ (function(require, module, exports) {
+  352: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.default = void 0;
@@ -52809,9 +53044,9 @@
     exports.default = InputAssembler;
     module.exports = exports["default"];
   }), {
-    "../gfx": 354
+    "../gfx": 356
   } ],
-  351: [ (function(require, module, exports) {
+  353: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.default = void 0;
@@ -52936,9 +53171,9 @@
     exports.default = Pass;
     module.exports = exports["default"];
   }), {
-    "../gfx": 354
+    "../gfx": 356
   } ],
-  352: [ (function(require, module, exports) {
+  354: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.default = void 0;
@@ -53003,9 +53238,9 @@
     exports.default = Technique;
     module.exports = exports["default"];
   }), {
-    "../config": 348
+    "../config": 350
   } ],
-  353: [ (function(require, module, exports) {
+  355: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     var _mappings = require("./build/mappings");
@@ -53046,9 +53281,9 @@
     };
     module.exports = exports["default"];
   }), {
-    "./build/mappings": 347
+    "./build/mappings": 349
   } ],
-  354: [ (function(require, module, exports) {
+  356: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     var _enums = require("./enums");
@@ -53081,7 +53316,7 @@
     "./vertex-buffer": void 0,
     "./vertex-format": void 0
   } ],
-  355: [ (function(require, module, exports) {
+  357: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.default = void 0;
@@ -53156,9 +53391,9 @@
     exports.default = RecyclePool;
     module.exports = exports["default"];
   }), {
-    "./timsort": 356
+    "./timsort": 358
   } ],
-  356: [ (function(require, module, exports) {
+  358: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.default = function(array, lo, hi, compare) {
@@ -53621,7 +53856,7 @@
     })();
     module.exports = exports["default"];
   }), {} ],
-  357: [ (function(require, module, exports) {
+  359: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.default = murmurhash2_32_gc;
@@ -53654,7 +53889,7 @@
     }
     module.exports = exports["default"];
   }), {} ],
-  358: [ (function(require, module, exports) {
+  360: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.getClassName = exports.getInstanceCtor = exports.getInstanceType = exports.enums2default = exports.ctor2enums = void 0;
@@ -53744,11 +53979,11 @@
     }
   }), {
     "../core/assets/CCTexture2D": 74,
-    "../core/value-types": 316,
-    "./enums": 353,
+    "../core/value-types": 318,
+    "./enums": 355,
     "./gfx/texture-2d": void 0
   } ],
-  359: [ (function(require, module, exports) {
+  361: [ (function(require, module, exports) {
     "use strict";
     var codec = require("../compression/ZipUtils");
     var zlib = require("../compression/zlib.min");
@@ -54401,7 +54636,7 @@
     "../core/platform/CCSAXParser": 208,
     "../core/platform/js": 221
   } ],
-  360: [ (function(require, module, exports) {
+  362: [ (function(require, module, exports) {
     "use strict";
     var _vmath = require("../core/vmath");
     var RenderComponent = require("../core/components/CCRenderComponent");
@@ -55185,9 +55420,9 @@
     "../core/assets/material/CCMaterial": 76,
     "../core/components/CCRenderComponent": 107,
     "../core/renderer/render-flow": 251,
-    "../core/vmath": 327
+    "../core/vmath": 329
   } ],
-  361: [ (function(require, module, exports) {
+  363: [ (function(require, module, exports) {
     "use strict";
     require("./CCTMXXMLParser");
     require("./CCTiledMapAsset");
@@ -55605,13 +55840,13 @@
       return [];
     }), false);
   }), {
-    "./CCTMXXMLParser": 359,
-    "./CCTiledLayer": 360,
-    "./CCTiledMapAsset": 362,
-    "./CCTiledObjectGroup": 364,
-    "./CCTiledTile": 365
+    "./CCTMXXMLParser": 361,
+    "./CCTiledLayer": 362,
+    "./CCTiledMapAsset": 364,
+    "./CCTiledObjectGroup": 366,
+    "./CCTiledTile": 367
   } ],
-  362: [ (function(require, module, exports) {
+  364: [ (function(require, module, exports) {
     "use strict";
     var TiledMapAsset = cc.Class({
       name: "cc.TiledMapAsset",
@@ -55639,7 +55874,7 @@
     cc.TiledMapAsset = TiledMapAsset;
     module.exports = TiledMapAsset;
   }), {} ],
-  363: [ (function(require, module, exports) {
+  365: [ (function(require, module, exports) {
     "use strict";
     var _inputAssembler = require("../renderer/core/input-assembler");
     var _inputAssembler2 = _interopRequireDefault(_inputAssembler);
@@ -55681,9 +55916,9 @@
     });
     cc.TiledMapRenderDataList = module.exports = TiledMapRenderDataList;
   }), {
-    "../renderer/core/input-assembler": 350
+    "../renderer/core/input-assembler": 352
   } ],
-  364: [ (function(require, module, exports) {
+  366: [ (function(require, module, exports) {
     "use strict";
     var TiledObjectGroup = cc.Class({
       name: "cc.TiledObjectGroup",
@@ -55830,7 +56065,7 @@
     });
     cc.TiledObjectGroup = module.exports = TiledObjectGroup;
   }), {} ],
-  365: [ (function(require, module, exports) {
+  367: [ (function(require, module, exports) {
     "use strict";
     var TiledTile = cc.Class({
       name: "cc.TiledTile",
@@ -55910,19 +56145,19 @@
     });
     cc.TiledTile = module.exports = TiledTile;
   }), {} ],
-  366: [ (function(require, module, exports) {
+  368: [ (function(require, module, exports) {
     "use strict";
     require("./CCTiledMap");
     require("./CCTiledMapRenderDataList");
     require("./tiledmap-buffer");
     require("./tmx-layer-assembler");
   }), {
-    "./CCTiledMap": 361,
-    "./CCTiledMapRenderDataList": 363,
-    "./tiledmap-buffer": 367,
-    "./tmx-layer-assembler": 368
+    "./CCTiledMap": 363,
+    "./CCTiledMapRenderDataList": 365,
+    "./tiledmap-buffer": 369,
+    "./tmx-layer-assembler": 370
   } ],
-  367: [ (function(require, module, exports) {
+  369: [ (function(require, module, exports) {
     "use strict";
     var TiledMapBuffer = cc.Class({
       name: "cc.TiledMapBuffer",
@@ -55943,9 +56178,9 @@
     });
     cc.TiledMapBuffer = module.exports = TiledMapBuffer;
   }), {
-    "../core/renderer/webgl/quad-buffer": 287
+    "../core/renderer/webgl/quad-buffer": 289
   } ],
-  368: [ (function(require, module, exports) {
+  370: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.default = void 0;
@@ -56304,12 +56539,12 @@
     "../core/renderer/": 250,
     "../core/renderer/assembler": 230,
     "../core/renderer/render-flow": 251,
-    "../core/renderer/webgl/vertex-format": 289,
-    "../core/vmath": 327,
-    "./CCTiledLayer": 360,
-    "./CCTiledMap": 361
+    "../core/renderer/webgl/vertex-format": 291,
+    "../core/vmath": 329,
+    "./CCTiledLayer": 362,
+    "./CCTiledMap": 363
   } ],
-  369: [ (function(require, module, exports) {
+  371: [ (function(require, module, exports) {
     "use strict";
     var VideoPlayerImpl = require("./video-player-impl");
     var EventType = VideoPlayerImpl.EventType;
@@ -56542,9 +56777,9 @@
     });
     cc.VideoPlayer = module.exports = VideoPlayer;
   }), {
-    "./video-player-impl": 370
+    "./video-player-impl": 372
   } ],
-  370: [ (function(require, module, exports) {
+  372: [ (function(require, module, exports) {
     "use strict";
     var _vmath = require("../core/vmath");
     var utils = require("../core/platform/utils");
@@ -56942,9 +57177,9 @@
   }), {
     "../core/platform/CCSys": 210,
     "../core/platform/utils": 225,
-    "../core/vmath": 327
+    "../core/vmath": 329
   } ],
-  371: [ (function(require, module, exports) {
+  373: [ (function(require, module, exports) {
     "use strict";
     var WebViewImpl = require("./webview-impl");
     var EventType = WebViewImpl.EventType;
@@ -57035,9 +57270,9 @@
     });
     cc.WebView = module.exports = WebView;
   }), {
-    "./webview-impl": 372
+    "./webview-impl": 374
   } ],
-  372: [ (function(require, module, exports) {
+  374: [ (function(require, module, exports) {
     "use strict";
     var _vmath = require("../core/vmath");
     var utils = require("../core/platform/utils");
@@ -57295,9 +57530,9 @@
   }), {
     "../core/platform/CCSys": 210,
     "../core/platform/utils": 225,
-    "../core/vmath": 327
+    "../core/vmath": 329
   } ],
-  373: [ (function(require, module, exports) {
+  375: [ (function(require, module, exports) {
     "use strict";
     require("./cocos2d/core");
     require("./cocos2d/animation");
@@ -57318,18 +57553,18 @@
     "./cocos2d/animation": 17,
     "./cocos2d/core": 147,
     "./cocos2d/core/components/CCStudioComponent": 113,
-    "./cocos2d/deprecated": 338,
-    "./cocos2d/particle": 344,
-    "./cocos2d/particle/CCParticleAsset": 341,
-    "./cocos2d/tilemap": 366,
-    "./cocos2d/tilemap/CCTiledMapAsset": 362,
-    "./cocos2d/videoplayer/CCVideoPlayer": 369,
-    "./cocos2d/webview/CCWebView": 371,
-    "./extensions/ccpool/CCNodePool": 374,
-    "./extensions/dragonbones": 378,
-    "./extensions/spine": 381
+    "./cocos2d/deprecated": 340,
+    "./cocos2d/particle": 346,
+    "./cocos2d/particle/CCParticleAsset": 343,
+    "./cocos2d/tilemap": 368,
+    "./cocos2d/tilemap/CCTiledMapAsset": 364,
+    "./cocos2d/videoplayer/CCVideoPlayer": 371,
+    "./cocos2d/webview/CCWebView": 373,
+    "./extensions/ccpool/CCNodePool": 376,
+    "./extensions/dragonbones": 380,
+    "./extensions/spine": 383
   } ],
-  374: [ (function(require, module, exports) {
+  376: [ (function(require, module, exports) {
     "use strict";
     cc.NodePool = function(poolHandlerComp) {
       this.poolHandlerComp = poolHandlerComp;
@@ -57365,7 +57600,7 @@
     };
     module.exports = cc.NodePool;
   }), {} ],
-  375: [ (function(require, module, exports) {
+  377: [ (function(require, module, exports) {
     "use strict";
     var RenderComponent = require("../../cocos2d/core/components/CCRenderComponent");
     var Material = require("../../cocos2d/core/assets/material/CCMaterial");
@@ -57806,7 +58041,7 @@
     "../../cocos2d/core/graphics/graphics": 143,
     "./ArmatureCache": void 0
   } ],
-  376: [ (function(require, module, exports) {
+  378: [ (function(require, module, exports) {
     "use strict";
     var ArmatureCache = false;
     var DragonBonesAsset = cc.Class({
@@ -57879,7 +58114,7 @@
   }), {
     "./ArmatureCache": void 0
   } ],
-  377: [ (function(require, module, exports) {
+  379: [ (function(require, module, exports) {
     "use strict";
     var ArmatureCache = false;
     var DragonBonesAtlasAsset = cc.Class({
@@ -57940,7 +58175,7 @@
   }), {
     "./ArmatureCache": void 0
   } ],
-  378: [ (function(require, module, exports) {
+  380: [ (function(require, module, exports) {
     "use strict";
     var _global = "undefined" === typeof window ? global : window;
     false;
@@ -58034,17 +58269,17 @@
     }
   }), {
     "./ArmatureCache": void 0,
-    "./ArmatureDisplay": 375,
+    "./ArmatureDisplay": 377,
     "./CCArmatureDisplay": void 0,
     "./CCFactory": void 0,
     "./CCSlot": void 0,
     "./CCTextureData": void 0,
-    "./DragonBonesAsset": 376,
-    "./DragonBonesAtlasAsset": 377,
+    "./DragonBonesAsset": 378,
+    "./DragonBonesAtlasAsset": 379,
     "./lib/dragonBones": void 0,
-    "./webgl-assembler": 379
+    "./webgl-assembler": 381
   } ],
-  379: [ (function(require, module, exports) {
+  381: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.default = void 0;
@@ -58335,9 +58570,9 @@
   }), {
     "../../cocos2d/core/renderer/assembler": 230,
     "../../cocos2d/core/renderer/render-flow": 251,
-    "./ArmatureDisplay": 375
+    "./ArmatureDisplay": 377
   } ],
-  380: [ (function(require, module, exports) {
+  382: [ (function(require, module, exports) {
     "use strict";
     var TrackEntryListeners = require("./track-entry-listeners");
     var RenderComponent = require("../../cocos2d/core/components/CCRenderComponent");
@@ -58964,9 +59199,9 @@
     "../../cocos2d/core/graphics/graphics": 143,
     "./lib/spine": void 0,
     "./skeleton-cache": void 0,
-    "./track-entry-listeners": 385
+    "./track-entry-listeners": 387
   } ],
-  381: [ (function(require, module, exports) {
+  383: [ (function(require, module, exports) {
     "use strict";
     var _global = "undefined" === typeof window ? global : window;
     var _isUseSpine = true;
@@ -59006,14 +59241,14 @@
       require("./spine-assembler");
     }
   }), {
-    "./Skeleton": 380,
+    "./Skeleton": 382,
     "./lib/spine": void 0,
-    "./skeleton-data": 382,
-    "./skeleton-texture": 383,
-    "./spine-assembler": 384,
+    "./skeleton-data": 384,
+    "./skeleton-texture": 385,
+    "./spine-assembler": 386,
     "./vertex-effect-delegate": void 0
   } ],
-  382: [ (function(require, module, exports) {
+  384: [ (function(require, module, exports) {
     "use strict";
     var SkeletonCache = false;
     var SkeletonData = cc.Class({
@@ -59138,7 +59373,7 @@
   }), {
     "./skeleton-cache": void 0
   } ],
-  383: [ (function(require, module, exports) {
+  385: [ (function(require, module, exports) {
     "use strict";
     sp.SkeletonTexture = cc.Class({
       name: "sp.SkeletonTexture",
@@ -59160,7 +59395,7 @@
       dispose: function dispose() {}
     });
   }), {} ],
-  384: [ (function(require, module, exports) {
+  386: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.default = void 0;
@@ -59670,11 +59905,11 @@
   }), {
     "../../cocos2d/core/renderer/assembler": 230,
     "../../cocos2d/core/renderer/render-flow": 251,
-    "../../cocos2d/core/renderer/webgl/vertex-format": 289,
-    "./Skeleton": 380,
+    "../../cocos2d/core/renderer/webgl/vertex-format": 291,
+    "./Skeleton": 382,
     "./lib/spine": void 0
   } ],
-  385: [ (function(require, module, exports) {
+  387: [ (function(require, module, exports) {
     "use strict";
     var TrackEntryListeners = function TrackEntryListeners() {
       this.start = null;
@@ -59690,7 +59925,7 @@
     };
     module.exports = TrackEntryListeners;
   }), {} ],
-  386: [ (function(require, module, exports) {
+  388: [ (function(require, module, exports) {
     "use strict";
     (function(global, factory) {
       "object" === typeof exports && "undefined" !== typeof module ? factory(exports) : "function" === typeof define && define.amd ? define([ "exports" ], factory) : factory(global.box2d = {});
@@ -74679,7 +74914,7 @@
       });
     }));
   }), {} ],
-  387: [ (function(require, module, exports) {
+  389: [ (function(require, module, exports) {
     "use strict";
     var _global = "undefined" === typeof window ? global : window;
     _global.cc = _global.cc || {};
@@ -74700,20 +74935,20 @@
     false;
     module.exports = _global.cc;
   }), {
-    "./cocos2d": 339,
+    "./cocos2d": 341,
     "./cocos2d/core/predefine": 226,
-    "./extends": 373,
+    "./extends": 375,
     "./package": void 0,
-    "./polyfill/array": 389,
-    "./polyfill/array-buffer": 388,
-    "./polyfill/misc": 390,
-    "./polyfill/number": 391,
-    "./polyfill/object": 392,
-    "./polyfill/string": 393,
-    "./polyfill/typescript": 394,
-    "./predefine": 395
+    "./polyfill/array": 391,
+    "./polyfill/array-buffer": 390,
+    "./polyfill/misc": 392,
+    "./polyfill/number": 393,
+    "./polyfill/object": 394,
+    "./polyfill/string": 395,
+    "./polyfill/typescript": 396,
+    "./predefine": 397
   } ],
-  388: [ (function(require, module, exports) {
+  390: [ (function(require, module, exports) {
     "use strict";
     if (!ArrayBuffer.isView) {
       var TypedArray = Object.getPrototypeOf(Int8Array);
@@ -74726,7 +74961,7 @@
       };
     }
   }), {} ],
-  389: [ (function(require, module, exports) {
+  391: [ (function(require, module, exports) {
     "use strict";
     Array.isArray || (Array.isArray = function(arg) {
       return "[object Array]" === Object.prototype.toString.call(arg);
@@ -74743,7 +74978,7 @@
       return -1 !== this.indexOf(value);
     });
   }), {} ],
-  390: [ (function(require, module, exports) {
+  392: [ (function(require, module, exports) {
     "use strict";
     Math.sign || (Math.sign = function(x) {
       x = +x;
@@ -74768,12 +75003,12 @@
       console.log(label + ": " + duration + "ms");
     };
   }), {} ],
-  391: [ (function(require, module, exports) {
+  393: [ (function(require, module, exports) {
     "use strict";
     Number.parseFloat = Number.parseFloat || parseFloat;
     Number.parseInt = Number.parseInt || parseInt;
   }), {} ],
-  392: [ (function(require, module, exports) {
+  394: [ (function(require, module, exports) {
     "use strict";
     Object.assign || (Object.assign = function(target, source) {
       return cc.js.mixin(target, source);
@@ -74789,7 +75024,7 @@
       return descriptors;
     });
   }), {} ],
-  393: [ (function(require, module, exports) {
+  395: [ (function(require, module, exports) {
     "use strict";
     String.prototype.startsWith || (String.prototype.startsWith = function(searchString, position) {
       position = position || 0;
@@ -74805,7 +75040,7 @@
       return this.replace(/^\s+/, "");
     });
   }), {} ],
-  394: [ (function(require, module, exports) {
+  396: [ (function(require, module, exports) {
     "use strict";
     var extendStatics = Object.setPrototypeOf || {
       __proto__: []
@@ -75093,7 +75328,7 @@
       };
     };
   }), {} ],
-  395: [ (function(require, module, exports) {
+  397: [ (function(require, module, exports) {
     "use strict";
     var _global = "undefined" === typeof window ? global : window;
     function defineMacro(name, defaultValue) {
@@ -75135,4 +75370,4 @@
     var engineVersion = "2.2.2";
     _global["CocosEngine"] = cc.ENGINE_VERSION = engineVersion;
   }), {} ]
-}, {}, [ 387 ]);
+}, {}, [ 389 ]);
