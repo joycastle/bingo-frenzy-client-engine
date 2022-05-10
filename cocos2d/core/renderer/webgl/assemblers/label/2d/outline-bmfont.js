@@ -37,6 +37,19 @@ export default class WebglColorBmfontAssembler extends BmfontAssembler {
         this._renderData.createFlexData(0, 4, 6, this.getVfmt());
     }
 
+    updateColor (comp, color) {
+        let uintVerts = this._renderData.uintVDatas[0];
+        if (!uintVerts) return;
+        color = color || comp.node.color._val;
+        let outlineColor = (comp._borderColor || cc.Color.BLACK)._val;
+        let floatsPerVert = this.floatsPerVert;
+        let colorOffset = this.colorOffset;
+        for (let i = colorOffset, l = uintVerts.length; i < l; i += floatsPerVert) {
+            uintVerts[i] = color;
+            uintVerts[i + 1] = outlineColor;
+        }
+    }
+
     getBuffer() {
         return cc.renderer._handle.getBuffer("mesh", this.getVfmt());
     }
@@ -79,7 +92,7 @@ export default class WebglColorBmfontAssembler extends BmfontAssembler {
     }
 
     _getOutlineColor(comp) {
-        return (comp.borderColor || cc.Color.BLACK)._val;
+        return (comp._borderColor || cc.Color.BLACK)._val;
     }
 
     appendQuad (comp, texture, rect, rotated, x, y, scale) {

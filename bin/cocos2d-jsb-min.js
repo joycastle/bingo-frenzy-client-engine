@@ -34756,6 +34756,16 @@ i), o(n, r);
 e.prototype.initData = function() {
 this._renderData.createFlexData(0, 4, 6, this.getVfmt());
 };
+e.prototype.updateColor = function(t, e) {
+var i = this._renderData.uintVDatas[0];
+if (i) {
+e = e || t.node.color._val;
+for (var n = (t._borderColor || cc.Color.BLACK)._val, r = this.floatsPerVert, s = this.colorOffset, o = i.length; s < o; s += r) {
+i[s] = e;
+i[s + 1] = n;
+}
+}
+};
 e.prototype.getBuffer = function() {
 return cc.renderer._handle.getBuffer("mesh", this.getVfmt());
 };
@@ -34784,7 +34794,7 @@ e.prototype._getColor = function(t) {
 return t.node._color._val;
 };
 e.prototype._getOutlineColor = function(t) {
-return (t.borderColor || cc.Color.BLACK)._val;
+return (t._borderColor || cc.Color.BLACK)._val;
 };
 e.prototype.appendQuad = function(t, e, i, n, r, s, o) {
 var a = this._renderData, l = a.vDatas[0], h = a.uintVDatas[0];

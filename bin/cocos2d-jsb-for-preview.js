@@ -39827,6 +39827,18 @@
       WebglColorBmfontAssembler.prototype.initData = function initData() {
         this._renderData.createFlexData(0, 4, 6, this.getVfmt());
       };
+      WebglColorBmfontAssembler.prototype.updateColor = function updateColor(comp, color) {
+        var uintVerts = this._renderData.uintVDatas[0];
+        if (!uintVerts) return;
+        color = color || comp.node.color._val;
+        var outlineColor = (comp._borderColor || cc.Color.BLACK)._val;
+        var floatsPerVert = this.floatsPerVert;
+        var colorOffset = this.colorOffset;
+        for (var i = colorOffset, l = uintVerts.length; i < l; i += floatsPerVert) {
+          uintVerts[i] = color;
+          uintVerts[i + 1] = outlineColor;
+        }
+      };
       WebglColorBmfontAssembler.prototype.getBuffer = function getBuffer() {
         return cc.renderer._handle.getBuffer("mesh", this.getVfmt());
       };
@@ -39859,7 +39871,7 @@
         return comp.node._color._val;
       };
       WebglColorBmfontAssembler.prototype._getOutlineColor = function _getOutlineColor(comp) {
-        return (comp.borderColor || cc.Color.BLACK)._val;
+        return (comp._borderColor || cc.Color.BLACK)._val;
       };
       WebglColorBmfontAssembler.prototype.appendQuad = function appendQuad(comp, texture, rect, rotated, x, y, scale) {
         var renderData = this._renderData;
