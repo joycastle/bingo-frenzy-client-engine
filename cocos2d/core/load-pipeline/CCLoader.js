@@ -243,7 +243,7 @@ proto.load = function(resources, progressCallback, completeCallback) {
         if (resources) {
             singleRes = true;
             resources = [resources];
-        } else { 
+        } else {
             resources = [];
         }
     }
@@ -337,7 +337,7 @@ proto._getResUuid = function (url, type, mount, quiet) {
     if (!url || !assetTable) {
         return null;
     }
-    
+
     // Ignore parameter
     var index = url.indexOf('?');
     if (index !== -1)
@@ -374,10 +374,10 @@ proto._getReferenceKey = function (assetOrUrlOrUuid) {
     return this._cache[_info.url] ? _info.url : key;
 };
 
-proto._urlNotFound = function (url, type, completeCallback) {
+proto._urlNotFound = function (url, type, mount, completeCallback) {
     callInNextTick(function () {
         url = cc.url.normalize(url);
-        var info = `${type ? js.getClassName(type) : 'Asset'} in "resources/${url}" does not exist.`;
+        var info = `${type ? js.getClassName(type) : 'Asset'} in "${mount}/resources/${url}" does not exist.`;
         if (completeCallback) {
             completeCallback(new Error(info), []);
         }
@@ -496,7 +496,7 @@ proto.loadRes = function (url, type, mount, progressCallback, completeCallback) 
         );
     }
     else {
-        self._urlNotFound(url, type, completeCallback);
+        self._urlNotFound(url, type, mount, completeCallback);
     }
 };
 
@@ -609,7 +609,7 @@ proto.loadResArray = function (urls, type, mount, progressCallback, completeCall
             uuids.push(uuid);
         }
         else {
-            this._urlNotFound(url, assetType, completeCallback);
+            this._urlNotFound(url, assetType, mount, completeCallback);
             return;
         }
     }
@@ -673,11 +673,11 @@ proto.loadResDir = function (url, type, mount, progressCallback, completeCallbac
         progressCallback = mount;
         mount = 'assets';
     }
-    
-    if (!assetTables[mount]) return; 
+
+    if (!assetTables[mount]) return;
 
     var args = this._parseLoadResArgs(type, progressCallback, completeCallback);
-    
+
     type = args.type;
     progressCallback = args.onProgress;
     completeCallback = args.onComplete;
@@ -698,10 +698,10 @@ proto.loadResDir = function (url, type, mount, progressCallback, completeCallbac
  * @param {Function} [type] - Only asset of type will be returned if this argument is supplied.
  * @returns {*}
  */
-proto.getRes = function (url, type) {
+proto.getRes = function (url, type, mount) {
     var item = this._cache[url];
     if (!item) {
-        var uuid = this._getResUuid(url, type, null, true);
+        var uuid = this._getResUuid(url, type, mount, true);
         if (uuid) {
             var ref = this._getReferenceKey(uuid);
             item = this._cache[ref];
@@ -874,7 +874,7 @@ proto.releaseRes = function (url, type, mount) {
 proto.releaseResDir = function (url, type, mount) {
     mount = mount || 'assets';
     if (!assetTables[mount]) return;
-    
+
     var uuids = assetTables[mount].getUuidArray(url, type);
     for (var i = 0; i < uuids.length; i++) {
         var uuid = uuids[i];

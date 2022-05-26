@@ -22123,11 +22123,11 @@ return e;
 cc.AssetLibrary._getAssetInfoInRuntime(e, f);
 return this._cache[f.url] ? f.url : e;
 };
-y._urlNotFound = function(t, e, i) {
+y._urlNotFound = function(t, e, i, r) {
 h((function() {
 t = cc.url.normalize(t);
-var r = (e ? n.getClassName(e) : "Asset") + ' in "resources/' + t + '" does not exist.';
-i && i(new Error(r), []);
+var s = (e ? n.getClassName(e) : "Asset") + ' in "' + i + "/resources/" + t + '" does not exist.';
+r && r(new Error(s), []);
 }));
 };
 y._parseLoadResArgs = function(t, e, i) {
@@ -22169,7 +22169,7 @@ uuid: a
 }, n, (function(t, e) {
 e && o.setAutoReleaseRecursively(a, !1);
 r && r(t, e);
-})) : o._urlNotFound(t, e, r);
+})) : o._urlNotFound(t, e, i, r);
 };
 y._loadResUuids = function(t, e, i, n) {
 if (t.length > 0) {
@@ -22209,7 +22209,7 @@ r = s.onComplete;
 for (var o = [], a = e instanceof Array, c = 0; c < t.length; c++) {
 var l = t[c], h = a ? e[c] : e, u = this._getResUuid(l, h, i);
 if (!u) {
-this._urlNotFound(l, h, r);
+this._urlNotFound(l, h, i, r);
 return;
 }
 o.push(u);
@@ -22231,16 +22231,16 @@ var o = [], a = _[i].getUuidArray(t, e, o);
 this._loadResUuids(a, n, r, o);
 }
 };
-y.getRes = function(t, e) {
-var i = this._cache[t];
-if (!i) {
-var n = this._getResUuid(t, e, null, !0);
-if (!n) return null;
-var r = this._getReferenceKey(n);
-i = this._cache[r];
+y.getRes = function(t, e, i) {
+var n = this._cache[t];
+if (!n) {
+var r = this._getResUuid(t, e, i, !0);
+if (!r) return null;
+var s = this._getReferenceKey(r);
+n = this._cache[s];
 }
-i && i.alias && (i = i.alias);
-return i && i.complete ? i.content : null;
+n && n.alias && (n = n.alias);
+return n && n.complete ? n.content : null;
 };
 y.getResCount = function() {
 return Object.keys(this._cache).length;

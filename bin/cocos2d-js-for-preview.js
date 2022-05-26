@@ -24979,10 +24979,10 @@
       cc.AssetLibrary._getAssetInfoInRuntime(key, _info);
       return this._cache[_info.url] ? _info.url : key;
     };
-    proto._urlNotFound = function(url, type, completeCallback) {
+    proto._urlNotFound = function(url, type, mount, completeCallback) {
       callInNextTick((function() {
         url = cc.url.normalize(url);
-        var info = (type ? js.getClassName(type) : "Asset") + ' in "resources/' + url + '" does not exist.';
+        var info = (type ? js.getClassName(type) : "Asset") + ' in "' + mount + "/resources/" + url + '" does not exist.';
         completeCallback && completeCallback(new Error(info), []);
       }));
     };
@@ -25026,7 +25026,7 @@
       }, progressCallback, (function(err, asset) {
         asset && self.setAutoReleaseRecursively(uuid, false);
         completeCallback && completeCallback(err, asset);
-      })) : self._urlNotFound(url, type, completeCallback);
+      })) : self._urlNotFound(url, type, mount, completeCallback);
     };
     proto._loadResUuids = function(uuids, progressCallback, completeCallback, urls) {
       if (uuids.length > 0) {
@@ -25075,7 +25075,7 @@
         var assetType = isTypesArray ? type[i] : type;
         var uuid = this._getResUuid(url, assetType, mount);
         if (!uuid) {
-          this._urlNotFound(url, assetType, completeCallback);
+          this._urlNotFound(url, assetType, mount, completeCallback);
           return;
         }
         uuids.push(uuid);
@@ -25097,10 +25097,10 @@
       var uuids = assetTables[mount].getUuidArray(url, type, urls);
       this._loadResUuids(uuids, progressCallback, completeCallback, urls);
     };
-    proto.getRes = function(url, type) {
+    proto.getRes = function(url, type, mount) {
       var item = this._cache[url];
       if (!item) {
-        var uuid = this._getResUuid(url, type, null, true);
+        var uuid = this._getResUuid(url, type, mount, true);
         if (!uuid) return null;
         var ref = this._getReferenceKey(uuid);
         item = this._cache[ref];
