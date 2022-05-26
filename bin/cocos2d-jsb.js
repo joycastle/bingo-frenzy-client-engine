@@ -222,11 +222,11 @@
       "3649": "CCClass %s have conflict between its ctor and __ctor__.",
       "3651": 'Can not call `_super` or `prototype.ctor` in ES6 Classes "%s", use `super` instead please.',
       "3652": 'Failed to construct a dummy instance of the "%s" class using `new` behind the scenes. This is for getting default values declared in TypeScript. Please ensure the class will be able to construct during script\'s initialization. %s.',
-      "3653": 'Please do not specifiy "default" attribute in decorator of "%s" property in "%s" class.  \nDefault value must be initialized at their declaration:\n \n// Before:\n@property({\n  type: cc.Integer\n  default: 0  // <--\n})\nmyProp;\n// After:\n@property({\n  type: cc.Integer\n})\nmyProp = 0;    // <--',
+      "3653": 'Please do not specifiy "default" attribute in decorator of "%s" property in "%s" class.\nDefault value must be initialized at their declaration:\n \n// Before:\n@property({\n  type: cc.Integer\n  default: 0  // <--\n})\nmyProp;\n// After:\n@property({\n  type: cc.Integer\n})\nmyProp = 0;    // <--',
       "3654": 'Please specifiy a default value for "%s.%s" at its declaration:\n \n// Before:\n@property(...)\nmyProp;\n// After:\n@property(...)\nmyProp = 0;',
-      "3655": 'Can not specifiy "get" or "set"  attribute in decorator for "%s" property in "%s" class.  \nPlease use:\n \n@property(...)\nget %s () {\n    ...\n}\n@property\nset %s (value) {\n    ...\n}',
+      "3655": 'Can not specifiy "get" or "set"  attribute in decorator for "%s" property in "%s" class.\nPlease use:\n \n@property(...)\nget %s () {\n    ...\n}\n@property\nset %s (value) {\n    ...\n}',
       "3656": "The default value of %s.%s must be an empty string. (changed since 1.8)",
-      "3657": "The value assigned to %s should be Texture2D object, not url string. Since 1.8,  \nyou can declare a texture object directly in properties by using:  \n \n{\n    default: null,\n    type: cc.Texture2D  // use 'type:' instead of 'url:'\n}",
+      "3657": "The value assigned to %s should be Texture2D object, not url string. Since 1.8,\nyou can declare a texture object directly in properties by using:\n \n{\n    default: null,\n    type: cc.Texture2D  // use 'type:' instead of 'url:'\n}",
       "3658": "browser does not support getters",
       "3700": "internal error: _prefab is undefined",
       "3701": "Failed to load prefab asset for node '%s'",
@@ -280,7 +280,7 @@
       "4901": "loadRes: should not specify the extname in %s %s",
       "4902": "No need to release non-cached asset.",
       "4903": "Can not get class '%s'",
-      "4914": "Resources url '%s' does not exist.",
+      "4914": "Resources url '%s/resources/%s' does not exist.",
       "4915": "Pack indices and data do not match in size",
       "4916": "Failed to download package for %s",
       "4920": "Sorry, you shouldn't use id as item identity any more, please use url or uuid instead, the current id is being set as url: (%s)",
@@ -24936,9 +24936,9 @@
       }
       return uuid;
     };
-    proto._getReferenceKey = function(assetOrUrlOrUuid) {
+    proto._getReferenceKey = function(assetOrUrlOrUuid, mount) {
       var key;
-      "object" === typeof assetOrUrlOrUuid ? key = assetOrUrlOrUuid._uuid || null : "string" === typeof assetOrUrlOrUuid && (key = this._getResUuid(assetOrUrlOrUuid, null, null, true) || assetOrUrlOrUuid);
+      "object" === typeof assetOrUrlOrUuid ? key = assetOrUrlOrUuid._uuid || null : "string" === typeof assetOrUrlOrUuid && (key = this._getResUuid(assetOrUrlOrUuid, null, mount, true) || assetOrUrlOrUuid);
       if (!key) {
         cc.warnID(4800, assetOrUrlOrUuid);
         return key;
@@ -25078,9 +25078,9 @@
     proto.getResCount = function() {
       return Object.keys(this._cache).length;
     };
-    proto.getDependsRecursively = function(owner) {
+    proto.getDependsRecursively = function(owner, mount) {
       if (owner) {
-        var key = this._getReferenceKey(owner);
+        var key = this._getReferenceKey(owner, mount);
         var assets = AutoReleaseUtils.getDependsRecursively(key);
         assets.push(key);
         return assets;
@@ -25112,8 +25112,9 @@
       uuid && this.release(uuid);
     };
     proto.releaseRes = function(url, type, mount) {
+      mount = mount || "assets";
       var uuid = this._getResUuid(url, type, mount);
-      uuid ? this.release(uuid) : cc.errorID(4914, url);
+      uuid ? this.release(uuid) : cc.errorID(4914, mount, url);
     };
     proto.releaseResDir = function(url, type, mount) {
       mount = mount || "assets";

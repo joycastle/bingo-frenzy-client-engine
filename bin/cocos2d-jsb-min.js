@@ -22113,15 +22113,15 @@ o = r.getUuid(t, e);
 }
 return o;
 };
-y._getReferenceKey = function(t) {
-var e;
-"object" == typeof t ? e = t._uuid || null : "string" == typeof t && (e = this._getResUuid(t, null, null, !0) || t);
-if (!e) {
+y._getReferenceKey = function(t, e) {
+var i;
+"object" == typeof t ? i = t._uuid || null : "string" == typeof t && (i = this._getResUuid(t, null, e, !0) || t);
+if (!i) {
 cc.warnID(4800, t);
-return e;
+return i;
 }
-cc.AssetLibrary._getAssetInfoInRuntime(e, f);
-return this._cache[f.url] ? f.url : e;
+cc.AssetLibrary._getAssetInfoInRuntime(i, f);
+return this._cache[f.url] ? f.url : i;
 };
 y._urlNotFound = function(t, e, i, r) {
 h((function() {
@@ -22245,11 +22245,11 @@ return n && n.complete ? n.content : null;
 y.getResCount = function() {
 return Object.keys(this._cache).length;
 };
-y.getDependsRecursively = function(t) {
+y.getDependsRecursively = function(t, e) {
 if (t) {
-var e = this._getReferenceKey(t), i = u.getDependsRecursively(e);
-i.push(e);
-return i;
+var i = this._getReferenceKey(t, e), n = u.getDependsRecursively(i);
+n.push(i);
+return n;
 }
 return [];
 };
@@ -22278,8 +22278,9 @@ var e = t._uuid;
 e && this.release(e);
 };
 y.releaseRes = function(t, e, i) {
+i = i || "assets";
 var n = this._getResUuid(t, e, i);
-n ? this.release(n) : cc.errorID(4914, t);
+n ? this.release(n) : cc.errorID(4914, i, t);
 };
 y.releaseResDir = function(t, e, i) {
 if (_[i = i || "assets"]) for (var n = _[i].getUuidArray(t, e), r = 0; r < n.length; r++) {

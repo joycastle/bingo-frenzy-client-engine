@@ -358,13 +358,13 @@ proto._getResUuid = function (url, type, mount, quiet) {
 };
 
 // Find the asset's reference id in loader, asset could be asset object, asset uuid or asset url
-proto._getReferenceKey = function (assetOrUrlOrUuid) {
+proto._getReferenceKey = function (assetOrUrlOrUuid, mount) {
     var key;
     if (typeof assetOrUrlOrUuid === 'object') {
         key = assetOrUrlOrUuid._uuid || null;
     }
     else if (typeof assetOrUrlOrUuid === 'string') {
-        key = this._getResUuid(assetOrUrlOrUuid, null, null, true) || assetOrUrlOrUuid;
+        key = this._getResUuid(assetOrUrlOrUuid, null, mount, true) || assetOrUrlOrUuid;
     }
     if (!key) {
         cc.warnID(4800, assetOrUrlOrUuid);
@@ -755,9 +755,9 @@ proto.getResCount = function () {
  * @param {Asset|RawAsset|String} owner - The owner asset or the resource url or the asset's uuid
  * @returns {Array}
  */
-proto.getDependsRecursively = function (owner) {
+proto.getDependsRecursively = function (owner, mount) {
     if (owner) {
-        var key = this._getReferenceKey(owner);
+        var key = this._getReferenceKey(owner, mount);
         var assets = AutoReleaseUtils.getDependsRecursively(key);
         assets.push(key);
         return assets;
@@ -854,12 +854,13 @@ proto.releaseAsset = function (asset) {
  * @param {Function} [type] - Only asset of type will be released if this argument is supplied.
  */
 proto.releaseRes = function (url, type, mount) {
+    mount = mount || 'assets';
     var uuid = this._getResUuid(url, type, mount);
     if (uuid) {
         this.release(uuid);
     }
     else {
-        cc.errorID(4914, url);
+        cc.errorID(4914, mount, url);
     }
 };
 

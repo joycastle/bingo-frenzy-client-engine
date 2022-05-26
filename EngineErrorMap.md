@@ -1729,7 +1729,7 @@ Group versions haven't been loaded, you can also set group data with 'cc.LoaderL
 
 ### 4914
 
-Resources url '%s' does not exist.
+Resources url '%s/resources/%s' does not exist.
 
 ### 4915
 
