@@ -34566,7 +34566,7 @@ configurable: !0
 });
 e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e);
 }
-var o = 0, a = (function(t) {
+var o = 0, a = [ 2, 3, 0, 1 ], c = (function(t) {
 s(e, t);
 function e() {
 n(this, e);
@@ -34574,6 +34574,23 @@ return r(this, t.apply(this, arguments));
 }
 e.prototype.initData = function() {
 this._renderData.createFlexData(0, 4, 6, this.getVfmt());
+};
+e.prototype.updateColor = function(t) {
+var e = this._renderData.uintVDatas[0];
+if (e) {
+color = t.node.color;
+var i = this.floatsPerVert, n = this.colorOffset;
+if (t._gradient) {
+t._grdientColors.forEach((function(t) {
+t._fastSetA(color.getA());
+}));
+for (var r = 0, s = n, o = e.length; s < o; s += i) {
+var c = r % 4;
+e[s] = t._grdientColors[a[c]]._val;
+r += 1;
+}
+} else for (var l = n, h = e.length; l < h; l += i) e[l] = color._val;
+}
 };
 e.prototype._reserveQuads = function(t, e) {
 var i = 4 * e, n = 6 * e, r = this._renderData._flexBuffer;
@@ -34593,49 +34610,49 @@ e.prototype._quadsUpdated = function(t) {
 o = 0;
 this._renderData._flexBuffer.used(this.verticesCount, this.indicesCount);
 };
-e.prototype._getColor = function(t) {
-return t.node._color._val;
+e.prototype._getColor = function(t, e) {
+return t._gradient && void 0 !== e ? t._grdientColors[a[e]]._val : t.node._color._val;
 };
 e.prototype.appendQuad = function(t, e, i, n, r, s, a) {
 var c = this._renderData, l = c.vDatas[0], h = c.uintVDatas[0];
 this.verticesCount += 4;
 this.indicesCount = this.verticesCount / 2 * 3;
-var u = e.width, _ = e.height, f = i.width, d = i.height, p = this._getColor(t), m = void 0, v = void 0, y = void 0, g = void 0, C = this.floatsPerVert, x = o + this.uvOffset;
+var u = e.width, _ = e.height, f = i.width, d = i.height, p = void 0, m = void 0, v = void 0, y = void 0, g = this.floatsPerVert, C = o + this.uvOffset;
 if (n) {
-m = i.x / u;
-y = (i.x + d) / u;
-v = (i.y + f) / _;
-g = i.y / _;
-l[x] = m;
-l[x + 1] = g;
-l[x += C] = m;
-l[x + 1] = v;
-l[x += C] = y;
-l[x + 1] = g;
-l[x += C] = y;
-l[x + 1] = v;
+p = i.x / u;
+v = (i.x + d) / u;
+m = (i.y + f) / _;
+y = i.y / _;
+l[C] = p;
+l[C + 1] = y;
+l[C += g] = p;
+l[C + 1] = m;
+l[C += g] = v;
+l[C + 1] = y;
+l[C += g] = v;
+l[C + 1] = m;
 } else {
-m = i.x / u;
-y = (i.x + f) / u;
-v = (i.y + d) / _;
-g = i.y / _;
-l[x] = m;
-l[x + 1] = v;
-l[x += C] = y;
-l[x + 1] = v;
-l[x += C] = m;
-l[x + 1] = g;
-l[x += C] = y;
-l[x + 1] = g;
+p = i.x / u;
+v = (i.x + f) / u;
+m = (i.y + d) / _;
+y = i.y / _;
+l[C] = p;
+l[C + 1] = m;
+l[C += g] = v;
+l[C + 1] = m;
+l[C += g] = p;
+l[C + 1] = y;
+l[C += g] = v;
+l[C + 1] = y;
 }
-m = r;
-y = r + f * a;
-v = s - d * a;
-g = s;
-this.appendVerts(t, o, m, y, v, g);
-for (var b = o + this.colorOffset, A = 0; A < 4; A++) {
-h[b] = p;
-b += C;
+p = r;
+v = r + f * a;
+m = s - d * a;
+y = s;
+this.appendVerts(t, o, p, v, m, y);
+for (var x = o + this.colorOffset, b = 0; b < 4; b++) {
+h[x] = this._getColor(t, b);
+x += g;
 }
 o += 4 * this.floatsPerVert;
 };
@@ -34663,7 +34680,7 @@ return t && t.__esModule ? t : {
 default: t
 };
 }(t("../../../../utils/label/bmfont")).default);
-i.default = a;
+i.default = c;
 e.exports = i.default;
 }), {
 "../../../../utils/label/bmfont": 253
@@ -34745,7 +34762,7 @@ configurable: !0
 });
 e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e);
 }
-var c = 0, l = (function(t) {
+var c = 0, l = [ 2, 3, 0, 1 ], h = (function(t) {
 a(e, t);
 function e() {
 var i, n, r;
@@ -34757,13 +34774,24 @@ i), o(n, r);
 e.prototype.initData = function() {
 this._renderData.createFlexData(0, 4, 6, this.getVfmt());
 };
-e.prototype.updateColor = function(t, e) {
-var i = this._renderData.uintVDatas[0];
-if (i) {
-e = e || t.node.color._val;
-for (var n = (t._borderColor || cc.Color.BLACK)._val, r = this.floatsPerVert, s = this.colorOffset, o = i.length; s < o; s += r) {
-i[s] = e;
-i[s + 1] = n;
+e.prototype.updateColor = function(t) {
+var e = this._renderData.uintVDatas[0];
+if (e) {
+color = t.node.color;
+var i = (t._borderColor || cc.Color.BLACK)._val, n = this.floatsPerVert, r = this.colorOffset;
+if (t._gradient) {
+t._grdientColors.forEach((function(t) {
+t._fastSetA(color.getA());
+}));
+for (var s = 0, o = r, a = e.length; o < a; o += n) {
+var c = s % 4;
+e[o] = t._grdientColors[l[c]]._val;
+e[o + 1] = i;
+s += 1;
+}
+} else for (var h = r, u = e.length; h < u; h += n) {
+e[h] = color._val;
+e[h + 1] = i;
 }
 }
 };
@@ -34791,8 +34819,8 @@ e.prototype._quadsUpdated = function(t) {
 c = 0;
 this._renderData._flexBuffer.used(this.verticesCount, this.indicesCount);
 };
-e.prototype._getColor = function(t) {
-return t.node._color._val;
+e.prototype._getColor = function(t, e) {
+return t._gradient && void 0 !== e ? t._grdientColors[l[e]]._val : t.node._color._val;
 };
 e.prototype._getOutlineColor = function(t) {
 return (t._borderColor || cc.Color.BLACK)._val;
@@ -34801,43 +34829,43 @@ e.prototype.appendQuad = function(t, e, i, n, r, s, o) {
 var a = this._renderData, l = a.vDatas[0], h = a.uintVDatas[0];
 this.verticesCount += 4;
 this.indicesCount = this.verticesCount / 2 * 3;
-var u = e.width, _ = e.height, f = i.width, d = i.height, p = this._getColor(t), m = this._getOutlineColor(t), v = void 0, y = void 0, g = void 0, C = void 0, x = this.floatsPerVert, b = c + this.uvOffset;
+var u = e.width, _ = e.height, f = i.width, d = i.height, p = this._getOutlineColor(t), m = void 0, v = void 0, y = void 0, g = void 0, C = this.floatsPerVert, x = c + this.uvOffset;
 if (n) {
-v = i.x / u;
-g = (i.x + d) / u;
-y = (i.y + f) / _;
-C = i.y / _;
-l[b] = v;
-l[b + 1] = C;
-l[b += x] = v;
-l[b + 1] = y;
-l[b += x] = g;
-l[b + 1] = C;
-l[b += x] = g;
-l[b + 1] = y;
+m = i.x / u;
+y = (i.x + d) / u;
+v = (i.y + f) / _;
+g = i.y / _;
+l[x] = m;
+l[x + 1] = g;
+l[x += C] = m;
+l[x + 1] = v;
+l[x += C] = y;
+l[x + 1] = g;
+l[x += C] = y;
+l[x + 1] = v;
 } else {
-v = i.x / u;
-g = (i.x + f) / u;
-y = (i.y + d) / _;
-C = i.y / _;
-l[b] = v;
-l[b + 1] = y;
-l[b += x] = g;
-l[b + 1] = y;
-l[b += x] = v;
-l[b + 1] = C;
-l[b += x] = g;
-l[b + 1] = C;
+m = i.x / u;
+y = (i.x + f) / u;
+v = (i.y + d) / _;
+g = i.y / _;
+l[x] = m;
+l[x + 1] = v;
+l[x += C] = y;
+l[x + 1] = v;
+l[x += C] = m;
+l[x + 1] = g;
+l[x += C] = y;
+l[x + 1] = g;
 }
-v = r;
-g = r + f * o;
-y = s - d * o;
-C = s;
-this.appendVerts(t, c, v, g, y, C);
-for (var A = c + this.colorOffset, S = 0; S < 4; S++) {
-h[A] = p;
-h[A + 1] = m;
-A += x;
+m = r;
+y = r + f * o;
+v = s - d * o;
+g = s;
+this.appendVerts(t, c, m, y, v, g);
+for (var b = c + this.colorOffset, A = 0; A < 4; A++) {
+h[b] = this._getColor(t, A);
+h[b + 1] = p;
+b += C;
 }
 c += 4 * this.floatsPerVert;
 };
@@ -34861,7 +34889,7 @@ l[u + 1] = _ * n + f * s + a;
 };
 return e;
 })(n.default);
-i.default = l;
+i.default = h;
 e.exports = i.default;
 }), {
 "../../../../utils/label/bmfont": 253,

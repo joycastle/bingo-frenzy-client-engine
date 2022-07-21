@@ -222,11 +222,11 @@
       "3649": "CCClass %s have conflict between its ctor and __ctor__.",
       "3651": 'Can not call `_super` or `prototype.ctor` in ES6 Classes "%s", use `super` instead please.',
       "3652": 'Failed to construct a dummy instance of the "%s" class using `new` behind the scenes. This is for getting default values declared in TypeScript. Please ensure the class will be able to construct during script\'s initialization. %s.',
-      "3653": 'Please do not specifiy "default" attribute in decorator of "%s" property in "%s" class.\nDefault value must be initialized at their declaration:\n \n// Before:\n@property({\n  type: cc.Integer\n  default: 0  // <--\n})\nmyProp;\n// After:\n@property({\n  type: cc.Integer\n})\nmyProp = 0;    // <--',
+      "3653": 'Please do not specifiy "default" attribute in decorator of "%s" property in "%s" class.  \nDefault value must be initialized at their declaration:\n \n// Before:\n@property({\n  type: cc.Integer\n  default: 0  // <--\n})\nmyProp;\n// After:\n@property({\n  type: cc.Integer\n})\nmyProp = 0;    // <--',
       "3654": 'Please specifiy a default value for "%s.%s" at its declaration:\n \n// Before:\n@property(...)\nmyProp;\n// After:\n@property(...)\nmyProp = 0;',
-      "3655": 'Can not specifiy "get" or "set"  attribute in decorator for "%s" property in "%s" class.\nPlease use:\n \n@property(...)\nget %s () {\n    ...\n}\n@property\nset %s (value) {\n    ...\n}',
+      "3655": 'Can not specifiy "get" or "set"  attribute in decorator for "%s" property in "%s" class.  \nPlease use:\n \n@property(...)\nget %s () {\n    ...\n}\n@property\nset %s (value) {\n    ...\n}',
       "3656": "The default value of %s.%s must be an empty string. (changed since 1.8)",
-      "3657": "The value assigned to %s should be Texture2D object, not url string. Since 1.8,\nyou can declare a texture object directly in properties by using:\n \n{\n    default: null,\n    type: cc.Texture2D  // use 'type:' instead of 'url:'\n}",
+      "3657": "The value assigned to %s should be Texture2D object, not url string. Since 1.8,  \nyou can declare a texture object directly in properties by using:  \n \n{\n    default: null,\n    type: cc.Texture2D  // use 'type:' instead of 'url:'\n}",
       "3658": "browser does not support getters",
       "3700": "internal error: _prefab is undefined",
       "3701": "Failed to load prefab asset for node '%s'",
@@ -39608,6 +39608,7 @@
       superClass && (Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass);
     }
     var _dataOffset = 0;
+    var COLOR_INDEX = [ 2, 3, 0, 1 ];
     var WebglBmfontAssembler = (function(_BmfontAssembler) {
       _inherits(WebglBmfontAssembler, _BmfontAssembler);
       function WebglBmfontAssembler() {
@@ -39616,6 +39617,24 @@
       }
       WebglBmfontAssembler.prototype.initData = function initData() {
         this._renderData.createFlexData(0, 4, 6, this.getVfmt());
+      };
+      WebglBmfontAssembler.prototype.updateColor = function updateColor(comp) {
+        var uintVerts = this._renderData.uintVDatas[0];
+        if (!uintVerts) return;
+        color = comp.node.color;
+        var floatsPerVert = this.floatsPerVert;
+        var colorOffset = this.colorOffset;
+        if (comp._gradient) {
+          comp._grdientColors.forEach((function(o) {
+            o._fastSetA(color.getA());
+          }));
+          var j = 0;
+          for (var i = colorOffset, l = uintVerts.length; i < l; i += floatsPerVert) {
+            var c_i = j % 4;
+            uintVerts[i] = comp._grdientColors[COLOR_INDEX[c_i]]._val;
+            j += 1;
+          }
+        } else for (var _i = colorOffset, _l = uintVerts.length; _i < _l; _i += floatsPerVert) uintVerts[_i] = color._val;
       };
       WebglBmfontAssembler.prototype._reserveQuads = function _reserveQuads(comp, count) {
         var verticesCount = 4 * count;
@@ -39639,15 +39658,15 @@
         var flexBuffer = this._renderData._flexBuffer;
         flexBuffer.used(this.verticesCount, this.indicesCount);
       };
-      WebglBmfontAssembler.prototype._getColor = function _getColor(comp) {
-        return comp.node._color._val;
+      WebglBmfontAssembler.prototype._getColor = function _getColor(comp, i) {
+        return comp._gradient && void 0 !== i ? comp._grdientColors[COLOR_INDEX[i]]._val : comp.node._color._val;
       };
       WebglBmfontAssembler.prototype.appendQuad = function appendQuad(comp, texture, rect, rotated, x, y, scale) {
         var renderData = this._renderData;
         var verts = renderData.vDatas[0], uintVerts = renderData.uintVDatas[0];
         this.verticesCount += 4;
         this.indicesCount = this.verticesCount / 2 * 3;
-        var texw = texture.width, texh = texture.height, rectWidth = rect.width, rectHeight = rect.height, color = this._getColor(comp);
+        var texw = texture.width, texh = texture.height, rectWidth = rect.width, rectHeight = rect.height;
         var l = void 0, b = void 0, r = void 0, t = void 0;
         var floatsPerVert = this.floatsPerVert;
         var uvDataOffset = _dataOffset + this.uvOffset;
@@ -39691,7 +39710,7 @@
         this.appendVerts(comp, _dataOffset, l, r, b, t);
         var colorOffset = _dataOffset + this.colorOffset;
         for (var i = 0; i < 4; i++) {
-          uintVerts[colorOffset] = color;
+          uintVerts[colorOffset] = this._getColor(comp, i);
           colorOffset += floatsPerVert;
         }
         _dataOffset += 4 * this.floatsPerVert;
@@ -39816,6 +39835,7 @@
       superClass && (Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass);
     }
     var _dataOffset = 0;
+    var COLOR_INDEX = [ 2, 3, 0, 1 ];
     var WebglColorBmfontAssembler = (function(_BmfontAssembler) {
       _inherits(WebglColorBmfontAssembler, _BmfontAssembler);
       function WebglColorBmfontAssembler() {
@@ -39828,16 +39848,27 @@
       WebglColorBmfontAssembler.prototype.initData = function initData() {
         this._renderData.createFlexData(0, 4, 6, this.getVfmt());
       };
-      WebglColorBmfontAssembler.prototype.updateColor = function updateColor(comp, color) {
+      WebglColorBmfontAssembler.prototype.updateColor = function updateColor(comp) {
         var uintVerts = this._renderData.uintVDatas[0];
         if (!uintVerts) return;
-        color = color || comp.node.color._val;
+        color = comp.node.color;
         var outlineColor = (comp._borderColor || cc.Color.BLACK)._val;
         var floatsPerVert = this.floatsPerVert;
         var colorOffset = this.colorOffset;
-        for (var i = colorOffset, l = uintVerts.length; i < l; i += floatsPerVert) {
-          uintVerts[i] = color;
-          uintVerts[i + 1] = outlineColor;
+        if (comp._gradient) {
+          comp._grdientColors.forEach((function(o) {
+            o._fastSetA(color.getA());
+          }));
+          var j = 0;
+          for (var i = colorOffset, l = uintVerts.length; i < l; i += floatsPerVert) {
+            var c_i = j % 4;
+            uintVerts[i] = comp._grdientColors[COLOR_INDEX[c_i]]._val;
+            uintVerts[i + 1] = outlineColor;
+            j += 1;
+          }
+        } else for (var _i = colorOffset, _l = uintVerts.length; _i < _l; _i += floatsPerVert) {
+          uintVerts[_i] = color._val;
+          uintVerts[_i + 1] = outlineColor;
         }
       };
       WebglColorBmfontAssembler.prototype.getBuffer = function getBuffer() {
@@ -39868,8 +39899,8 @@
         var flexBuffer = this._renderData._flexBuffer;
         flexBuffer.used(this.verticesCount, this.indicesCount);
       };
-      WebglColorBmfontAssembler.prototype._getColor = function _getColor(comp) {
-        return comp.node._color._val;
+      WebglColorBmfontAssembler.prototype._getColor = function _getColor(comp, i) {
+        return comp._gradient && void 0 !== i ? comp._grdientColors[COLOR_INDEX[i]]._val : comp.node._color._val;
       };
       WebglColorBmfontAssembler.prototype._getOutlineColor = function _getOutlineColor(comp) {
         return (comp._borderColor || cc.Color.BLACK)._val;
@@ -39879,7 +39910,7 @@
         var verts = renderData.vDatas[0], uintVerts = renderData.uintVDatas[0];
         this.verticesCount += 4;
         this.indicesCount = this.verticesCount / 2 * 3;
-        var texw = texture.width, texh = texture.height, rectWidth = rect.width, rectHeight = rect.height, color = this._getColor(comp), outlineColor = this._getOutlineColor(comp);
+        var texw = texture.width, texh = texture.height, rectWidth = rect.width, rectHeight = rect.height, outlineColor = this._getOutlineColor(comp);
         var l = void 0, b = void 0, r = void 0, t = void 0;
         var floatsPerVert = this.floatsPerVert;
         var uvDataOffset = _dataOffset + this.uvOffset;
@@ -39923,7 +39954,7 @@
         this.appendVerts(comp, _dataOffset, l, r, b, t);
         var colorOffset = _dataOffset + this.colorOffset;
         for (var i = 0; i < 4; i++) {
-          uintVerts[colorOffset] = color;
+          uintVerts[colorOffset] = this._getColor(comp, i);
           uintVerts[colorOffset + 1] = outlineColor;
           colorOffset += floatsPerVert;
         }

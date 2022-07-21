@@ -26,9 +26,9 @@
 import BmfontAssembler from '../../../../utils/label/bmfont';
 import { vfmtPosUvTwoColor } from '../../../vertex-format';
 
-
-
 let _dataOffset = 0;
+
+const COLOR_INDEX = [2, 3, 0, 1];
 
 export default class WebglColorBmfontAssembler extends BmfontAssembler {
     floatsPerVert = 6;
@@ -37,16 +37,29 @@ export default class WebglColorBmfontAssembler extends BmfontAssembler {
         this._renderData.createFlexData(0, 4, 6, this.getVfmt());
     }
 
-    updateColor (comp, color) {
+    updateColor (comp) {
         let uintVerts = this._renderData.uintVDatas[0];
         if (!uintVerts) return;
-        color = color || comp.node.color._val;
+        color = comp.node.color;
         let outlineColor = (comp._borderColor || cc.Color.BLACK)._val;
         let floatsPerVert = this.floatsPerVert;
         let colorOffset = this.colorOffset;
-        for (let i = colorOffset, l = uintVerts.length; i < l; i += floatsPerVert) {
-            uintVerts[i] = color;
-            uintVerts[i + 1] = outlineColor;
+        if (comp._gradient) {
+            comp._grdientColors.forEach((o) => {
+                o._fastSetA(color.getA());
+            });
+            let j = 0;
+            for (let i = colorOffset, l = uintVerts.length; i < l; i += floatsPerVert) {
+                let c_i = j % 4;
+                uintVerts[i] = comp._grdientColors[COLOR_INDEX[c_i]]._val;
+                uintVerts[i + 1] = outlineColor;
+                j += 1;
+            }
+        } else {
+            for (let i = colorOffset, l = uintVerts.length; i < l; i += floatsPerVert) {
+                uintVerts[i] = color._val;
+                uintVerts[i + 1] = outlineColor;
+            }
         }
     }
 
@@ -87,8 +100,12 @@ export default class WebglColorBmfontAssembler extends BmfontAssembler {
         flexBuffer.used(this.verticesCount, this.indicesCount);
     }
 
-    _getColor (comp) {
-        return comp.node._color._val;
+    _getColor(comp, i) {
+        if (comp._gradient && i !== undefined) {
+            return comp._grdientColors[COLOR_INDEX[i]]._val;
+        } else {
+            return comp.node._color._val;
+        }
     }
 
     _getOutlineColor(comp) {
@@ -107,7 +124,6 @@ export default class WebglColorBmfontAssembler extends BmfontAssembler {
             texh = texture.height,
             rectWidth = rect.width,
             rectHeight = rect.height,
-            color = this._getColor(comp),
             outlineColor = this._getOutlineColor(comp);
 
         let l, b, r, t;
@@ -162,7 +178,7 @@ export default class WebglColorBmfontAssembler extends BmfontAssembler {
         // colors
         let colorOffset = _dataOffset + this.colorOffset;
         for (let i = 0; i < 4; i++) {
-            uintVerts[colorOffset] = color;
+            uintVerts[colorOffset] = this._getColor(comp, i);
             uintVerts[colorOffset + 1] = outlineColor;
             colorOffset += floatsPerVert;
         }
