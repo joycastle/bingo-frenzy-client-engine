@@ -40,18 +40,18 @@ export default class WebglColorBmfontAssembler extends BmfontAssembler {
     updateColor (comp) {
         let uintVerts = this._renderData.uintVDatas[0];
         if (!uintVerts) return;
-        color = comp.node.color;
+        const color = comp.node.color;
         let outlineColor = (comp._borderColor || cc.Color.BLACK)._val;
         let floatsPerVert = this.floatsPerVert;
         let colorOffset = this.colorOffset;
         if (comp._gradient) {
-            comp._grdientColors.forEach((o) => {
+            comp._gradientColors.forEach((o) => {
                 o._fastSetA(color.getA());
             });
             let j = 0;
             for (let i = colorOffset, l = uintVerts.length; i < l; i += floatsPerVert) {
                 let c_i = j % 4;
-                uintVerts[i] = comp._grdientColors[COLOR_INDEX[c_i]]._val;
+                uintVerts[i] = comp._gradientColors[COLOR_INDEX[c_i]]._val;
                 uintVerts[i + 1] = outlineColor;
                 j += 1;
             }
@@ -102,7 +102,7 @@ export default class WebglColorBmfontAssembler extends BmfontAssembler {
 
     _getColor(comp, i) {
         if (comp._gradient && i !== undefined) {
-            return comp._grdientColors[COLOR_INDEX[i]]._val;
+            return comp._gradientColors[COLOR_INDEX[i]]._val;
         } else {
             return comp.node._color._val;
         }

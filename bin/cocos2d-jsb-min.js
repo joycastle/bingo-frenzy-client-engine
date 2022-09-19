@@ -34578,18 +34578,17 @@ this._renderData.createFlexData(0, 4, 6, this.getVfmt());
 e.prototype.updateColor = function(t) {
 var e = this._renderData.uintVDatas[0];
 if (e) {
-color = t.node.color;
-var i = this.floatsPerVert, n = this.colorOffset;
+var i = t.node.color, n = this.floatsPerVert, r = this.colorOffset;
 if (t._gradient) {
-t._grdientColors.forEach((function(t) {
-t._fastSetA(color.getA());
+t._gradientColors.forEach((function(t) {
+t._fastSetA(i.getA());
 }));
-for (var r = 0, s = n, o = e.length; s < o; s += i) {
-var c = r % 4;
-e[s] = t._grdientColors[a[c]]._val;
-r += 1;
+for (var s = 0, o = r, c = e.length; o < c; o += n) {
+var l = s % 4;
+e[o] = t._gradientColors[a[l]]._val;
+s += 1;
 }
-} else for (var l = n, h = e.length; l < h; l += i) e[l] = color._val;
+} else for (var h = r, u = e.length; h < u; h += n) e[h] = i._val;
 }
 };
 e.prototype._reserveQuads = function(t, e) {
@@ -34611,7 +34610,7 @@ o = 0;
 this._renderData._flexBuffer.used(this.verticesCount, this.indicesCount);
 };
 e.prototype._getColor = function(t, e) {
-return t._gradient && void 0 !== e ? t._grdientColors[a[e]]._val : t.node._color._val;
+return t._gradient && void 0 !== e ? t._gradientColors[a[e]]._val : t.node._color._val;
 };
 e.prototype.appendQuad = function(t, e, i, n, r, s, a) {
 var c = this._renderData, l = c.vDatas[0], h = c.uintVDatas[0];
@@ -34777,21 +34776,20 @@ this._renderData.createFlexData(0, 4, 6, this.getVfmt());
 e.prototype.updateColor = function(t) {
 var e = this._renderData.uintVDatas[0];
 if (e) {
-color = t.node.color;
-var i = (t._borderColor || cc.Color.BLACK)._val, n = this.floatsPerVert, r = this.colorOffset;
+var i = t.node.color, n = (t._borderColor || cc.Color.BLACK)._val, r = this.floatsPerVert, s = this.colorOffset;
 if (t._gradient) {
-t._grdientColors.forEach((function(t) {
-t._fastSetA(color.getA());
+t._gradientColors.forEach((function(t) {
+t._fastSetA(i.getA());
 }));
-for (var s = 0, o = r, a = e.length; o < a; o += n) {
-var c = s % 4;
-e[o] = t._grdientColors[l[c]]._val;
-e[o + 1] = i;
-s += 1;
+for (var o = 0, a = s, c = e.length; a < c; a += r) {
+var h = o % 4;
+e[a] = t._gradientColors[l[h]]._val;
+e[a + 1] = n;
+o += 1;
 }
-} else for (var h = r, u = e.length; h < u; h += n) {
-e[h] = color._val;
-e[h + 1] = i;
+} else for (var u = s, _ = e.length; u < _; u += r) {
+e[u] = i._val;
+e[u + 1] = n;
 }
 }
 };
@@ -34820,7 +34818,7 @@ c = 0;
 this._renderData._flexBuffer.used(this.verticesCount, this.indicesCount);
 };
 e.prototype._getColor = function(t, e) {
-return t._gradient && void 0 !== e ? t._grdientColors[l[e]]._val : t.node._color._val;
+return t._gradient && void 0 !== e ? t._gradientColors[l[e]]._val : t.node._color._val;
 };
 e.prototype._getOutlineColor = function(t) {
 return (t._borderColor || cc.Color.BLACK)._val;

@@ -39740,17 +39740,17 @@
       WebglBmfontAssembler.prototype.updateColor = function updateColor(comp) {
         var uintVerts = this._renderData.uintVDatas[0];
         if (!uintVerts) return;
-        color = comp.node.color;
+        var color = comp.node.color;
         var floatsPerVert = this.floatsPerVert;
         var colorOffset = this.colorOffset;
         if (comp._gradient) {
-          comp._grdientColors.forEach((function(o) {
+          comp._gradientColors.forEach((function(o) {
             o._fastSetA(color.getA());
           }));
           var j = 0;
           for (var i = colorOffset, l = uintVerts.length; i < l; i += floatsPerVert) {
             var c_i = j % 4;
-            uintVerts[i] = comp._grdientColors[COLOR_INDEX[c_i]]._val;
+            uintVerts[i] = comp._gradientColors[COLOR_INDEX[c_i]]._val;
             j += 1;
           }
         } else for (var _i = colorOffset, _l = uintVerts.length; _i < _l; _i += floatsPerVert) uintVerts[_i] = color._val;
@@ -39778,7 +39778,7 @@
         flexBuffer.used(this.verticesCount, this.indicesCount);
       };
       WebglBmfontAssembler.prototype._getColor = function _getColor(comp, i) {
-        return comp._gradient && void 0 !== i ? comp._grdientColors[COLOR_INDEX[i]]._val : comp.node._color._val;
+        return comp._gradient && void 0 !== i ? comp._gradientColors[COLOR_INDEX[i]]._val : comp.node._color._val;
       };
       WebglBmfontAssembler.prototype.appendQuad = function appendQuad(comp, texture, rect, rotated, x, y, scale) {
         var renderData = this._renderData;
@@ -39970,18 +39970,18 @@
       WebglColorBmfontAssembler.prototype.updateColor = function updateColor(comp) {
         var uintVerts = this._renderData.uintVDatas[0];
         if (!uintVerts) return;
-        color = comp.node.color;
+        var color = comp.node.color;
         var outlineColor = (comp._borderColor || cc.Color.BLACK)._val;
         var floatsPerVert = this.floatsPerVert;
         var colorOffset = this.colorOffset;
         if (comp._gradient) {
-          comp._grdientColors.forEach((function(o) {
+          comp._gradientColors.forEach((function(o) {
             o._fastSetA(color.getA());
           }));
           var j = 0;
           for (var i = colorOffset, l = uintVerts.length; i < l; i += floatsPerVert) {
             var c_i = j % 4;
-            uintVerts[i] = comp._grdientColors[COLOR_INDEX[c_i]]._val;
+            uintVerts[i] = comp._gradientColors[COLOR_INDEX[c_i]]._val;
             uintVerts[i + 1] = outlineColor;
             j += 1;
           }
@@ -40019,7 +40019,7 @@
         flexBuffer.used(this.verticesCount, this.indicesCount);
       };
       WebglColorBmfontAssembler.prototype._getColor = function _getColor(comp, i) {
-        return comp._gradient && void 0 !== i ? comp._grdientColors[COLOR_INDEX[i]]._val : comp.node._color._val;
+        return comp._gradient && void 0 !== i ? comp._gradientColors[COLOR_INDEX[i]]._val : comp.node._color._val;
       };
       WebglColorBmfontAssembler.prototype._getOutlineColor = function _getOutlineColor(comp) {
         return (comp._borderColor || cc.Color.BLACK)._val;
