@@ -14122,14 +14122,14 @@ this._originalScale.y = t.scaleY;
 this._registerTargetEvent(t);
 },
 _onTouchBegan: function(t) {
-if (this.interactable && this.enabledInHierarchy) {
+if (0 === t.getID() && this.interactable && this.enabledInHierarchy) {
 this._pressed = !0;
 this._updateState();
 t.stopPropagation();
 }
 },
 _onTouchMove: function(t) {
-if (this.interactable && this.enabledInHierarchy && this._pressed) {
+if (0 === t.getID() && this.interactable && this.enabledInHierarchy && this._pressed) {
 var e = t.touch, i = this.node._hitTest(e.getLocation()), n = this._getTarget(), r = this._originalScale;
 if (this.transition === s.SCALE && r) if (i) {
 this._fromScale.x = r.x;
@@ -14150,7 +14150,7 @@ t.stopPropagation();
 }
 },
 _onTouchEnded: function(t) {
-if (this.interactable && this.enabledInHierarchy) {
+if (0 === t.getID() && this.interactable && this.enabledInHierarchy) {
 if (this._pressed) {
 cc.Component.EventHandler.emitEvents(this.clickEvents, t);
 this.node.emit("click", this);
@@ -14160,8 +14160,8 @@ this._updateState();
 t.stopPropagation();
 }
 },
-_onTouchCancel: function() {
-if (this.interactable && this.enabledInHierarchy) {
+_onTouchCancel: function(t) {
+if (0 === t.getID() && this.interactable && this.enabledInHierarchy) {
 this._pressed = !1;
 this._updateState();
 }

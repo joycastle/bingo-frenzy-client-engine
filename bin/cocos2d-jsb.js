@@ -16252,12 +16252,14 @@
         this._registerTargetEvent(target);
       },
       _onTouchBegan: function _onTouchBegan(event) {
+        if (0 !== event.getID()) return;
         if (!this.interactable || !this.enabledInHierarchy) return;
         this._pressed = true;
         this._updateState();
         event.stopPropagation();
       },
       _onTouchMove: function _onTouchMove(event) {
+        if (0 !== event.getID()) return;
         if (!this.interactable || !this.enabledInHierarchy || !this._pressed) return;
         var touch = event.touch;
         var hit = this.node._hitTest(touch.getLocation());
@@ -16281,6 +16283,7 @@
         event.stopPropagation();
       },
       _onTouchEnded: function _onTouchEnded(event) {
+        if (0 !== event.getID()) return;
         if (!this.interactable || !this.enabledInHierarchy) return;
         if (this._pressed) {
           cc.Component.EventHandler.emitEvents(this.clickEvents, event);
@@ -16290,7 +16293,8 @@
         this._updateState();
         event.stopPropagation();
       },
-      _onTouchCancel: function _onTouchCancel() {
+      _onTouchCancel: function _onTouchCancel(event) {
+        if (0 !== event.getID()) return;
         if (!this.interactable || !this.enabledInHierarchy) return;
         this._pressed = false;
         this._updateState();
