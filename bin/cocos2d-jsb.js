@@ -10159,6 +10159,7 @@
       return true;
     }
     function _doDispatchEvent(owner, event) {
+      if (event instanceof cc.Event.EventTouch && !owner.isMultiTouchEnabled && 0 !== event.getID()) return;
       var target, i;
       event.target = owner;
       _cachedArray.length = 0;
@@ -10504,6 +10505,15 @@
               this.emit(EventType.SIBLING_ORDER_CHANGED);
               this._onSiblingIndexChanged();
             }
+          }
+        },
+        _isMultiTouchEnabled: false,
+        isMultiTouchEnabled: {
+          get: function get() {
+            return this._isMultiTouchEnabled;
+          },
+          set: function set(value) {
+            this._isMultiTouchEnabled = value;
           }
         }
       },
@@ -16252,14 +16262,12 @@
         this._registerTargetEvent(target);
       },
       _onTouchBegan: function _onTouchBegan(event) {
-        if (0 !== event.getID()) return;
         if (!this.interactable || !this.enabledInHierarchy) return;
         this._pressed = true;
         this._updateState();
         event.stopPropagation();
       },
       _onTouchMove: function _onTouchMove(event) {
-        if (0 !== event.getID()) return;
         if (!this.interactable || !this.enabledInHierarchy || !this._pressed) return;
         var touch = event.touch;
         var hit = this.node._hitTest(touch.getLocation());
@@ -16283,7 +16291,6 @@
         event.stopPropagation();
       },
       _onTouchEnded: function _onTouchEnded(event) {
-        if (0 !== event.getID()) return;
         if (!this.interactable || !this.enabledInHierarchy) return;
         if (this._pressed) {
           cc.Component.EventHandler.emitEvents(this.clickEvents, event);
@@ -16294,7 +16301,6 @@
         event.stopPropagation();
       },
       _onTouchCancel: function _onTouchCancel(event) {
-        if (0 !== event.getID()) return;
         if (!this.interactable || !this.enabledInHierarchy) return;
         this._pressed = false;
         this._updateState();

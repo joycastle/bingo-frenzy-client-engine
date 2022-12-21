@@ -524,6 +524,14 @@ function _checkListeners (node, events) {
 }
 
 function _doDispatchEvent (owner, event) {
+    if (event instanceof cc.Event.EventTouch) {
+        if (!owner.isMultiTouchEnabled) {
+            if (event.getID() !== 0) {
+                return;
+            }
+        }
+    }
+
     var target, i;
     event.target = owner;
 
@@ -1246,6 +1254,16 @@ let NodeDefines = {
                     this.emit(EventType.SIBLING_ORDER_CHANGED);
                     this._onSiblingIndexChanged();
                 }
+            },
+        },
+
+        _isMultiTouchEnabled: false,
+        isMultiTouchEnabled: {
+            get () {
+                return this._isMultiTouchEnabled;
+            },
+            set (value) {
+                this._isMultiTouchEnabled = value;
             },
         },
     },

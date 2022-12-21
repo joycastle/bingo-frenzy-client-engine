@@ -8612,6 +8612,7 @@ return !1;
 return !0;
 }
 function et(t, e) {
+if (!(e instanceof cc.Event.EventTouch) || t.isMultiTouchEnabled || 0 === e.getID()) {
 var i, n;
 e.target = t;
 F.length = 0;
@@ -8643,6 +8644,7 @@ return;
 }
 }
 F.length = 0;
+}
 }
 function it(t) {
 var e = t.groupIndex;
@@ -8921,6 +8923,15 @@ this._localZOrder = 65535 & this._localZOrder | t << 16;
 this.emit(z.SIBLING_ORDER_CHANGED);
 this._onSiblingIndexChanged();
 }
+}
+},
+_isMultiTouchEnabled: !1,
+isMultiTouchEnabled: {
+get: function() {
+return this._isMultiTouchEnabled;
+},
+set: function(t) {
+this._isMultiTouchEnabled = t;
 }
 }
 },
@@ -14122,14 +14133,14 @@ this._originalScale.y = t.scaleY;
 this._registerTargetEvent(t);
 },
 _onTouchBegan: function(t) {
-if (0 === t.getID() && this.interactable && this.enabledInHierarchy) {
+if (this.interactable && this.enabledInHierarchy) {
 this._pressed = !0;
 this._updateState();
 t.stopPropagation();
 }
 },
 _onTouchMove: function(t) {
-if (0 === t.getID() && this.interactable && this.enabledInHierarchy && this._pressed) {
+if (this.interactable && this.enabledInHierarchy && this._pressed) {
 var e = t.touch, i = this.node._hitTest(e.getLocation()), n = this._getTarget(), r = this._originalScale;
 if (this.transition === s.SCALE && r) if (i) {
 this._fromScale.x = r.x;
@@ -14150,7 +14161,7 @@ t.stopPropagation();
 }
 },
 _onTouchEnded: function(t) {
-if (0 === t.getID() && this.interactable && this.enabledInHierarchy) {
+if (this.interactable && this.enabledInHierarchy) {
 if (this._pressed) {
 cc.Component.EventHandler.emitEvents(this.clickEvents, t);
 this.node.emit("click", this);
@@ -14161,7 +14172,7 @@ t.stopPropagation();
 }
 },
 _onTouchCancel: function(t) {
-if (0 === t.getID() && this.interactable && this.enabledInHierarchy) {
+if (this.interactable && this.enabledInHierarchy) {
 this._pressed = !1;
 this._updateState();
 }
