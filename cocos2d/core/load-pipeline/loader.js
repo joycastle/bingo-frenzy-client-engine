@@ -30,6 +30,7 @@ const Pipeline = require('./pipeline');
 const Texture2D = require('../assets/CCTexture2D');
 const loadUuid = require('./uuid-loader');
 const fontLoader = require('./font-loader');
+const { callInNextTick } = require('../platform/utils');
 
 function loadNothing () {
     return null;
@@ -72,7 +73,7 @@ function loadImage (item) {
 
 // If audio is loaded by url directly, than this loader will wrap it into a new cc.AudioClip object.
 // If audio is loaded by deserialized AudioClip, than this loader will be skipped.
-function loadAudioAsAsset (item, callback) {
+function loadAudioAsAsset (item) {
     var loadByDeserializedAsset = (item._owner instanceof cc.Asset);
     if (loadByDeserializedAsset) {
         // already has cc.Asset
@@ -270,7 +271,11 @@ var Loader = function (extMap) {
     this.id = ID;
     this.async = true;
     this.pipeline = null;
-
+    this._loadQueue = [];
+    this._frameTime = null;     // 一帧时间
+    this._logicTime = null;     // 执行 load 逻辑的时间
+    this._idleTime = 0;         // 空闲时间
+    this._isLoading = false;    // 是否正在处理 loadQueue
     this.extMap = js.mixin(extMap, defaultMap);
 };
 Loader.ID = ID;
@@ -284,9 +289,76 @@ Loader.prototype.addHandlers = function (extMap) {
     this.extMap = js.mixin(this.extMap, extMap);
 };
 
+Loader.prototype._handleLoadQueue = function () {
+    let self = this;
+    // 初始化时间
+    if (!this._frameTime || !this._logicTime) {
+        this._frameTime = 1000 / cc.game.getFrameRate();
+        this._logicTime = this._frameTime * cc.macro.LOAD_PERCENT_BY_FRAME;
+    }
+    if (this._loadQueue.length <= 0) {
+        // 如果队列为空
+        if (!this._idleTime) {
+            this._idleTime = Date.now();
+        }
+        if (Date.now() - this._idleTime > 5000) {
+            // 如果空闲时间超过指定时间，退出
+            this._isLoading = false;
+        } else {
+            // 延迟一帧再处理
+            callInNextTick(function() {
+                self._handleLoadQueue();
+            });
+        }
+    } else {
+        // 队列不为空，执行加载逻辑
+        this._idleTime = null;
+        let startTime = Date.now();
+        while (this._loadQueue.length > 0) {
+            var nextOne = this._loadQueue.shift();
+            if (!nextOne) {
+                break;
+            }
+            var loadFunc = this.extMap[nextOne.item.type] || this.extMap['default'];
+            var syncRet = loadFunc.call(this, nextOne.item, nextOne.callback);
+            if (syncRet !== undefined) {
+                if (syncRet instanceof Error) {
+                    nextOne.callback(syncRet);
+                } else {
+                    nextOne.callback(null, syncRet);
+                }
+            }
+            // 超过一帧内可执行逻辑的最大时间，跳出循环
+            if (Date.now() - startTime > this._logicTime) {
+                break;
+            }
+        }
+        const sleepTime = Math.max(0, this._frameTime - (Date.now() - startTime));
+        setTimeout(function() {
+            self._handleLoadQueue();
+        }, sleepTime);
+    }
+};
+
 Loader.prototype.handle = function (item, callback) {
-    var loadFunc = this.extMap[item.type] || this.extMap['default'];
-    return loadFunc.call(this, item, callback);
+    if (CC_EDITOR) {
+        var loadFunc = this.extMap[item.type] || this.extMap['default'];
+        return loadFunc.call(this, item, callback);
+    } else {
+        this._loadQueue.push({
+            item: item,
+            callback: callback
+        });
+        if (this._isLoading) {
+            return;
+        }
+        this._isLoading = true;
+
+        let self = this;
+        callInNextTick(function() {
+            self._handleLoadQueue();
+        });
+    }
 };
 
 Pipeline.Loader = module.exports = Loader;

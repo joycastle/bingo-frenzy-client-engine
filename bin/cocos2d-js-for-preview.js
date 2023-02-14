@@ -25279,12 +25279,14 @@
     "use strict";
     var pushToMap = require("../utils/misc").pushToMap;
     var js = require("../platform/js");
-    function Entry(uuid, type) {
+    function Entry(uuid, type, path) {
       this.uuid = uuid;
       this.type = type;
+      this.path = path;
     }
     function AssetTable() {
       this._pathToUuid = js.createMap(true);
+      this._pathToUuidTree = {};
     }
     function isMatchByWord(path, test) {
       if (path.length > test.length) {
@@ -25319,30 +25321,43 @@
     proto.getUuidArray = function(path, type, out_urls) {
       path = cc.url.normalize(path);
       "/" === path[path.length - 1] && (path = path.slice(0, -1));
-      var path2uuid = this._pathToUuid;
       var uuids = [];
       var isChildClassOf = js.isChildClassOf;
       var _foundAtlasUrl;
-      for (var p in path2uuid) if (p.startsWith(path) && isMatchByWord(p, path) || !path) {
-        var item = path2uuid[p];
-        if (Array.isArray(item)) for (var i = 0; i < item.length; i++) {
-          var entry = item[i];
+      var currItem = this._pathToUuidTree;
+      path.split("/").forEach((function(o) {
+        return currItem = currItem[o];
+      }));
+      var fn = function fn(item) {
+        if (item instanceof Entry) {
+          var entry = item;
           if (!type || isChildClassOf(entry.type, type)) {
             uuids.push(entry.uuid);
-            out_urls && out_urls.push(p);
-          } else (true, entry.type === cc.SpriteAtlas) && (_foundAtlasUrl = p);
-        } else if (!type || isChildClassOf(item.type, type)) {
-          uuids.push(item.uuid);
-          out_urls && out_urls.push(p);
-        } else (true, item.type === cc.SpriteAtlas) && (_foundAtlasUrl = p);
-      }
+            out_urls && out_urls.push(entry.p);
+          } else (true, entry.type === cc.SpriteAtlas) && (_foundAtlasUrl = entry.p);
+        } else for (var p in item) fn(item[p]);
+      };
+      fn(currItem);
       (true, 0 === uuids.length) && _foundAtlasUrl && js.isChildClassOf(type, cc.SpriteFrame) && cc.errorID(4932, _foundAtlasUrl);
       return uuids;
     };
     proto.add = function(path, uuid, type, isMainAsset) {
       path = path.substring(0, path.length - cc.path.extname(path).length);
-      var newEntry = new Entry(uuid, type);
+      var newEntry = new Entry(uuid, type, path);
       pushToMap(this._pathToUuid, path, newEntry, isMainAsset);
+      var currItem = this._pathToUuidTree;
+      path.split("/").forEach((function(o, i, arr) {
+        if (i < arr.length - 1) {
+          currItem[o] = currItem[o] || {};
+          currItem = currItem[o];
+        } else {
+          var exists = currItem[o];
+          if (exists) if (Array.isArray(exists)) if (isMainAsset) {
+            exists.push(exists[0]);
+            exists[0] = newEntry;
+          } else exists.push(newEntry); else currItem[o] = isMainAsset ? [ newEntry, exists ] : [ exists, newEntry ]; else currItem[o] = newEntry;
+        }
+      }));
     };
     proto._getInfo_DEBUG = (true, function(uuid, out_info) {
       var path2uuid = this._pathToUuid;
@@ -25367,6 +25382,7 @@
     });
     proto.reset = function() {
       this._pathToUuid = js.createMap(true);
+      this._pathToUuidTree = {};
     };
     module.exports = AssetTable;
   }), {
@@ -25858,6 +25874,7 @@
     var Texture2D = require("../assets/CCTexture2D");
     var loadUuid = require("./uuid-loader");
     var fontLoader = require("./font-loader");
+    var _require = require("../platform/utils"), callInNextTick = _require.callInNextTick;
     function loadNothing() {
       return null;
     }
@@ -25882,7 +25899,7 @@
       tex._nativeAsset = image;
       return tex;
     }
-    function loadAudioAsAsset(item, callback) {
+    function loadAudioAsAsset(item) {
       var loadByDeserializedAsset = item._owner instanceof cc.Asset;
       if (loadByDeserializedAsset) return null;
       var audioClip = new cc.AudioClip();
@@ -25992,21 +26009,65 @@
       this.id = ID;
       this.async = true;
       this.pipeline = null;
+      this._loadQueue = [];
+      this._frameTime = null;
+      this._logicTime = null;
+      this._idleTime = 0;
+      this._isLoading = false;
       this.extMap = js.mixin(extMap, defaultMap);
     };
     Loader.ID = ID;
     Loader.prototype.addHandlers = function(extMap) {
       this.extMap = js.mixin(this.extMap, extMap);
     };
+    Loader.prototype._handleLoadQueue = function() {
+      var self = this;
+      if (!this._frameTime || !this._logicTime) {
+        this._frameTime = 1e3 / cc.game.getFrameRate();
+        this._logicTime = this._frameTime * cc.macro.LOAD_PERCENT_BY_FRAME;
+      }
+      if (this._loadQueue.length <= 0) {
+        this._idleTime || (this._idleTime = Date.now());
+        Date.now() - this._idleTime > 5e3 ? this._isLoading = false : callInNextTick((function() {
+          self._handleLoadQueue();
+        }));
+      } else {
+        this._idleTime = null;
+        var startTime = Date.now();
+        while (this._loadQueue.length > 0) {
+          var nextOne = this._loadQueue.shift();
+          if (!nextOne) break;
+          var loadFunc = this.extMap[nextOne.item.type] || this.extMap["default"];
+          var syncRet = loadFunc.call(this, nextOne.item, nextOne.callback);
+          void 0 !== syncRet && (syncRet instanceof Error ? nextOne.callback(syncRet) : nextOne.callback(null, syncRet));
+          if (Date.now() - startTime > this._logicTime) break;
+        }
+        var sleepTime = Math.max(0, this._frameTime - (Date.now() - startTime));
+        setTimeout((function() {
+          self._handleLoadQueue();
+        }), sleepTime);
+      }
+    };
     Loader.prototype.handle = function(item, callback) {
-      var loadFunc = this.extMap[item.type] || this.extMap["default"];
-      return loadFunc.call(this, item, callback);
+      var loadFunc;
+      false;
+      this._loadQueue.push({
+        item: item,
+        callback: callback
+      });
+      if (this._isLoading) return;
+      this._isLoading = true;
+      var self = this;
+      callInNextTick((function() {
+        self._handleLoadQueue();
+      }));
     };
     Pipeline.Loader = module.exports = Loader;
   }), {
     "../assets/CCTexture2D": 74,
     "../platform/CCSAXParser": 208,
     "../platform/js": 221,
+    "../platform/utils": 225,
     "./font-loader": 155,
     "./pipeline": 161,
     "./uuid-loader": 167
@@ -26068,11 +26129,11 @@
       url && !result.type && (result.type = cc.path.extname(url).toLowerCase().substr(1));
       return result;
     }
-    var checkedIds = [];
+    var checkedIds = {};
     function checkCircleReference(owner, item, recursiveCall) {
       if (!owner || !item) return false;
       var result = false;
-      checkedIds.push(item.id);
+      checkedIds[item.id] = true;
       if (item.deps) {
         var i, deps = item.deps, subDep;
         for (i = 0; i < deps.length; i++) {
@@ -26081,14 +26142,14 @@
             result = true;
             break;
           }
-          if (checkedIds.indexOf(subDep.id) >= 0) continue;
+          if (checkedIds[subDep.id]) continue;
           if (subDep.deps && checkCircleReference(owner, subDep, true)) {
             result = true;
             break;
           }
         }
       }
-      recursiveCall || (checkedIds.length = 0);
+      recursiveCall || (checkedIds = {});
       return result;
     }
     var LoadingItems = function LoadingItems(pipeline, urlList, onProgress, onComplete) {
@@ -26137,25 +26198,40 @@
       var dep = _queueDeps[queue._id];
       if (dep) {
         dep.completed.length = 0;
+        dep.completedMap = {};
         dep.deps.length = 0;
+        dep.depsMap = {};
       } else dep = _queueDeps[queue._id] = {
         completed: [],
-        deps: []
+        completedMap: {},
+        deps: [],
+        depsMap: {}
       };
     };
     LoadingItems.registerQueueDep = function(owner, depId) {
       var queueId = owner.queueId || owner;
       if (!queueId) return false;
       var queueDepList = _queueDeps[queueId];
-      if (queueDepList) -1 === queueDepList.deps.indexOf(depId) && queueDepList.deps.push(depId); else if (owner.id) for (var id in _queueDeps) {
+      if (queueDepList) {
+        if (!queueDepList.depsMap[depId]) {
+          queueDepList.depsMap[depId] = true;
+          queueDepList.deps.push(depId);
+        }
+      } else if (owner.id) for (var id in _queueDeps) {
         var queue = _queueDeps[id];
-        -1 !== queue.deps.indexOf(owner.id) && -1 === queue.deps.indexOf(depId) && queue.deps.push(depId);
+        if (queue.depsMap[owner.id] && !queue.depsMap[depId]) {
+          queue.deps.push(depId);
+          queue.depsMap[depId] = true;
+        }
       }
     };
     LoadingItems.finishDep = function(depId) {
       for (var id in _queueDeps) {
         var queue = _queueDeps[id];
-        -1 !== queue.deps.indexOf(depId) && -1 === queue.completed.indexOf(depId) && queue.completed.push(depId);
+        if (queue.depsMap[depId] && !queue.completedMap[depId]) {
+          queue.completedMap[depId] = true;
+          queue.completed.push(depId);
+        }
       }
     };
     var proto = LoadingItems.prototype;
@@ -26281,7 +26357,9 @@
       CallbacksInvoker.call(this);
       if (_queueDeps[this._id]) {
         _queueDeps[this._id].completed.length = 0;
+        _queueDeps[this._id].completedMap = {};
         _queueDeps[this._id].deps.length = 0;
+        _queueDeps[this._id].depsMap = {};
       }
       delete _queues[this._id];
       delete _queueDeps[this._id];
@@ -31898,6 +31976,7 @@
       BATCH_VERTEX_COUNT: 2e4,
       ENABLE_TILEDMAP_CULLING: true,
       DOWNLOAD_MAX_CONCURRENT: 64,
+      LOAD_PERCENT_BY_FRAME: .6,
       ENABLE_TRANSPARENT_CANVAS: false,
       ENABLE_WEBGL_ANTIALIAS: false,
       ENABLE_CULLING: false,

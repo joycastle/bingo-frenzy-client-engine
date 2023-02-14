@@ -22396,22 +22396,17 @@ r.AssetLoader = e.exports = a;
 149: [ (function(t, e, i) {
 "use strict";
 var n = t("../utils/misc").pushToMap, r = t("../platform/js");
-function s(t, e) {
+function s(t, e, i) {
 this.uuid = t;
 this.type = e;
+this.path = i;
 }
 function o() {
 this._pathToUuid = r.createMap(!0);
+this._pathToUuidTree = {};
 }
-function a(t, e) {
-if (t.length > e.length) {
-var i = t.charCodeAt(e.length);
-return 46 === i || 47 === i;
-}
-return !0;
-}
-var c = o.prototype;
-c.getUuid = function(t, e) {
+var a = o.prototype;
+a.getUuid = function(t, e) {
 t = cc.url.normalize(t);
 var i = this._pathToUuid[t];
 if (i) if (Array.isArray(i)) {
@@ -22426,33 +22421,45 @@ if (!e || r.isChildClassOf(i.type, e)) return i.uuid;
 }
 return "";
 };
-c.getUuidArray = function(t, e, i) {
+a.getUuidArray = function(t, e, i) {
 "/" === (t = cc.url.normalize(t))[t.length - 1] && (t = t.slice(0, -1));
-var n = this._pathToUuid, s = [], o = r.isChildClassOf;
-for (var c in n) if (c.startsWith(t) && a(c, t) || !t) {
-var l = n[c];
-if (Array.isArray(l)) for (var h = 0; h < l.length; h++) {
-var u = l[h];
-if (!e || o(u.type, e)) {
-s.push(u.uuid);
-i && i.push(c);
-} else 0;
-} else if (!e || o(l.type, e)) {
-s.push(l.uuid);
-i && i.push(c);
-} else 0;
+var n = [], o = r.isChildClassOf, a = this._pathToUuidTree;
+t.split("/").forEach((function(t) {
+return a = a[t];
+}));
+(function t(r) {
+if (r instanceof s) {
+var a = r;
+if (!e || o(a.type, e)) {
+n.push(a.uuid);
+i && i.push(a.p);
 }
+} else for (var c in r) t(r[c]);
+})(a);
 0;
-return s;
+return n;
 };
-c.add = function(t, e, i, r) {
-t = t.substring(0, t.length - cc.path.extname(t).length);
-var o = new s(e, i);
+a.add = function(t, e, i, r) {
+var o = new s(e, i, t = t.substring(0, t.length - cc.path.extname(t).length));
 n(this._pathToUuid, t, o, r);
+var a = this._pathToUuidTree;
+t.split("/").forEach((function(t, e, i) {
+if (e < i.length - 1) {
+a[t] = a[t] || {};
+a = a[t];
+} else {
+var n = a[t];
+if (n) if (Array.isArray(n)) if (r) {
+n.push(n[0]);
+n[0] = o;
+} else n.push(o); else a[t] = r ? [ o, n ] : [ n, o ]; else a[t] = o;
+}
+}));
 };
-c._getInfo_DEBUG = !1;
-c.reset = function() {
+a._getInfo_DEBUG = !1;
+a.reset = function() {
 this._pathToUuid = r.createMap(!0);
+this._pathToUuidTree = {};
 };
 e.exports = o;
 }), {
@@ -22883,8 +22890,8 @@ t("./CCLoader");
 } ],
 156: [ (function(t, e, i) {
 "use strict";
-var n = t("../platform/js"), r = t("../platform/CCSAXParser").plistParser, s = t("./pipeline"), o = t("../assets/CCTexture2D"), a = t("./uuid-loader"), c = t("./font-loader");
-function l(t) {
+var n = t("../platform/js"), r = t("../platform/CCSAXParser").plistParser, s = t("./pipeline"), o = t("../assets/CCTexture2D"), a = t("./uuid-loader"), c = t("./font-loader"), l = t("../platform/utils").callInNextTick;
+function h(t) {
 if ("string" != typeof t.content) return new Error("JSON Loader: Input item doesn't contain string content");
 try {
 return JSON.parse(t.content);
@@ -22892,7 +22899,7 @@ return JSON.parse(t.content);
 return new Error("JSON Loader: Parse json [" + t.id + "] failed : " + e);
 }
 }
-function h(t) {
+function u(t) {
 if (t._owner instanceof cc.Asset) return null;
 var e = t.content;
 if (cc.sys.platform !== cc.sys.FB_PLAYABLE_ADS && !(e instanceof Image)) return new Error("Image Loader: Input item doesn't contain Image content");
@@ -22903,36 +22910,36 @@ i._setRawAsset(t.rawUrl, !1);
 i._nativeAsset = e;
 return i;
 }
-function u(t, e) {
-if (t._owner instanceof cc.Asset) return null;
-var i = new cc.AudioClip();
-i._setRawAsset(t.rawUrl, !1);
-i._nativeAsset = t.content;
-i.url = t.url;
-return i;
-}
 function _(t) {
+if (t._owner instanceof cc.Asset) return null;
+var e = new cc.AudioClip();
+e._setRawAsset(t.rawUrl, !1);
+e._nativeAsset = t.content;
+e.url = t.url;
+return e;
+}
+function f(t) {
 return t.load ? t.load(t.content) : null;
 }
-var f = 13, d = 55727696, p = 0, m = 6, v = 7, y = 12;
-var g = 16, C = 6, x = 8, b = 10, A = 12, S = 14, w = 0, T = 1, E = 3;
-function B(t, e) {
+var d = 13, p = 55727696, m = 0, v = 6, y = 7, g = 12;
+var C = 16, x = 6, b = 8, A = 10, S = 12, w = 14, T = 0, E = 1, B = 3;
+function M(t, e) {
 return t[e] << 8 | t[e + 1];
 }
-var M = {
-png: h,
-jpg: h,
-bmp: h,
-jpeg: h,
-gif: h,
-ico: h,
-tiff: h,
-webp: h,
-image: h,
+var I = {
+png: u,
+jpg: u,
+bmp: u,
+jpeg: u,
+gif: u,
+ico: u,
+tiff: u,
+webp: u,
+image: u,
 pvr: function(t) {
-var e = t.content instanceof ArrayBuffer ? t.content : t.content.buffer, i = new Int32Array(e, 0, f);
-if (i[p] != d) return new Error("Invalid magic number in PVR header");
-var n = i[v], r = i[m], s = i[y] + 52;
+var e = t.content instanceof ArrayBuffer ? t.content : t.content.buffer, i = new Int32Array(e, 0, d);
+if (i[m] != p) return new Error("Invalid magic number in PVR header");
+var n = i[y], r = i[v], s = i[g] + 52;
 return {
 _data: new Uint8Array(e, s),
 _compressed: !0,
@@ -22941,23 +22948,23 @@ height: r
 };
 },
 pkm: function(t) {
-var e = t.content instanceof ArrayBuffer ? t.content : t.content.buffer, i = new Uint8Array(e), n = B(i, C);
-if (n !== w && n !== T && n !== E) return new Error("Invalid magic number in ETC header");
-var r = B(i, A), s = B(i, S);
-B(i, x), B(i, b);
+var e = t.content instanceof ArrayBuffer ? t.content : t.content.buffer, i = new Uint8Array(e), n = M(i, x);
+if (n !== T && n !== E && n !== B) return new Error("Invalid magic number in ETC header");
+var r = M(i, S), s = M(i, w);
+M(i, b), M(i, A);
 return {
-_data: new Uint8Array(e, g),
+_data: new Uint8Array(e, C),
 _compressed: !0,
 width: r,
 height: s
 };
 },
-mp3: u,
-ogg: u,
-wav: u,
-m4a: u,
-json: l,
-ExportJson: l,
+mp3: _,
+ogg: _,
+wav: _,
+m4a: _,
+json: h,
+ExportJson: h,
 plist: function(t) {
 if ("string" != typeof t.content) return new Error("Plist Loader: Input item doesn't contain string content");
 var e = r.parse(t.content);
@@ -22967,9 +22974,9 @@ uuid: a,
 prefab: a,
 fire: a,
 scene: a,
-binary: _,
-dbbin: _,
-bin: _,
+binary: f,
+dbbin: f,
+bin: f,
 font: c.loadFont,
 eot: c.loadFont,
 ttf: c.loadFont,
@@ -22979,24 +22986,66 @@ ttc: c.loadFont,
 default: function() {
 return null;
 }
-}, I = function(t) {
+}, D = function(t) {
 this.id = "Loader";
 this.async = !0;
 this.pipeline = null;
-this.extMap = n.mixin(t, M);
+this._loadQueue = [];
+this._frameTime = null;
+this._logicTime = null;
+this._idleTime = 0;
+this._isLoading = !1;
+this.extMap = n.mixin(t, I);
 };
-I.ID = "Loader";
-I.prototype.addHandlers = function(t) {
+D.ID = "Loader";
+D.prototype.addHandlers = function(t) {
 this.extMap = n.mixin(this.extMap, t);
 };
-I.prototype.handle = function(t, e) {
-return (this.extMap[t.type] || this.extMap.default).call(this, t, e);
+D.prototype._handleLoadQueue = function() {
+var t = this;
+if (!this._frameTime || !this._logicTime) {
+this._frameTime = 1e3 / cc.game.getFrameRate();
+this._logicTime = this._frameTime * cc.macro.LOAD_PERCENT_BY_FRAME;
+}
+if (this._loadQueue.length <= 0) {
+this._idleTime || (this._idleTime = Date.now());
+Date.now() - this._idleTime > 5e3 ? this._isLoading = !1 : l((function() {
+t._handleLoadQueue();
+}));
+} else {
+this._idleTime = null;
+for (var e = Date.now(); this._loadQueue.length > 0; ) {
+var i = this._loadQueue.shift();
+if (!i) break;
+var n = (this.extMap[i.item.type] || this.extMap.default).call(this, i.item, i.callback);
+void 0 !== n && (n instanceof Error ? i.callback(n) : i.callback(null, n));
+if (Date.now() - e > this._logicTime) break;
+}
+var r = Math.max(0, this._frameTime - (Date.now() - e));
+setTimeout((function() {
+t._handleLoadQueue();
+}), r);
+}
 };
-s.Loader = e.exports = I;
+D.prototype.handle = function(t, e) {
+this._loadQueue.push({
+item: t,
+callback: e
+});
+if (!this._isLoading) {
+this._isLoading = !0;
+var i = this;
+l((function() {
+i._handleLoadQueue();
+}));
+}
+};
+s.Loader = e.exports = D;
 }), {
 "../assets/CCTexture2D": 73,
 "../platform/CCSAXParser": 207,
 "../platform/js": 220,
+"../platform/utils": 224,
 "./font-loader": 154,
 "./pipeline": 160,
 "./uuid-loader": 166
@@ -23051,11 +23100,11 @@ n.rawUrl = n.url;
 i && !n.type && (n.type = cc.path.extname(i).toLowerCase().substr(1));
 return n;
 }
-var _ = [];
+var _ = {};
 function f(t, e, i) {
 if (!t || !e) return !1;
 var n = !1;
-_.push(e.id);
+_[e.id] = !0;
 if (e.deps) {
 var r, s, o = e.deps;
 for (r = 0; r < o.length; r++) {
@@ -23063,13 +23112,13 @@ if ((s = o[r]).id === t.id) {
 n = !0;
 break;
 }
-if (!(_.indexOf(s.id) >= 0) && (s.deps && f(t, s, !0))) {
+if (!_[s.id] && (s.deps && f(t, s, !0))) {
 n = !0;
 break;
 }
 }
 }
-i || (_.length = 0);
+i || (_ = {});
 return n;
 }
 var d = function(t, e, i, a) {
@@ -23117,25 +23166,40 @@ d.initQueueDeps = function(t) {
 var e = c[t._id];
 if (e) {
 e.completed.length = 0;
+e.completedMap = {};
 e.deps.length = 0;
+e.depsMap = {};
 } else e = c[t._id] = {
 completed: [],
-deps: []
+completedMap: {},
+deps: [],
+depsMap: {}
 };
 };
 d.registerQueueDep = function(t, e) {
 var i = t.queueId || t;
 if (!i) return !1;
 var n = c[i];
-if (n) -1 === n.deps.indexOf(e) && n.deps.push(e); else if (t.id) for (var r in c) {
+if (n) {
+if (!n.depsMap[e]) {
+n.depsMap[e] = !0;
+n.deps.push(e);
+}
+} else if (t.id) for (var r in c) {
 var s = c[r];
--1 !== s.deps.indexOf(t.id) && -1 === s.deps.indexOf(e) && s.deps.push(e);
+if (s.depsMap[t.id] && !s.depsMap[e]) {
+s.deps.push(e);
+s.depsMap[e] = !0;
+}
 }
 };
 d.finishDep = function(t) {
 for (var e in c) {
 var i = c[e];
--1 !== i.deps.indexOf(t) && -1 === i.completed.indexOf(t) && i.completed.push(t);
+if (i.depsMap[t] && !i.completedMap[t]) {
+i.completedMap[t] = !0;
+i.completed.push(t);
+}
 }
 };
 var p = d.prototype;
@@ -23255,7 +23319,9 @@ this.completedCount = 0;
 n.call(this);
 if (c[this._id]) {
 c[this._id].completed.length = 0;
+c[this._id].completedMap = {};
 c[this._id].deps.length = 0;
+c[this._id].depsMap = {};
 }
 delete o[this._id];
 delete c[this._id];
@@ -28042,6 +28108,7 @@ TOUCH_TIMEOUT: 5e3,
 BATCH_VERTEX_COUNT: 2e4,
 ENABLE_TILEDMAP_CULLING: !0,
 DOWNLOAD_MAX_CONCURRENT: 64,
+LOAD_PERCENT_BY_FRAME: .6,
 ENABLE_TRANSPARENT_CANVAS: !1,
 ENABLE_WEBGL_ANTIALIAS: !1,
 ENABLE_CULLING: !1,

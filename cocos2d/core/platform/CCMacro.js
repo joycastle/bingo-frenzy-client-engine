@@ -271,6 +271,16 @@ cc.macro = {
 
     /**
      * !#en 
+     * The max concurrent task number for the loader
+     * !#zh
+     * 加载任务的最大并发数限制
+     * @property {Number} LOAD_PERCENT_BY_FRAME
+     * @default 0.6
+     */
+    LOAD_PERCENT_BY_FRAME: 0.6,
+
+    /**
+     * !#en 
      * Boolean that indicates if the canvas contains an alpha channel, default sets to false for better performance.
      * Though if you want to make your canvas background transparent and show other dom elements at the background, 
      * you can set it to true before `cc.game.run`.

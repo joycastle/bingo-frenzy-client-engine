@@ -27,9 +27,10 @@
 var pushToMap = require('../utils/misc').pushToMap;
 var js = require('../platform/js');
 
-function Entry (uuid, type) {
+function Entry (uuid, type, path) {
     this.uuid = uuid;
     this.type = type;
+    this.path = path;
 }
 
 /*
@@ -41,6 +42,7 @@ function Entry (uuid, type) {
 
 function AssetTable () {
     this._pathToUuid = js.createMap(true);
+    this._pathToUuidTree = {};
 }
 
 function isMatchByWord (path, test) {
@@ -97,40 +99,30 @@ proto.getUuidArray = function (path, type, out_urls) {
     if (path[path.length - 1] === '/') {
         path = path.slice(0, -1);
     }
-    var path2uuid = this._pathToUuid;
     var uuids = [];
     var isChildClassOf = js.isChildClassOf;
     var _foundAtlasUrl;
-    for (var p in path2uuid) {
-        if ((p.startsWith(path) && isMatchByWord(p, path)) || !path) {
-            var item = path2uuid[p];
-            if (Array.isArray(item)) {
-                for (var i = 0; i < item.length; i++) {
-                    var entry = item[i];
-                    if (!type || isChildClassOf(entry.type, type)) {
-                        uuids.push(entry.uuid);
-                        if (out_urls) {
-                            out_urls.push(p);
-                        }
-                    }
-                    else if (CC_DEBUG && entry.type === cc.SpriteAtlas) {
-                        _foundAtlasUrl = p;
-                    }
+    let currItem = this._pathToUuidTree;
+    path.split("/").forEach((o) => currItem = currItem[o]);
+    const fn = (item) => {
+        if (item instanceof Entry) {
+            const entry = item;
+            if (!type || isChildClassOf(entry.type, type)) {
+                uuids.push(entry.uuid);
+                if (out_urls) {
+                    out_urls.push(entry.p);
                 }
             }
-            else {
-                if (!type || isChildClassOf(item.type, type)) {
-                    uuids.push(item.uuid);
-                    if (out_urls) {
-                        out_urls.push(p);
-                    }
-                }
-                else if (CC_DEBUG && item.type === cc.SpriteAtlas) {
-                    _foundAtlasUrl = p;
-                }
+            else if (CC_DEBUG && entry.type === cc.SpriteAtlas) {
+                _foundAtlasUrl = entry.p;
+            }
+        } else {
+            for (let p in item) {
+                fn(item[p]);
             }
         }
-    }
+    };
+    fn(currItem);
     if (CC_DEBUG && uuids.length === 0 && _foundAtlasUrl && js.isChildClassOf(type, cc.SpriteFrame)) {
         // not support sprite frame in atlas
         cc.errorID(4932, _foundAtlasUrl);
@@ -162,8 +154,31 @@ proto.add = function (path, uuid, type, isMainAsset) {
     // remove extname
     // (can not use path.slice because length of extname maybe 0)
     path = path.substring(0, path.length - cc.path.extname(path).length);
-    var newEntry = new Entry(uuid, type);
+    var newEntry = new Entry(uuid, type, path);
     pushToMap(this._pathToUuid, path, newEntry, isMainAsset);
+    let currItem = this._pathToUuidTree;
+    path.split("/").forEach((o, i, arr) => {
+        if (i < arr.length - 1) {
+            currItem[o] = currItem[o] || {};
+            currItem = currItem[o];
+        } else {
+            const exists = currItem[o];
+            if (exists) {
+                if (Array.isArray(exists)) {
+                    if (isMainAsset) {
+                        exists.push(exists[0]);
+                        exists[0] = newEntry;
+                    } else {
+                        exists.push(newEntry);
+                    }
+                } else {
+                    currItem[o] = (isMainAsset ? [newEntry, exists] : [exists, newEntry]);
+                }
+            } else {
+                currItem[o] = newEntry;
+            }
+        }
+    });
 };
 
 proto._getInfo_DEBUG = CC_DEBUG && function (uuid, out_info) {
@@ -193,6 +208,7 @@ proto._getInfo_DEBUG = CC_DEBUG && function (uuid, out_info) {
 
 proto.reset = function () {
     this._pathToUuid = js.createMap(true);
+    this._pathToUuidTree = {};
 };
 
 

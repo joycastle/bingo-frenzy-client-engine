@@ -92,13 +92,13 @@ function createItem (id, queueId) {
     return result;
 }
 
-var checkedIds = [];
+var checkedIds = {};
 function checkCircleReference(owner, item, recursiveCall) {
     if (!owner || !item) {
         return false;
     }
     var result = false;
-    checkedIds.push(item.id);
+    checkedIds[item.id] = true;
     if (item.deps) {
         var i, deps = item.deps, subDep;
         for (i = 0; i < deps.length; i++) {
@@ -107,7 +107,7 @@ function checkCircleReference(owner, item, recursiveCall) {
                 result = true;
                 break;
             }
-            else if (checkedIds.indexOf(subDep.id) >= 0) {
+            else if (checkedIds[subDep.id]) {
                 continue;
             }
             else if (subDep.deps && checkCircleReference(owner, subDep, true)) {
@@ -117,7 +117,7 @@ function checkCircleReference(owner, item, recursiveCall) {
         }
     }
     if (!recursiveCall) {
-        checkedIds.length = 0;
+        checkedIds = {};
     }
     return result;
 }
@@ -369,12 +369,16 @@ LoadingItems.initQueueDeps = function (queue) {
     if (!dep) {
         dep = _queueDeps[queue._id] = {
             completed: [],
-            deps: []
+            completedMap: {},
+            deps: [],
+            depsMap: {},
         };
     }
     else {
         dep.completed.length = 0;
+        dep.completedMap = {};
         dep.deps.length = 0;
+        dep.depsMap = {};
     }
 };
 
@@ -386,7 +390,8 @@ LoadingItems.registerQueueDep = function (owner, depId) {
     var queueDepList = _queueDeps[queueId];
     // Owner is root queue
     if (queueDepList) {
-        if (queueDepList.deps.indexOf(depId) === -1) {
+        if (!queueDepList.depsMap[depId]) {
+            queueDepList.depsMap[depId] = true;
             queueDepList.deps.push(depId);
         }
     }
@@ -395,9 +400,10 @@ LoadingItems.registerQueueDep = function (owner, depId) {
         for (var id in _queueDeps) {
             var queue = _queueDeps[id];
             // Found root queue
-            if (queue.deps.indexOf(owner.id) !== -1) {
-                if (queue.deps.indexOf(depId) === -1) {
+            if (queue.depsMap[owner.id]) {
+                if (!queue.depsMap[depId]) {
                     queue.deps.push(depId);
+                    queue.depsMap[depId] = true;
                 }
             }
         }
@@ -408,7 +414,8 @@ LoadingItems.finishDep = function (depId) {
     for (var id in _queueDeps) {
         var queue = _queueDeps[id];
         // Found root queue
-        if (queue.deps.indexOf(depId) !== -1 && queue.completed.indexOf(depId) === -1) {
+        if (queue.depsMap[depId] && !queue.completedMap[depId]) {
+            queue.completedMap[depId] = true;
             queue.completed.push(depId);
         }
     }
@@ -731,7 +738,9 @@ proto.destroy = function () {
 
     if (_queueDeps[this._id]) {
         _queueDeps[this._id].completed.length = 0;
+        _queueDeps[this._id].completedMap = {};
         _queueDeps[this._id].deps.length = 0;
+        _queueDeps[this._id].depsMap = {};
     }
     delete _queues[this._id];
     delete _queueDeps[this._id];
