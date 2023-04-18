@@ -26546,6 +26546,7 @@
   161: [ (function(require, module, exports) {
     "use strict";
     var js = require("../platform/js");
+    var _require = require("../platform/utils"), callInNextTick = _require.callInNextTick;
     var LoadingItems = require("./loading-items");
     var ItemState = LoadingItems.ItemState;
     function flow(pipe, item) {
@@ -26627,10 +26628,20 @@
           item = items[i];
           this._cache[item.id] = item;
         }
-        for (i = 0; i < items.length; i++) {
-          item = items[i];
-          flow(pipe, item);
-        }
+        var fn = function fn(index) {
+          if (index > items.length - 1) return;
+          flow(pipe, items[index]);
+          false;
+          if (index % cc.macro.FLOW_IN_COUNT_PER_FRAME !== 0) {
+            fn(index + 1);
+            return;
+          }
+          false;
+          setTimeout((function() {
+            fn(index + 1);
+          }), 1e3 / cc.game.getFrameRate());
+        };
+        fn(0);
       } else for (i = 0; i < items.length; i++) this.flowOut(items[i]);
     };
     proto.flowInDeps = function(owner, urlList, callback) {
@@ -26676,6 +26687,7 @@
     cc.Pipeline = module.exports = Pipeline;
   }), {
     "../platform/js": 221,
+    "../platform/utils": 225,
     "./loading-items": 158
   } ],
   162: [ (function(require, module, exports) {
@@ -31977,6 +31989,7 @@
       ENABLE_TILEDMAP_CULLING: true,
       DOWNLOAD_MAX_CONCURRENT: 64,
       LOAD_PERCENT_BY_FRAME: .6,
+      FLOW_IN_COUNT_PER_FRAME: 5,
       ENABLE_TRANSPARENT_CANVAS: false,
       ENABLE_WEBGL_ANTIALIAS: false,
       ENABLE_CULLING: false,

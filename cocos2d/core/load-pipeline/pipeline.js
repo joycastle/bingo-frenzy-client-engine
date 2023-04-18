@@ -25,6 +25,7 @@
  ****************************************************************************/
 
 var js = require('../platform/js');
+const { callInNextTick } = require('../platform/utils');
 var LoadingItems = require('./loading-items');
 var ItemState = LoadingItems.ItemState;
 
@@ -270,10 +271,30 @@ proto.flowIn = function (items) {
             item = items[i];
             this._cache[item.id] = item;
         }
-        for (i = 0; i < items.length; i++) {
-            item = items[i];
-            flow(pipe, item);
-        }
+        const fn = (index) => {
+            if (index > items.length - 1) {
+                return;
+            }
+            flow(pipe, items[index]);
+            if (CC_EDITOR) {
+                fn(index + 1);
+                return;
+            }
+            if (index % cc.macro.FLOW_IN_COUNT_PER_FRAME !== 0) {
+                fn(index + 1);
+                return;
+            }
+            if (CC_JSB) {
+                callInNextTick(() => {
+                    fn(index + 1);
+                });
+            } else {
+                setTimeout(() => {
+                    fn(index + 1);
+                }, 1000 / cc.game.getFrameRate());
+            }
+        };
+        fn(0);
     }
     else {
         for (i = 0; i < items.length; i++) {

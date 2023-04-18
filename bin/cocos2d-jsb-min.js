@@ -23480,34 +23480,34 @@ cc.js.array.fastRemove(h, t);
 } ],
 160: [ (function(t, e, i) {
 "use strict";
-var n = t("../platform/js"), r = t("./loading-items"), s = r.ItemState;
-function o(t, e) {
-var i = t.id, n = e.states[i], r = t.next, a = t.pipeline;
-if (!e.error && n !== s.WORKING && n !== s.ERROR) if (n === s.COMPLETE) r ? o(r, e) : a.flowOut(e); else {
-e.states[i] = s.WORKING;
+var n = t("../platform/js"), r = t("../platform/utils").callInNextTick, s = t("./loading-items"), o = s.ItemState;
+function a(t, e) {
+var i = t.id, n = e.states[i], r = t.next, s = t.pipeline;
+if (!e.error && n !== o.WORKING && n !== o.ERROR) if (n === o.COMPLETE) r ? a(r, e) : s.flowOut(e); else {
+e.states[i] = o.WORKING;
 var c = t.handle(e, (function(t, n) {
 if (t) {
 e.error = t;
-e.states[i] = s.ERROR;
-a.flowOut(e);
+e.states[i] = o.ERROR;
+s.flowOut(e);
 } else {
 n && (e.content = n);
-e.states[i] = s.COMPLETE;
-r ? o(r, e) : a.flowOut(e);
+e.states[i] = o.COMPLETE;
+r ? a(r, e) : s.flowOut(e);
 }
 }));
 if (c instanceof Error) {
 e.error = c;
-e.states[i] = s.ERROR;
-a.flowOut(e);
+e.states[i] = o.ERROR;
+s.flowOut(e);
 } else if (void 0 !== c) {
 null !== c && (e.content = c);
-e.states[i] = s.COMPLETE;
-r ? o(r, e) : a.flowOut(e);
+e.states[i] = o.COMPLETE;
+r ? a(r, e) : s.flowOut(e);
 }
 }
 }
-var a = function(t) {
+var c = function(t) {
 this._pipes = t;
 this._cache = n.createMap(!0);
 for (var e = 0; e < t.length; ++e) {
@@ -23518,9 +23518,9 @@ i.next = e < t.length - 1 ? t[e + 1] : null;
 }
 }
 };
-a.ItemState = s;
-var c = a.prototype;
-c.insertPipe = function(t, e) {
+c.ItemState = o;
+var l = c.prototype;
+l.insertPipe = function(t, e) {
 if (!t.handle || !t.id || e > this._pipes.length) cc.warnID(4921); else if (this._pipes.indexOf(t) > 0) cc.warnID(4922); else {
 t.pipeline = this;
 var i = null;
@@ -23532,11 +23532,11 @@ t.next = i;
 this._pipes.splice(e, 0, t);
 }
 };
-c.insertPipeAfter = function(t, e) {
+l.insertPipeAfter = function(t, e) {
 var i = this._pipes.indexOf(t);
 i < 0 || this.insertPipe(e, i + 1);
 };
-c.appendPipe = function(t) {
+l.appendPipe = function(t) {
 if (t.handle && t.id) {
 t.pipeline = this;
 t.next = null;
@@ -23544,42 +23544,49 @@ this._pipes.length > 0 && (this._pipes[this._pipes.length - 1].next = t);
 this._pipes.push(t);
 }
 };
-c.flowIn = function(t) {
+l.flowIn = function(t) {
 var e, i, n = this._pipes[0];
 if (n) {
 for (e = 0; e < t.length; e++) {
 i = t[e];
 this._cache[i.id] = i;
 }
-for (e = 0; e < t.length; e++) o(n, i = t[e]);
+(function e(i) {
+if (!(i > t.length - 1)) {
+a(n, t[i]);
+i % cc.macro.FLOW_IN_COUNT_PER_FRAME == 0 ? r((function() {
+e(i + 1);
+})) : e(i + 1);
+}
+})(0);
 } else for (e = 0; e < t.length; e++) this.flowOut(t[e]);
 };
-c.flowInDeps = function(t, e, i) {
-return r.create(this, (function(t, e) {
+l.flowInDeps = function(t, e, i) {
+return s.create(this, (function(t, e) {
 i(t, e);
 e.destroy();
 })).append(e, t);
 };
-c.flowOut = function(t) {
+l.flowOut = function(t) {
 t.error ? delete this._cache[t.id] : this._cache[t.id] || (this._cache[t.id] = t);
 t.complete = !0;
-r.itemComplete(t);
+s.itemComplete(t);
 };
-c.copyItemStates = function(t, e) {
+l.copyItemStates = function(t, e) {
 if (e instanceof Array) for (var i = 0; i < e.length; ++i) e[i].states = t.states; else e.states = t.states;
 };
-c.getItem = function(t) {
+l.getItem = function(t) {
 var e = this._cache[t];
 if (!e) return e;
 e.alias && (e = e.alias);
 return e;
 };
-c.removeItem = function(t) {
+l.removeItem = function(t) {
 var e = this._cache[t];
 e && e.complete && delete this._cache[t];
 return e;
 };
-c.clear = function() {
+l.clear = function() {
 for (var t in this._cache) {
 var e = this._cache[t];
 delete this._cache[t];
@@ -23589,9 +23596,10 @@ this.flowOut(e);
 }
 }
 };
-cc.Pipeline = e.exports = a;
+cc.Pipeline = e.exports = c;
 }), {
 "../platform/js": 220,
+"../platform/utils": 224,
 "./loading-items": 157
 } ],
 161: [ (function(t, e, i) {
@@ -28109,6 +28117,7 @@ BATCH_VERTEX_COUNT: 2e4,
 ENABLE_TILEDMAP_CULLING: !0,
 DOWNLOAD_MAX_CONCURRENT: 64,
 LOAD_PERCENT_BY_FRAME: .6,
+FLOW_IN_COUNT_PER_FRAME: 5,
 ENABLE_TRANSPARENT_CANVAS: !1,
 ENABLE_WEBGL_ANTIALIAS: !1,
 ENABLE_CULLING: !1,
