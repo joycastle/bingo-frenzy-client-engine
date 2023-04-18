@@ -280,7 +280,7 @@ proto.flowIn = function (items) {
                 fn(index + 1);
                 return;
             }
-            if (index % cc.macro.FLOW_IN_COUNT_PER_FRAME !== 0) {
+            if ((index + 1) % cc.macro.FLOW_IN_COUNT_PER_FRAME !== 0) {
                 fn(index + 1);
                 return;
             }

@@ -26617,7 +26617,7 @@
           if (index > items.length - 1) return;
           flow(pipe, items[index]);
           false;
-          if (index % cc.macro.FLOW_IN_COUNT_PER_FRAME !== 0) {
+          if ((index + 1) % cc.macro.FLOW_IN_COUNT_PER_FRAME !== 0) {
             fn(index + 1);
             return;
           }

@@ -23554,7 +23554,7 @@ this._cache[i.id] = i;
 (function e(i) {
 if (!(i > t.length - 1)) {
 a(n, t[i]);
-i % cc.macro.FLOW_IN_COUNT_PER_FRAME == 0 ? r((function() {
+(i + 1) % cc.macro.FLOW_IN_COUNT_PER_FRAME == 0 ? r((function() {
 e(i + 1);
 })) : e(i + 1);
 }
