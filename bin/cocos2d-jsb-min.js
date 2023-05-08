@@ -8925,7 +8925,10 @@ this._onSiblingIndexChanged();
 }
 }
 },
-_isMultiTouchEnabled: !1,
+_isMultiTouchEnabled: {
+default: !1,
+serializable: !1
+},
 isMultiTouchEnabled: {
 get: function() {
 return this._isMultiTouchEnabled;

@@ -1257,7 +1257,11 @@ let NodeDefines = {
             },
         },
 
-        _isMultiTouchEnabled: false,
+        _isMultiTouchEnabled: {
+            default: false,
+            serializable: false
+        },
+
         isMultiTouchEnabled: {
             get () {
                 return this._isMultiTouchEnabled;

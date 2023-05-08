@@ -9,6 +9,7 @@
   "license": "MIT",
   "scripts": {
     "test": "gulp test-in-ci",
+    "build": "gulp build --max-old-space-size=8192",
     "build-chunks": "node ./cocos2d/renderer/build/build-chunks",
     "build-mapping": "node ./cocos2d/renderer/build/build-mapping"
   },

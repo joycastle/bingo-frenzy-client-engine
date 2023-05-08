@@ -10535,7 +10535,10 @@
             }
           }
         },
-        _isMultiTouchEnabled: false,
+        _isMultiTouchEnabled: {
+          default: false,
+          serializable: false
+        },
         isMultiTouchEnabled: {
           get: function get() {
             return this._isMultiTouchEnabled;
