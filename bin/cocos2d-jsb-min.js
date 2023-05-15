@@ -22657,10 +22657,10 @@ n.removeEventListener("load", i);
 n.removeEventListener("error", a);
 n.id = t.id;
 e(null, n);
-}, a = function i() {
+}, a = function t() {
 n.removeEventListener("load", o);
-n.removeEventListener("error", i);
-"https:" !== window.location.protocol && n.crossOrigin && "anonymous" === n.crossOrigin.toLowerCase() ? f(t, e, !1, n) : e(new Error(r.getError(4930, s)));
+n.removeEventListener("error", t);
+e(new Error(r.getError(4930, s)));
 };
 n.addEventListener("load", o);
 n.addEventListener("error", a);

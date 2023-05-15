@@ -104,12 +104,7 @@ function downloadImage (item, callback, isCrossOrigin, img) {
 
             // Retry without crossOrigin mark if crossOrigin loading fails
             // Do not retry if protocol is https, even if the image is loaded, cross origin image isn't renderable.
-            if (window.location.protocol !== 'https:' && img.crossOrigin && img.crossOrigin.toLowerCase() === 'anonymous') {
-                downloadImage(item, callback, false, img);
-            }
-            else {
-                callback(new Error(debug.getError(4930, url)));
-            }
+            callback(new Error(debug.getError(4930, url)));
         }
 
         img.addEventListener('load', loadCallback);

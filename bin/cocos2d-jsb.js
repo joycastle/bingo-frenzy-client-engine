@@ -25571,7 +25571,7 @@
       var errorCallback = function errorCallback() {
         img.removeEventListener("load", loadCallback);
         img.removeEventListener("error", errorCallback);
-        "https:" !== window.location.protocol && img.crossOrigin && "anonymous" === img.crossOrigin.toLowerCase() ? downloadImage(item, callback, false, img) : callback(new Error(debug.getError(4930, url)));
+        callback(new Error(debug.getError(4930, url)));
       };
       img.addEventListener("load", loadCallback);
       img.addEventListener("error", errorCallback);
