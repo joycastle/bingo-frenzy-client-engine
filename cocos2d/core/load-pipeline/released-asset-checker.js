@@ -65,6 +65,7 @@ function doCheckCouldRelease (releasedKey, refOwnerItem, caches) {
     var loadedAgain = caches[releasedKey];
     if (!loadedAgain) {
         cc.log(`"${releasedKey}" was released but maybe still referenced by ${getItemDesc(refOwnerItem)}`);
+        console.log(`"${releasedKey}" was released but maybe still referenced by ${getItemDesc(refOwnerItem)}`);
     }
 }
 

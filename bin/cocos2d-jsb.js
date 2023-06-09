@@ -26677,7 +26677,10 @@
     };
     var doCheckCouldRelease = function doCheckCouldRelease(releasedKey, refOwnerItem, caches) {
       var loadedAgain = caches[releasedKey];
-      loadedAgain || cc.log('"' + releasedKey + '" was released but maybe still referenced by ' + getItemDesc(refOwnerItem));
+      if (!loadedAgain) {
+        cc.log('"' + releasedKey + '" was released but maybe still referenced by ' + getItemDesc(refOwnerItem));
+        console.log('"' + releasedKey + '" was released but maybe still referenced by ' + getItemDesc(refOwnerItem));
+      }
     };
     var js = require("../platform/js");
     ReleasedAssetChecker.prototype.setReleased = function(item, releasedKey) {
