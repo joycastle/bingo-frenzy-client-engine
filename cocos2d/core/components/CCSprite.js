@@ -433,8 +433,21 @@ var Sprite = cc.Class({
             // Do not render when sprite frame is not ready
             this.disableRender();
             if (this._spriteFrame) {
-                this._spriteFrame.once('load', this._onTextureLoaded, this);
-                this._spriteFrame.ensureLoadTexture();
+                if (this._spriteFrame.isValid) {
+                    this._spriteFrame.once('load', this._onTextureLoaded, this);
+                    this._spriteFrame.ensureLoadTexture();
+                } else {
+                    function getNodePath(node) {
+                        let path = node.name;
+                        node = node.parent;
+                        while (node) {
+                            path = node.name + '/' + path;
+                            node = node.parent;
+                        }
+                        return path;
+                    }
+                    throw new Error("spriteFrame is destroy -> path: " + getNodePath(this.node));
+                }
             }
         }
         else {

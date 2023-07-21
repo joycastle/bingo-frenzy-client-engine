@@ -20771,6 +20771,18 @@
         if (this._spriteFrame && this._spriteFrame.textureLoaded()) this._activateMaterial(); else {
           this.disableRender();
           if (this._spriteFrame) {
+            if (!this._spriteFrame.isValid) {
+              var getNodePath = function getNodePath(node) {
+                var path = node.name;
+                node = node.parent;
+                while (node) {
+                  path = node.name + "/" + path;
+                  node = node.parent;
+                }
+                return path;
+              };
+              throw new Error("spriteFrame is destroy -> path: " + getNodePath(this.node));
+            }
             this._spriteFrame.once("load", this._onTextureLoaded, this);
             this._spriteFrame.ensureLoadTexture();
           }

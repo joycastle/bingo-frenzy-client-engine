@@ -18271,6 +18271,17 @@ this._super();
 if (this._spriteFrame && this._spriteFrame.textureLoaded()) this._activateMaterial(); else {
 this.disableRender();
 if (this._spriteFrame) {
+if (!this._spriteFrame.isValid) {
+throw new Error("spriteFrame is destroy -> path: " + (function(t) {
+var e = t.name;
+t = t.parent;
+for (;t; ) {
+e = t.name + "/" + e;
+t = t.parent;
+}
+return e;
+})(this.node));
+}
 this._spriteFrame.once("load", this._onTextureLoaded, this);
 this._spriteFrame.ensureLoadTexture();
 }
