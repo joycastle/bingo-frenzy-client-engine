@@ -11223,7 +11223,11 @@ this.vertices.nv = [];
 var r = t.texture;
 r && e.result.push(this, "_textureSetter", r);
 }
-}), a = o.prototype;
+}), a = o.prototype, c = a.destroy;
+a.destroy = function() {
+"8bd0121c-f8cc-41f9-a4c1-0043f13500b1" === this._uuid && console.log("8bd0121c-f8cc-41f9-a4c1-0043f13500b1 is destroy: ", new Error().stack);
+c.call(this);
+};
 a.copyWithZone = a.clone;
 a.copy = a.clone;
 a.initWithTexture = a.setTexture;
@@ -18272,7 +18276,7 @@ if (this._spriteFrame && this._spriteFrame.textureLoaded()) this._activateMateri
 this.disableRender();
 if (this._spriteFrame) {
 if (!this._spriteFrame.isValid) {
-throw new Error("spriteFrame is destroy -> path: " + (function(t) {
+var t = "spriteFrame is destroy -> path: " + (function(t) {
 var e = t.name;
 t = t.parent;
 for (;t; ) {
@@ -18280,7 +18284,9 @@ e = t.name + "/" + e;
 t = t.parent;
 }
 return e;
-})(this.node));
+})(this.node);
+console.log(t);
+throw new Error(t);
 }
 this._spriteFrame.once("load", this._onTextureLoaded, this);
 this._spriteFrame.ensureLoadTexture();

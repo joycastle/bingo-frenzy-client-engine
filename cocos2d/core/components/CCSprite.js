@@ -446,7 +446,9 @@ var Sprite = cc.Class({
                         }
                         return path;
                     }
-                    throw new Error("spriteFrame is destroy -> path: " + getNodePath(this.node));
+                    const logStr = "spriteFrame is destroy -> path: " + getNodePath(this.node);
+                    console.log(logStr);
+                    throw new Error(logStr);
                 }
             }
         }
