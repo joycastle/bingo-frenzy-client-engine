@@ -11223,11 +11223,7 @@ this.vertices.nv = [];
 var r = t.texture;
 r && e.result.push(this, "_textureSetter", r);
 }
-}), a = o.prototype, c = a.destroy;
-a.destroy = function() {
-"8bd0121c-f8cc-41f9-a4c1-0043f13500b1" === this._uuid && console.log("8bd0121c-f8cc-41f9-a4c1-0043f13500b1 is destroy: ", new Error().stack);
-c.call(this);
-};
+}), a = o.prototype;
 a.copyWithZone = a.clone;
 a.copy = a.clone;
 a.initWithTexture = a.setTexture;

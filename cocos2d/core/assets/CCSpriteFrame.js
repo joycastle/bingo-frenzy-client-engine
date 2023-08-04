@@ -727,14 +727,6 @@ let SpriteFrame = cc.Class(/** @lends cc.SpriteFrame# */{
 
 let proto = SpriteFrame.prototype;
 
-let old_destroy = proto.destroy;
-proto.destroy = function () {
-    if (this._uuid === "8bd0121c-f8cc-41f9-a4c1-0043f13500b1") {
-        console.log("8bd0121c-f8cc-41f9-a4c1-0043f13500b1 is destroy: ", new Error().stack);
-    }
-    old_destroy.call(this);
-}
-
 proto.copyWithZone = proto.clone;
 proto.copy = proto.clone;
 proto.initWithTexture = proto.setTexture;
