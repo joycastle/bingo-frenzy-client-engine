@@ -197,7 +197,6 @@ let Label = cc.Class({
          */
         _string: {
             default: '',
-            formerlySerializedAs: '_N$string',
         },
         string: {
             get () {

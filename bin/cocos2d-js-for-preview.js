@@ -10265,8 +10265,7 @@
         },
         _is3DNode: false,
         _groupIndex: {
-          default: 0,
-          formerlySerializedAs: "groupIndex"
+          default: 0
         },
         groupIndex: {
           get: function get() {
@@ -16803,8 +16802,7 @@
       properties: {
         _useOriginalSize: true,
         _string: {
-          default: "",
-          formerlySerializedAs: "_N$string"
+          default: ""
         },
         string: {
           get: function get() {

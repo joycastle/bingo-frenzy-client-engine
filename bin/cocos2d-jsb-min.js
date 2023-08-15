@@ -8681,8 +8681,7 @@ serializable: !1
 },
 _is3DNode: !1,
 _groupIndex: {
-default: 0,
-formerlySerializedAs: "groupIndex"
+default: 0
 },
 groupIndex: {
 get: function() {
@@ -14608,8 +14607,7 @@ editor: !1,
 properties: {
 _useOriginalSize: !0,
 _string: {
-default: "",
-formerlySerializedAs: "_N$string"
+default: ""
 },
 string: {
 get: function() {

@@ -659,7 +659,6 @@ let NodeDefines = {
          */
         _groupIndex: {
             default: 0,
-            formerlySerializedAs: 'groupIndex'
         },
         groupIndex: {
             get () {
