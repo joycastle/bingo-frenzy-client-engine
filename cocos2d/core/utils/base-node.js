@@ -902,7 +902,7 @@ var BaseNode = cc.Class({
             constructor = js.getClassByName(typeOrClassName);
             if (!constructor) {
                 cc.errorID(3807, typeOrClassName);
-                if (cc._RFpeek()) {
+                if (cc._RF.peek()) {
                     cc.errorID(3808, typeOrClassName);
                 }
                 return null;
