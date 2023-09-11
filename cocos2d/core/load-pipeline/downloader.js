@@ -138,6 +138,7 @@ var defaultMap = {
     'image' : downloadImage,
     'pvr': downloadBinary,
     'pkm': downloadBinary,
+    'astc': downloadBinary,
 
     // Audio
     'mp3' : downloadAudio,

@@ -13109,7 +13109,21 @@
       RGB_ETC1: _gfx2.default.TEXTURE_FMT_RGB_ETC1,
       RGBA_ETC1: CUSTOM_PIXEL_FORMAT++,
       RGB_ETC2: _gfx2.default.TEXTURE_FMT_RGB_ETC2,
-      RGBA_ETC2: _gfx2.default.TEXTURE_FMT_RGBA_ETC2
+      RGBA_ETC2: _gfx2.default.TEXTURE_FMT_RGBA_ETC2,
+      RGBA_ASTC_4x4: _gfx2.default.TEXTURE_FMT_RGBA_ASTC_4X4,
+      RGBA_ASTC_5x4: _gfx2.default.TEXTURE_FMT_RGBA_ASTC_5X4,
+      RGBA_ASTC_5x5: _gfx2.default.TEXTURE_FMT_RGBA_ASTC_5X5,
+      RGBA_ASTC_6x5: _gfx2.default.TEXTURE_FMT_RGBA_ASTC_6X5,
+      RGBA_ASTC_6x6: _gfx2.default.TEXTURE_FMT_RGBA_ASTC_6X6,
+      RGBA_ASTC_8x5: _gfx2.default.TEXTURE_FMT_RGBA_ASTC_8X5,
+      RGBA_ASTC_8x6: _gfx2.default.TEXTURE_FMT_RGBA_ASTC_8X6,
+      RGBA_ASTC_8x8: _gfx2.default.TEXTURE_FMT_RGBA_ASTC_8X8,
+      RGBA_ASTC_10x5: _gfx2.default.TEXTURE_FMT_RGBA_ASTC_10X5,
+      RGBA_ASTC_10x6: _gfx2.default.TEXTURE_FMT_RGBA_ASTC_10X6,
+      RGBA_ASTC_10x8: _gfx2.default.TEXTURE_FMT_RGBA_ASTC_10X8,
+      RGBA_ASTC_10x10: _gfx2.default.TEXTURE_FMT_RGBA_ASTC_10X10,
+      RGBA_ASTC_12x10: _gfx2.default.TEXTURE_FMT_RGBA_ASTC_12X10,
+      RGBA_ASTC_12x12: _gfx2.default.TEXTURE_FMT_RGBA_ASTC_12X12
     });
     var WrapMode = cc.Enum({
       REPEAT: GL_REPEAT,
@@ -13157,7 +13171,8 @@
           },
           set: function set(data) {
             if (data._compressed && data._data) {
-              this.initWithData(data._data, this._format, data.width, data.height);
+              var format = data.format || this._format;
+              this.initWithData(data._data, format, data.width, data.height);
               cc.macro.CLEANUP_IMAGE_CACHE && (data.src = "");
             } else this.initWithElement(data);
           },
@@ -13199,7 +13214,7 @@
         WrapMode: WrapMode,
         Filter: Filter,
         _FilterIndex: FilterIndex,
-        extnames: [ ".png", ".jpg", ".jpeg", ".bmp", ".webp", ".pvr", ".pkm" ]
+        extnames: [ ".png", ".jpg", ".jpeg", ".bmp", ".webp", ".pvr", ".pkm", ".astc" ]
       },
       ctor: function ctor() {
         this._id = idGenerater.getNewId();
@@ -13450,6 +13465,7 @@
             var index = SupportTextureFormats.indexOf(tmpExt);
             if (-1 !== index && index < bestIndex) {
               var tmpFormat = extFormat[1] ? parseInt(extFormat[1]) : this._format;
+              if (".astc" === tmpExt && !device.ext("WEBGL_compressed_texture_astc")) continue;
               if (".pvr" === tmpExt && !device.ext("WEBGL_compressed_texture_pvrtc")) continue;
               if (!(tmpFormat !== PixelFormat.RGB_ETC1 && tmpFormat !== PixelFormat.RGBA_ETC1 || device.ext("WEBGL_compressed_texture_etc1"))) continue;
               if (!(tmpFormat !== PixelFormat.RGB_ETC2 && tmpFormat !== PixelFormat.RGBA_ETC2 || device.ext("WEBGL_compressed_texture_etc"))) continue;
@@ -25631,6 +25647,7 @@
       image: downloadImage,
       pvr: downloadBinary,
       pkm: downloadBinary,
+      astc: downloadBinary,
       mp3: downloadAudio,
       ogg: downloadAudio,
       wav: downloadAudio,
@@ -25970,6 +25987,65 @@
       };
       return etcAsset;
     }
+    var ASTC_MAGIC = 1554098963;
+    var ASTC_HEADER_LENGTH = 16;
+    var ASTC_HEADER_MAGIC = 4;
+    var ASTC_HEADER_BLOCKDIM = 3;
+    var ASTC_HEADER_SIZE_X_BEGIN = 7;
+    var ASTC_HEADER_SIZE_Y_BEGIN = 10;
+    var ASTC_HEADER_SIZE_Z_BEGIN = 13;
+    function getASTCFormat(xdim, ydim) {
+      if (4 === xdim) return cc.Texture2D.PixelFormat.RGBA_ASTC_4x4;
+      if (5 === xdim) {
+        if (4 === ydim) return cc.Texture2D.PixelFormat.RGBA_ASTC_5x4;
+        return cc.Texture2D.PixelFormat.RGBA_ASTC_5x5;
+      }
+      if (6 === xdim) {
+        if (5 === ydim) return cc.Texture2D.PixelFormat.RGBA_ASTC_6x5;
+        return cc.Texture2D.PixelFormat.RGBA_ASTC_6x6;
+      }
+      if (8 === xdim) {
+        if (5 === ydim) return cc.Texture2D.PixelFormat.RGBA_ASTC_8x5;
+        if (6 === ydim) return cc.Texture2D.PixelFormat.RGBA_ASTC_8x6;
+        return cc.Texture2D.PixelFormat.RGBA_ASTC_8x8;
+      }
+      if (10 === xdim) {
+        if (5 === ydim) return cc.Texture2D.PixelFormat.RGBA_ASTC_10x5;
+        if (6 === ydim) return cc.Texture2D.PixelFormat.RGBA_ASTC_10x6;
+        if (8 === ydim) return cc.Texture2D.PixelFormat.RGBA_ASTC_10x8;
+        return cc.Texture2D.PixelFormat.RGBA_ASTC_10x10;
+      }
+      if (10 === ydim) return cc.Texture2D.PixelFormat.RGBA_ASTC_12x10;
+      return cc.Texture2D.PixelFormat.RGBA_ASTC_12x12;
+    }
+    function loadASTCTex(item) {
+      var buffer = item.content instanceof ArrayBuffer ? item.content : item.content.buffer;
+      var header = new Uint8Array(buffer);
+      var magicval = header[0] + (header[1] << 8) + (header[2] << 16) + (header[3] << 24);
+      if (magicval !== ASTC_MAGIC) return new Error("Invalid magic number in ASTC header");
+      var xdim = header[ASTC_HEADER_MAGIC];
+      var ydim = header[ASTC_HEADER_MAGIC + 1];
+      var zdim = header[ASTC_HEADER_MAGIC + 2];
+      if ((xdim < 3 || xdim > 6 || ydim < 3 || ydim > 6 || zdim < 3 || zdim > 6) && (xdim < 4 || 7 === xdim || 9 === xdim || 11 === xdim || xdim > 12 || ydim < 4 || 7 === ydim || 9 === ydim || 11 === ydim || ydim > 12 || 1 !== zdim)) return new Error("Invalid block number in ASTC header");
+      var format = getASTCFormat(xdim, ydim);
+      var xsize = header[ASTC_HEADER_SIZE_X_BEGIN] + (header[ASTC_HEADER_SIZE_X_BEGIN + 1] << 8) + (header[ASTC_HEADER_SIZE_X_BEGIN + 2] << 16);
+      var ysize = header[ASTC_HEADER_SIZE_Y_BEGIN] + (header[ASTC_HEADER_SIZE_Y_BEGIN + 1] << 8) + (header[ASTC_HEADER_SIZE_Y_BEGIN + 2] << 16);
+      var zsize = header[ASTC_HEADER_SIZE_Z_BEGIN] + (header[ASTC_HEADER_SIZE_Z_BEGIN + 1] << 8) + (header[ASTC_HEADER_SIZE_Z_BEGIN + 2] << 16);
+      var astcData = new Uint8Array(buffer, ASTC_HEADER_LENGTH);
+      var data = {
+        _data: astcData,
+        _compressed: true,
+        width: xsize,
+        height: ysize,
+        format: format
+      };
+      var tex = new Texture2D();
+      tex._uuid = item.uuid;
+      tex.url = item.url;
+      tex._setRawAsset(item.rawUrl, false);
+      tex._nativeAsset = data;
+      return tex;
+    }
     var defaultMap = {
       png: loadImage,
       jpg: loadImage,
@@ -25982,6 +26058,7 @@
       image: loadImage,
       pvr: loadPVRTex,
       pkm: loadPKMTex,
+      astc: loadASTCTex,
       mp3: loadAudioAsAsset,
       ogg: loadAudioAsAsset,
       wav: loadAudioAsAsset,
@@ -32006,7 +32083,7 @@
       SHOW_MESH_WIREFRAME: false,
       ROTATE_ACTION_CCW: false
     };
-    var SUPPORT_TEXTURE_FORMATS = [ ".pkm", ".pvr", ".webp", ".jpg", ".jpeg", ".bmp", ".png" ];
+    var SUPPORT_TEXTURE_FORMATS = [ ".astc", ".pkm", ".pvr", ".webp", ".jpg", ".jpeg", ".bmp", ".png" ];
     cc.macro.SUPPORT_TEXTURE_FORMATS = SUPPORT_TEXTURE_FORMATS;
     cc.macro.KEY = {
       none: 0,
@@ -52117,6 +52194,34 @@
       TEXTURE_FMT_D24S8: 27,
       TEXTURE_FMT_RGB_ETC2: 28,
       TEXTURE_FMT_RGBA_ETC2: 29,
+      TEXTURE_FMT_RGBA_ASTC_4X4: 30,
+      TEXTURE_FMT_RGBA_ASTC_5X4: 31,
+      TEXTURE_FMT_RGBA_ASTC_5X5: 32,
+      TEXTURE_FMT_RGBA_ASTC_6X5: 33,
+      TEXTURE_FMT_RGBA_ASTC_6X6: 34,
+      TEXTURE_FMT_RGBA_ASTC_8X5: 35,
+      TEXTURE_FMT_RGBA_ASTC_8X6: 36,
+      TEXTURE_FMT_RGBA_ASTC_8X8: 37,
+      TEXTURE_FMT_RGBA_ASTC_10X5: 38,
+      TEXTURE_FMT_RGBA_ASTC_10X6: 39,
+      TEXTURE_FMT_RGBA_ASTC_10X8: 40,
+      TEXTURE_FMT_RGBA_ASTC_10X10: 41,
+      TEXTURE_FMT_RGBA_ASTC_12X10: 42,
+      TEXTURE_FMT_RGBA_ASTC_12X12: 43,
+      TEXTURE_FMT_SRGBA_ASTC_4X4: 44,
+      TEXTURE_FMT_SRGBA_ASTC_5X4: 45,
+      TEXTURE_FMT_SRGBA_ASTC_5X5: 46,
+      TEXTURE_FMT_SRGBA_ASTC_6X5: 47,
+      TEXTURE_FMT_SRGBA_ASTC_6X6: 48,
+      TEXTURE_FMT_SRGBA_ASTC_8X5: 49,
+      TEXTURE_FMT_SRGBA_ASTC_8X6: 50,
+      TEXTURE_FMT_SRGBA_ASTC_8X8: 51,
+      TEXTURE_FMT_SRGBA_ASTC_10X5: 52,
+      TEXTURE_FMT_SRGBA_ASTC_10X6: 53,
+      TEXTURE_FMT_SRGBA_ASTC_10X8: 54,
+      TEXTURE_FMT_SRGBA_ASTC_10X10: 55,
+      TEXTURE_FMT_SRGBA_ASTC_12X10: 56,
+      TEXTURE_FMT_SRGBA_ASTC_12X12: 57,
       DS_FUNC_NEVER: 512,
       DS_FUNC_LESS: 513,
       DS_FUNC_EQUAL: 514,
@@ -52419,6 +52524,34 @@
       GFXFormat[GFXFormat["PVRTC_RGBA4"] = 89] = "PVRTC_RGBA4";
       GFXFormat[GFXFormat["PVRTC2_2BPP"] = 90] = "PVRTC2_2BPP";
       GFXFormat[GFXFormat["PVRTC2_4BPP"] = 91] = "PVRTC2_4BPP";
+      GFXFormat[GFXFormat["ASTC_RGBA_4x4"] = 92] = "ASTC_RGBA_4x4";
+      GFXFormat[GFXFormat["ASTC_RGBA_5x4"] = 92] = "ASTC_RGBA_5x4";
+      GFXFormat[GFXFormat["ASTC_RGBA_5x5"] = 92] = "ASTC_RGBA_5x5";
+      GFXFormat[GFXFormat["ASTC_RGBA_6x5"] = 92] = "ASTC_RGBA_6x5";
+      GFXFormat[GFXFormat["ASTC_RGBA_6x6"] = 92] = "ASTC_RGBA_6x6";
+      GFXFormat[GFXFormat["ASTC_RGBA_8x5"] = 92] = "ASTC_RGBA_8x5";
+      GFXFormat[GFXFormat["ASTC_RGBA_8x6"] = 92] = "ASTC_RGBA_8x6";
+      GFXFormat[GFXFormat["ASTC_RGBA_8x8"] = 92] = "ASTC_RGBA_8x8";
+      GFXFormat[GFXFormat["ASTC_RGBA_10x5"] = 92] = "ASTC_RGBA_10x5";
+      GFXFormat[GFXFormat["ASTC_RGBA_10x6"] = 92] = "ASTC_RGBA_10x6";
+      GFXFormat[GFXFormat["ASTC_RGBA_10x8"] = 92] = "ASTC_RGBA_10x8";
+      GFXFormat[GFXFormat["ASTC_RGBA_10x10"] = 92] = "ASTC_RGBA_10x10";
+      GFXFormat[GFXFormat["ASTC_RGBA_12x10"] = 92] = "ASTC_RGBA_12x10";
+      GFXFormat[GFXFormat["ASTC_RGBA_12x12"] = 92] = "ASTC_RGBA_12x12";
+      GFXFormat[GFXFormat["ASTC_SRGBA_4x4"] = 92] = "ASTC_SRGBA_4x4";
+      GFXFormat[GFXFormat["ASTC_SRGBA_5x4"] = 92] = "ASTC_SRGBA_5x4";
+      GFXFormat[GFXFormat["ASTC_SRGBA_5x5"] = 92] = "ASTC_SRGBA_5x5";
+      GFXFormat[GFXFormat["ASTC_SRGBA_6x5"] = 92] = "ASTC_SRGBA_6x5";
+      GFXFormat[GFXFormat["ASTC_SRGBA_6x6"] = 92] = "ASTC_SRGBA_6x6";
+      GFXFormat[GFXFormat["ASTC_SRGBA_8x5"] = 92] = "ASTC_SRGBA_8x5";
+      GFXFormat[GFXFormat["ASTC_SRGBA_8x6"] = 92] = "ASTC_SRGBA_8x6";
+      GFXFormat[GFXFormat["ASTC_SRGBA_8x8"] = 92] = "ASTC_SRGBA_8x8";
+      GFXFormat[GFXFormat["ASTC_SRGBA_10x5"] = 92] = "ASTC_SRGBA_10x5";
+      GFXFormat[GFXFormat["ASTC_SRGBA_10x6"] = 92] = "ASTC_SRGBA_10x6";
+      GFXFormat[GFXFormat["ASTC_SRGBA_10x8"] = 92] = "ASTC_SRGBA_10x8";
+      GFXFormat[GFXFormat["ASTC_SRGBA_10x10"] = 92] = "ASTC_SRGBA_10x10";
+      GFXFormat[GFXFormat["ASTC_SRGBA_12x10"] = 92] = "ASTC_SRGBA_12x10";
+      GFXFormat[GFXFormat["ASTC_SRGBA_12x12"] = 92] = "ASTC_SRGBA_12x12";
     })(GFXFormat || (GFXFormat = {}));
     var GFXBufferUsageBit;
     (function(GFXBufferUsageBit) {

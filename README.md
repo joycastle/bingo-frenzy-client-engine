@@ -59,6 +59,7 @@ This is all you have to do to set engine development environment.
 
 ```bash
 gulp build
+gulp build --max-old-space-size=8192
 ```
 
 ### Test
