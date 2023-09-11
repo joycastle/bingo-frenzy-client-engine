@@ -12593,7 +12593,7 @@ render: function(t) {
 if (!(t = t || cc.director.getScene())) return null;
 this.node.getWorldMatrix(_);
 this.beforeDraw();
-o.render(t);
+o.render(t, 0);
 0;
 },
 _onAlignWithScreen: function() {
@@ -37567,7 +37567,7 @@ var e;
 if ("string" == typeof t) {
 if (!(e = s.getClassByName(t))) {
 cc.errorID(3807, t);
-cc._RFpeek() && cc.errorID(3808, t);
+cc._RF.peek() && cc.errorID(3808, t);
 return null;
 }
 } else {

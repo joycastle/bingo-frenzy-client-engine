@@ -14553,7 +14553,7 @@
         if (!root) return null;
         this.node.getWorldMatrix(_mat4_temp_1);
         this.beforeDraw();
-        RenderFlow.render(root);
+        RenderFlow.render(root, 0);
         false;
       },
       _onAlignWithScreen: function _onAlignWithScreen() {
@@ -42911,7 +42911,7 @@
           constructor = js.getClassByName(typeOrClassName);
           if (!constructor) {
             cc.errorID(3807, typeOrClassName);
-            cc._RFpeek() && cc.errorID(3808, typeOrClassName);
+            cc._RF.peek() && cc.errorID(3808, typeOrClassName);
             return null;
           }
         } else {
