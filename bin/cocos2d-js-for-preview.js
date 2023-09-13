@@ -32836,6 +32836,14 @@
           opengl: _supportWebGL,
           webp: _supportWebp
         };
+        (function() {
+          var image = new Image();
+          image.onload = function() {
+            _supportWebp = 1 === image.width;
+            capabilities["webp"] = _supportWebp;
+          };
+          image.src = "data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA=";
+        })();
         (void 0 !== docEle["ontouchstart"] || void 0 !== doc["ontouchstart"] || nav.msPointerEnabled) && (capabilities["touches"] = true);
         void 0 !== docEle["onmouseup"] && (capabilities["mouse"] = true);
         void 0 !== docEle["onkeyup"] && (capabilities["keyboard"] = true);

@@ -978,6 +978,16 @@ function initSys () {
             "opengl": _supportWebGL,
             "webp": _supportWebp,
         };
+
+        (function() {
+            const image = new Image();
+            image.onload = function() {
+                _supportWebp = image.width === 1; // if width is 1 pixel, then WebP is supported
+                capabilities["webp"] = _supportWebp;
+            };
+            image.src = 'data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA=';
+        })();
+
         if (docEle['ontouchstart'] !== undefined || doc['ontouchstart'] !== undefined || nav.msPointerEnabled)
             capabilities["touches"] = true;
         if (docEle['onmouseup'] !== undefined)
