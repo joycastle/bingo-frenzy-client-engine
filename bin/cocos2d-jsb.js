@@ -20648,12 +20648,12 @@
           type: cc.SpriteFrame
         },
         _type: SpriteType.SIMPLE,
-        _sizeMode: SizeMode.TRIMMED,
+        _sizeMode: SizeMode.RAW,
         _fillType: 0,
         _fillCenter: cc.v2(0, 0),
         _fillStart: 0,
         _fillRange: 0,
-        _isTrimmedMode: true,
+        _isTrimmedMode: false,
         _atlas: {
           default: null,
           type: cc.SpriteAtlas,
