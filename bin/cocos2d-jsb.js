@@ -58755,7 +58755,7 @@
           tooltip: false
         },
         premultipliedAlpha: {
-          default: true,
+          default: false,
           tooltip: false
         },
         timeScale: {

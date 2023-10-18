@@ -308,7 +308,7 @@ sp.Skeleton = cc.Class({
          * @default true
          */
         premultipliedAlpha: {
-            default: true,
+            default: false,
             tooltip: CC_DEV && 'i18n:COMPONENT.skeleton.premultipliedAlpha'
         },
 

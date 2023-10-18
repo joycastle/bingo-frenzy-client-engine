@@ -73223,7 +73223,7 @@
           tooltip: (true, "i18n:COMPONENT.skeleton.loop")
         },
         premultipliedAlpha: {
-          default: true,
+          default: false,
           tooltip: (true, "i18n:COMPONENT.skeleton.premultipliedAlpha")
         },
         timeScale: {

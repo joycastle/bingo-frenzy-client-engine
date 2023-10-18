@@ -51097,7 +51097,7 @@ default: !0,
 tooltip: !1
 },
 premultipliedAlpha: {
-default: !0,
+default: !1,
 tooltip: !1
 },
 timeScale: {
