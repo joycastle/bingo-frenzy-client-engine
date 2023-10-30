@@ -25597,10 +25597,16 @@
         callback(null, img);
       };
       var errorCallback = function errorCallback() {
-        img.removeEventListener("load", loadCallback);
-        img.removeEventListener("error", errorCallback);
-        callback(new Error(debug.getError(4930, url)));
+        if (attempt < maxRetries) setTimeout((function() {
+          img.src = url;
+        }), Math.min(500 * Math.pow(2, attempt++), 1e4)); else {
+          img.removeEventListener("load", loadCallback);
+          img.removeEventListener("error", errorCallback);
+          callback(new Error(debug.getError(4930, url)));
+        }
       };
+      var attempt = 0;
+      var maxRetries = 5;
       img.addEventListener("load", loadCallback);
       img.addEventListener("error", errorCallback);
       img.src = url;
@@ -26841,35 +26847,30 @@
   164: [ (function(require, module, exports) {
     "use strict";
     var urlAppendTimestamp = require("./utils").urlAppendTimestamp;
-    module.exports = function(item, callback) {
+    function loadWithBackoff(item, callback) {
+      var attempt = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : 0;
+      var maxRetries = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : 5;
       var url = item.url;
       url = urlAppendTimestamp(url);
       var xhr = cc.loader.getXMLHttpRequest(), errInfo = "Load text file failed: " + url;
       xhr.open("GET", url, true);
       xhr.overrideMimeType && xhr.overrideMimeType("text/plain; charset=utf-8");
       xhr.onload = function() {
-        4 === xhr.readyState ? 200 === xhr.status || 0 === xhr.status ? callback(null, xhr.responseText) : callback({
-          status: xhr.status,
-          errorMessage: errInfo + "(wrong status)"
-        }) : callback({
-          status: xhr.status,
-          errorMessage: errInfo + "(wrong readyState)"
-        });
+        4 === xhr.readyState && (200 === xhr.status || 0 === xhr.status) ? callback(null, xhr.responseText) : handleXhrError();
       };
-      xhr.onerror = function() {
-        callback({
+      xhr.onerror = handleXhrError;
+      xhr.ontimeout = handleXhrError;
+      xhr.send(null);
+      function handleXhrError() {
+        attempt < maxRetries ? setTimeout((function() {
+          loadWithBackoff(item, callback, attempt + 1, maxRetries);
+        }), Math.min(500 * Math.pow(2, attempt++), 1e4)) : callback({
           status: xhr.status,
           errorMessage: errInfo + "(error)"
         });
-      };
-      xhr.ontimeout = function() {
-        callback({
-          status: xhr.status,
-          errorMessage: errInfo + "(time out)"
-        });
-      };
-      xhr.send(null);
-    };
+      }
+    }
+    module.exports = loadWithBackoff;
   }), {
     "./utils": 166
   } ],

@@ -25,7 +25,7 @@
 
 var urlAppendTimestamp = require('./utils').urlAppendTimestamp;
 
-module.exports = function (item, callback) {
+function loadWithBackoff (item, callback, attempt = 0, maxRetries = 5) {
     var url = item.url;
     url = urlAppendTimestamp(url);
 
@@ -37,20 +37,26 @@ module.exports = function (item, callback) {
         if (xhr.readyState === 4) {
             if (xhr.status === 200 || xhr.status === 0) {
                 callback(null, xhr.responseText);
+            } else {
+                handleXhrError();
             }
-            else {
-                callback({status:xhr.status, errorMessage:errInfo + '(wrong status)'});
-            }
-        }
-        else {
-            callback({status:xhr.status, errorMessage:errInfo + '(wrong readyState)'});
+        } else {
+            handleXhrError();
         }
     };
-    xhr.onerror = function(){
-        callback({status:xhr.status, errorMessage:errInfo + '(error)'});
-    };
-    xhr.ontimeout = function(){
-        callback({status:xhr.status, errorMessage:errInfo + '(time out)'});
-    };
+    xhr.onerror = handleXhrError;
+    xhr.ontimeout = handleXhrError;
     xhr.send(null);
+
+    function handleXhrError() {
+        if (attempt < maxRetries) {
+            setTimeout(function () {
+                loadWithBackoff(item, callback, attempt + 1, maxRetries);
+            }, Math.min(Math.pow(2, attempt++) * 500, 10000));
+        } else {
+            callback({status:xhr.status, errorMessage:errInfo + '(error)'});
+        }
+    }
 };
+
+module.exports = loadWithBackoff;

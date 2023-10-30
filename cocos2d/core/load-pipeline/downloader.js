@@ -91,6 +91,8 @@ function downloadImage (item, callback, isCrossOrigin, img) {
         return img;
     }
     else {
+        var attempt = 0;
+        var maxRetries = 5;
         function loadCallback () {
             img.removeEventListener('load', loadCallback);
             img.removeEventListener('error', errorCallback);
@@ -99,12 +101,18 @@ function downloadImage (item, callback, isCrossOrigin, img) {
             callback(null, img);
         }
         function errorCallback () {
-            img.removeEventListener('load', loadCallback);
-            img.removeEventListener('error', errorCallback);
+            if (attempt < maxRetries) {
+                setTimeout(function () {
+                    img.src = url;
+                }, Math.min(Math.pow(2, attempt++) * 500, 10000));
+            } else {
+                img.removeEventListener('load', loadCallback);
+                img.removeEventListener('error', errorCallback);
 
-            // Retry without crossOrigin mark if crossOrigin loading fails
-            // Do not retry if protocol is https, even if the image is loaded, cross origin image isn't renderable.
-            callback(new Error(debug.getError(4930, url)));
+                // Retry without crossOrigin mark if crossOrigin loading fails
+                // Do not retry if protocol is https, even if the image is loaded, cross origin image isn't renderable.
+                callback(new Error(debug.getError(4930, url)));
+            }
         }
 
         img.addEventListener('load', loadCallback);

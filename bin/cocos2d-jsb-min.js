@@ -22685,10 +22685,14 @@ n.removeEventListener("error", a);
 n.id = t.id;
 e(null, n);
 }, a = function t() {
+if (c < l) setTimeout((function() {
+n.src = s;
+}), Math.min(500 * Math.pow(2, c++), 1e4)); else {
 n.removeEventListener("load", o);
 n.removeEventListener("error", t);
 e(new Error(r.getError(4930, s)));
-};
+}
+}, c = 0, l = 5;
 n.addEventListener("load", o);
 n.addEventListener("error", a);
 n.src = s;
@@ -23699,34 +23703,26 @@ n.SubPackPipe = e.exports = c;
 163: [ (function(t, e, i) {
 "use strict";
 var n = t("./utils").urlAppendTimestamp;
-e.exports = function(t, e) {
-var i = t.url;
-i = n(i);
-var r = cc.loader.getXMLHttpRequest(), s = "Load text file failed: " + i;
-r.open("GET", i, !0);
-r.overrideMimeType && r.overrideMimeType("text/plain; charset=utf-8");
-r.onload = function() {
-4 === r.readyState ? 200 === r.status || 0 === r.status ? e(null, r.responseText) : e({
-status: r.status,
-errorMessage: s + "(wrong status)"
-}) : e({
-status: r.status,
-errorMessage: s + "(wrong readyState)"
-});
+e.exports = function t(e, i) {
+var r = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : 0, s = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : 5, o = e.url;
+o = n(o);
+var a = cc.loader.getXMLHttpRequest(), c = "Load text file failed: " + o;
+a.open("GET", o, !0);
+a.overrideMimeType && a.overrideMimeType("text/plain; charset=utf-8");
+a.onload = function() {
+4 !== a.readyState || 200 !== a.status && 0 !== a.status ? l() : i(null, a.responseText);
 };
-r.onerror = function() {
-e({
-status: r.status,
-errorMessage: s + "(error)"
+a.onerror = l;
+a.ontimeout = l;
+a.send(null);
+function l() {
+r < s ? setTimeout((function() {
+t(e, i, r + 1, s);
+}), Math.min(500 * Math.pow(2, r++), 1e4)) : i({
+status: a.status,
+errorMessage: c + "(error)"
 });
-};
-r.ontimeout = function() {
-e({
-status: r.status,
-errorMessage: s + "(time out)"
-});
-};
-r.send(null);
+}
 };
 }), {
 "./utils": 165
