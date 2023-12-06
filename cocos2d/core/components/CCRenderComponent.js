@@ -76,6 +76,7 @@ let RenderComponent = cc.Class({
         this._vertsDirty = true;
         this._material = null;
         this._assembler = null;
+        this._orginalis3DNode = false;
     },
 
     _resetAssembler () {
@@ -95,13 +96,19 @@ let RenderComponent = cc.Class({
         }
         this.node._renderComponent = this;
 
+        if (this._orginalis3DNode !== this.node.is3DNode) {
+            this._orginalis3DNode = this.node.is3DNode;
+            this._on3DNodeChanged && this._on3DNodeChanged();
+        }
+
         this.node.on(cc.Node.EventType.SIZE_CHANGED, this._onNodeSizeDirty, this);
         this.node.on(cc.Node.EventType.ANCHOR_CHANGED, this._onNodeSizeDirty, this);
 
         this.node._renderFlag |= RenderFlow.FLAG_RENDER | RenderFlow.FLAG_UPDATE_RENDER_DATA | RenderFlow.FLAG_OPACITY_COLOR;
     },
 
-    onDisable () {
+    onDisable() {
+        this._orginalis3DNode = this.node.is3DNode;
         this.node._renderComponent = null;
         this.node.off(cc.Node.EventType.SIZE_CHANGED, this._onNodeSizeDirty, this);
         this.node.off(cc.Node.EventType.ANCHOR_CHANGED, this._onNodeSizeDirty, this);

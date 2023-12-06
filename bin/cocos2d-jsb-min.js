@@ -16503,6 +16503,7 @@ ctor: function() {
 this._vertsDirty = !0;
 this._material = null;
 this._assembler = null;
+this._orginalis3DNode = !1;
 },
 _resetAssembler: function() {
 this.setVertsDirty(!0);
@@ -16515,11 +16516,16 @@ this._resetAssembler();
 onEnable: function() {
 this.node._renderComponent && (this.node._renderComponent.enabled = !1);
 this.node._renderComponent = this;
+if (this._orginalis3DNode !== this.node.is3DNode) {
+this._orginalis3DNode = this.node.is3DNode;
+this._on3DNodeChanged && this._on3DNodeChanged();
+}
 this.node.on(cc.Node.EventType.SIZE_CHANGED, this._onNodeSizeDirty, this);
 this.node.on(cc.Node.EventType.ANCHOR_CHANGED, this._onNodeSizeDirty, this);
 this.node._renderFlag |= s.FLAG_RENDER | s.FLAG_UPDATE_RENDER_DATA | s.FLAG_OPACITY_COLOR;
 },
 onDisable: function() {
+this._orginalis3DNode = this.node.is3DNode;
 this.node._renderComponent = null;
 this.node.off(cc.Node.EventType.SIZE_CHANGED, this._onNodeSizeDirty, this);
 this.node.off(cc.Node.EventType.ANCHOR_CHANGED, this._onNodeSizeDirty, this);
