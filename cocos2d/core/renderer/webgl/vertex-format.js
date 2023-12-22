@@ -33,6 +33,15 @@ var vfmt3D = new gfx.VertexFormat([
 vfmt3D.name = 'vfmt3D';
 gfx.VertexFormat.XYZ_UV_Color = vfmt3D;
 
+var vfmt3DTwoColor = new gfx.VertexFormat([
+    { name: gfx.ATTR_POSITION, type: gfx.ATTR_TYPE_FLOAT32, num: 3 },
+    { name: gfx.ATTR_UV0, type: gfx.ATTR_TYPE_FLOAT32, num: 2 },
+    { name: gfx.ATTR_COLOR, type: gfx.ATTR_TYPE_UINT8, num: 4, normalize: true },
+    { name: gfx.ATTR_COLOR0, type: gfx.ATTR_TYPE_UINT8, num: 4, normalize: true },
+]);
+vfmt3DTwoColor.name = 'vfmt3DTwoColor';
+gfx.VertexFormat.XYZ_UV_TwoColor = vfmt3DTwoColor;
+
 var vfmtPosUvColor = new gfx.VertexFormat([
     { name: gfx.ATTR_POSITION, type: gfx.ATTR_TYPE_FLOAT32, num: 2 },
     { name: gfx.ATTR_UV0, type: gfx.ATTR_TYPE_FLOAT32, num: 2 },
@@ -72,6 +81,7 @@ gfx.VertexFormat.XY = vfmtPos;
 
 module.exports = {
     vfmt3D,
+    vfmt3DTwoColor,
     vfmtPosUvColor,
     vfmtPosUvTwoColor,
     vfmtPosUv,
