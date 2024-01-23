@@ -524,10 +524,12 @@ function _checkListeners (node, events) {
 }
 
 function _doDispatchEvent (owner, event) {
-    if (event instanceof cc.Event.EventTouch) {
-        if (!owner.isMultiTouchEnabled) {
-            if (event.getID() !== 0) {
-                return;
+    if (cc.sys.isNative) {
+        if (event instanceof cc.Event.EventTouch) {
+            if (!owner.isMultiTouchEnabled) {
+                if (event.getID() !== 0) {
+                    return;
+                }
             }
         }
     }
