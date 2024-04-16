@@ -63,6 +63,8 @@ var MotionStreak = cc.Class({
 
     ctor () {
         this._points = [];
+        this._lastWPos = new cc.Vec2();
+        this._lastWPosUpdated = false;
     },
 
     properties: {
@@ -285,6 +287,7 @@ var MotionStreak = cc.Class({
     reset () {
         this._points.length = 0;
         this._assembler._renderData.clear();
+        this._lastWPosUpdated = false;
         if (CC_EDITOR) {
             cc.engine.repaintInEditMode();
         }
