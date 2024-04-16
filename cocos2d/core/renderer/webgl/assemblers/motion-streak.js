@@ -154,7 +154,8 @@ export default class MotionStreakAssembler extends Assembler2D {
 
         let color = comp._color, ca = color.a;
         let crgb = (color.b<<16) | (color.g<<8) | color.r;
-       
+        let verticesCount = 0;
+        let indicesCount = 0;
 
         let flexBuffer = this._renderData._flexBuffer;
         flexBuffer.reserve(points.length*2, (points.length-1)*6);
