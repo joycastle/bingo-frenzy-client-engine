@@ -29,6 +29,8 @@ const RenderComponent = require('../../cocos2d/core/components/CCRenderComponent
 const spine = require('./lib/spine');
 const Material = require('../../cocos2d/core/assets/material/CCMaterial');
 const Graphics = require('../../cocos2d/core/graphics/graphics');
+const RenderFlow = require('../../cocos2d/core/renderer/render-flow');
+const FLAG_POST_RENDER = RenderFlow.FLAG_POST_RENDER;
 
 let SkeletonCache = require('./skeleton-cache');
 
@@ -440,6 +442,11 @@ sp.Skeleton = cc.Class({
         this._materialCache = {};
     },
 
+    disableRender () {
+        this._super();
+        this.node._renderFlag &= ~FLAG_POST_RENDER;
+    },
+
     _updateUseTint () {
         let baseMaterial = this.getMaterial(0);
         let useTint = this.useTint || this.isAnimationCached();
@@ -729,6 +736,7 @@ sp.Skeleton = cc.Class({
         // only when component's onEnable function has been invoke, need to enable render
         if (this.node && this.node._renderComponent == this) {
             this.markForRender(true);
+            this.node._renderFlag |= FLAG_POST_RENDER;
         }
     },
 
