@@ -665,8 +665,6 @@ export default class SpineAssembler extends Assembler {
             this.realTimeTraverse(worldMat);
             if (_vertexEffect) _vertexEffect.end();
         }
-        renderer.worldMatDirty++;
-        comp._spineSocket && comp._spineSocket.syncSocketsNode();
 
         // Clear temp var.
         _node = undefined;
@@ -674,10 +672,6 @@ export default class SpineAssembler extends Assembler {
         _renderer = undefined;
         _comp = undefined;
         _vertexEffect = null;
-    }
-
-    postFillBuffers(comp, renderer) {
-        renderer.worldMatDirty--;
     }
 }
 

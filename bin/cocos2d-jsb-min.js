@@ -2602,7 +2602,6 @@ for (var o in r) {
 var a = r[o], c = a.easing ? a.easing(t) : i, l = a.current = (a.progress || s)(a.start, a.end, a.current, c);
 n[o] = l;
 }
-e.onUpdate && e.onUpdate(n, t);
 }
 },
 progress: function(t, e, i, n) {
@@ -8613,7 +8612,7 @@ return !1;
 return !0;
 }
 function et(t, e) {
-if (!(cc.sys.isNative && e instanceof cc.Event.EventTouch) || t.isMultiTouchEnabled || 0 === e.getID()) {
+if (!(e instanceof cc.Event.EventTouch) || t.isMultiTouchEnabled || 0 === e.getID()) {
 var i, n;
 e.target = t;
 F.length = 0;
@@ -15827,8 +15826,6 @@ mixins: [ o ],
 editor: !1,
 ctor: function() {
 this._points = [];
-this._lastWPos = new cc.Vec2();
-this._lastWPosUpdated = !1;
 },
 properties: {
 preview: {
@@ -15944,7 +15941,6 @@ onLostFocusInEditor: !1,
 reset: function() {
 this._points.length = 0;
 this._assembler._renderData.clear();
-this._lastWPosUpdated = !1;
 0;
 },
 update: function(t) {
@@ -35471,20 +35467,19 @@ n.default.register(a, b);
 "use strict";
 i.__esModule = !0;
 i.default = void 0;
-var n = s(t("../../assembler-2d")), r = s(t("../../../value-types/mat4"));
-function s(t) {
+var n = (function(t) {
 return t && t.__esModule ? t : {
 default: t
 };
-}
-function o(t, e) {
+})(t("../../assembler-2d"));
+function r(t, e) {
 if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function");
 }
-function a(t, e) {
+function s(t, e) {
 if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
 return !e || "object" != typeof e && "function" != typeof e ? t : e;
 }
-function c(t, e) {
+function o(t, e) {
 if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
 t.prototype = Object.create(e && e.prototype, {
 constructor: {
@@ -35496,124 +35491,96 @@ configurable: !0
 });
 e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e);
 }
-var l = t("../../../components/CCMotionStreak"), h = t("../../render-flow");
-function u(t, e) {
+var a = t("../../../components/CCMotionStreak"), c = t("../../render-flow");
+function l(t, e) {
 this.point = t || cc.v2();
 this.dir = e || cc.v2();
 this.distance = 0;
 this.time = 0;
 }
-u.prototype.setPoint = function(t, e) {
+l.prototype.setPoint = function(t, e) {
 this.point.x = t;
 this.point.y = e;
 };
-u.prototype.setDir = function(t, e) {
+l.prototype.setDir = function(t, e) {
 this.dir.x = t;
 this.dir.y = e;
 };
 cc.v2(), cc.v2();
-var _ = cc.v2(), f = cc.v2(), d = new r.default();
-function p(t, e) {
+var h = cc.v2(), u = cc.v2();
+function _(t, e) {
 t.x = -e.y;
 t.y = e.x;
 return t;
 }
-var m = (function(t) {
-c(e, t);
+var f = (function(t) {
+o(e, t);
 function e() {
-o(this, e);
-var i = a(this, t.call(this));
-i._tailShortenTime = 0;
-return i;
+r(this, e);
+return s(this, t.apply(this, arguments));
 }
 e.prototype.initData = function() {
 this._renderData.createFlexData(0, 16, 42);
 };
 e.prototype.update = function(t, e) {
 0;
-var i = t._stroke / 2;
-t.node.getWorldMatrix(d);
-var n = d.m[12], r = d.m[13], s = t._points, o = t._lastWPos, a = t._fadeTime;
-if (t._lastWPosUpdated && (o.x !== n || o.y !== r)) {
-var c = void 0, l = !1;
-if (0 === s.length) {
-var h = new u();
-h.setPoint(o.x, o.y);
-this._tailShortenTime = h.time = a;
-s.push(h);
-c = new u();
-s.unshift(c);
-} else {
-c = s[0];
-var m = s[1], v = m.point.x - n, y = m.point.y - r;
-l = v * v + y * y >= t.minSeg * t.minSeg;
+var i = t._stroke / 2, n = t.node._worldMatrix.m, r = n[12], s = n[13], o = t._points, a = void 0;
+if (o.length > 1) {
+var c = o[0].point.x - r, f = o[0].point.y - s;
+c * c + f * f < t.minSeg && (a = o[0]);
 }
-c.setPoint(n, r);
-c.time = a + e;
-var g = s[1];
-c.distance = c.point.sub(g.point, f).mag();
-f.normalizeSelf();
-c.setDir(f.x, f.y);
-2 === s.length && g.setDir(f.x, f.y);
-if (l) {
-var C = new u(c.point.clone(), c.dir.clone());
-C.distance = c.distance;
-C.time = c.time;
-s.unshift(C);
+if (!a) {
+a = new l();
+o.splice(0, 0, a);
 }
-}
-o.x = n;
-o.y = r;
-t._lastWPosUpdated = !0;
-if (!(s.length < 2)) {
-var x, A = t._color, b = A.a, S = A.b << 16 | A.g << 8 | A.r, T = 0, w = this._renderData._flexBuffer;
-w.reserve(2 * s.length, 6 * (s.length - 1));
-for (var E = w.vData, B = w.uintVData, M = s.length - 1; M >= 0; M--) {
-var I = s[M], D = I.point, R = I.dir;
-I.time -= e;
-var P = M === s.length - 1;
-if (I.time <= 0) {
-P && M - 1 >= 0 && (this._tailShortenTime = s[M - 1].time - e);
-s.splice(M, 1);
-} else {
-var L = I.time / a;
-if (P) {
-var O = s[M - 1];
-if (!O) {
-s.splice(M, 1);
+a.setPoint(r, s);
+a.time = t._fadeTime + e;
+var d, p = 0;
+if (!(o.length < 2)) {
+var m = t._color, v = m.r, y = m.g, g = m.b, C = m.a, x = o[1];
+x.distance = a.point.sub(x.point, u).mag();
+u.normalizeSelf();
+x.setDir(u.x, u.y);
+a.setDir(u.x, u.y);
+var A = this._renderData._flexBuffer;
+A.reserve(2 * o.length, 6 * (o.length - 1));
+for (var b = A.vData, S = A.uintVData, T = t._fadeTime, w = !1, E = o.length - 1; E >= 0; E--) {
+var B = o[E], M = B.point, I = B.dir;
+B.time -= e;
+if (B.time < 0) o.splice(E, 1); else {
+var D = B.time / T, R = o[E - 1];
+if (!w) {
+if (!R) {
+o.splice(E, 1);
 continue;
 }
-if (s.length >= 3) {
-var V = I.time / this._tailShortenTime;
-if (V <= 1) {
-D.x = O.point.x - O.distance * O.dir.x * V;
-D.y = O.point.y - O.distance * O.dir.y * V;
+M.x = R.point.x - I.x * D;
+M.y = R.point.y - I.y * D;
 }
-} else this._tailShortenTime = I.time;
-}
-p(_, R);
-var N = L * b << 24 >>> 0 | S, F = 5 * T;
-E[F] = D.x + _.x * i;
-E[F + 1] = D.y + _.y * i;
-E[F + 2] = 1;
-E[F + 3] = L;
-B[F + 4] = N;
-E[F += 5] = D.x - _.x * i;
-E[F + 1] = D.y - _.y * i;
-E[F + 2] = 0;
-E[F + 3] = L;
-B[F + 4] = N;
-T += 2;
+w = !0;
+_(h, I);
+var P = (D * C << 24 >>> 0) + (g << 16) + (y << 8) + v, L = 5 * p;
+b[L] = M.x + h.x * i;
+b[L + 1] = M.y + h.y * i;
+b[L + 2] = 1;
+b[L + 3] = D;
+S[L + 4] = P;
+b[L += 5] = M.x - h.x * i;
+b[L + 1] = M.y - h.y * i;
+b[L + 2] = 0;
+b[L + 3] = D;
+S[L + 4] = P;
+p += 2;
 }
 }
-x = T <= 2 ? 0 : 3 * (T - 2);
-w.used(T, x);
+d = p <= 2 ? 0 : 3 * (p - 2);
+A.used(p, d);
 }
 };
 e.prototype.fillBuffers = function(t, e) {
-var i = this._renderData._flexBuffer, n = i.vData, r = i.usedVertices, s = i.usedIndices, o = i.usedVerticesFloats, a = e._meshBuffer, c = a.request(r, s), l = c.byteOffset >> 2, u = a._vData;
-n.length + l > u.length ? u.set(n.subarray(0, o), l) : u.set(n, l);
-for (var _ = a._iData, f = c.indiceOffset, d = c.vertexOffset, p = 0, m = r; p < m; p += 2) {
+var i = this._renderData._flexBuffer, n = i.vData, r = i.usedVertices, s = i.usedIndices, o = i.usedVerticesFloats, a = e._meshBuffer, l = a.request(r, s), h = l.byteOffset >> 2, u = a._vData;
+n.length + h > u.length ? u.set(n.subarray(0, o), h) : u.set(n, h);
+for (var _ = a._iData, f = l.indiceOffset, d = l.vertexOffset, p = 0, m = r; p < m; p += 2) {
 var v = d + p;
 _[f++] = v;
 _[f++] = v + 2;
@@ -35622,16 +35589,15 @@ _[f++] = v + 1;
 _[f++] = v + 2;
 _[f++] = v + 3;
 }
-t.node._renderFlag |= h.FLAG_UPDATE_RENDER_DATA;
+t.node._renderFlag |= c.FLAG_UPDATE_RENDER_DATA;
 };
 return e;
 })(n.default);
-i.default = m;
-m.register(l, m);
+i.default = f;
+f.register(a, f);
 e.exports = i.default;
 }), {
 "../../../components/CCMotionStreak": 102,
-"../../../value-types/mat4": 318,
 "../../assembler-2d": 226,
 "../../render-flow": 250
 } ],
@@ -51040,11 +51006,11 @@ e.exports = i.default;
 } ],
 381: [ (function(t, e, i) {
 "use strict";
-var n = t("./track-entry-listeners"), r = t("../../cocos2d/core/components/CCRenderComponent"), s = t("./lib/spine"), o = t("../../cocos2d/core/assets/material/CCMaterial"), a = t("../../cocos2d/core/graphics/graphics"), c = t("../../cocos2d/core/renderer/render-flow").FLAG_POST_RENDER, l = t("./skeleton-cache"), h = cc.Enum({
+var n = t("./track-entry-listeners"), r = t("../../cocos2d/core/components/CCRenderComponent"), s = t("./lib/spine"), o = t("../../cocos2d/core/assets/material/CCMaterial"), a = t("../../cocos2d/core/graphics/graphics"), c = t("./skeleton-cache"), l = cc.Enum({
 default: -1
-}), u = cc.Enum({
+}), h = cc.Enum({
 "<None>": 0
-}), _ = cc.Enum({
+}), u = cc.Enum({
 REALTIME: 0,
 SHARED_CACHE: 1,
 PRIVATE_CACHE: 2
@@ -51054,7 +51020,7 @@ name: "sp.Skeleton",
 extends: r,
 editor: !1,
 statics: {
-AnimationCacheMode: _
+AnimationCacheMode: u
 },
 properties: {
 paused: {
@@ -51117,7 +51083,7 @@ this.setSkin(this.defaultSkin);
 0;
 } else cc.errorID(7501, this.name);
 },
-type: h,
+type: l,
 visible: !0,
 displayName: "Default Skin",
 tooltip: !1
@@ -51143,16 +51109,16 @@ var i = e[t];
 void 0 !== i ? this.animation = i : cc.errorID(7503, this.name);
 } else this.animation = "";
 },
-type: u,
+type: h,
 visible: !0,
 displayName: "Animation",
 tooltip: !1
 },
 _preCacheMode: -1,
-_cacheMode: _.REALTIME,
+_cacheMode: u.REALTIME,
 _defaultCacheMode: {
 default: 0,
-type: _,
+type: u,
 notify: function() {
 this.setAnimationCacheMode(this._defaultCacheMode);
 },
@@ -51250,10 +51216,6 @@ setMaterial: function(t, e) {
 this._super(t, e);
 this._materialCache = {};
 },
-disableRender: function() {
-this._super();
-this.node._renderFlag &= ~c;
-},
 _updateUseTint: function() {
 var t = this.getMaterial(0), e = this.useTint || this.isAnimationCached();
 t && t.define("USE_TINT", e);
@@ -51274,7 +51236,7 @@ n && n.define("CC_USE_MODEL", !this.enableBatch);
 },
 setSkeletonData: function(t) {
 null != t.width && null != t.height && this.node.setContentSize(t.width, t.height);
-this._cacheMode === _.SHARED_CACHE ? this._skeletonCache = l.sharedCache : this._cacheMode === _.PRIVATE_CACHE && (this._skeletonCache = new l());
+this._cacheMode === u.SHARED_CACHE ? this._skeletonCache = c.sharedCache : this._cacheMode === u.PRIVATE_CACHE && (this._skeletonCache = new c());
 if (this.isAnimationCached()) {
 (this.debugBones || this.debugSlots) && cc.warn("Debug bones or slots is invalid in cached mode");
 var e = this._skeletonCache.getSkeletonCache(this.skeletonData._uuid, t);
@@ -51324,7 +51286,7 @@ this._updateUseTint();
 },
 isAnimationCached: function() {
 0;
-return this._cacheMode !== _.REALTIME;
+return this._cacheMode !== u.REALTIME;
 },
 update: function(t) {
 0;
@@ -51364,7 +51326,7 @@ this._listener.end && this._listener.end(this._endEntry);
 _updateCache: function(t) {
 var e = this._frameCache;
 if (e.isInited()) {
-var i = e.frames, n = l.FrameTime;
+var i = e.frames, n = c.FrameTime;
 if (0 == this._accTime && 0 == this._playCount) {
 this._startEntry.animation.name = this._animationName;
 this._listener && this._listener.start && this._listener.start(this._startEntry);
@@ -51410,10 +51372,7 @@ this._prepareToRender(e);
 },
 _prepareToRender: function(t) {
 this.setMaterial(0, t);
-if (this.node && this.node._renderComponent == this) {
-this.markForRender(!0);
-this.node._renderFlag |= c;
-}
+this.node && this.node._renderComponent == this && this.markForRender(!0);
 },
 onEnable: function() {
 this._super();
@@ -51632,7 +51591,6 @@ e.exports = sp.Skeleton;
 "../../cocos2d/core/assets/material/CCMaterial": 75,
 "../../cocos2d/core/components/CCRenderComponent": 106,
 "../../cocos2d/core/graphics/graphics": 142,
-"../../cocos2d/core/renderer/render-flow": 250,
 "./lib/spine": void 0,
 "./skeleton-cache": void 0,
 "./track-entry-listeners": 386
@@ -52210,17 +52168,12 @@ At && At.begin(t._skeleton);
 this.realTimeTraverse(r);
 At && At.end();
 }
-e.worldMatDirty++;
-t._spineSocket && t._spineSocket.syncSocketsNode();
 Ct = void 0;
 yt = void 0;
 gt = void 0;
 vt = void 0;
 At = null;
 }
-};
-e.prototype.postFillBuffers = function(t, e) {
-e.worldMatDirty--;
 };
 return e;
 })(n.default);

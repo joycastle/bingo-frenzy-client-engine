@@ -95,7 +95,6 @@ let TweenAction = cc.Class({
             let current = prop.current = (prop.progress || progress)(prop.start, prop.end, prop.current, time);
             target[name] = current;
         }
-        if (opts.onUpdate) { opts.onUpdate(target, t); }
     },
 
     progress (start, end, current, t) {

@@ -3212,7 +3212,6 @@
           var current = prop.current = (prop.progress || progress)(prop.start, prop.end, prop.current, time);
           target[name] = current;
         }
-        opts.onUpdate && opts.onUpdate(target, t);
       },
       progress: function progress(start, end, current, t) {
         "number" === typeof start ? current = start + (end - start) * t : start.lerp(end, t, current);
@@ -10192,7 +10191,7 @@
       return true;
     }
     function _doDispatchEvent(owner, event) {
-      if (cc.sys.isNative && event instanceof cc.Event.EventTouch && !owner.isMultiTouchEnabled && 0 !== event.getID()) return;
+      if (event instanceof cc.Event.EventTouch && !owner.isMultiTouchEnabled && 0 !== event.getID()) return;
       var target, i;
       event.target = owner;
       _cachedArray.length = 0;
@@ -18138,8 +18137,6 @@
       editor: false,
       ctor: function ctor() {
         this._points = [];
-        this._lastWPos = new cc.Vec2();
-        this._lastWPosUpdated = false;
       },
       properties: {
         preview: {
@@ -18257,7 +18254,6 @@
       reset: function reset() {
         this._points.length = 0;
         this._assembler._renderData.clear();
-        this._lastWPosUpdated = false;
         false;
       },
       update: function update(dt) {
@@ -40847,8 +40843,6 @@
     exports.default = void 0;
     var _assembler2d = require("../../assembler-2d");
     var _assembler2d2 = _interopRequireDefault(_assembler2d);
-    var _mat = require("../../../value-types/mat4");
-    var _mat2 = _interopRequireDefault(_mat);
     function _interopRequireDefault(obj) {
       return obj && obj.__esModule ? obj : {
         default: obj
@@ -40893,7 +40887,6 @@
     var _miter = cc.v2();
     var _normal = cc.v2();
     var _vec2 = cc.v2();
-    var _worldMat = new _mat2.default();
     function normal(out, dir) {
       out.x = -dir.y;
       out.y = dir.x;
@@ -40914,9 +40907,7 @@
       _inherits(MotionStreakAssembler, _Assembler2D);
       function MotionStreakAssembler() {
         _classCallCheck(this, MotionStreakAssembler);
-        var _this = _possibleConstructorReturn(this, _Assembler2D.call(this));
-        _this._tailShortenTime = 0;
-        return _this;
+        return _possibleConstructorReturn(this, _Assembler2D.apply(this, arguments));
       }
       MotionStreakAssembler.prototype.initData = function initData() {
         this._renderData.createFlexData(0, 16, 42);
@@ -40925,96 +40916,69 @@
         false;
         var stroke = comp._stroke / 2;
         var node = comp.node;
-        node.getWorldMatrix(_worldMat);
-        var tx = _worldMat.m[12], ty = _worldMat.m[13];
+        var matrix = node._worldMatrix.m;
+        var tx = matrix[12], ty = matrix[13];
         var points = comp._points;
-        var lastPos = comp._lastWPos;
-        var fadeTime = comp._fadeTime;
-        var moved = comp._lastWPosUpdated && (lastPos.x !== tx || lastPos.y !== ty);
-        if (moved) {
-          var cur = void 0;
-          var newHead = false;
-          if (0 === points.length) {
-            var _prev = new Point();
-            _prev.setPoint(lastPos.x, lastPos.y);
-            this._tailShortenTime = _prev.time = fadeTime;
-            points.push(_prev);
-            cur = new Point();
-            points.unshift(cur);
-          } else {
-            cur = points[0];
-            var _prev2 = points[1];
-            var difx = _prev2.point.x - tx;
-            var dify = _prev2.point.y - ty;
-            newHead = difx * difx + dify * dify >= comp.minSeg * comp.minSeg;
-          }
-          cur.setPoint(tx, ty);
-          cur.time = fadeTime + dt;
-          var prev = points[1];
-          cur.distance = cur.point.sub(prev.point, _vec2).mag();
-          _vec2.normalizeSelf();
-          cur.setDir(_vec2.x, _vec2.y);
-          var prevIsTail = 2 === points.length;
-          prevIsTail && prev.setDir(_vec2.x, _vec2.y);
-          if (newHead) {
-            var point = new Point(cur.point.clone(), cur.dir.clone());
-            point.distance = cur.distance;
-            point.time = cur.time;
-            points.unshift(point);
-          }
+        var cur = void 0;
+        if (points.length > 1) {
+          var difx = points[0].point.x - tx;
+          var dify = points[0].point.y - ty;
+          difx * difx + dify * dify < comp.minSeg && (cur = points[0]);
         }
-        lastPos.x = tx;
-        lastPos.y = ty;
-        comp._lastWPosUpdated = true;
-        if (points.length < 2) return;
-        var color = comp._color, ca = color.a;
-        var crgb = color.b << 16 | color.g << 8 | color.r;
+        if (!cur) {
+          cur = new Point();
+          points.splice(0, 0, cur);
+        }
+        cur.setPoint(tx, ty);
+        cur.time = comp._fadeTime + dt;
         var verticesCount = 0;
         var indicesCount = 0;
+        if (points.length < 2) return;
+        var color = comp._color, cr = color.r, cg = color.g, cb = color.b, ca = color.a;
+        var prev = points[1];
+        prev.distance = cur.point.sub(prev.point, _vec2).mag();
+        _vec2.normalizeSelf();
+        prev.setDir(_vec2.x, _vec2.y);
+        cur.setDir(_vec2.x, _vec2.y);
         var flexBuffer = this._renderData._flexBuffer;
         flexBuffer.reserve(2 * points.length, 6 * (points.length - 1));
         var vData = flexBuffer.vData;
         var uintVData = flexBuffer.uintVData;
         var vertsOffset = 5;
+        var fadeTime = comp._fadeTime;
+        var findLast = false;
         for (var i = points.length - 1; i >= 0; i--) {
           var p = points[i];
-          var _point = p.point;
+          var point = p.point;
           var dir = p.dir;
           p.time -= dt;
-          var isLast = i === points.length - 1;
-          if (p.time <= 0) {
-            isLast && i - 1 >= 0 && (this._tailShortenTime = points[i - 1].time - dt);
+          if (p.time < 0) {
             points.splice(i, 1);
             continue;
           }
           var progress = p.time / fadeTime;
-          if (isLast) {
-            var next = points[i - 1];
+          var next = points[i - 1];
+          if (!findLast) {
             if (!next) {
               points.splice(i, 1);
               continue;
             }
-            var nextIsStatic = points.length >= 3;
-            if (nextIsStatic) {
-              var segmentProgress = p.time / this._tailShortenTime;
-              if (segmentProgress <= 1) {
-                _point.x = next.point.x - next.distance * next.dir.x * segmentProgress;
-                _point.y = next.point.y - next.distance * next.dir.y * segmentProgress;
-              }
-            } else this._tailShortenTime = p.time;
+            point.x = next.point.x - dir.x * progress;
+            point.y = next.point.y - dir.y * progress;
           }
+          findLast = true;
           normal(_normal, dir);
           var da = progress * ca;
-          var c = da << 24 >>> 0 | crgb;
+          var c = (da << 24 >>> 0) + (cb << 16) + (cg << 8) + cr;
           var offset = verticesCount * vertsOffset;
-          vData[offset] = _point.x + _normal.x * stroke;
-          vData[offset + 1] = _point.y + _normal.y * stroke;
+          vData[offset] = point.x + _normal.x * stroke;
+          vData[offset + 1] = point.y + _normal.y * stroke;
           vData[offset + 2] = 1;
           vData[offset + 3] = progress;
           uintVData[offset + 4] = c;
           offset += vertsOffset;
-          vData[offset] = _point.x - _normal.x * stroke;
-          vData[offset + 1] = _point.y - _normal.y * stroke;
+          vData[offset] = point.x - _normal.x * stroke;
+          vData[offset + 1] = point.y - _normal.y * stroke;
           vData[offset + 2] = 0;
           vData[offset + 3] = progress;
           uintVData[offset + 4] = c;
@@ -41048,7 +41012,6 @@
     module.exports = exports["default"];
   }), {
     "../../../components/CCMotionStreak": 103,
-    "../../../value-types/mat4": 321,
     "../../assembler-2d": 227,
     "../../render-flow": 251
   } ],
@@ -73165,8 +73128,6 @@
     var spine = require("./lib/spine");
     var Material = require("../../cocos2d/core/assets/material/CCMaterial");
     var Graphics = require("../../cocos2d/core/graphics/graphics");
-    var RenderFlow = require("../../cocos2d/core/renderer/render-flow");
-    var FLAG_POST_RENDER = RenderFlow.FLAG_POST_RENDER;
     var SkeletonCache = require("./skeleton-cache");
     var DefaultSkinsEnum = cc.Enum({
       default: -1
@@ -73386,10 +73347,6 @@
         this._super(index, material);
         this._materialCache = {};
       },
-      disableRender: function disableRender() {
-        this._super();
-        this.node._renderFlag &= ~FLAG_POST_RENDER;
-      },
       _updateUseTint: function _updateUseTint() {
         var baseMaterial = this.getMaterial(0);
         var useTint = this.useTint || this.isAnimationCached();
@@ -73557,10 +73514,7 @@
       },
       _prepareToRender: function _prepareToRender(material) {
         this.setMaterial(0, material);
-        if (this.node && this.node._renderComponent == this) {
-          this.markForRender(true);
-          this.node._renderFlag |= FLAG_POST_RENDER;
-        }
+        this.node && this.node._renderComponent == this && this.markForRender(true);
       },
       onEnable: function onEnable() {
         this._super();
@@ -73792,7 +73746,6 @@
     "../../cocos2d/core/assets/material/CCMaterial": 76,
     "../../cocos2d/core/components/CCRenderComponent": 107,
     "../../cocos2d/core/graphics/graphics": 143,
-    "../../cocos2d/core/renderer/render-flow": 251,
     "./lib/spine": 419,
     "./skeleton-cache": 420,
     "./track-entry-listeners": 424
@@ -80807,16 +80760,11 @@
           this.realTimeTraverse(worldMat);
           _vertexEffect && _vertexEffect.end();
         }
-        renderer.worldMatDirty++;
-        comp._spineSocket && comp._spineSocket.syncSocketsNode();
         _node = void 0;
         _buffer = void 0;
         _renderer = void 0;
         _comp = void 0;
         _vertexEffect = null;
-      };
-      SpineAssembler.prototype.postFillBuffers = function postFillBuffers(comp, renderer) {
-        renderer.worldMatDirty--;
       };
       return SpineAssembler;
     })(_assembler2.default);
