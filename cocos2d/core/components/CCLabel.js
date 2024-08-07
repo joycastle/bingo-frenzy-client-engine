@@ -144,7 +144,7 @@ const Overflow = cc.Enum({
  * @property {Number} BITMAP
  */
 /**
- * !#en In CHAR mode, split text into characters and cache characters into a dynamic atlas which the size of 2048*2048. 
+ * !#en In CHAR mode, split text into characters and cache characters into a dynamic atlas which the size of 2048*2048.
  * !#zh CHAR 模式，将文本拆分为字符，并将字符缓存到一张单独的大小为 2048*2048 的图集中进行重复使用，不再使用动态图集（注：当图集满时将不再进行缓存，暂时不支持 SHRINK 自适应文本尺寸（后续完善））。
  * @property {Number} CHAR
  */
@@ -203,7 +203,6 @@ let Label = cc.Class({
          */
         _string: {
             default: '',
-            formerlySerializedAs: '_N$string',
         },
         string: {
             get () {
@@ -373,7 +372,7 @@ let Label = cc.Class({
             },
             set (value) {
                 if (this.font === value) return;
-                
+
                 //if delete the font, we should change isSystemFontUsed to true
                 if (!value) {
                     this._isSystemFontUsed = true;
@@ -421,7 +420,7 @@ let Label = cc.Class({
                     this.font = null;
 
                     if (!this.enabledInHierarchy) return;
-                    
+
                     this._forceUpdateRenderData();
                 }
                 this.markForValidate();
@@ -476,7 +475,7 @@ let Label = cc.Class({
             tooltip: CC_DEV && 'i18n:COMPONENT.label.cacheMode',
             notify (oldValue) {
                 if (this.cacheMode === oldValue) return;
-                
+
                 if (oldValue === CacheMode.BITMAP && !(this.font instanceof cc.BitmapFont)) {
                     this._frame && this._frame._resetDynamicAtlasFrame();
                 }
@@ -531,7 +530,7 @@ let Label = cc.Class({
                 } else {
                     this._styleFlags &= ~ITALIC_FLAG;
                 }
-                
+
                 this.setVertsDirty();
             },
             animatable: false,
@@ -572,7 +571,7 @@ let Label = cc.Class({
             },
             set (value) {
                 if (this._underlineHeight === value) return;
-                
+
                 this._underlineHeight = value;
                 this.setVertsDirty();
             },
@@ -694,7 +693,7 @@ let Label = cc.Class({
             let font = this.font;
             if (font instanceof cc.BitmapFont) {
                 let spriteFrame = font.spriteFrame;
-                if (spriteFrame && 
+                if (spriteFrame &&
                     spriteFrame.textureLoaded() &&
                     font._fntConfig) {
                     return;
@@ -738,7 +737,7 @@ let Label = cc.Class({
 
     _onBlendChanged () {
         if (!this.useSystemFont || !this.enabledInHierarchy) return;
-          
+
         this._forceUpdateRenderData();
     },
 
@@ -756,7 +755,7 @@ let Label = cc.Class({
                 if (!this._frame) {
                     this._frame = new LabelFrame();
                 }
-    
+
                 if (this.cacheMode === CacheMode.CHAR) {
                     this._letterTexture = this._assembler._getAssemblerData();
                     this._frame._refreshTexture(this._letterTexture);
@@ -764,7 +763,7 @@ let Label = cc.Class({
                     this._ttfTexture = new cc.Texture2D();
                     this._assemblerData = this._assembler._getAssemblerData();
                     this._ttfTexture.initWithElement(this._assemblerData.canvas);
-                } 
+                }
 
                 if (this.cacheMode !== CacheMode.CHAR) {
                     this._frame._resetDynamicAtlasFrame();
@@ -800,10 +799,10 @@ let Label = cc.Class({
     },
 
     _forceUseCanvas: false,
- 
+
     _useNativeTTF() {
         return cc.macro.ENABLE_NATIVE_TTF_RENDERER && !this._forceUseCanvas;
-    }, 
+    },
 
     _nativeTTF() {
         return this._useNativeTTF() && !!this._assembler && !!this._assembler._updateTTFMaterial;

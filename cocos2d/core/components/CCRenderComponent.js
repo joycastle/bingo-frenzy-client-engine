@@ -79,6 +79,7 @@ let RenderComponent = cc.Class({
     ctor () {
         this._vertsDirty = true;
         this._assembler = null;
+        this._orginalis3DNode = false;
     },
 
     _resetAssembler () {
@@ -99,10 +100,16 @@ let RenderComponent = cc.Class({
         this.node._renderComponent = this;
         this.node._renderFlag |= RenderFlow.FLAG_OPACITY_COLOR;
 
+        if (this._orginalis3DNode !== this.node.is3DNode) {
+            this._orginalis3DNode = this.node.is3DNode;
+            this._on3DNodeChanged && this._on3DNodeChanged();
+        }
+
         this.setVertsDirty();
     },
 
-    onDisable () {
+    onDisable() {
+        this._orginalis3DNode = this.node.is3DNode;
         this.node._renderComponent = null;
         this.disableRender();
     },

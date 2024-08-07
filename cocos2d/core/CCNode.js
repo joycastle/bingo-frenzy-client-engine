@@ -618,6 +618,14 @@ function _checkListeners (node, events) {
 }
 
 function _doDispatchEvent (owner, event, cachedArray) {
+    if (event instanceof cc.Event.EventTouch) {
+        if (!owner.isMultiTouchEnabled) {
+            if (event.getID() !== 0) {
+                return;
+            }
+        }
+    }
+
     var target, i;
     event.target = owner;
 
@@ -891,7 +899,6 @@ let NodeDefines = {
          */
         _groupIndex: {
             default: 0,
-            formerlySerializedAs: 'groupIndex'
         },
         groupIndex: {
             get () {
@@ -1337,7 +1344,7 @@ let NodeDefines = {
                 return this._skewX;
             },
             set (value) {
-                _skewWarn(value, this);
+                // _skewWarn(value, this);
 
                 this._skewX = value;
                 this.setLocalDirty(LocalDirtyFlag.SKEW);
@@ -1362,7 +1369,7 @@ let NodeDefines = {
                 return this._skewY;
             },
             set (value) {
-                _skewWarn(value, this);
+                // _skewWarn(value, this);
 
                 this._skewY = value;
                 this.setLocalDirty(LocalDirtyFlag.SKEW);
@@ -1631,6 +1638,24 @@ let NodeDefines = {
                 var _forward = Vec3.transformQuat(_urfVec3, Vec3.FORWARD, this.getWorldRotation(_urfQuat));
                 return _forward.clone();
             }
+        },
+
+        /**
+         * !#en multi touch is enabled
+         * !#zh 是否开启多点触摸
+         */
+        _isMultiTouchEnabled: {
+            default: false,
+            serializable: false
+        },
+
+        isMultiTouchEnabled: {
+            get () {
+                return this._isMultiTouchEnabled;
+            },
+            set (value) {
+                this._isMultiTouchEnabled = value;
+            },
         },
     },
 

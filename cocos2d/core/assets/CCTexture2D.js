@@ -60,7 +60,7 @@ var idGenerater = new (require('../platform/id-generater'))('Tex');
 let CUSTOM_PIXEL_FORMAT = 1024;
 
 /**
- * The texture pixel format, default value is RGBA8888, 
+ * The texture pixel format, default value is RGBA8888,
  * you should note that textures loaded by normal image files (png, jpg) can only support RGBA8888 format,
  * other formats are supported by compressed file types or raw data.
  * @enum Texture2D.PixelFormat
@@ -378,6 +378,9 @@ var Texture2D = cc.Class({
                 if (data._compressed && data._data) {
                     let format = data.format;
                     this.initWithData(data._data, format ? format : this._format, data.width, data.height);
+                    if (cc.macro.CLEANUP_IMAGE_CACHE) {
+                        data.src = "";
+                    }
                 }
                 else {
                     this.initWithElement(data);
@@ -418,10 +421,10 @@ var Texture2D = cc.Class({
 
         _packable: true,
         /**
-         * !#en 
+         * !#en
          * Sets whether texture can be packed into texture atlas.
          * If need use texture uv in custom Effect, please sets packable to false.
-         * !#zh 
+         * !#zh
          * 设置纹理是否允许参与合图。
          * 如果需要在自定义 Effect 中使用纹理 UV，需要禁止该选项。
          * @property {Boolean} packable
@@ -435,13 +438,13 @@ var Texture2D = cc.Class({
                 this._packable = val;
             }
         },
-        
+
         _nativeDep: {
             get () {
                 return {
-                    __isNative__: true, 
-                    uuid: this._uuid, 
-                    ext: this._native, 
+                    __isNative__: true,
+                    uuid: this._uuid,
+                    ext: this._native,
                     __flipY__: this._flipY,
                     __premultiplyAlpha__: this._premultiplyAlpha
                 };
@@ -540,7 +543,7 @@ var Texture2D = cc.Class({
         this._hashDirty = true;
         this._hash = 0;
         this._texture = null;
-        
+
         if (CC_EDITOR) {
             this._exportedExts = null;
         }
@@ -628,7 +631,7 @@ var Texture2D = cc.Class({
             else {
                 this._upload(options, updateImg);
             }
-            
+
         }
     },
 
@@ -744,7 +747,7 @@ var Texture2D = cc.Class({
     getHtmlElementObj () {
         return this._image;
     },
-    
+
     /**
      * !#en
      * destroy this texture and immediately release its video memory. (Inherit from cc.Object.destroy)<br>
@@ -805,7 +808,7 @@ var Texture2D = cc.Class({
     handleLoadedTexture () {
         if (!this._image || !this._image.width || !this._image.height)
             return;
-        
+
         this.width = this._image.width;
         this.height = this._image.height;
         let opts = _getSharedOptions();
@@ -822,7 +825,7 @@ var Texture2D = cc.Class({
         opts.magFilter = FilterIndex[this._magFilter];
         opts.wrapS = this._wrapS;
         opts.wrapT = this._wrapT;
-        
+
         if (!this._texture) {
             this._texture = new renderer.Texture2D(renderer.device, opts);
         }
@@ -841,7 +844,7 @@ var Texture2D = cc.Class({
             this._cleanupImageCache();
         }
     },
-    
+
     _cleanupImageCache () {
         if (this._image instanceof HTMLImageElement) {
             this._clearImage();
@@ -958,7 +961,7 @@ var Texture2D = cc.Class({
 
         let w = this.width, h = this.height;
         if (!this._image ||
-            w > dynamicAtlas.maxFrameSize || h > dynamicAtlas.maxFrameSize || 
+            w > dynamicAtlas.maxFrameSize || h > dynamicAtlas.maxFrameSize ||
             this._getHash() !== dynamicAtlas.Atlas.DEFAULT_HASH) {
             this._packable = false;
             return;
@@ -1102,7 +1105,7 @@ var Texture2D = cc.Class({
     _isCompressed () {
         return this._format < PixelFormat.A8 || this._format > PixelFormat.RGBA32F;
     },
-    
+
     _clearImage () {
         this._image.src = "";
     },

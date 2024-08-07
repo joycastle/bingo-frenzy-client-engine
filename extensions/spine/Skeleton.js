@@ -319,10 +319,10 @@ sp.Skeleton = cc.Class({
          * !#zh 是否启用贴图预乘。
          * 当图片的透明区域出现色块时需要关闭该选项，当图片的半透明区域颜色变黑时需要启用该选项。
          * @property {Boolean} premultipliedAlpha
-         * @default true
+         * @default false
          */
         premultipliedAlpha: {
-            default: true,
+            default: false,
             tooltip: CC_DEV && 'i18n:COMPONENT.skeleton.premultipliedAlpha'
         },
 
@@ -1331,6 +1331,10 @@ sp.Skeleton = cc.Class({
     },
 
     _updateSkeletonData () {
+        if (!this.node) {
+            cc.warn("node has been destroyed, can't set sp.skeletonData");
+            return;
+        }
         if (!this.skeletonData) {
             this.disableRender();
             return;

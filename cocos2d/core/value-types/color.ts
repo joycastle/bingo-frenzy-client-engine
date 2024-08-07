@@ -229,7 +229,8 @@ export default class Color extends ValueType {
         out.r = parseInt(hexString.substr(0, 2), 16) || 0;
         out.g = parseInt(hexString.substr(2, 2), 16) || 0;
         out.b = parseInt(hexString.substr(4, 2), 16) || 0;
-        out.a = parseInt(hexString.substr(6, 2), 16) || 255;
+        let a = parseInt(hexString.substr(6, 2), 16);
+        a = Number.isNaN(a) ? 255 : a;
         out._val = ((out.a << 24) >>> 0) + (out.b << 16) + (out.g << 8) + out.r;
         return out;
     }
@@ -673,7 +674,8 @@ export default class Color extends ValueType {
         let r = parseInt(hexString.substr(0, 2), 16) || 0;
         let g = parseInt(hexString.substr(2, 2), 16) || 0;
         let b = parseInt(hexString.substr(4, 2), 16) || 0;
-        let a = parseInt(hexString.substr(6, 2), 16) || 255;
+        let a = parseInt(hexString.substr(6, 2), 16);
+        a = Number.isNaN(a) ? 255 : a;
         this._val = ((a << 24) >>> 0) + (b << 16) + (g << 8) + r;
         return this;
     }

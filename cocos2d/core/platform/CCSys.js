@@ -36,7 +36,7 @@ const isQttGame = (settingPlatform === 'qtt-game');
 const isLinkSure = (settingPlatform === 'link-sure');
 
 const _global = typeof window === 'undefined' ? global : window;
- 
+
 function initSys () {
     /**
      * System variables
@@ -748,7 +748,7 @@ function initSys () {
 
         sys.os = __getOS();
         sys.language = __getCurrentLanguage();
-        var languageCode; 
+        var languageCode;
         if (CC_JSB) {
             languageCode = __getCurrentLanguageCode();
         }
@@ -833,8 +833,8 @@ function initSys () {
             osMainVersion = parseInt(osVersion) || 0;
         }
         // refer to https://github.com/cocos-creator/engine/pull/5542 , thanks for contribition from @krapnikkk
-        // ipad OS 13 safari identifies itself as "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15) AppleWebKit/605.1.15 (KHTML, like Gecko)" 
-        // so use maxTouchPoints to check whether it's desktop safari or not. 
+        // ipad OS 13 safari identifies itself as "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15) AppleWebKit/605.1.15 (KHTML, like Gecko)"
+        // so use maxTouchPoints to check whether it's desktop safari or not.
         // reference: https://stackoverflow.com/questions/58019463/how-to-detect-device-name-in-safari-on-ios-13-while-it-doesnt-show-the-correct
         // FIXME: should remove it when touch-enabled macs are available
         else if (/(iPhone|iPad|iPod)/.exec(nav.platform) || /iphone|ipad|ipod/.test(ua)
@@ -919,7 +919,7 @@ function initSys () {
                 'ubrowser': sys.BROWSER_TYPE_UC,
                 'huaweibrowser': sys.BROWSER_TYPE_HUAWEI,
             };
-            
+
             if(browserType === "qqbrowser" || browserType === "mqqbrowser"){
                 if(ua.match(/wechat|micromessenger/i)){
                     browserType = sys.BROWSER_TYPE_WECHAT;
@@ -1021,6 +1021,15 @@ function initSys () {
             "webp": _supportWebp,
             'imageBitmap': false,
         };
+
+        (function() {
+            const image = new Image();
+            image.onload = function() {
+                _supportWebp = image.width === 1; // if width is 1 pixel, then WebP is supported
+                capabilities["webp"] = _supportWebp;
+            };
+            image.src = 'data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA=';
+        })();
 
         if (typeof createImageBitmap !== 'undefined' && typeof Blob !== 'undefined') {
             _tmpCanvas1.width = _tmpCanvas1.height = 2;
