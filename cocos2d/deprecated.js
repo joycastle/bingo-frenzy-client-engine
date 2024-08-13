@@ -525,96 +525,7 @@ if (CC_DEBUG) {
     }
 
     // Value types
-    provideClearError(cc, {
-        // AffineTransform
-        affineTransformMake: 'cc.AffineTransform.create',
-        affineTransformMakeIdentity: 'cc.AffineTransform.identity',
-        affineTransformClone: 'cc.AffineTransform.clone',
-        affineTransformConcat: 'cc.AffineTransform.concat',
-        affineTransformConcatIn: 'cc.AffineTransform.concat',
-        affineTransformInvert: 'cc.AffineTransform.invert',
-        affineTransformInvertIn: 'cc.AffineTransform.invert',
-        affineTransformInvertOut: 'cc.AffineTransform.invert',
-        affineTransformEqualToTransform: 'cc.AffineTransform.equal',
-        pointApplyAffineTransform: 'cc.AffineTransform.transformVec2',
-        sizeApplyAffineTransform: 'cc.AffineTransform.transformSize',
-        rectApplyAffineTransform: 'cc.AffineTransform.transformRect',
-        obbApplyAffineTransform: 'cc.AffineTransform.transformObb',
-
-        // Vec2
-        pointEqualToPoint: 'cc.Vec2 equals',
-
-        // Size
-        sizeEqualToSize: 'cc.Size equals',
-
-        // Rect
-        rectEqualToRect: 'rectA.equals(rectB)',
-        rectContainsRect: 'rectA.containsRect(rectB)',
-        rectContainsPoint: 'rect.contains(vec2)',
-        rectOverlapsRect: 'rectA.intersects(rectB)',
-        rectIntersectsRect: 'rectA.intersects(rectB)',
-        rectIntersection: 'rectA.intersection(intersection, rectB)',
-        rectUnion: 'rectA.union(union, rectB)',
-        rectGetMaxX: 'rect.xMax',
-        rectGetMidX: 'rect.center.x',
-        rectGetMinX: 'rect.xMin',
-        rectGetMaxY: 'rect.yMax',
-        rectGetMidY: 'rect.center.y',
-        rectGetMinY: 'rect.yMin',
-
-        // Color
-        colorEqual: 'colorA.equals(colorB)',
-        hexToColor: 'color.fromHEX(hexColor)',
-        colorToHex: 'color.toHEX()',
-
-        // Enums
-        TextAlignment: 'cc.macro.TextAlignment',
-        VerticalTextAlignment: 'cc.macro.VerticalTextAlignment',
-
-        // Point Extensions
-        pNeg: 'p.neg()',
-        pAdd: 'p1.add(p2)',
-        pSub: 'p1.sub(p2)',
-        pMult: 'p.mul(factor)',
-        pMidpoint: 'p1.add(p2).mul(0.5)',
-        pDot: 'p1.dot(p2)',
-        pCross: 'p1.cross(p2)',
-        pPerp: 'p.rotate(-90 * Math.PI / 180)',
-        pRPerp: 'p.rotate(90 * Math.PI / 180)',
-        pProject: 'p1.project(p2)',
-        pLengthSQ: 'p.magSqr()',
-        pDistanceSQ: 'p1.sub(p2).magSqr()',
-        pLength: 'p.mag()',
-        pDistance: 'p1.sub(p2).mag()',
-        pNormalize: 'p.normalize()',
-        pForAngle: 'cc.v2(Math.cos(a), Math.sin(a))',
-        pToAngle: 'Math.atan2(v.y, v.x)',
-        pZeroIn: 'p.x = p.y = 0',
-        pIn: 'p1.set(p2)',
-        pMultIn: 'p.mulSelf(factor)',
-        pSubIn: 'p1.subSelf(p2)',
-        pAddIn: 'p1.addSelf(p2)',
-        pNormalizeIn: 'p.normalizeSelf()',
-        pSameAs: 'p1.equals(p2)',
-        pAngle: 'v1.angle(v2)',
-        pAngleSigned: 'v1.signAngle(v2)',
-        pRotateByAngle: 'p.rotate(radians)',
-        pCompMult: 'v1.multiply(v2)',
-        pFuzzyEqual: 'v1.fuzzyEquals(v2, tolerance)',
-        pLerp: 'p.lerp(endPoint, ratio)',
-        pClamp: 'p.clampf(min_inclusive, max_inclusive)',
-
-        rand: 'Math.random() * 0xffffff',
-        randomMinus1To1: '(Math.random() - 0.5) * 2',
-
-        container: 'cc.game.container',
-        _canvas: 'cc.game.canvas',
-        _renderType: 'cc.game.renderType',
-
-        _getError: 'cc.debug.getError',
-        _initDebugSetting: 'cc.debug._resetDebugSetting',
-        DebugMode: 'cc.debug.DebugMode',
-    }, 'cc');
+    provideClearError(cc, {}, 'cc');
     markAsRemovedInObject(cc, [
         'blendFuncDisable',
 
@@ -715,7 +626,7 @@ if (CC_DEBUG) {
             return cc.renderer.InputAssembler;
         }
     };
-    
+
     // audio
     markAsRemovedInObject(cc.audioEngine, [
         'getProfile',
