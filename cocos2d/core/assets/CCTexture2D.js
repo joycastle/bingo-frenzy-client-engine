@@ -379,7 +379,7 @@ var Texture2D = cc.Class({
                     let format = data.format;
                     this.initWithData(data._data, format ? format : this._format, data.width, data.height);
                     if (cc.macro.CLEANUP_IMAGE_CACHE) {
-                        data.src = "";
+                        this._cleanupImageCache();
                     }
                 }
                 else {
