@@ -6,7 +6,7 @@ function Atlas (width, height) {
     let texture = new RenderTexture();
     texture.initWithSize(width, height);
     texture.update();
-    
+
     this._texture = texture;
 
     this._x = space;
@@ -37,7 +37,7 @@ cc.js.mixin(Atlas.prototype, {
             sy += info.y;
         }
         else {
-            let width = texture.width, height = texture.height;        
+            let width = texture.width, height = texture.height;
 
             if ((this._x + width + space) > this._width) {
                 this._x = space;
@@ -56,19 +56,19 @@ cc.js.mixin(Atlas.prototype, {
             if (cc.dynamicAtlasManager.textureBleeding) {
                 // Smaller frame is more likely to be affected by linear filter
                 if (width <= 8 || height <= 8) {
-                    this._texture.drawTextureAt(texture, this._x-1, this._y-1);
-                    this._texture.drawTextureAt(texture, this._x-1, this._y+1);
-                    this._texture.drawTextureAt(texture, this._x+1, this._y-1);
-                    this._texture.drawTextureAt(texture, this._x+1, this._y+1);
+                    this._texture.drawTextureAtByTexture(texture, this._x-1, this._y-1);
+                    this._texture.drawTextureAtByTexture(texture, this._x-1, this._y+1);
+                    this._texture.drawTextureAtByTexture(texture, this._x+1, this._y-1);
+                    this._texture.drawTextureAtByTexture(texture, this._x+1, this._y+1);
                 }
 
-                this._texture.drawTextureAt(texture, this._x-1, this._y);
-                this._texture.drawTextureAt(texture, this._x+1, this._y);
-                this._texture.drawTextureAt(texture, this._x, this._y-1);
-                this._texture.drawTextureAt(texture, this._x, this._y+1);
+                this._texture.drawTextureAtByTexture(texture, this._x-1, this._y);
+                this._texture.drawTextureAtByTexture(texture, this._x+1, this._y);
+                this._texture.drawTextureAtByTexture(texture, this._x, this._y-1);
+                this._texture.drawTextureAtByTexture(texture, this._x, this._y+1);
             }
 
-            this._texture.drawTextureAt(texture, this._x, this._y);
+            this._texture.drawTextureAtByTexture(texture, this._x, this._y);
 
             this._innerTextureInfos[texture._id] = {
                 x: this._x,
@@ -91,7 +91,7 @@ cc.js.mixin(Atlas.prototype, {
             y: sy,
             texture: this._texture
         }
-        
+
         this._innerSpriteFrames.push(spriteFrame);
 
         return frame;
@@ -113,7 +113,7 @@ cc.js.mixin(Atlas.prototype, {
     isEmpty () {
         return this._count <= 0;
     },
-    
+
     reset () {
         this._x = space;
         this._y = space;

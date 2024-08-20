@@ -136,8 +136,8 @@ let RenderTexture = cc.Class({
         this._texture.updateSubTexture({
             x, y,
             texture: texture._texture,
-            width: data.texture.width,
-            height: data.texture.height,
+            width: texture.width,
+            height: texture.height,
             level: 0,
         });
     },
