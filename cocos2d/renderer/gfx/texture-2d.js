@@ -10,6 +10,8 @@ import { isPow2 } from './misc';
  * @typedef {import("../gfx/device").default} Device
  */
 
+let cacheFrameBuffer = null;
+
 export default class Texture2D extends Texture {
   /**
    * @constructor
@@ -135,6 +137,11 @@ export default class Texture2D extends Texture {
     this._device._restoreTexture(0);
   }
 
+  updateSubTexture(options) {
+    this._setSubTexture(options);
+    this._device._restoreTexture(0);
+  }
+
   /**
    * @method updateImage
    * @param {Object} options
@@ -212,6 +219,34 @@ export default class Texture2D extends Texture {
         );
       }
     }
+  }
+
+  _setSubTexture(options) {
+    let gl = this._device._gl;
+    if (!cacheFrameBuffer) {
+      cacheFrameBuffer = gl.createFramebuffer();
+    }
+    let oldFBO = gl.getParameter(gl.FRAMEBUFFER_BINDING);
+    // bind framebuffer
+    gl.bindFramebuffer(gl.FRAMEBUFFER, cacheFrameBuffer);
+    // attach src texture to framebuffer
+    gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, options.texture._glID, 0);
+    // bind dst texture
+    gl.bindTexture(gl.TEXTURE_2D, this._glID);
+    // copy texture
+    gl.copyTexSubImage2D(
+      gl.TEXTURE_2D,
+      options.level,
+      options.x,       // x-offset within the current texture
+      options.y,       // y-offset within the current texture
+      0, 0,            // x and y coordinates in pixels of lower left corner of source rectangle within the source framebuffer
+      options.width,   // Width of the srcTexture
+      options.height   // Height of the srcTexture
+    );
+    // unbind source texture from framebuffer
+    gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, null, 0);
+    // restore framebuffer
+    gl.bindFramebuffer(gl.FRAMEBUFFER, oldFBO);
   }
 
   _setImage(glFmt, options) {
