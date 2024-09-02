@@ -27,19 +27,44 @@ import BmfontAssembler from '../../../../utils/label/bmfont';
 
 let _dataOffset = 0;
 
+const COLOR_INDEX = [2, 3, 0, 1];
+
 export default class WebglBmfontAssembler extends BmfontAssembler {
     initData () {
         this._renderData.createFlexData(0, 4, 6, this.getVfmt());
     }
 
+    updateColor (comp) {
+        let uintVerts = this._renderData.uintVDatas[0];
+        if (!uintVerts) return;
+        const color = comp.node.color;
+        let floatsPerVert = this.floatsPerVert;
+        let colorOffset = this.colorOffset;
+        if (comp._gradient) {
+            comp._gradientColors.forEach((o) => {
+                o._fastSetA(color.getA());
+            });
+            let j = 0;
+            for (let i = colorOffset, l = uintVerts.length; i < l; i += floatsPerVert) {
+                let c_i = j % 4;
+                uintVerts[i] = comp._gradientColors[COLOR_INDEX[c_i]]._val;
+                j += 1;
+            }
+        } else {
+            for (let i = colorOffset, l = uintVerts.length; i < l; i += floatsPerVert) {
+                uintVerts[i] = color._val;
+            }
+        }
+    }
+
     _reserveQuads (comp, count) {
         let verticesCount = count * 4;
         let indicesCount = count * 6;
-        
+
         let flexBuffer = this._renderData._flexBuffer;
         flexBuffer.reserve(verticesCount, indicesCount);
         flexBuffer.used(verticesCount, indicesCount);
-       
+
         let iData = this._renderData.iDatas[0];
 
         for (let i = 0, vid = 0, l = indicesCount; i < l; i += 6, vid += 4) {
@@ -62,7 +87,11 @@ export default class WebglBmfontAssembler extends BmfontAssembler {
     }
 
     _getColor (comp) {
-        return comp.node._color._val;
+        if (comp._gradient && i !== undefined) {
+            return comp._gradientColors[COLOR_INDEX[i]]._val;
+        } else {
+            return comp.node._color._val;
+        }
     }
 
     appendQuad (comp, texture, rect, rotated, x, y, scale) {
@@ -76,8 +105,7 @@ export default class WebglBmfontAssembler extends BmfontAssembler {
         let texw = texture.width,
             texh = texture.height,
             rectWidth = rect.width,
-            rectHeight = rect.height,
-            color = this._getColor(comp);
+            rectHeight = rect.height;
 
         let l, b, r, t;
         let floatsPerVert = this.floatsPerVert;
@@ -131,7 +159,7 @@ export default class WebglBmfontAssembler extends BmfontAssembler {
         // colors
         let colorOffset = _dataOffset + this.colorOffset;
         for (let i = 0; i < 4; i++) {
-            uintVerts[colorOffset] = color;
+            uintVerts[colorOffset] = this._getColor(comp, i);
             colorOffset += floatsPerVert;
         }
 
@@ -177,4 +205,3 @@ export default class WebglBmfontAssembler extends BmfontAssembler {
         }
     }
 }
-

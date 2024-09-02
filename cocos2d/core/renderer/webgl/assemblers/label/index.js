@@ -28,10 +28,12 @@ import Label from '../../../../components/CCLabel';
 
 import TTF from './2d/ttf';
 import Bmfont from './2d/bmfont';
+import OutlineBmfont from './2d/outline-bmfont';
 import Letter from './2d/letter';
 
 import TTF3D from './3d/ttf';
 import Bmfont3D from './3d/bmfont';
+import OutlineBmfont3D from './3d/outline-bmfont';
 import Letter3D from './3d/letter';
 
 let NativeTTF = undefined;
@@ -70,9 +72,13 @@ Assembler.register(cc.Label, {
     getConstructor(label) {
         let is3DNode = label.node.is3DNode;
         let ctor = is3DNode ? TTF3D : TTF;
-        
+
         if (label.font instanceof cc.BitmapFont) {
-            ctor = is3DNode ? Bmfont3D : Bmfont;
+            if (label._outline) {
+                ctor = is3DNode ? OutlineBmfont3D : OutlineBmfont;
+            } else {
+                ctor = is3DNode ? Bmfont3D : Bmfont;
+            }
         } else if (label.cacheMode === Label.CacheMode.CHAR) {
 
             if(CC_JSB && !is3DNode && !!jsb.LabelRenderer && label.font instanceof cc.TTFFont && label._useNativeTTF()){
@@ -81,7 +87,7 @@ Assembler.register(cc.Label, {
                 cc.warn('sorry, subdomain does not support CHAR mode currently!');
             } else {
                 ctor = is3DNode ? Letter3D : Letter;
-            }  
+            }
         }
 
         return ctor;
@@ -89,10 +95,12 @@ Assembler.register(cc.Label, {
 
     TTF,
     Bmfont,
+    OutlineBmfont,
     Letter,
 
     TTF3D,
     Bmfont3D,
+    OutlineBmfont3D,
     Letter3D,
     NativeTTF
 });
