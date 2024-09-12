@@ -74,6 +74,7 @@ let EditBox = cc.Class({
             set(value) {
                 value = '' + value;
                 if (this.maxLength >= 0) {
+                    // 修改裁剪方式
                     let editArr = Array.from(value);
                     if (editArr.length >= this.maxLength) {
                         value = editArr.slice(0, this.maxLength).join("");
