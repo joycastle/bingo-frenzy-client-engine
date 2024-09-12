@@ -24,6 +24,7 @@
  ****************************************************************************/
 
 const Assembler3D = require('../../../../assembler-3d');
+import { vfmt3DTwoColor } from '../../../vertex-format';
 const WebglColorBmfontAssembler = require('../2d/outline-bmfont');
 
 const vec3 = cc.vmath.vec3;
@@ -32,10 +33,19 @@ const vec3_temp_local = vec3.create();
 const vec3_temp_world = vec3.create();
 
 export default class WebglColorBmfontAssembler3D extends WebglColorBmfontAssembler {
-
+    floatsPerVert = 7;
 }
 
 cc.js.mixin(WebglColorBmfontAssembler3D.prototype, Assembler3D, {
+
+    getBuffer() {
+        return cc.renderer._handle.getBuffer("mesh", this.getVfmt());
+    },
+
+    getVfmt () {
+        return vfmt3DTwoColor;
+    },
+
     updateWorldVerts (comp) {
         let matrix = comp.node._worldMatrix;
         let local = this._local;

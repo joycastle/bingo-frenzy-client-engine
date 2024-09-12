@@ -35192,14 +35192,16 @@ e.exports = i.default;
 268: [ (function(t, e, i) {
 "use strict";
 i.__esModule = !0;
-function n(t, e) {
+i.default = void 0;
+var n = t("../../../vertex-format");
+function r(t, e) {
 if (!(t instanceof e)) throw new TypeError("Cannot call a class as a function");
 }
-function r(t, e) {
+function s(t, e) {
 if (!t) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
 return !e || "object" != typeof e && "function" != typeof e ? t : e;
 }
-function s(t, e) {
+function o(t, e) {
 if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function, not " + typeof e);
 t.prototype = Object.create(e && e.prototype, {
 constructor: {
@@ -35211,29 +35213,39 @@ configurable: !0
 });
 e && (Object.setPrototypeOf ? Object.setPrototypeOf(t, e) : t.__proto__ = e);
 }
-var o = t("../../../../assembler-3d"), a = t("../2d/outline-bmfont"), c = cc.vmath.vec3, l = c.create(), h = c.create(), u = (function(t) {
-s(e, t);
+var a = t("../../../../assembler-3d"), c = t("../2d/outline-bmfont"), l = cc.vmath.vec3, h = l.create(), u = l.create(), _ = (function(t) {
+o(e, t);
 function e() {
-n(this, e);
-return r(this, t.apply(this, arguments));
+var i, n, o;
+r(this, e);
+for (var a = arguments.length, c = Array(a), l = 0; l < a; l++) c[l] = arguments[l];
+return o = (i = n = s(this, t.call.apply(t, [ this ].concat(c))), n.floatsPerVert = 7, 
+i), s(n, o);
 }
 return e;
-})(a);
-i.default = u;
-cc.js.mixin(u.prototype, o, {
+})(c);
+i.default = _;
+cc.js.mixin(_.prototype, a, {
+getBuffer: function() {
+return cc.renderer._handle.getBuffer("mesh", this.getVfmt());
+},
+getVfmt: function() {
+return n.vfmt3DTwoColor;
+},
 updateWorldVerts: function(t) {
 for (var e = t.node._worldMatrix, i = this._local, n = this._renderData.vDatas[0], r = this.floatsPerVert, s = 0; s < n.length; s += r) {
-c.set(l, i[s], i[s + 1], 0);
-c.transformMat4(h, l, e);
-n[s] = h.x;
-n[s + 1] = h.y;
-n[s + 2] = h.z;
+l.set(h, i[s], i[s + 1], 0);
+l.transformMat4(u, h, e);
+n[s] = u.x;
+n[s + 1] = u.y;
+n[s + 2] = u.z;
 }
 }
 });
 e.exports = i.default;
 }), {
 "../../../../assembler-3d": 227,
+"../../../vertex-format": 290,
 "../2d/outline-bmfont": 264
 } ],
 269: [ (function(t, e, i) {
@@ -37061,6 +37073,27 @@ n.default.VertexFormat.XYZ_UV_Color = r;
 var s = new n.default.VertexFormat([ {
 name: n.default.ATTR_POSITION,
 type: n.default.ATTR_TYPE_FLOAT32,
+num: 3
+}, {
+name: n.default.ATTR_UV0,
+type: n.default.ATTR_TYPE_FLOAT32,
+num: 2
+}, {
+name: n.default.ATTR_COLOR,
+type: n.default.ATTR_TYPE_UINT8,
+num: 4,
+normalize: !0
+}, {
+name: n.default.ATTR_COLOR0,
+type: n.default.ATTR_TYPE_UINT8,
+num: 4,
+normalize: !0
+} ]);
+s.name = "vfmt3DTwoColor";
+n.default.VertexFormat.XYZ_UV_TwoColor = s;
+var o = new n.default.VertexFormat([ {
+name: n.default.ATTR_POSITION,
+type: n.default.ATTR_TYPE_FLOAT32,
 num: 2
 }, {
 name: n.default.ATTR_UV0,
@@ -37072,9 +37105,9 @@ type: n.default.ATTR_TYPE_UINT8,
 num: 4,
 normalize: !0
 } ]);
-s.name = "vfmtPosUvColor";
-n.default.VertexFormat.XY_UV_Color = s;
-var o = new n.default.VertexFormat([ {
+o.name = "vfmtPosUvColor";
+n.default.VertexFormat.XY_UV_Color = o;
+var a = new n.default.VertexFormat([ {
 name: n.default.ATTR_POSITION,
 type: n.default.ATTR_TYPE_FLOAT32,
 num: 2
@@ -37093,9 +37126,9 @@ type: n.default.ATTR_TYPE_UINT8,
 num: 4,
 normalize: !0
 } ]);
-o.name = "vfmtPosUvTwoColor";
-n.default.VertexFormat.XY_UV_Two_Color = o;
-var a = new n.default.VertexFormat([ {
+a.name = "vfmtPosUvTwoColor";
+n.default.VertexFormat.XY_UV_Two_Color = a;
+var c = new n.default.VertexFormat([ {
 name: n.default.ATTR_POSITION,
 type: n.default.ATTR_TYPE_FLOAT32,
 num: 2
@@ -37104,9 +37137,9 @@ name: n.default.ATTR_UV0,
 type: n.default.ATTR_TYPE_FLOAT32,
 num: 2
 } ]);
-a.name = "vfmtPosUv";
-n.default.VertexFormat.XY_UV = a;
-var c = new n.default.VertexFormat([ {
+c.name = "vfmtPosUv";
+n.default.VertexFormat.XY_UV = c;
+var l = new n.default.VertexFormat([ {
 name: n.default.ATTR_POSITION,
 type: n.default.ATTR_TYPE_FLOAT32,
 num: 2
@@ -37116,22 +37149,23 @@ type: n.default.ATTR_TYPE_UINT8,
 num: 4,
 normalize: !0
 } ]);
-c.name = "vfmtPosColor";
-n.default.VertexFormat.XY_Color = c;
-var l = new n.default.VertexFormat([ {
+l.name = "vfmtPosColor";
+n.default.VertexFormat.XY_Color = l;
+var h = new n.default.VertexFormat([ {
 name: n.default.ATTR_POSITION,
 type: n.default.ATTR_TYPE_FLOAT32,
 num: 2
 } ]);
-l.name = "vfmtPos";
-n.default.VertexFormat.XY = l;
+h.name = "vfmtPos";
+n.default.VertexFormat.XY = h;
 e.exports = {
 vfmt3D: r,
-vfmtPosUvColor: s,
-vfmtPosUvTwoColor: o,
-vfmtPosUv: a,
-vfmtPosColor: c,
-vfmtPos: l
+vfmt3DTwoColor: s,
+vfmtPosUvColor: o,
+vfmtPosUvTwoColor: a,
+vfmtPosUv: c,
+vfmtPosColor: l,
+vfmtPos: h
 };
 }), {
 "../../../renderer/gfx": 355

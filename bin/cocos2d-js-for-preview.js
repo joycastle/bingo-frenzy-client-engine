@@ -40507,6 +40507,8 @@
   269: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
+    exports.default = void 0;
+    var _vertexFormat = require("../../../vertex-format");
     function _classCallCheck(instance, Constructor) {
       if (!(instance instanceof Constructor)) throw new TypeError("Cannot call a class as a function");
     }
@@ -40534,13 +40536,22 @@
     var WebglColorBmfontAssembler3D = (function(_WebglColorBmfontAsse) {
       _inherits(WebglColorBmfontAssembler3D, _WebglColorBmfontAsse);
       function WebglColorBmfontAssembler3D() {
+        var _temp, _this, _ret;
         _classCallCheck(this, WebglColorBmfontAssembler3D);
-        return _possibleConstructorReturn(this, _WebglColorBmfontAsse.apply(this, arguments));
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) args[_key] = arguments[_key];
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, _WebglColorBmfontAsse.call.apply(_WebglColorBmfontAsse, [ this ].concat(args))), 
+        _this), _this.floatsPerVert = 7, _temp), _possibleConstructorReturn(_this, _ret);
       }
       return WebglColorBmfontAssembler3D;
     })(WebglColorBmfontAssembler);
     exports.default = WebglColorBmfontAssembler3D;
     cc.js.mixin(WebglColorBmfontAssembler3D.prototype, Assembler3D, {
+      getBuffer: function getBuffer() {
+        return cc.renderer._handle.getBuffer("mesh", this.getVfmt());
+      },
+      getVfmt: function getVfmt() {
+        return _vertexFormat.vfmt3DTwoColor;
+      },
       updateWorldVerts: function updateWorldVerts(comp) {
         var matrix = comp.node._worldMatrix;
         var local = this._local;
@@ -40558,6 +40569,7 @@
     module.exports = exports["default"];
   }), {
     "../../../../assembler-3d": 228,
+    "../../../vertex-format": 293,
     "../2d/outline-bmfont": 265
   } ],
   270: [ (function(require, module, exports) {
@@ -42921,6 +42933,27 @@
     } ]);
     vfmt3D.name = "vfmt3D";
     _gfx2.default.VertexFormat.XYZ_UV_Color = vfmt3D;
+    var vfmt3DTwoColor = new _gfx2.default.VertexFormat([ {
+      name: _gfx2.default.ATTR_POSITION,
+      type: _gfx2.default.ATTR_TYPE_FLOAT32,
+      num: 3
+    }, {
+      name: _gfx2.default.ATTR_UV0,
+      type: _gfx2.default.ATTR_TYPE_FLOAT32,
+      num: 2
+    }, {
+      name: _gfx2.default.ATTR_COLOR,
+      type: _gfx2.default.ATTR_TYPE_UINT8,
+      num: 4,
+      normalize: true
+    }, {
+      name: _gfx2.default.ATTR_COLOR0,
+      type: _gfx2.default.ATTR_TYPE_UINT8,
+      num: 4,
+      normalize: true
+    } ]);
+    vfmt3DTwoColor.name = "vfmt3DTwoColor";
+    _gfx2.default.VertexFormat.XYZ_UV_TwoColor = vfmt3DTwoColor;
     var vfmtPosUvColor = new _gfx2.default.VertexFormat([ {
       name: _gfx2.default.ATTR_POSITION,
       type: _gfx2.default.ATTR_TYPE_FLOAT32,
@@ -42990,6 +43023,7 @@
     _gfx2.default.VertexFormat.XY = vfmtPos;
     module.exports = {
       vfmt3D: vfmt3D,
+      vfmt3DTwoColor: vfmt3DTwoColor,
       vfmtPosUvColor: vfmtPosUvColor,
       vfmtPosUvTwoColor: vfmtPosUvTwoColor,
       vfmtPosUv: vfmtPosUv,
