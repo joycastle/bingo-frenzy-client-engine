@@ -73,8 +73,11 @@ let EditBox = cc.Class({
             },
             set(value) {
                 value = '' + value;
-                if (this.maxLength >= 0 && value.length >= this.maxLength) {
-                    value = value.slice(0, this.maxLength);
+                if (this.maxLength >= 0) {
+                    let editArr = Array.from(value);
+                    if (editArr.length >= this.maxLength) {
+                        value = editArr.slice(0, this.maxLength).join("");
+                    }
                 }
 
                 this._string = value;
