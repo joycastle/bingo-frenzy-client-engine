@@ -225,7 +225,8 @@ export default class BmfontAssembler extends Assembler2D {
                 letterDef = shareLabelInfo.fontAtlas.getLetterDefinitionForChar(character, shareLabelInfo);
                 if (!letterDef) {
                     this._recordPlaceholderInfo(letterIndex, character);
-                    console.log("Can't find letter definition in texture atlas " + _fntConfig.atlasName + " for letter:" + character);
+                    const atlasName = _fntConfig ? _fntConfig.atlasName : "[engine shareAtlas]";
+                    console.log("Can't find letter definition in texture atlas " + atlasName + " for letter:" + character);
                     continue;
                 }
 
