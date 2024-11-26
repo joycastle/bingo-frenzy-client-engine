@@ -72,8 +72,11 @@ let EditBox = cc.Class({
             },
             set(value) {
                 value = '' + value;
-                if (this.maxLength >= 0 && value.length >= this.maxLength) {
-                    value = value.slice(0, this.maxLength);
+                if (this.maxLength >= 0) {
+                    let valueArr = Array.from(value);
+                    if (valueArr.length >= this.maxLength) {
+                        value = valueArr.slice(0, this.maxLength).join("");
+                    }
                 }
 
                 this._string = value;
@@ -506,7 +509,7 @@ let EditBox = cc.Class({
             if (!node) {
                 node = new cc.Node('BACKGROUND_SPRITE');
             }
-            
+
             background = node.getComponent(cc.Sprite);
             if (!background) {
                 background = node.addComponent(cc.Sprite);
@@ -517,7 +520,7 @@ let EditBox = cc.Class({
 
         // update
         background.type = cc.Sprite.Type.SLICED;
-        
+
         // handle old data
         if (this._N$backgroundImage !== undefined) {
             background.spriteFrame = this._N$backgroundImage;
@@ -697,7 +700,7 @@ let EditBox = cc.Class({
                 passwordString += '\u25CF';
             }
             text = passwordString;
-        } 
+        }
         else if (inputFlag === InputFlag.INITIAL_CAPS_ALL_CHARACTERS) {
             text = text.toUpperCase();
         }
