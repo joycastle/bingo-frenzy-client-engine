@@ -32235,7 +32235,8 @@
         cc.view.off("canvas-resize", this.updateArea, this);
       },
       updateArea: function updateArea() {
-        var widget = this.node.getComponent(Widget);
+        var _this$node;
+        var widget = null == (_this$node = this.node) ? void 0 : _this$node.getComponent(Widget);
         if (!widget) return;
         false;
         widget.updateAlignment();
@@ -44178,6 +44179,7 @@
     var isJKWGame = "jkw-game" === settingPlatform;
     var isQttGame = "qtt-game" === settingPlatform;
     var isLinkSure = "link-sure" === settingPlatform;
+    var isMigu = "migu-runtime" === settingPlatform;
     var _global = "undefined" === typeof window ? global : window;
     function initSys() {
       cc.sys = {};
@@ -44250,6 +44252,7 @@
       sys.LINKSURE = 119;
       sys.TAOBAO = 120;
       sys.TAOBAO_MINIGAME = 121;
+      sys.MIGU_MINIGAME = 122;
       sys.BROWSER_TYPE_WECHAT = "wechat";
       sys.BROWSER_TYPE_ANDROID = "androidbrowser";
       sys.BROWSER_TYPE_IE = "ie";
@@ -44315,9 +44318,9 @@
         var formatSupport;
         true;
         var platform;
-        platform = isVivoGame ? sys.VIVO_GAME : isOppoGame ? sys.OPPO_GAME : isHuaweiGame ? sys.HUAWEI_GAME : isJKWGame ? sys.JKW_GAME : isQttGame ? sys.QTT_GAME : isLinkSure ? sys.LINKSURE : __getPlatform();
+        platform = isVivoGame ? sys.VIVO_GAME : isOppoGame ? sys.OPPO_GAME : isHuaweiGame ? sys.HUAWEI_GAME : isJKWGame ? sys.JKW_GAME : isQttGame ? sys.QTT_GAME : isLinkSure ? sys.LINKSURE : isMigu ? sys.MIGU_MINIGAME : __getPlatform();
         sys.platform = platform;
-        sys.isMobile = platform === sys.ANDROID || platform === sys.IPAD || platform === sys.IPHONE || platform === sys.WP8 || platform === sys.TIZEN || platform === sys.BLACKBERRY || platform === sys.XIAOMI_GAME || platform === sys.OPENHARMONY || isVivoGame || isOppoGame || isHuaweiGame || isJKWGame || isQttGame;
+        sys.isMobile = platform === sys.ANDROID || platform === sys.IPAD || platform === sys.IPHONE || platform === sys.WP8 || platform === sys.TIZEN || platform === sys.BLACKBERRY || platform === sys.XIAOMI_GAME || platform === sys.OPENHARMONY || isVivoGame || isOppoGame || isHuaweiGame || isJKWGame || isQttGame || isMigu;
         sys.os = __getOS();
         sys.language = __getCurrentLanguage();
         var languageCode;
@@ -95361,7 +95364,7 @@
     defineDeprecatedMacroGetter("CC_QQPLAY", QQPLAY);
     true;
     cc._Test = {};
-    var engineVersion = "2.4.13";
+    var engineVersion = "2.4.14";
     _global["CocosEngine"] = cc.ENGINE_VERSION = engineVersion;
   }), {} ]
 }, {}, [ 453 ]);
