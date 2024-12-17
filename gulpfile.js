@@ -98,7 +98,7 @@ gulp.task('build-jsb-min',  gulp.series(gulp.parallel('clean-cache', 'build-debu
     if (args.indexOf('--native-renderer') !== -1) {
         opts.nativeRenderer = true;
     }
-    
+
     Engine.buildJsbMin([
         './index.js',
     ], './bin/cocos2d-jsb-min.js', [], opts, done);
@@ -182,7 +182,7 @@ gulp.task('build-html5-dev', gulp.series(gulp.parallel('clean-cache', 'build-deb
 }));
 
 gulp.task('build-html5-min', gulp.series(gulp.parallel('clean-cache', 'build-debug-infos'), function buildHtml5Min(done) {
-    Engine.buildCocosJsMin('./index.js', './bin/cocos2d-js-min.js', [], done);
+    Engine.buildCocosJsMin('./index.js', './bin/cocos2d-js-min.js', [], {}, done);
 }));
 
 gulp.task('build-html5-preview',  gulp.series('build-debug-infos', function buildHtml5Preview(done) {
@@ -205,3 +205,18 @@ gulp.task('build', gulp.parallel('clean-cache', 'build-html5-preview', 'build-js
 
 // default task
 gulp.task('default', gulp.series('build'));
+
+// 构建 bingo html 引擎代码, 排除 dragonbones 和 3d 粒子系统, 排除文件参考 modules.json
+gulp.task('build-bingo-html5-min', gulp.series(gulp.parallel('clean-cache', 'build-debug-infos'), function buildHtml5Min(done) {
+    Engine.buildCocosJsMin('./index.js', './bin/cocos2d-js-min.js',
+        [
+            Path.resolve(__dirname, "./extensions/dragonbones/index.js"),
+            Path.resolve(__dirname, "./cocos2d/core/3d/particle/particle-system-3d.ts"),
+            Path.resolve(__dirname, "./cocos2d/core/3d/particle/renderer/particle-system-3d-renderer.ts"),
+        ],
+    {}, done);
+}, function copyToBuildTemplet(done) {
+    return gulp.src("./bin/cocos2d-js-min.js")
+        .pipe(gulp.dest("../build-templates/web-mobile"))
+        .pipe(gulp.dest("../build-templates/fb-instant-games"));
+}));
