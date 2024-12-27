@@ -33593,7 +33593,10 @@
           var oldDefine = material.getDefine("USE_TEXTURE");
           void 0 === oldDefine || oldDefine || material.define("USE_TEXTURE", true);
           var textureImpl = texture && texture.getImpl();
-          material.getProperty("texture") !== textureImpl && material.setProperty("texture", texture);
+          if (material.getProperty("texture") !== textureImpl) {
+            material.setProperty("texture", texture);
+            this.setVertsDirty();
+          }
         }
         BlendFunc.prototype._updateMaterial.call(this);
       },
@@ -49590,6 +49593,9 @@
           }
         } else horizontalKernings.length = 0;
       };
+      _proto._clearHorizontalKerning = function _clearHorizontalKerning() {
+        _horizontalKernings.length = 0;
+      };
       _proto._multilineTextWrap = function _multilineTextWrap(nextTokenFunc) {
         var textLen = _string.length;
         var lineIndex = 0;
@@ -50191,7 +50197,9 @@
         _isBold && (fontDesc = "bold " + fontDesc);
         return fontDesc;
       };
-      _proto._computeHorizontalKerningForText = function _computeHorizontalKerningForText() {};
+      _proto._computeHorizontalKerningForText = function _computeHorizontalKerningForText() {
+        this._clearHorizontalKerning();
+      };
       _proto._determineRect = function _determineRect(tempRect) {
         return false;
       };

@@ -306,7 +306,10 @@ export default class LetterFontAssembler extends WebglBmfontAssembler {
 
         return fontDesc;
     }
-    _computeHorizontalKerningForText () {}
+
+    _computeHorizontalKerningForText() {
+        this._clearHorizontalKerning();
+    }
     _determineRect (tempRect) {
         return false;
     }
