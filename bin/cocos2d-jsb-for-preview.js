@@ -28811,7 +28811,7 @@
         this.disabledSprite && this.disabledSprite.ensureLoadTexture();
         true;
         this._registerNodeEvent();
-        this._updateState();
+        this._updateState(true);
       },
       onDisable: function onDisable() {
         this._resetState();
@@ -29016,9 +29016,9 @@
           this._updateState();
         }
       },
-      _updateState: function _updateState() {
+      _updateState: function _updateState(skipAnim) {
         var state = this._getButtonState();
-        this._applyTransition(state);
+        this._applyTransition(state, skipAnim);
         this._updateDisabledState();
       },
       _getButtonState: function _getButtonState() {
@@ -29046,11 +29046,17 @@
         var sprite = this._getStateSprite(state);
         this._sprite && sprite && (this._sprite.spriteFrame = sprite);
       },
-      _updateScaleTransition: function _updateScaleTransition(state) {
-        state === State.PRESSED ? this._zoomUp() : this._zoomBack();
+      _updateScaleTransition: function _updateScaleTransition(state, skipAnim) {
+        skipAnim = !!skipAnim;
+        state === State.PRESSED ? this._zoomUp(skipAnim) : this._zoomBack(skipAnim);
       },
-      _zoomUp: function _zoomUp() {
+      _zoomUp: function _zoomUp(skipAnim) {
         if (!this._originalScale) return;
+        if (skipAnim) {
+          var target = this._getTarget();
+          target.scale = this._originalScale.mul(this.zoomScale);
+          return;
+        }
         this._fromScale.x = this._originalScale.x;
         this._fromScale.y = this._originalScale.y;
         this._toScale.x = this._originalScale.x * this.zoomScale;
@@ -29058,8 +29064,13 @@
         this.time = 0;
         this._transitionFinished = false;
       },
-      _zoomBack: function _zoomBack() {
+      _zoomBack: function _zoomBack(skipAnim) {
         if (!this._originalScale) return;
+        if (skipAnim) {
+          var _target = this._getTarget();
+          _target.scale = this._originalScale;
+          return;
+        }
         var target = this._getTarget();
         this._fromScale.x = target.scaleX;
         this._fromScale.y = target.scaleY;
@@ -29072,9 +29083,9 @@
         oldTransition === Transition.COLOR ? this._updateColorTransitionImmediately(State.NORMAL) : oldTransition === Transition.SPRITE && this._updateSpriteTransition(State.NORMAL);
         this._updateState();
       },
-      _applyTransition: function _applyTransition(state) {
+      _applyTransition: function _applyTransition(state, skipAnim) {
         var transition = this.transition;
-        transition === Transition.COLOR ? this._updateColorTransition(state) : transition === Transition.SPRITE ? this._updateSpriteTransition(state) : transition === Transition.SCALE && this._updateScaleTransition(state);
+        transition === Transition.COLOR ? this._updateColorTransition(state) : transition === Transition.SPRITE ? this._updateSpriteTransition(state) : transition === Transition.SCALE && this._updateScaleTransition(state, skipAnim);
       },
       _resizeNodeToTargetNode: false,
       _updateDisabledState: function _updateDisabledState(force) {
