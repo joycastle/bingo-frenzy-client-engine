@@ -25938,6 +25938,7 @@
         var properties = pass._properties;
         properties.hasOwnProperty(name) || this._createPassProp(name, pass);
         var prop = properties[name];
+        if (!prop) return false;
         var compareValue = value;
         prop.type === _enums["default"].PARAM_TEXTURE_2D && (compareValue = value && value.getImpl());
         if (prop.value === compareValue) return true;
