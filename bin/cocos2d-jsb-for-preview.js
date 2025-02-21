@@ -63056,8 +63056,8 @@
             self._plistFile = file.nativeUrl;
             if (!self._custom) {
               var isDiffFrame = self._spriteFrame !== file.spriteFrame;
-              isDiffFrame && (self.spriteFrame = file.spriteFrame);
               self._initWithDictionary(file._nativeAsset);
+              isDiffFrame && (self.spriteFrame = file.spriteFrame);
             }
             self._spriteFrame ? !self._renderSpriteFrame && self._spriteFrame && self._applySpriteFrame(self.spriteFrame) : file.spriteFrame ? self.spriteFrame = file.spriteFrame : self._custom && self._initTextureWithDictionary(file._nativeAsset);
           }));

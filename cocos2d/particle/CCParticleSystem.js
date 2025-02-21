@@ -1023,8 +1023,8 @@ var ParticleSystem = cc.Class({
 
                 if (!self._custom) {
                     var isDiffFrame = self._spriteFrame !== file.spriteFrame;
-                    if (isDiffFrame) self.spriteFrame = file.spriteFrame;
                     self._initWithDictionary(file._nativeAsset);
+                    if (isDiffFrame) self.spriteFrame = file.spriteFrame;
                 }
 
                 if (!self._spriteFrame) {
@@ -1034,8 +1034,7 @@ var ParticleSystem = cc.Class({
                     else if (self._custom) {
                         self._initTextureWithDictionary(file._nativeAsset);
                     }
-                }
-                else if (!self._renderSpriteFrame && self._spriteFrame) {
+                } else if (!self._renderSpriteFrame && self._spriteFrame) {
                     self._applySpriteFrame(self.spriteFrame);
                 }
             });
