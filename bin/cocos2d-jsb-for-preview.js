@@ -3226,9 +3226,11 @@
           var time = prop.easing ? prop.easing(t) : easingTime;
           var current = prop.current = (prop.progress || progress)(prop.start, prop.end, prop.current, time);
           target[name] = current;
+          1 === t && prop.onComplete && prop.onComplete();
         }
         var onUpdate = opts.onUpdate;
         onUpdate && onUpdate(target, t);
+        1 === t && opts.onComplete && opts.onComplete(target);
       },
       progress: function progress(start, end, current, t) {
         "number" === typeof start ? current = start + (end - start) * t : start.lerp(end, t, current);
