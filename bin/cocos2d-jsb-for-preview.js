@@ -22297,7 +22297,7 @@
       var out = null, err = null;
       try {
         out = new cc.Texture2D();
-        out._nativeUrl = id;
+        out._nativeUrl = options.cacheKey || id;
         out._nativeAsset = data;
       } catch (e) {
         err = e;
@@ -22306,14 +22306,14 @@
     }
     function createAudioClip(id, data, options, onComplete) {
       var out = new cc.AudioClip();
-      out._nativeUrl = id;
+      out._nativeUrl = options.cacheKey || id;
       out._nativeAsset = data;
       out.duration = data.duration;
       onComplete && onComplete(null, out);
     }
     function createVideoClip(id, data, options, onComplete) {
       var out = new cc.VideoClip();
-      out._nativeUrl = id;
+      out._nativeUrl = options.cacheKey || id;
       out._nativeAsset = data;
       onComplete && onComplete(null, out);
     }
@@ -22329,19 +22329,19 @@
     }
     function createFont(id, data, options, onComplete) {
       var out = new cc.TTFFont();
-      out._nativeUrl = id;
+      out._nativeUrl = options.cacheKey || id;
       out._nativeAsset = data;
       onComplete && onComplete(null, out);
     }
     function createBufferAsset(id, data, options, onComplete) {
       var out = new cc.BufferAsset();
-      out._nativeUrl = id;
+      out._nativeUrl = options.cacheKey || id;
       out._nativeAsset = data;
       onComplete && onComplete(null, out);
     }
     function createAsset(id, data, options, onComplete) {
       var out = new cc.Asset();
-      out._nativeUrl = id;
+      out._nativeUrl = options.cacheKey || id;
       out._nativeAsset = data;
       onComplete && onComplete(null, out);
     }
