@@ -24,22 +24,15 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-require('./CCAsset');
-require('./CCFont');
-require('./CCPrefab');
-require('./CCAudioClip');
-require('./CCVideoClip');
-require('./CCScripts');
-require('./CCSceneAsset');
-require('./CCSpriteFrame');
-require('./CCTexture2D');
-require('./CCRenderTexture');
-require('./CCTTFFont');
-require('./CCSpriteAtlas');
-require('./CCBitmapFont');
-require('./CCLabelAtlas');
-require('./CCTextAsset');
-require('./CCJsonAsset');
-require('./CCBufferAsset');
-require('./CCBankAsset');
-require('./material');
+/**
+ * !#en Class for bank file.
+ * !#zh fomd bank asset。
+ * @class BankAsset
+ * @extends Asset
+ */
+var BankAsset = cc.Class({
+    name: 'cc.BankAsset',
+    extends: cc.Asset,
+});
+
+module.exports = cc.BankAsset = BankAsset;
