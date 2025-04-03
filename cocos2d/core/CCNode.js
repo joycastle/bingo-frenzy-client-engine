@@ -618,7 +618,7 @@ function _checkListeners (node, events) {
 }
 
 function _doDispatchEvent (owner, event, cachedArray) {
-    if (event instanceof cc.Event.EventTouch) {
+    if (cc.sys.isNative && event instanceof cc.Event.EventTouch) {
         if (!owner.isMultiTouchEnabled) {
             if (event.getID() !== 0) {
                 return;

@@ -18536,7 +18536,7 @@
       return true;
     }
     function _doDispatchEvent(owner, event, cachedArray) {
-      if (event instanceof cc.Event.EventTouch && !owner.isMultiTouchEnabled && 0 !== event.getID()) return;
+      if (cc.sys.isNative && event instanceof cc.Event.EventTouch && !owner.isMultiTouchEnabled && 0 !== event.getID()) return;
       var target, i;
       event.target = owner;
       cachedArray.length = 0;
