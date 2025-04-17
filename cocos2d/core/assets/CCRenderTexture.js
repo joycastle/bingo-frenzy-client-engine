@@ -56,8 +56,8 @@ let RenderTexture = cc.Class({
      * !#en
      * Init the render texture with size.
      * !#zh
-     * 初始化 render texture 
-     * @param {Number} [width] 
+     * 初始化 render texture
+     * @param {Number} [width]
      * @param {Number} [height]
      * @param {Number} [depthStencilFormat]
      * @method initWithSize
@@ -66,7 +66,7 @@ let RenderTexture = cc.Class({
         this.width = Math.floor(width || cc.visibleRect.width);
         this.height = Math.floor(height || cc.visibleRect.height);
         this._resetUnderlyingMipmaps();
-        
+
         let opts = {
             colors: [ this._texture ],
         };
@@ -90,7 +90,7 @@ let RenderTexture = cc.Class({
         this._framebuffer = new gfx.FrameBuffer(renderer.device, width, height, opts);
 
         this._packable = false;
-        
+
         this.loaded = true;
         this.emit("load");
     },
@@ -109,18 +109,20 @@ let RenderTexture = cc.Class({
     /**
      * !#en Draw a texture to the specified position
      * !#zh 将指定的图片渲染到指定的位置上
-     * @param {Texture2D} texture 
-     * @param {Number} x 
-     * @param {Number} y 
+     * @param {Texture2D} texture
+     * @param {Number} x
+     * @param {Number} y
      */
-    drawTextureAt (texture, x, y) {
-        if (!texture._image || texture._image.width === 0) return;
-
+    drawTextureAt (texture, x, y, width, height) {
+        if (!texture._image) return;
+        width = width || texture.width;
+        height = height || texture.height;
+        if (width === 0 || height === 0) return;
         this._texture.updateSubImage({
             x, y,
             image: texture._image,
-            width: texture.width,
-            height: texture.height,
+            width: width,
+            height: height,
             level: 0,
             flipY: false,
             premultiplyAlpha: texture._premultiplyAlpha
@@ -149,7 +151,7 @@ let RenderTexture = cc.Class({
      * !#en
      * Get pixels from render texture, the pixels data stores in a RGBA Uint8Array.
      * It will return a new (width * height * 4) length Uint8Array by default。
-     * You can specify a data to store the pixels to reuse the data, 
+     * You can specify a data to store the pixels to reuse the data,
      * you and can specify other params to specify the texture region to read.
      * !#zh
      * 从 render texture 读取像素数据，数据类型为 RGBA 格式的 Uint8Array 数组。
@@ -157,10 +159,10 @@ let RenderTexture = cc.Class({
      * 你可以通过传入 data 来接收像素数据，也可以通过传参来指定需要读取的区域的像素。
      * @method readPixels
      * @param {Uint8Array} [data]
-     * @param {Number} [x] 
-     * @param {Number} [y] 
-     * @param {Number} [w] 
-     * @param {Number} [h] 
+     * @param {Number} [x]
+     * @param {Number} [y]
+     * @param {Number} [w]
+     * @param {Number} [h]
      * @return {Uint8Array}
      */
     readPixels (data, x, y, w, h) {
