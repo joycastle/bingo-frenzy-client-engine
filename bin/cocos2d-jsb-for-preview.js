@@ -24493,17 +24493,14 @@
         this._framebuffer._width = width;
         this._framebuffer._height = height;
       },
-      drawTextureAt: function drawTextureAt(texture, x, y, width, height) {
-        if (!texture._image) return;
-        width = width || texture.width;
-        height = height || texture.height;
-        if (0 === width || 0 === height) return;
+      drawTextureAt: function drawTextureAt(texture, x, y) {
+        if (!texture._image || 0 === texture._image.width) return;
         this._texture.updateSubImage({
           x: x,
           y: y,
           image: texture._image,
-          width: width,
-          height: height,
+          width: texture.width,
+          height: texture.height,
           level: 0,
           flipY: false,
           premultiplyAlpha: texture._premultiplyAlpha
