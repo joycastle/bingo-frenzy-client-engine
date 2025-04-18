@@ -24526,17 +24526,14 @@
           premultiplyAlpha: texture._premultiplyAlpha
         });
       },
-      drawTextureAtByTexture: function drawTextureAtByTexture(texture, x, y, width, height) {
+      drawTextureAtByTexture: function drawTextureAtByTexture(texture, x, y) {
         if (!texture._texture) return;
-        width = width || texture.width;
-        height = height || texture.height;
-        if (0 === width || 0 === height) return;
         this._texture.updateSubTexture({
           x: x,
           y: y,
           texture: texture._texture,
-          width: width,
-          height: height,
+          width: texture.width,
+          height: texture.height,
           level: 0
         });
       },

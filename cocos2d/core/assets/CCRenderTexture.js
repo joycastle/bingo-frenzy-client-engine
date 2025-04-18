@@ -131,16 +131,13 @@ let RenderTexture = cc.Class({
      * !#en Draw a texture to the specified position
      * !#zh 将指定的图片渲染到指定的位置上
      */
-    drawTextureAtByTexture(texture, x, y, width, height) {
-        if (!texture._texture) return;
-        width = width || texture.width;
-        height = height || texture.height;
-        if (width === 0 || height === 0) return;
+    drawTextureAtByTexture(texture, x, y) {
+        if(!texture._texture) return;
         this._texture.updateSubTexture({
             x, y,
             texture: texture._texture,
-            width: width,
-            height: height,
+            width: texture.width,
+            height: texture.height,
             level: 0,
         });
     },
