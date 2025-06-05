@@ -3035,12 +3035,9 @@
       getActionByTag: function getActionByTag(tag, target) {
         tag === cc.Action.TAG_INVALID && cc.logID(1004);
         var element = this._hashTargets[target._id];
-        if (element) {
-          if (null != element.actions) for (var i = 0; i < element.actions.length; ++i) {
-            var action = element.actions[i];
-            if (action && action.getTag() === tag) return action;
-          }
-          cc.logID(1005, tag);
+        if (element && null != element.actions) for (var i = 0; i < element.actions.length; ++i) {
+          var action = element.actions[i];
+          if (action && action.getTag() === tag) return action;
         }
         return null;
       },
