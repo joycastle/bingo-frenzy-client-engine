@@ -88580,14 +88580,39 @@
         IkConstraint.prototype.apply1 = function(bone, targetX, targetY, compress, stretch, uniform, alpha) {
           bone.appliedValid || bone.updateAppliedTransform();
           var p = bone.parent;
-          var id = 1 / (p.a * p.d - p.b * p.c);
-          var x = targetX - p.worldX, y = targetY - p.worldY;
-          var tx = (x * p.d - y * p.b) * id - bone.ax, ty = (y * p.a - x * p.c) * id - bone.ay;
-          var rotationIK = Math.atan2(ty, tx) * spine.MathUtils.radDeg - bone.ashearX - bone.arotation;
+          var pa = p.a, pb = p.b, pc = p.c, pd = p.d;
+          var rotationIK = -bone.ashearX - bone.arotation, tx = 0, ty = 0;
+          switch (bone.data.transformMode) {
+           case spine.TransformMode.OnlyTranslation:
+            tx = targetX - bone.worldX;
+            ty = targetY - bone.worldY;
+            break;
+
+           case spine.TransformMode.NoRotationOrReflection:
+            var s = Math.abs(pa * pd - pb * pc) / (pa * pa + pc * pc);
+            var sa = pa / bone.skeleton.scaleX;
+            var sc = pc / bone.skeleton.scaleY;
+            pb = -sc * s * bone.skeleton.scaleX;
+            pd = sa * s * bone.skeleton.scaleY;
+            rotationIK += Math.atan2(sc, sa) * spine.MathUtils.radDeg;
+
+           default:
+            var x = targetX - p.worldX, y = targetY - p.worldY;
+            var d = pa * pd - pb * pc;
+            tx = (x * pd - y * pb) / d - bone.ax;
+            ty = (y * pa - x * pc) / d - bone.ay;
+          }
+          rotationIK += Math.atan2(ty, tx) * spine.MathUtils.radDeg;
           bone.ascaleX < 0 && (rotationIK += 180);
           rotationIK > 180 ? rotationIK -= 360 : rotationIK < -180 && (rotationIK += 360);
           var sx = bone.ascaleX, sy = bone.ascaleY;
           if (compress || stretch) {
+            switch (bone.data.transformMode) {
+             case spine.TransformMode.NoScale:
+             case spine.TransformMode.NoScaleOrReflection:
+              tx = targetX - bone.worldX;
+              ty = targetY - bone.worldY;
+            }
             var b = bone.data.length * sx, dd = Math.sqrt(tx * tx + ty * ty);
             if (compress && dd < b || stretch && dd > b && b > 1e-4) {
               var s = (dd / b - 1) * alpha + 1;
