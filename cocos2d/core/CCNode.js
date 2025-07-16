@@ -1911,12 +1911,12 @@ let NodeDefines = {
             trs = this._trs = this._spaceInfo.trs;
         }
 
-        if (CC_EDITOR) {
-            if (this._skewX !== 0 || this._skewY !== 0) {
-                var NodeUtils = Editor.require('scene://utils/node');
-                cc.warn("`cc.Node.skewX/Y` is deprecated since v2.2.1, please use 3D node instead.", `Node: ${NodeUtils.getNodePath(this)}.`);
-            }
-        }
+        // if (CC_EDITOR) {
+        //     if (this._skewX !== 0 || this._skewY !== 0) {
+        //         var NodeUtils = Editor.require('scene://utils/node');
+        //         cc.warn("`cc.Node.skewX/Y` is deprecated since v2.2.1, please use 3D node instead.", `Node: ${NodeUtils.getNodePath(this)}.`);
+        //     }
+        // }
 
         this._fromEuler();
 
