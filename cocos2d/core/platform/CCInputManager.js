@@ -48,7 +48,7 @@ let inputManager = {
     _touches: [],
     // Maximum available touches, it's also the length of _touches array
     _maxTouches: 10,
-    // Global touches map with touch id as key and index in _touches as value 
+    // Global touches map with touch id as key and index in _touches as value
     _touchesIntegerDict:{},
     // A bit mask for index of _touches, every bit indicates whether the correspond touch is currently valid
     _indexBitsUsed: 0,
@@ -605,7 +605,7 @@ let inputManager = {
                     canvasBoundingRect.adjustedTop = canvasBoundingRect.top - (body.scrollTop || window.scrollY || 0);
                     handler(selfPointer.getTouchesByEvent(event, canvasBoundingRect));
                     event.stopPropagation();
-                    event.preventDefault();
+                    // event.preventDefault();
                 }), false);
             };
             for (let eventName in _touchEventsMap) {
