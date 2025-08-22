@@ -114,10 +114,10 @@ export default class NativeTTF {
     _updateCfgFlag_Font() {
         this._updateCfgFlag(UPDATE_FONT);
     }
-    
+
     _colorEqual(a, b) {
         return a.r == b.r && a.g == b.g && a.b == b.b && a.a == b.a;
-    } 
+    }
 
     _colorToObj(r, g, b, a) {
         return {r, g, b, a};
@@ -331,7 +331,7 @@ export default class NativeTTF {
 
 
         let shadow = node.getComponent(cc.LabelShadow);
-        if (shadow && shadow.enabled) {
+        if (shadow && shadow.enabled && (shadow.blur > 0 || shadow.offset.x !== 0 || shadow.offset.y !== 0)) {
             let shadowColor = shadow.color;
             this.setShadow(shadow.offset.x, shadow.offset.y, shadow.blur);
             this.setShadowColor(this._colorToObj(shadowColor.getR(), shadowColor.getG(), shadowColor.getB(), Math.ceil(shadowColor.getA() * node.opacity / 255)));
@@ -340,7 +340,7 @@ export default class NativeTTF {
         }
 
         this._updateTTFMaterial(comp);
-        
+
         layout.render();
         //comp._vertsDirty = false;
     }

@@ -67,9 +67,10 @@ let LabelShadow = cc.Class({
                 return this._color.clone();
             },
             set: function (value) {
-                if (!this._color.equals(value)) {
-                    this._color.set(value);
+                if (this._color.equals(value)) {
+                    return;
                 }
+                this._color.set(value);
                 this._updateRenderData();
             }
         },
@@ -88,7 +89,10 @@ let LabelShadow = cc.Class({
                 return this._offset;
             },
             set: function (value) {
-                this._offset = value;
+                if (this._offset.equals(value)) {
+                    return;
+                }
+                this._offset.set(value);
                 this._updateRenderData();
             }
         },
@@ -107,6 +111,9 @@ let LabelShadow = cc.Class({
                 return this._blur;
             },
             set: function (value) {
+                if (this._blur === value) {
+                    return;
+                }
                 this._blur = value;
                 this._updateRenderData();
             },

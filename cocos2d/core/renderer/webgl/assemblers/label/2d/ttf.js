@@ -57,7 +57,7 @@ export default class WebglTTFAssembler extends TTFAssembler {
             appy = node.anchorY * node.height;
 
         let shadow = LabelShadow && comp.getComponent(LabelShadow);
-        if (shadow && shadow._enabled) {
+        if (shadow && shadow._enabled && (shadow.offset.x !== 0 || shadow.offset.y !== 0)) {
             // adapt size changed caused by shadow
             let offsetX = (canvasWidth - node.width) / 2;
             let offsetY = (canvasHeight - node.height) / 2;
@@ -98,4 +98,3 @@ export default class WebglTTFAssembler extends TTFAssembler {
         this.updateWorldVerts(comp);
     }
 }
-

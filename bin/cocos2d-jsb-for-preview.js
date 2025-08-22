@@ -19186,8 +19186,6 @@
           trs = this._trs = this._spaceInfo.trs;
           11 === desTrs.length ? trs.set(desTrs.subarray(1)) : trs.set(desTrs);
         } else trs = this._trs = this._spaceInfo.trs;
-        var NodeUtils;
-        false;
         this._fromEuler();
         true, true;
         this._renderFlag |= RenderFlow.FLAG_TRANSFORM | RenderFlow.FLAG_OPACITY_COLOR;
@@ -29950,7 +29948,8 @@
             return this._color.clone();
           },
           set: function set(value) {
-            this._color.equals(value) || this._color.set(value);
+            if (this._color.equals(value)) return;
+            this._color.set(value);
             this._updateRenderData();
           }
         },
@@ -29960,7 +29959,8 @@
             return this._offset;
           },
           set: function set(value) {
-            this._offset = value;
+            if (this._offset.equals(value)) return;
+            this._offset.set(value);
             this._updateRenderData();
           }
         },
@@ -29970,6 +29970,7 @@
             return this._blur;
           },
           set: function set(value) {
+            if (this._blur === value) return;
             this._blur = value;
             this._updateRenderData();
           },
@@ -43603,7 +43604,6 @@
               canvasBoundingRect.adjustedTop = canvasBoundingRect.top - (body.scrollTop || window.scrollY || 0);
               handler(selfPointer.getTouchesByEvent(event, canvasBoundingRect));
               event.stopPropagation();
-              event.preventDefault();
             }), false);
           };
           for (var _eventName in _touchEventsMap) registerTouchEvent(_eventName);
@@ -52194,7 +52194,7 @@
         this.setAnchorPoint(node.anchorX, node.anchorY);
         this.setColor(this._colorToObj(c.getR(), c.getG(), c.getB(), Math.ceil(c.getA() * node.opacity / 255)));
         var shadow = node.getComponent(cc.LabelShadow);
-        if (shadow && shadow.enabled) {
+        if (shadow && shadow.enabled && (shadow.blur > 0 || 0 !== shadow.offset.x || 0 !== shadow.offset.y)) {
           var shadowColor = shadow.color;
           this.setShadow(shadow.offset.x, shadow.offset.y, shadow.blur);
           this.setShadowColor(this._colorToObj(shadowColor.getR(), shadowColor.getG(), shadowColor.getB(), Math.ceil(shadowColor.getA() * node.opacity / 255)));
@@ -52471,7 +52471,7 @@
       _proto.updateVerts = function updateVerts(comp) {
         var node = comp.node, canvasWidth = comp._ttfTexture.width, canvasHeight = comp._ttfTexture.height, appx = node.anchorX * node.width, appy = node.anchorY * node.height;
         var shadow = LabelShadow && comp.getComponent(LabelShadow);
-        if (shadow && shadow._enabled) {
+        if (shadow && shadow._enabled && (0 !== shadow.offset.x || 0 !== shadow.offset.y)) {
           var offsetX = (canvasWidth - node.width) / 2;
           var offsetY = (canvasHeight - node.height) / 2;
           var shadowOffset = shadow.offset;
