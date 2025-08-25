@@ -60,7 +60,7 @@ let RenderComponent = cc.Class({
         /**
          * !#en The materials used by this render component.
          * !#zh 渲染组件使用的材质。
-         * @property {[Material]} sharedMaterials
+         * @property {[Material]} materials
          */
         materials: {
             get () {

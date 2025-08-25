@@ -27,11 +27,13 @@ import Assembler from '../../../assembler';
 import Label from '../../../../components/CCLabel';
 
 import TTF from './2d/ttf';
+import OutlineTTF from './2d/outline-ttf';
 import Bmfont from './2d/bmfont';
 import OutlineBmfont from './2d/outline-bmfont';
 import Letter from './2d/letter';
 
 import TTF3D from './3d/ttf';
+import OutlineTTF3D from './3d/outline-ttf';
 import Bmfont3D from './3d/bmfont';
 import OutlineBmfont3D from './3d/outline-bmfont';
 import Letter3D from './3d/letter';
@@ -71,7 +73,7 @@ Label._canvasPool = {
 Assembler.register(cc.Label, {
     getConstructor(label) {
         let is3DNode = label.node.is3DNode;
-        let ctor = is3DNode ? TTF3D : TTF;
+        let ctor = is3DNode ? (label._outlineTTF ? OutlineTTF3D : TTF3D) : (label._outlineTTF ? OutlineTTF : TTF);
 
         if (label.font instanceof cc.BitmapFont) {
             if (label._outline) {
@@ -94,11 +96,13 @@ Assembler.register(cc.Label, {
     },
 
     TTF,
+    OutlineTTF,
     Bmfont,
     OutlineBmfont,
     Letter,
 
     TTF3D,
+    OutlineTTF3D,
     Bmfont3D,
     OutlineBmfont3D,
     Letter3D,

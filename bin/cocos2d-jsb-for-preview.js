@@ -641,7 +641,7 @@
     };
   }), {
     "../core/platform/CCClass": 273,
-    "../core/utils/misc": 376
+    "../core/utils/misc": 378
   } ],
   3: [ (function(require, module, exports) {
     "use strict";
@@ -3600,7 +3600,7 @@
     false;
     module.exports = AnimationAnimator;
   }), {
-    "../core/utils/binary-search": 369,
+    "../core/utils/binary-search": 371,
     "./animation-curves": 12,
     "./playable": 19,
     "./types": 20
@@ -3751,7 +3751,7 @@
     });
     cc.AnimationClip = module.exports = AnimationClip;
   }), {
-    "../core/utils/binary-search": 369,
+    "../core/utils/binary-search": 371,
     "./animation-curves": 12,
     "./motion-path-helper": 18,
     "./types": 20
@@ -3979,7 +3979,7 @@
       quickFindIndex: quickFindIndex
     };
   }), {
-    "../core/utils/binary-search": 369,
+    "../core/utils/binary-search": 371,
     "./bezier": 15,
     "./types": 20
   } ],
@@ -4732,7 +4732,7 @@
       Bezier: Bezier
     };
   }), {
-    "../core/utils/binary-search": 369,
+    "../core/utils/binary-search": 371,
     "./animation-curves": 12,
     "./bezier": 15
   } ],
@@ -5578,7 +5578,7 @@
     };
     module.exports = Base64;
   }), {
-    "../core/utils/misc": 376
+    "../core/utils/misc": 378
   } ],
   25: [ (function(require, module, exports) {
     "use strict";
@@ -7322,14 +7322,14 @@
     cc.Light = Light;
     module.exports = exports["default"];
   }), {
-    "../../renderer/enums": 416,
+    "../../renderer/enums": 418,
     "../../renderer/scene/light": void 0,
     "../components/CCComponent": 182,
     "../platform/CCClassDecorator": 274,
     "../platform/CCEnum": 275,
     "../renderer/index": 323,
-    "../value-types": 391,
-    "../value-types/color": 390
+    "../value-types": 393,
+    "../value-types/color": 392
   } ],
   28: [ (function(require, module, exports) {
     "use strict";
@@ -7502,8 +7502,8 @@
       return new cc.Rotate3DBy(duration, deltaAngleX, deltaAngleY, deltaAngleZ);
     };
   }), {
-    "../value-types/quat": 394,
-    "../value-types/vec3": 401
+    "../value-types/quat": 396,
+    "../value-types/vec3": 403
   } ],
   30: [ (function(require, module, exports) {
     "use strict";
@@ -7612,7 +7612,7 @@
     module.exports = exports["default"];
   }), {
     "../../../platform/CCClassDecorator": 274,
-    "../../../value-types": 391,
+    "../../../value-types": 393,
     "./gradient-range": 34
   } ],
   32: [ (function(require, module, exports) {
@@ -7773,7 +7773,7 @@
   }), {
     "../../../platform/CCClassDecorator": 274,
     "../../../platform/CCEnum": 275,
-    "../../../value-types": 391,
+    "../../../value-types": 393,
     "../curve": 42
   } ],
   33: [ (function(require, module, exports) {
@@ -7893,7 +7893,7 @@
     module.exports = exports["default"];
   }), {
     "../../../platform/CCClassDecorator": 274,
-    "../../../value-types": 391,
+    "../../../value-types": 393,
     "../enum": 44,
     "../particle-general-function": 45,
     "./curve-range": 32
@@ -8279,7 +8279,7 @@
   }), {
     "../../../platform/CCClassDecorator": 274,
     "../../../platform/CCEnum": 275,
-    "../../../value-types": 391
+    "../../../value-types": 393
   } ],
   36: [ (function(require, module, exports) {
     "use strict";
@@ -8452,7 +8452,7 @@
     module.exports = exports["default"];
   }), {
     "../../../platform/CCClassDecorator": 274,
-    "../../../value-types": 391,
+    "../../../value-types": 393,
     "../enum": 44,
     "./curve-range": 32
   } ],
@@ -8604,7 +8604,7 @@
     module.exports = exports["default"];
   }), {
     "../../../platform/CCClassDecorator": 274,
-    "../../../value-types": 391,
+    "../../../value-types": 393,
     "./curve-range": 32
   } ],
   38: [ (function(require, module, exports) {
@@ -8731,7 +8731,7 @@
     module.exports = exports["default"];
   }), {
     "../../../platform/CCClassDecorator": 274,
-    "../../../value-types": 391,
+    "../../../value-types": 393,
     "./curve-range": 32
   } ],
   39: [ (function(require, module, exports) {
@@ -9004,7 +9004,7 @@
   }), {
     "../../../platform/CCClassDecorator": 274,
     "../../../platform/CCEnum": 275,
-    "../../../value-types": 391,
+    "../../../value-types": 393,
     "./curve-range": 32
   } ],
   40: [ (function(require, module, exports) {
@@ -9137,7 +9137,7 @@
     module.exports = exports["default"];
   }), {
     "../../../platform/CCClassDecorator": 274,
-    "../../../value-types": 391,
+    "../../../value-types": 393,
     "../enum": 44,
     "../particle-general-function": 45,
     "./curve-range": 32
@@ -9306,7 +9306,7 @@
     module.exports = exports["default"];
   }), {
     "../../platform/CCClassDecorator": 274,
-    "../../value-types": 391,
+    "../../value-types": 393,
     "./animator/curve-range": 32
   } ],
   42: [ (function(require, module, exports) {
@@ -9567,7 +9567,7 @@
   }), {
     "../../platform/CCClassDecorator": 274,
     "../../platform/CCEnum": 275,
-    "../../value-types": 391
+    "../../value-types": 393
   } ],
   43: [ (function(require, module, exports) {
     "use strict";
@@ -10065,7 +10065,7 @@
     module.exports = exports["default"];
   }), {
     "../../../platform/CCClassDecorator": 274,
-    "../../../value-types": 391,
+    "../../../value-types": 393,
     "../animator/curve-range": 32,
     "../enum": 44,
     "../particle-general-function": 45
@@ -10223,8 +10223,8 @@
       return (0, _utils.sign)(sgn);
     }
   }), {
-    "../../value-types": 391,
-    "../../value-types/utils": 398,
+    "../../value-types": 393,
+    "../../value-types/utils": 400,
     "./enum": 44
   } ],
   46: [ (function(require, module, exports) {
@@ -11138,8 +11138,8 @@
     "../../components/CCRenderComponent": 193,
     "../../mesh/CCMesh": 241,
     "../../platform/CCClassDecorator": 274,
-    "../../value-types": 391,
-    "../../value-types/utils": 398,
+    "../../value-types": 393,
+    "../../value-types/utils": 400,
     "./animator/color-overtime": 31,
     "./animator/curve-range": 32,
     "./animator/force-overtime": 33,
@@ -11200,7 +11200,7 @@
     };
     module.exports = exports["default"];
   }), {
-    "../../value-types": 391
+    "../../value-types": 393
   } ],
   48: [ (function(require, module, exports) {
     "use strict";
@@ -11414,8 +11414,8 @@
     })();
     module.exports = exports["default"];
   }), {
-    "../../../../renderer/core/input-assembler": 413,
-    "../../../../renderer/gfx": 417,
+    "../../../../renderer/core/input-assembler": 415,
+    "../../../../renderer/gfx": 419,
     "../../../mesh/mesh-data": 244,
     "../../../renderer": 323
   } ],
@@ -11813,12 +11813,12 @@
     _assembler["default"].register(_particleSystem3d["default"], ParticleSystem3DAssembler);
     module.exports = exports["default"];
   }), {
-    "../../../../renderer/gfx": 417,
-    "../../../../renderer/memop/recycle-pool": 419,
+    "../../../../renderer/gfx": 419,
+    "../../../../renderer/memop/recycle-pool": 421,
     "../../../assets/material/material-variant": 164,
     "../../../platform/CCClassDecorator": 274,
     "../../../renderer/assembler": 303,
-    "../../../value-types": 391,
+    "../../../value-types": 393,
     "../enum": 44,
     "../particle": 47,
     "../particle-system-3d": 46,
@@ -12405,10 +12405,10 @@
     }), _class2)) || _class);
     module.exports = exports["default"];
   }), {
-    "../../../../renderer/gfx": 417,
-    "../../../../renderer/memop/pool": 418,
+    "../../../../renderer/gfx": 419,
+    "../../../../renderer/memop/pool": 420,
     "../../../platform/CCClassDecorator": 274,
-    "../../../value-types": 391,
+    "../../../value-types": 393,
     "../animator/curve-range": 32,
     "../animator/gradient-range": 34,
     "../enum": 44,
@@ -12735,7 +12735,7 @@
       } ]);
     })();
   }), {
-    "../../../../../external/cannon/cannon": 453
+    "../../../../../external/cannon/cannon": 455
   } ],
   53: [ (function(require, module, exports) {
     "use strict";
@@ -12957,7 +12957,7 @@
     _CannonSharedBody = CannonSharedBody;
     CannonSharedBody.sharedBodiesMap = new Map();
   }), {
-    "../../../../../external/cannon/cannon": 453,
+    "../../../../../external/cannon/cannon": 455,
     "../framework/physics-enum": 78,
     "../framework/util": 82,
     "./cannon-util": 54
@@ -13183,7 +13183,7 @@
       skipBackFaces: false
     };
   }), {
-    "../../../../../external/cannon/cannon": 453,
+    "../../../../../external/cannon/cannon": 455,
     "../framework/util": 82,
     "./cannon-shared-body": 53,
     "./cannon-util": 54,
@@ -13297,7 +13297,7 @@
       } ]);
     })(_cannonShape.CannonShape);
   }), {
-    "../../../../../../external/cannon/cannon": 453,
+    "../../../../../../external/cannon/cannon": 455,
     "../cannon-util": 54,
     "./cannon-shape": 58
   } ],
@@ -13471,7 +13471,7 @@
     })();
     CannonShape.idToMaterial = {};
   }), {
-    "../../../../../../external/cannon/cannon": 453,
+    "../../../../../../external/cannon/cannon": 455,
     "../../framework/util": 82,
     "../cannon-util": 54
   } ],
@@ -13566,7 +13566,7 @@
       } ]);
     })(_cannonShape.CannonShape);
   }), {
-    "../../../../../../external/cannon/cannon": 453,
+    "../../../../../../external/cannon/cannon": 455,
     "../cannon-util": 54,
     "./cannon-shape": 58
   } ],
@@ -14216,7 +14216,7 @@
     }
     window && (window.CANNON = _cannon["default"]);
   }), {
-    "../../../../../external/cannon/cannon": 453,
+    "../../../../../external/cannon/cannon": 455,
     "../cannon/instantiate": 56
   } ],
   69: [ (function(require, module, exports) {
@@ -15979,7 +15979,7 @@
     }
     module.exports = exports["default"];
   }), {
-    "../../value-types/vec3": 401,
+    "../../value-types/vec3": 403,
     "./vertex-data": 94
   } ],
   84: [ (function(require, module, exports) {
@@ -16131,7 +16131,7 @@
     }
     module.exports = exports["default"];
   }), {
-    "../../value-types/vec3": 401,
+    "../../value-types/vec3": 403,
     "./vertex-data": 94
   } ],
   85: [ (function(require, module, exports) {
@@ -16313,7 +16313,7 @@
     }
     module.exports = exports["default"];
   }), {
-    "../../value-types/vec3": 401,
+    "../../value-types/vec3": 403,
     "./vertex-data": 94
   } ],
   87: [ (function(require, module, exports) {
@@ -16446,7 +16446,7 @@
     }
     module.exports = exports["default"];
   }), {
-    "../../value-types/vec3": 401,
+    "../../value-types/vec3": 403,
     "./vertex-data": 94
   } ],
   89: [ (function(require, module, exports) {
@@ -16577,7 +16577,7 @@
       return new _vertexData["default"](positions, normals, uvs, indices, minPos, maxPos, boundingRadius);
     };
   }), {
-    "../../value-types": 391,
+    "../../value-types": 393,
     "./utils": 93,
     "./vertex-data": 94
   } ],
@@ -16604,7 +16604,7 @@
     }
     module.exports = exports["default"];
   }), {
-    "../../value-types": 391,
+    "../../value-types": 393,
     "./vertex-data": 94
   } ],
   91: [ (function(require, module, exports) {
@@ -16662,7 +16662,7 @@
     }
     module.exports = exports["default"];
   }), {
-    "../../value-types": 391,
+    "../../value-types": 393,
     "./vertex-data": 94
   } ],
   92: [ (function(require, module, exports) {
@@ -16722,7 +16722,7 @@
     }
     module.exports = exports["default"];
   }), {
-    "../../value-types": 391,
+    "../../value-types": 393,
     "./vertex-data": 94
   } ],
   93: [ (function(require, module, exports) {
@@ -16831,7 +16831,7 @@
       return normals;
     }
   }), {
-    "../../value-types/vec3": 401
+    "../../value-types/vec3": 403
   } ],
   94: [ (function(require, module, exports) {
     "use strict";
@@ -17165,7 +17165,7 @@
     cc.SkeletonAnimationClip = module.exports = SkeletonAnimationClip;
   }), {
     "../../../animation/animation-clip": 11,
-    "../../value-types/mat4": 393,
+    "../../value-types/mat4": 395,
     "./CCJointMatrixCurve": 95
   } ],
   99: [ (function(require, module, exports) {
@@ -17401,10 +17401,10 @@
     });
     cc.SkinnedMeshRenderer = module.exports = SkinnedMeshRenderer;
   }), {
-    "../../../renderer/enums": 416,
+    "../../../renderer/enums": 418,
     "../../mesh/CCMeshRenderer": 242,
     "../../renderer/render-flow": 324,
-    "../../value-types/mat4": 393,
+    "../../value-types/mat4": 395,
     "./CCSkeleton": 96
   } ],
   100: [ (function(require, module, exports) {
@@ -19964,12 +19964,12 @@
     "./platform/CCMacro": 278,
     "./platform/js": 295,
     "./renderer/render-flow": 324,
-    "./utils/affine-transform": 367,
-    "./utils/base-node": 368,
-    "./utils/prefab-helper": 379,
-    "./utils/trans-pool": 385,
-    "./value-types": 391,
-    "./value-types/utils": 398
+    "./utils/affine-transform": 369,
+    "./utils/base-node": 370,
+    "./utils/prefab-helper": 381,
+    "./utils/trans-pool": 387,
+    "./value-types": 393,
+    "./value-types/utils": 400
   } ],
   105: [ (function(require, module, exports) {
     "use strict";
@@ -22635,7 +22635,7 @@
     };
     module.exports = fontLoader;
   }), {
-    "../utils/text-utils": 383
+    "../utils/text-utils": 385
   } ],
   124: [ (function(require, module, exports) {
     "use strict";
@@ -22670,7 +22670,7 @@
     };
     module.exports = helper;
   }), {
-    "../utils/decode-uuid": 371,
+    "../utils/decode-uuid": 373,
     "./shared": 133
   } ],
   125: [ (function(require, module, exports) {
@@ -24536,7 +24536,7 @@
     });
     cc.RenderTexture = module.exports = RenderTexture;
   }), {
-    "../../renderer/gfx": 417,
+    "../../renderer/gfx": 419,
     "../renderer": 323,
     "./CCTexture2D": 153
   } ],
@@ -25596,7 +25596,7 @@
     });
     cc.Texture2D = module.exports = Texture2D;
   }), {
-    "../../renderer/gfx": 417,
+    "../../renderer/gfx": 419,
     "../assets/CCAsset": 137,
     "../event/event-target": 220,
     "../platform/CCClass": 273,
@@ -25881,7 +25881,7 @@
     cc.Material = Material;
     module.exports = exports["default"];
   }), {
-    "../../utils/texture-util": 384,
+    "../../utils/texture-util": 386,
     "../CCAsset": 137,
     "../CCTexture2D": 153,
     "./CCEffectAsset": 156
@@ -26049,8 +26049,8 @@
     cc.EffectBase = EffectBase;
     module.exports = exports["default"];
   }), {
-    "../../../renderer/core/pass": 414,
-    "../../../renderer/enums": 416
+    "../../../renderer/core/pass": 416,
+    "../../../renderer/enums": 418
   } ],
   159: [ (function(require, module, exports) {
     "use strict";
@@ -26137,10 +26137,10 @@
     }
     false;
   }), {
-    "../../../renderer/core/pass": 414,
-    "../../../renderer/core/technique": 415,
-    "../../../renderer/enums": 416,
-    "../../../renderer/types": 422,
+    "../../../renderer/core/pass": 416,
+    "../../../renderer/core/technique": 417,
+    "../../../renderer/enums": 418,
+    "../../../renderer/types": 424,
     "./effect": 161
   } ],
   160: [ (function(require, module, exports) {
@@ -26259,7 +26259,7 @@
     cc.EffectVariant = EffectVariant;
     module.exports = exports["default"];
   }), {
-    "../../../renderer/murmurhash2_gc": 421,
+    "../../../renderer/murmurhash2_gc": 423,
     "./effect-base": 158,
     "./utils": 165
   } ],
@@ -26449,7 +26449,7 @@
     var _default = exports["default"] = materialPool;
     module.exports = exports["default"];
   }), {
-    "../../utils/pool": 378,
+    "../../utils/pool": 380,
     "./utils": 165
   } ],
   164: [ (function(require, module, exports) {
@@ -26601,7 +26601,7 @@
     };
     module.exports = exports["default"];
   }), {
-    "../../../renderer/enums": 416
+    "../../../renderer/enums": 418
   } ],
   166: [ (function(require, module, exports) {
     "use strict";
@@ -27305,8 +27305,8 @@
     "../geom-utils": 228,
     "../renderer/index": 323,
     "../renderer/render-flow": 324,
-    "../utils/affine-transform": 367,
-    "../value-types": 391
+    "../utils/affine-transform": 369,
+    "../value-types": 393
   } ],
   168: [ (function(require, module, exports) {
     "use strict";
@@ -27698,7 +27698,7 @@
     cc.CollisionManager = module.exports = CollisionManager;
   }), {
     "../CCNode": 104,
-    "../value-types/vec2": 400,
+    "../value-types/vec2": 402,
     "./CCContact": 172
   } ],
   172: [ (function(require, module, exports) {
@@ -28168,7 +28168,7 @@
     "./platform/CCClass": 273,
     "./platform/CCObject": 279,
     "./platform/js": 295,
-    "./utils/misc": 376
+    "./utils/misc": 378
   } ],
   177: [ (function(require, module, exports) {
     "use strict";
@@ -28600,7 +28600,7 @@
     cc.AudioSource = module.exports = AudioSource;
   }), {
     "../assets/CCAudioClip": 138,
-    "../utils/misc": 376,
+    "../utils/misc": 378,
     "./CCComponent": 182
   } ],
   179: [ (function(require, module, exports) {
@@ -29107,7 +29107,7 @@
     });
     cc.Button = module.exports = Button;
   }), {
-    "../utils/gray-sprite-state": 373,
+    "../utils/gray-sprite-state": 375,
     "./CCComponent": 182
   } ],
   181: [ (function(require, module, exports) {
@@ -29882,7 +29882,7 @@
     "../platform/CCMacro": 278,
     "../renderer/utils/label/label-frame": 328,
     "../renderer/utils/utils": 331,
-    "../utils/blend-func": 370,
+    "../utils/blend-func": 372,
     "./CCRenderComponent": 193
   } ],
   185: [ (function(require, module, exports) {
@@ -30804,13 +30804,13 @@
     });
     cc.Mask = module.exports = Mask;
   }), {
-    "../../renderer/gfx": 417,
+    "../../renderer/gfx": 419,
     "../assets/material/material-variant": 164,
     "../graphics/graphics": 236,
     "../renderer/render-flow": 324,
-    "../utils/misc": 376,
-    "../value-types/mat4": 393,
-    "../value-types/vec2": 400,
+    "../utils/misc": 378,
+    "../value-types/mat4": 395,
+    "../value-types/vec2": 402,
     "./CCRenderComponent": 193
   } ],
   189: [ (function(require, module, exports) {
@@ -30931,7 +30931,7 @@
     });
     cc.MotionStreak = module.exports = MotionStreak;
   }), {
-    "../../core/utils/blend-func": 370,
+    "../../core/utils/blend-func": 372,
     "../components/CCRenderComponent": 193
   } ],
   190: [ (function(require, module, exports) {
@@ -31478,7 +31478,7 @@
     });
     cc.ProgressBar = module.exports = ProgressBar;
   }), {
-    "../utils/misc": 376,
+    "../utils/misc": 378,
     "./CCComponent": 182
   } ],
   193: [ (function(require, module, exports) {
@@ -31633,7 +31633,7 @@
     "../assets/material/material-variant": 164,
     "../renderer/assembler": 303,
     "../renderer/render-flow": 324,
-    "../value-types": 391,
+    "../value-types": 393,
     "./CCComponent": 182
   } ],
   194: [ (function(require, module, exports) {
@@ -32238,8 +32238,8 @@
   }), {
     "../platform/CCMacro": 278,
     "../platform/js": 295,
-    "../utils/html-text-parser": 374,
-    "../utils/text-utils": 383
+    "../utils/html-text-parser": 376,
+    "../utils/text-utils": 385
   } ],
   195: [ (function(require, module, exports) {
     "use strict";
@@ -32484,7 +32484,7 @@
     });
     cc.Scrollbar = module.exports = Scrollbar;
   }), {
-    "../utils/misc": 376,
+    "../utils/misc": 378,
     "./CCComponent": 182
   } ],
   197: [ (function(require, module, exports) {
@@ -33422,7 +33422,7 @@
     });
     cc.Slider = module.exports = Slider;
   }), {
-    "../utils/misc": 376,
+    "../utils/misc": 378,
     "./CCComponent": 182
   } ],
   199: [ (function(require, module, exports) {
@@ -33658,8 +33658,8 @@
     cc.Sprite = module.exports = Sprite;
   }), {
     "../CCNode": 104,
-    "../utils/blend-func": 370,
-    "../utils/misc": 376,
+    "../utils/blend-func": 372,
+    "../utils/misc": 378,
     "./CCRenderComponent": 193
   } ],
   200: [ (function(require, module, exports) {
@@ -33815,7 +33815,7 @@
     }));
   }), {
     "../platform/js": 295,
-    "../utils/gray-sprite-state": 373,
+    "../utils/gray-sprite-state": 375,
     "./CCButton": 180,
     "./CCToggleGroup": 203
   } ],
@@ -35324,7 +35324,7 @@
   }), {
     "../../platform/CCMacro": 278,
     "../../platform/utils": 298,
-    "../../value-types/mat4": 393,
+    "../../value-types/mat4": 395,
     "../CCLabel": 184,
     "./tabIndexUtil": 210,
     "./types": 211
@@ -36925,8 +36925,8 @@
     })();
     module.exports = exports["default"];
   }), {
-    "../value-types/mat3": 392,
-    "../value-types/vec3": 401,
+    "../value-types/mat3": 394,
+    "../value-types/vec3": 403,
     "./enums": 226
   } ],
   225: [ (function(require, module, exports) {
@@ -36988,7 +36988,7 @@
       return out;
     }
   }), {
-    "../value-types": 391
+    "../value-types": 393
   } ],
   226: [ (function(require, module, exports) {
     "use strict";
@@ -37151,7 +37151,7 @@
     })();
     module.exports = exports["default"];
   }), {
-    "../value-types": 391,
+    "../value-types": 393,
     "./enums": 226,
     "./plane": 232
   } ],
@@ -37889,9 +37889,9 @@
     var _default = exports["default"] = intersect;
     module.exports = exports["default"];
   }), {
-    "../../renderer/gfx": 417,
-    "../../renderer/memop/recycle-pool": 419,
-    "../value-types": 391,
+    "../../renderer/gfx": 419,
+    "../../renderer/memop/recycle-pool": 421,
+    "../value-types": 393,
     "./aabb": 224,
     "./distance": 225,
     "./enums": 226,
@@ -37960,7 +37960,7 @@
     })();
     module.exports = exports["default"];
   }), {
-    "../value-types": 391,
+    "../value-types": 393,
     "./enums": 226
   } ],
   231: [ (function(require, module, exports) {
@@ -38094,7 +38094,7 @@
     })();
     module.exports = exports["default"];
   }), {
-    "../value-types": 391,
+    "../value-types": 393,
     "./enums": 226
   } ],
   232: [ (function(require, module, exports) {
@@ -38174,7 +38174,7 @@
     })();
     module.exports = exports["default"];
   }), {
-    "../value-types": 391,
+    "../value-types": 393,
     "./enums": 226
   } ],
   233: [ (function(require, module, exports) {
@@ -38243,7 +38243,7 @@
     })();
     module.exports = exports["default"];
   }), {
-    "../value-types": 391,
+    "../value-types": 393,
     "./enums": 226
   } ],
   234: [ (function(require, module, exports) {
@@ -38319,7 +38319,7 @@
     })();
     module.exports = exports["default"];
   }), {
-    "../value-types": 391,
+    "../value-types": 393,
     "./enums": 226
   } ],
   235: [ (function(require, module, exports) {
@@ -38378,7 +38378,7 @@
     })();
     module.exports = exports["default"];
   }), {
-    "../value-types/vec3": 401,
+    "../value-types/vec3": 403,
     "./enums": 226
   } ],
   236: [ (function(require, module, exports) {
@@ -39019,8 +39019,8 @@
     });
     cc.Mesh = module.exports = Mesh;
   }), {
-    "../../renderer/core/input-assembler": 413,
-    "../../renderer/gfx": 417,
+    "../../renderer/core/input-assembler": 415,
+    "../../renderer/gfx": 419,
     "../event/event-target": 220,
     "../renderer": 323,
     "./mesh-data": 244
@@ -39311,16 +39311,16 @@
     };
     cc.MeshRenderer = module.exports = MeshRenderer;
   }), {
-    "../../renderer/core/input-assembler": 413,
-    "../../renderer/gfx": 417,
+    "../../renderer/core/input-assembler": 415,
+    "../../renderer/gfx": 419,
     "../assets/material/CCMaterial": 157,
     "../assets/material/material-variant": 164,
     "../components/CCRenderComponent": 193,
     "../geom-utils/aabb": 224,
     "../renderer": 323,
     "../renderer/render-flow": 324,
-    "../value-types/mat4": 393,
-    "../value-types/vec3": 401,
+    "../value-types/mat4": 395,
+    "../value-types/vec3": 403,
     "./CCMesh": 241
   } ],
   243: [ (function(require, module, exports) {
@@ -39429,7 +39429,7 @@
       return this.iData;
     };
   }), {
-    "../../renderer/gfx": 417
+    "../../renderer/gfx": 419
   } ],
   245: [ (function(require, module, exports) {
     "use strict";
@@ -39556,9 +39556,9 @@
     _assembler["default"].register(MeshRenderer, MeshRendererAssembler);
     module.exports = exports["default"];
   }), {
-    "../../renderer/gfx": 417,
+    "../../renderer/gfx": 419,
     "../renderer/assembler": 303,
-    "../value-types/vec3": 401,
+    "../value-types/vec3": 403,
     "./CCMeshRenderer": 242
   } ],
   246: [ (function(require, module, exports) {
@@ -39738,7 +39738,7 @@
     "./component-scheduler": 176,
     "./platform/CCObject": 279,
     "./platform/js": 295,
-    "./utils/misc": 376
+    "./utils/misc": 378
   } ],
   247: [ (function(require, module, exports) {
     "use strict";
@@ -40899,7 +40899,7 @@
     }
     b2.maxPolygonVertices = 8;
   }), {
-    "../../../external/box2d/box2d": 452
+    "../../../external/box2d/box2d": 454
   } ],
   253: [ (function(require, module, exports) {
     "use strict";
@@ -45865,14 +45865,14 @@
     false, false;
     false;
   }), {
-    "../value-types/color": 390,
-    "../value-types/mat4": 393,
-    "../value-types/quat": 394,
-    "../value-types/rect": 395,
-    "../value-types/size": 396,
-    "../value-types/vec2": 400,
-    "../value-types/vec3": 401,
-    "../value-types/vec4": 402,
+    "../value-types/color": 392,
+    "../value-types/mat4": 395,
+    "../value-types/quat": 396,
+    "../value-types/rect": 397,
+    "../value-types/size": 398,
+    "../value-types/vec2": 402,
+    "../value-types/vec3": 403,
+    "../value-types/vec4": 404,
     "./js": 295
   } ],
   289: [ (function(require, module, exports) {
@@ -46191,7 +46191,7 @@
     };
     deserialize.Details = Details;
   }), {
-    "../utils/misc": 376,
+    "../utils/misc": 378,
     "./CCClass": 273,
     "./attribute": 285,
     "./deserialize-compiled": 288,
@@ -46727,7 +46727,7 @@
     cc.instantiate = instantiate;
     module.exports = instantiate;
   }), {
-    "../value-types/value-type": 399,
+    "../value-types/value-type": 401,
     "./CCObject": 279,
     "./js": 295,
     "./utils": 298
@@ -47127,7 +47127,7 @@
     cc.js = js;
     module.exports = js;
   }), {
-    "../utils/mutable-forward-iterator": 377,
+    "../utils/mutable-forward-iterator": 379,
     "./id-generater": 291
   } ],
   296: [ (function(require, module, exports) {
@@ -47403,8 +47403,8 @@
     "./platform/CCView": 283,
     "./platform/js": 295,
     "./renderer": 323,
-    "./utils": 375,
-    "./value-types": 391
+    "./utils": 377,
+    "./value-types": 393
   } ],
   300: [ (function(require, module, exports) {
     "use strict";
@@ -47563,7 +47563,7 @@
   }), {
     "./assembler": 303,
     "./utils/dynamic-atlas/manager": 326,
-    "./webgl/render-data": 364
+    "./webgl/render-data": 366
   } ],
   301: [ (function(require, module, exports) {
     "use strict";
@@ -47611,8 +47611,8 @@
     var _default = exports["default"] = Assembler3D;
     module.exports = exports["default"];
   }), {
-    "../value-types/vec3": 401,
-    "./webgl/vertex-format": 365
+    "../value-types/vec3": 403,
+    "./webgl/vertex-format": 367
   } ],
   302: [ (function(require, module, exports) {
     "use strict";
@@ -47695,7 +47695,7 @@
     var _default = exports["default"] = pool;
     module.exports = exports["default"];
   }), {
-    "../utils/pool": 378
+    "../utils/pool": 380
   } ],
   303: [ (function(require, module, exports) {
     "use strict";
@@ -47748,7 +47748,7 @@
     module.exports = exports["default"];
   }), {
     "./assembler-pool": 302,
-    "./webgl/vertex-format": 365
+    "./webgl/vertex-format": 367
   } ],
   304: [ (function(require, module, exports) {
     "use strict";
@@ -48990,9 +48990,9 @@
     };
     module.exports = exports["default"];
   }), {
-    "../../renderer/core/input-assembler": 413,
-    "../../renderer/core/pass": 414,
-    "../../renderer/gfx": 417,
+    "../../renderer/core/input-assembler": 415,
+    "../../renderer/core/pass": 416,
+    "../../renderer/gfx": 419,
     "../../renderer/renderers/forward-renderer": void 0,
     "../../renderer/scene/scene": void 0,
     "./canvas": 307,
@@ -49923,7 +49923,7 @@
   }), {
     "../../../components/CCLabel": 184,
     "../../../platform/CCMacro": 278,
-    "../../../utils/text-utils": 383,
+    "../../../utils/text-utils": 385,
     "../../assembler-2d": 300,
     "../utils": 331
   } ],
@@ -50232,7 +50232,7 @@
     "../../../components/CCComponent": 182,
     "../../../components/CCLabel": 184,
     "../../../components/CCLabelOutline": 185,
-    "../../../utils/text-utils": 383,
+    "../../../utils/text-utils": 385,
     "../../webgl/assemblers/label/2d/bmfont": 336,
     "../utils": 331
   } ],
@@ -50610,7 +50610,7 @@
     "../../../components/CCLabelOutline": 185,
     "../../../components/CCLabelShadow": 186,
     "../../../platform/CCMacro": 278,
-    "../../../utils/text-utils": 383,
+    "../../../utils/text-utils": 385,
     "../../assembler-2d": 300,
     "../utils": 331
   } ],
@@ -51689,12 +51689,12 @@
     _assembler["default"].register(cc.Graphics, GraphicsAssembler);
     module.exports = exports["default"];
   }), {
-    "../../../../../renderer/core/input-assembler": 413,
+    "../../../../../renderer/core/input-assembler": 415,
     "../../../../graphics/graphics": 236,
     "../../../../graphics/types": 239,
     "../../../assembler": 303,
     "../../../index": 323,
-    "../../mesh-buffer": 362,
+    "../../mesh-buffer": 364,
     "./earcut": 332,
     "./impl": 333
   } ],
@@ -51708,10 +51708,10 @@
     require("./motion-streak");
   }), {
     "./graphics": 334,
-    "./label": 345,
-    "./mask-assembler": 346,
-    "./motion-streak": 347,
-    "./sprite": 360
+    "./label": 347,
+    "./mask-assembler": 348,
+    "./motion-streak": 349,
+    "./sprite": 362
   } ],
   336: [ (function(require, module, exports) {
     "use strict";
@@ -52423,9 +52423,127 @@
     module.exports = exports["default"];
   }), {
     "../../../../utils/label/bmfont": 327,
-    "../../../vertex-format": 365
+    "../../../vertex-format": 367
   } ],
   340: [ (function(require, module, exports) {
+    "use strict";
+    exports.__esModule = true;
+    exports["default"] = void 0;
+    var _vertexFormat = require("../../../vertex-format");
+    var _ttf = _interopRequireDefault(require("./ttf"));
+    function _interopRequireDefault(e) {
+      return e && e.__esModule ? e : {
+        default: e
+      };
+    }
+    function _defineProperties(e, r) {
+      for (var t = 0; t < r.length; t++) {
+        var o = r[t];
+        o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), 
+        Object.defineProperty(e, _toPropertyKey(o.key), o);
+      }
+    }
+    function _createClass(e, r, t) {
+      return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", {
+        writable: !1
+      }), e;
+    }
+    function _toPropertyKey(t) {
+      var i = _toPrimitive(t, "string");
+      return "symbol" == typeof i ? i : i + "";
+    }
+    function _toPrimitive(t, r) {
+      if ("object" != typeof t || !t) return t;
+      var e = t[Symbol.toPrimitive];
+      if (void 0 !== e) {
+        var i = e.call(t, r || "default");
+        if ("object" != typeof i) return i;
+        throw new TypeError("@@toPrimitive must return a primitive value.");
+      }
+      return ("string" === r ? String : Number)(t);
+    }
+    function _inheritsLoose(t, o) {
+      t.prototype = Object.create(o.prototype), t.prototype.constructor = t, _setPrototypeOf(t, o);
+    }
+    function _setPrototypeOf(t, e) {
+      return _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function(t, e) {
+        return t.__proto__ = e, t;
+      }, _setPrototypeOf(t, e);
+    }
+    var LabelShadow = require("../../../../../components/CCLabelShadow");
+    var WHITE = cc.color(255, 255, 255, 255);
+    var COLOR_INDEX = [ 2, 3, 0, 1 ];
+    var WebglOutlineTTFAssembler = exports["default"] = (function(_WebglTTFAssembler) {
+      function WebglOutlineTTFAssembler() {
+        var _this;
+        for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) args[_key] = arguments[_key];
+        _this = _WebglTTFAssembler.call.apply(_WebglTTFAssembler, [ this ].concat(args)) || this;
+        _this.floatsPerVert = 6;
+        return _this;
+      }
+      _inheritsLoose(WebglOutlineTTFAssembler, _WebglTTFAssembler);
+      var _proto = WebglOutlineTTFAssembler.prototype;
+      _proto.initData = function initData() {
+        var data = this._renderData;
+        data.createQuadData(0, this.verticesFloats, this.indicesCount);
+      };
+      _proto.getBuffer = function getBuffer() {
+        return cc.renderer._handle.getBuffer("mesh", this.getVfmt());
+      };
+      _proto.getVfmt = function getVfmt() {
+        return _vertexFormat.vfmtPosUvTwoColor;
+      };
+      _proto.updateUVs = function updateUVs(comp) {
+        var verts = this._renderData.vDatas[0];
+        var uv = comp._frame.uv;
+        var uvOffset = this.uvOffset;
+        var floatsPerVert = this.floatsPerVert;
+        for (var i = 0; i < 4; i++) {
+          var srcOffset = 2 * i;
+          var dstOffset = floatsPerVert * i + uvOffset;
+          verts[dstOffset] = uv[srcOffset];
+          verts[dstOffset + 1] = uv[srcOffset + 1];
+        }
+      };
+      _proto.updateColor = function updateColor(comp) {
+        WHITE._fastSetA(comp.node._color.a);
+        var color = WHITE._val;
+        var uintVerts = this._renderData.uintVDatas[0];
+        if (!uintVerts) return;
+        color = null != color ? color : comp.node.color._val;
+        var outlineColor = (comp._borderColor || cc.Color.BLACK)._val;
+        var floatsPerVert = this.floatsPerVert;
+        var colorOffset = this.colorOffset;
+        if (comp._gradient) {
+          comp._gradientColors.forEach((function(o) {
+            o._fastSetA(color.getA());
+          }));
+          var j = 0;
+          for (var i = colorOffset, l = uintVerts.length; i < l; i += floatsPerVert) {
+            var c_i = j % 4;
+            uintVerts[i] = comp._gradientColors[COLOR_INDEX[c_i]]._val;
+            uintVerts[i + 1] = outlineColor;
+            j += 1;
+          }
+        } else for (var _i = colorOffset, _l = uintVerts.length; _i < _l; _i += floatsPerVert) {
+          uintVerts[_i] = color;
+          uintVerts[_i + 1] = outlineColor;
+        }
+      };
+      return _createClass(WebglOutlineTTFAssembler, [ {
+        key: "verticesFloats",
+        get: function get() {
+          return 24;
+        }
+      } ]);
+    })(_ttf["default"]);
+    module.exports = exports["default"];
+  }), {
+    "../../../../../components/CCLabelShadow": 186,
+    "../../../vertex-format": 367,
+    "./ttf": 341
+  } ],
+  341: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -52493,7 +52611,7 @@
     "../../../../../components/CCLabelShadow": 186,
     "../../../../utils/label/ttf": 330
   } ],
-  341: [ (function(require, module, exports) {
+  342: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -52539,11 +52657,11 @@
     });
     module.exports = exports["default"];
   }), {
-    "../../../../../value-types/vec3": 401,
+    "../../../../../value-types/vec3": 403,
     "../../../../assembler-3d": 301,
     "../2d/bmfont": 336
   } ],
-  342: [ (function(require, module, exports) {
+  343: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -52589,11 +52707,11 @@
     });
     module.exports = exports["default"];
   }), {
-    "../../../../../value-types/vec3": 401,
+    "../../../../../value-types/vec3": 403,
     "../../../../assembler-3d": 301,
     "../2d/letter": 337
   } ],
-  343: [ (function(require, module, exports) {
+  344: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -52650,12 +52768,39 @@
     });
     module.exports = exports["default"];
   }), {
-    "../../../../../value-types/vec3": 401,
+    "../../../../../value-types/vec3": 403,
     "../../../../assembler-3d": 301,
-    "../../../vertex-format": 365,
+    "../../../vertex-format": 367,
     "../2d/outline-bmfont": 339
   } ],
-  344: [ (function(require, module, exports) {
+  345: [ (function(require, module, exports) {
+    "use strict";
+    exports.__esModule = true;
+    exports["default"] = void 0;
+    function _inheritsLoose(t, o) {
+      t.prototype = Object.create(o.prototype), t.prototype.constructor = t, _setPrototypeOf(t, o);
+    }
+    function _setPrototypeOf(t, e) {
+      return _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function(t, e) {
+        return t.__proto__ = e, t;
+      }, _setPrototypeOf(t, e);
+    }
+    var Assembler3D = require("../../../../assembler-3d");
+    var WebglOutlineTTFAssembler = require("../2d/outline-ttf");
+    var WebglOutlineTTFAssembler3D = exports["default"] = (function(_WebglOutlineTTFAssem) {
+      function WebglOutlineTTFAssembler3D() {
+        return _WebglOutlineTTFAssem.apply(this, arguments) || this;
+      }
+      _inheritsLoose(WebglOutlineTTFAssembler3D, _WebglOutlineTTFAssem);
+      return WebglOutlineTTFAssembler3D;
+    })(WebglOutlineTTFAssembler);
+    cc.js.mixin(WebglOutlineTTFAssembler3D.prototype, Assembler3D);
+    module.exports = exports["default"];
+  }), {
+    "../../../../assembler-3d": 301,
+    "../2d/outline-ttf": 340
+  } ],
+  346: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -52680,17 +52825,19 @@
     module.exports = exports["default"];
   }), {
     "../../../../assembler-3d": 301,
-    "../2d/ttf": 340
+    "../2d/ttf": 341
   } ],
-  345: [ (function(require, module, exports) {
+  347: [ (function(require, module, exports) {
     "use strict";
     var _assembler = _interopRequireDefault(require("../../../assembler"));
     var _CCLabel = _interopRequireDefault(require("../../../../components/CCLabel"));
     var _ttf = _interopRequireDefault(require("./2d/ttf"));
+    var _outlineTtf = _interopRequireDefault(require("./2d/outline-ttf"));
     var _bmfont = _interopRequireDefault(require("./2d/bmfont"));
     var _outlineBmfont = _interopRequireDefault(require("./2d/outline-bmfont"));
     var _letter = _interopRequireDefault(require("./2d/letter"));
     var _ttf2 = _interopRequireDefault(require("./3d/ttf"));
+    var _outlineTtf2 = _interopRequireDefault(require("./3d/outline-ttf"));
     var _bmfont2 = _interopRequireDefault(require("./3d/bmfont"));
     var _outlineBmfont2 = _interopRequireDefault(require("./3d/outline-bmfont"));
     var _letter2 = _interopRequireDefault(require("./3d/letter"));
@@ -52725,16 +52872,18 @@
     _assembler["default"].register(cc.Label, {
       getConstructor: function getConstructor(label) {
         var is3DNode = label.node.is3DNode;
-        var ctor = is3DNode ? _ttf2["default"] : _ttf["default"];
+        var ctor = is3DNode ? label._outlineTTF ? _outlineTtf2["default"] : _ttf2["default"] : label._outlineTTF ? _outlineTtf["default"] : _ttf["default"];
         label.font instanceof cc.BitmapFont ? ctor = label._outline ? is3DNode ? _outlineBmfont2["default"] : _outlineBmfont["default"] : is3DNode ? _bmfont2["default"] : _bmfont["default"] : label.cacheMode === _CCLabel["default"].CacheMode.CHAR && ((true, 
         !is3DNode) && !!jsb.LabelRenderer && label.font instanceof cc.TTFFont && label._useNativeTTF() ? ctor = NativeTTF : cc.sys.platform === cc.sys.WECHAT_GAME_SUB ? cc.warn("sorry, subdomain does not support CHAR mode currently!") : ctor = is3DNode ? _letter2["default"] : _letter["default"]);
         return ctor;
       },
       TTF: _ttf["default"],
+      OutlineTTF: _outlineTtf["default"],
       Bmfont: _bmfont["default"],
       OutlineBmfont: _outlineBmfont["default"],
       Letter: _letter["default"],
       TTF3D: _ttf2["default"],
+      OutlineTTF3D: _outlineTtf2["default"],
       Bmfont3D: _bmfont2["default"],
       OutlineBmfont3D: _outlineBmfont2["default"],
       Letter3D: _letter2["default"],
@@ -52747,13 +52896,15 @@
     "./2d/letter": 337,
     "./2d/nativeTTF": 338,
     "./2d/outline-bmfont": 339,
-    "./2d/ttf": 340,
-    "./3d/bmfont": 341,
-    "./3d/letter": 342,
-    "./3d/outline-bmfont": 343,
-    "./3d/ttf": 344
+    "./2d/outline-ttf": 340,
+    "./2d/ttf": 341,
+    "./3d/bmfont": 342,
+    "./3d/letter": 343,
+    "./3d/outline-bmfont": 344,
+    "./3d/outline-ttf": 345,
+    "./3d/ttf": 346
   } ],
-  346: [ (function(require, module, exports) {
+  348: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.MaskAssembler = void 0;
@@ -52885,15 +53036,15 @@
     })(SimpleSpriteAssembler);
     _assembler["default"].register(Mask, MaskAssembler);
   }), {
-    "../../../../renderer/gfx": 417,
+    "../../../../renderer/gfx": 419,
     "../../../components/CCMask": 188,
     "../../assembler": 303,
     "../../render-flow": 324,
-    "../vertex-format": 365,
+    "../vertex-format": 367,
     "./graphics": 334,
-    "./sprite/2d/simple": 351
+    "./sprite/2d/simple": 353
   } ],
-  347: [ (function(require, module, exports) {
+  349: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -53087,11 +53238,11 @@
     module.exports = exports["default"];
   }), {
     "../../../components/CCMotionStreak": 189,
-    "../../../value-types/mat4": 393,
+    "../../../value-types/mat4": 395,
     "../../assembler-2d": 300,
     "../../render-flow": 324
   } ],
-  348: [ (function(require, module, exports) {
+  350: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -53232,7 +53383,7 @@
     "../../../../../components/CCSprite": 199,
     "../../../../assembler-2d": 300
   } ],
-  349: [ (function(require, module, exports) {
+  351: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -53336,7 +53487,7 @@
   }), {
     "../../../../assembler-2d": 300
   } ],
-  350: [ (function(require, module, exports) {
+  352: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -53599,7 +53750,7 @@
   }), {
     "../../../../assembler-2d": 300
   } ],
-  351: [ (function(require, module, exports) {
+  353: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -53674,7 +53825,7 @@
   }), {
     "../../../../assembler-2d": 300
   } ],
-  352: [ (function(require, module, exports) {
+  354: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -53791,7 +53942,7 @@
   }), {
     "../../../../assembler-2d": 300
   } ],
-  353: [ (function(require, module, exports) {
+  355: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -54024,7 +54175,7 @@
   }), {
     "../../../../assembler-2d": 300
   } ],
-  354: [ (function(require, module, exports) {
+  356: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -54049,9 +54200,9 @@
     module.exports = exports["default"];
   }), {
     "../../../../assembler-3d": 301,
-    "../2d/bar-filled": 348
+    "../2d/bar-filled": 350
   } ],
-  355: [ (function(require, module, exports) {
+  357: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -54097,11 +54248,11 @@
     });
     module.exports = exports["default"];
   }), {
-    "../../../../../value-types/vec3": 401,
+    "../../../../../value-types/vec3": 403,
     "../../../../assembler-3d": 301,
-    "../2d/mesh": 349
+    "../2d/mesh": 351
   } ],
-  356: [ (function(require, module, exports) {
+  358: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -54147,11 +54298,11 @@
     });
     module.exports = exports["default"];
   }), {
-    "../../../../../value-types/vec3": 401,
+    "../../../../../value-types/vec3": 403,
     "../../../../assembler-3d": 301,
-    "../2d/radial-filled": 350
+    "../2d/radial-filled": 352
   } ],
-  357: [ (function(require, module, exports) {
+  359: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -54176,9 +54327,9 @@
     module.exports = exports["default"];
   }), {
     "../../../../assembler-3d": 301,
-    "../2d/simple": 351
+    "../2d/simple": 353
   } ],
-  358: [ (function(require, module, exports) {
+  360: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -54229,11 +54380,11 @@
     });
     module.exports = exports["default"];
   }), {
-    "../../../../../value-types/vec3": 401,
+    "../../../../../value-types/vec3": 403,
     "../../../../assembler-3d": 301,
-    "../2d/sliced": 352
+    "../2d/sliced": 354
   } ],
-  359: [ (function(require, module, exports) {
+  361: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -54296,11 +54447,11 @@
     });
     module.exports = exports["default"];
   }), {
-    "../../../../../value-types/vec3": 401,
+    "../../../../../value-types/vec3": 403,
     "../../../../assembler-3d": 301,
-    "../2d/tiled": 353
+    "../2d/tiled": 355
   } ],
-  360: [ (function(require, module, exports) {
+  362: [ (function(require, module, exports) {
     "use strict";
     var _assembler = _interopRequireDefault(require("../../../assembler"));
     var _CCSprite = require("../../../../components/CCSprite");
@@ -54360,20 +54511,20 @@
   }), {
     "../../../../components/CCSprite": 199,
     "../../../assembler": 303,
-    "./2d/bar-filled": 348,
-    "./2d/mesh": 349,
-    "./2d/radial-filled": 350,
-    "./2d/simple": 351,
-    "./2d/sliced": 352,
-    "./2d/tiled": 353,
-    "./3d/bar-filled": 354,
-    "./3d/mesh": 355,
-    "./3d/radial-filled": 356,
-    "./3d/simple": 357,
-    "./3d/sliced": 358,
-    "./3d/tiled": 359
+    "./2d/bar-filled": 350,
+    "./2d/mesh": 351,
+    "./2d/radial-filled": 352,
+    "./2d/simple": 353,
+    "./2d/sliced": 354,
+    "./2d/tiled": 355,
+    "./3d/bar-filled": 356,
+    "./3d/mesh": 357,
+    "./3d/radial-filled": 358,
+    "./3d/simple": 359,
+    "./3d/sliced": 360,
+    "./3d/tiled": 361
   } ],
-  361: [ (function(require, module, exports) {
+  363: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -54435,7 +54586,7 @@
     cc.FlexBuffer = FlexBuffer;
     module.exports = exports["default"];
   }), {} ],
-  362: [ (function(require, module, exports) {
+  364: [ (function(require, module, exports) {
     "use strict";
     var _gfx = _interopRequireDefault(require("../../../renderer/gfx"));
     function _interopRequireDefault(e) {
@@ -54612,9 +54763,9 @@
     }
     cc.MeshBuffer = module.exports = MeshBuffer;
   }), {
-    "../../../renderer/gfx": 417
+    "../../../renderer/gfx": 419
   } ],
-  363: [ (function(require, module, exports) {
+  365: [ (function(require, module, exports) {
     "use strict";
     var MeshBuffer = require("./mesh-buffer");
     var QuadBuffer = cc.Class({
@@ -54654,9 +54805,9 @@
     });
     cc.QuadBuffer = module.exports = QuadBuffer;
   }), {
-    "./mesh-buffer": 362
+    "./mesh-buffer": 364
   } ],
-  364: [ (function(require, module, exports) {
+  366: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = RenderData;
@@ -54721,10 +54872,10 @@
     cc.RenderData = RenderData;
     module.exports = exports["default"];
   }), {
-    "./flex-buffer": 361,
-    "./vertex-format": 365
+    "./flex-buffer": 363,
+    "./vertex-format": 367
   } ],
-  365: [ (function(require, module, exports) {
+  367: [ (function(require, module, exports) {
     "use strict";
     var _gfx = _interopRequireDefault(require("../../../renderer/gfx"));
     function _interopRequireDefault(e) {
@@ -54846,9 +54997,9 @@
       vfmtPos: vfmtPos
     };
   }), {
-    "../../../renderer/gfx": 417
+    "../../../renderer/gfx": 419
   } ],
-  366: [ (function(require, module, exports) {
+  368: [ (function(require, module, exports) {
     "use strict";
     require("../platform/CCSys");
     var EXTNAME_RE = /(\.[^\.\/\?\\]*)(\?.*)?$/;
@@ -54928,7 +55079,7 @@
   }), {
     "../platform/CCSys": 282
   } ],
-  367: [ (function(require, module, exports) {
+  369: [ (function(require, module, exports) {
     "use strict";
     var AffineTransform = function AffineTransform(a, b, c, d, tx, ty) {
       this.a = a;
@@ -55064,7 +55215,7 @@
     };
     cc.AffineTransform = module.exports = AffineTransform;
   }), {} ],
-  368: [ (function(require, module, exports) {
+  370: [ (function(require, module, exports) {
     "use strict";
     var Flags = require("../platform/CCObject").Flags;
     var misc = require("./misc");
@@ -55575,9 +55726,9 @@
     "../platform/id-generater": 291,
     "../platform/js": 295,
     "../renderer/render-flow": 324,
-    "./misc": 376
+    "./misc": 378
   } ],
-  369: [ (function(require, module, exports) {
+  371: [ (function(require, module, exports) {
     "use strict";
     var EPSILON = 1e-6;
     function binarySearchEpsilon(array, value) {
@@ -55594,7 +55745,7 @@
       binarySearchEpsilon: binarySearchEpsilon
     };
   }), {} ],
-  370: [ (function(require, module, exports) {
+  372: [ (function(require, module, exports) {
     "use strict";
     var RenderComponent = require("../components/CCRenderComponent");
     var BlendFactor = require("../platform/CCMacro").BlendFactor;
@@ -55657,11 +55808,11 @@
     });
     module.exports = cc.BlendFunc = BlendFunc;
   }), {
-    "../../renderer/gfx": 417,
+    "../../renderer/gfx": 419,
     "../components/CCRenderComponent": 193,
     "../platform/CCMacro": 278
   } ],
-  371: [ (function(require, module, exports) {
+  373: [ (function(require, module, exports) {
     "use strict";
     var Base64Values = require("./misc").BASE64_VALUES;
     var HexChars = "0123456789abcdef".split("");
@@ -55685,9 +55836,9 @@
     };
     false;
   }), {
-    "./misc": 376
+    "./misc": 378
   } ],
-  372: [ (function(require, module, exports) {
+  374: [ (function(require, module, exports) {
     "use strict";
     cc.find = module.exports = function(path, referenceNode) {
       if (null == path) {
@@ -55731,7 +55882,7 @@
       return match;
     };
   }), {} ],
-  373: [ (function(require, module, exports) {
+  375: [ (function(require, module, exports) {
     "use strict";
     var _materialVariant = _interopRequireDefault(require("../assets/material/material-variant"));
     function _interopRequireDefault(e) {
@@ -55788,7 +55939,7 @@
     "../assets/material/CCMaterial": 157,
     "../assets/material/material-variant": 164
   } ],
-  374: [ (function(require, module, exports) {
+  376: [ (function(require, module, exports) {
     "use strict";
     var eventRegx = /^(click)(\s)*=|(param)(\s)*=/;
     var imageAttrReg = /(\s)*src(\s)*=|(\s)*height(\s)*=|(\s)*width(\s)*=|(\s)*align(\s)*=|(\s)*offset(\s)*=|(\s)*click(\s)*=|(\s)*param(\s)*=/;
@@ -56041,7 +56192,7 @@
     false;
     module.exports = HtmlTextParser;
   }), {} ],
-  375: [ (function(require, module, exports) {
+  377: [ (function(require, module, exports) {
     "use strict";
     require("./CCPath");
     true;
@@ -56049,12 +56200,12 @@
     require("./find");
     require("./mutable-forward-iterator");
   }), {
-    "./CCPath": 366,
-    "./find": 372,
-    "./mutable-forward-iterator": 377,
-    "./profiler/CCProfiler": 380
+    "./CCPath": 368,
+    "./find": 374,
+    "./mutable-forward-iterator": 379,
+    "./profiler/CCProfiler": 382
   } ],
-  376: [ (function(require, module, exports) {
+  378: [ (function(require, module, exports) {
     "use strict";
     var js = require("../platform/js");
     var misc = {};
@@ -56130,7 +56281,7 @@
   }), {
     "../platform/js": 295
   } ],
-  377: [ (function(require, module, exports) {
+  379: [ (function(require, module, exports) {
     "use strict";
     function MutableForwardIterator(array) {
       this.i = 0;
@@ -56160,7 +56311,7 @@
     };
     module.exports = MutableForwardIterator;
   }), {} ],
-  378: [ (function(require, module, exports) {
+  380: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -56182,7 +56333,7 @@
     };
     module.exports = exports["default"];
   }), {} ],
-  379: [ (function(require, module, exports) {
+  381: [ (function(require, module, exports) {
     "use strict";
     cc._PrefabInfo = cc.Class({
       name: "cc.PrefabInfo",
@@ -56239,7 +56390,7 @@
       }
     };
   }), {} ],
-  380: [ (function(require, module, exports) {
+  382: [ (function(require, module, exports) {
     "use strict";
     var macro = require("../../platform/CCMacro");
     var PerfCounter = require("./perf-counter");
@@ -56381,9 +56532,9 @@
     };
   }), {
     "../../platform/CCMacro": 278,
-    "./perf-counter": 382
+    "./perf-counter": 384
   } ],
-  381: [ (function(require, module, exports) {
+  383: [ (function(require, module, exports) {
     "use strict";
     var Counter = cc.Class({
       name: "cc.Counter",
@@ -56433,7 +56584,7 @@
     });
     module.exports = Counter;
   }), {} ],
-  382: [ (function(require, module, exports) {
+  384: [ (function(require, module, exports) {
     "use strict";
     var Counter = require("./counter");
     var PerfCounter = cc.Class({
@@ -56468,9 +56619,9 @@
     });
     module.exports = PerfCounter;
   }), {
-    "./counter": 381
+    "./counter": 383
   } ],
-  383: [ (function(require, module, exports) {
+  385: [ (function(require, module, exports) {
     "use strict";
     var _js = _interopRequireDefault(require("../platform/js"));
     function _interopRequireDefault(e) {
@@ -56669,7 +56820,7 @@
   }), {
     "../platform/js": 295
   } ],
-  384: [ (function(require, module, exports) {
+  386: [ (function(require, module, exports) {
     "use strict";
     var Texture2D = require("../assets/CCTexture2D");
     var textureUtil = {
@@ -56714,7 +56865,7 @@
   }), {
     "../assets/CCTexture2D": 153
   } ],
-  385: [ (function(require, module, exports) {
+  387: [ (function(require, module, exports) {
     "use strict";
     var NodeUnit = require("./node-unit");
     var NodeMemPool = require("./node-mem-pool");
@@ -56722,10 +56873,10 @@
       NodeMemPool: new NodeMemPool(NodeUnit)
     };
   }), {
-    "./node-mem-pool": 387,
-    "./node-unit": 388
+    "./node-mem-pool": 389,
+    "./node-unit": 390
   } ],
-  386: [ (function(require, module, exports) {
+  388: [ (function(require, module, exports) {
     "use strict";
     var MemPool = function MemPool(unitClass) {
       this._unitClass = unitClass;
@@ -56796,7 +56947,7 @@
     };
     module.exports = MemPool;
   }), {} ],
-  387: [ (function(require, module, exports) {
+  389: [ (function(require, module, exports) {
     "use strict";
     var MemPool = require("./mem-pool");
     var NodeMemPool = function NodeMemPool(unitClass) {
@@ -56818,9 +56969,9 @@
     };
     module.exports = NodeMemPool;
   }), {
-    "./mem-pool": 386
+    "./mem-pool": 388
   } ],
-  388: [ (function(require, module, exports) {
+  390: [ (function(require, module, exports) {
     "use strict";
     var _utils = require("../../value-types/utils");
     var Uint32_Bytes = 4;
@@ -56892,10 +57043,10 @@
     })();
     module.exports = NodeUnit;
   }), {
-    "../../value-types/utils": 398,
-    "./unit-base": 389
+    "../../value-types/utils": 400,
+    "./unit-base": 391
   } ],
-  389: [ (function(require, module, exports) {
+  391: [ (function(require, module, exports) {
     "use strict";
     var POINTER_INVALID_FLAG = 65535;
     var SPACE_FREE_FLAG = 0;
@@ -56976,7 +57127,7 @@
     };
     module.exports = UnitBase;
   }), {} ],
-  390: [ (function(require, module, exports) {
+  392: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -57451,10 +57602,10 @@
     module.exports = exports["default"];
   }), {
     "../platform/CCClass": 273,
-    "../utils/misc": 376,
-    "./value-type": 399
+    "../utils/misc": 378,
+    "./value-type": 401
   } ],
-  391: [ (function(require, module, exports) {
+  393: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     var _exportNames = {
@@ -57504,19 +57655,19 @@
     }
     cc.math = module.exports;
   }), {
-    "./color": 390,
-    "./mat3": 392,
-    "./mat4": 393,
-    "./quat": 394,
-    "./rect": 395,
-    "./size": 396,
-    "./trs": 397,
-    "./utils": 398,
-    "./vec2": 400,
-    "./vec3": 401,
-    "./vec4": 402
+    "./color": 392,
+    "./mat3": 394,
+    "./mat4": 395,
+    "./quat": 396,
+    "./rect": 397,
+    "./size": 398,
+    "./trs": 399,
+    "./utils": 400,
+    "./vec2": 402,
+    "./vec3": 403,
+    "./vec4": 404
   } ],
-  392: [ (function(require, module, exports) {
+  394: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -57964,10 +58115,10 @@
     cc.Mat3 = Mat3;
     module.exports = exports["default"];
   }), {
-    "../value-types/utils": 398,
-    "./vec3": 401
+    "../value-types/utils": 400,
+    "./vec3": 403
   } ],
-  393: [ (function(require, module, exports) {
+  395: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -59289,13 +59440,13 @@
     module.exports = exports["default"];
   }), {
     "../platform/CCClass": 273,
-    "./mat3": 392,
-    "./quat": 394,
-    "./utils": 398,
-    "./value-type": 399,
-    "./vec3": 401
+    "./mat3": 394,
+    "./quat": 396,
+    "./utils": 400,
+    "./value-type": 401,
+    "./vec3": 403
   } ],
-  394: [ (function(require, module, exports) {
+  396: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -59782,12 +59933,12 @@
     module.exports = exports["default"];
   }), {
     "../platform/CCClass": 273,
-    "./mat3": 392,
-    "./utils": 398,
-    "./value-type": 399,
-    "./vec3": 401
+    "./mat3": 394,
+    "./utils": 400,
+    "./value-type": 401,
+    "./vec3": 403
   } ],
-  395: [ (function(require, module, exports) {
+  397: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -60023,11 +60174,11 @@
     module.exports = exports["default"];
   }), {
     "../platform/CCClass": 273,
-    "./size": 396,
-    "./value-type": 399,
-    "./vec2": 400
+    "./size": 398,
+    "./value-type": 401,
+    "./vec2": 402
   } ],
-  396: [ (function(require, module, exports) {
+  398: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -60134,9 +60285,9 @@
     module.exports = exports["default"];
   }), {
     "../platform/CCClass": 273,
-    "./value-type": 399
+    "./value-type": 401
   } ],
-  397: [ (function(require, module, exports) {
+  399: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -60248,9 +60399,9 @@
     cc.Trs = Trs;
     module.exports = exports["default"];
   }), {
-    "./quat": 394
+    "./quat": 396
   } ],
-  398: [ (function(require, module, exports) {
+  400: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.INT_MIN = exports.INT_MAX = exports.INT_BITS = exports.FLOAT_BYTES = exports.FLOAT_ARRAY_TYPE = exports.EPSILON = void 0;
@@ -60344,7 +60495,7 @@
       return (v > 0) - (v < 0);
     }
   }), {} ],
-  399: [ (function(require, module, exports) {
+  401: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -60383,7 +60534,7 @@
   }), {
     "../platform/js": 295
   } ],
-  400: [ (function(require, module, exports) {
+  402: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -60838,11 +60989,11 @@
     module.exports = exports["default"];
   }), {
     "../platform/CCClass": 273,
-    "../utils/misc": 376,
-    "./utils": 398,
-    "./value-type": 399
+    "../utils/misc": 378,
+    "./utils": 400,
+    "./value-type": 401
   } ],
-  401: [ (function(require, module, exports) {
+  403: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -61444,12 +61595,12 @@
     module.exports = exports["default"];
   }), {
     "../platform/CCClass": 273,
-    "../utils/misc": 376,
-    "./utils": 398,
-    "./value-type": 399,
-    "./vec2": 400
+    "../utils/misc": 378,
+    "./utils": 400,
+    "./value-type": 401,
+    "./vec2": 402
   } ],
-  402: [ (function(require, module, exports) {
+  404: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -61995,10 +62146,10 @@
     cc.Vec4 = Vec4;
   }), {
     "../platform/CCClass": 273,
-    "./utils": 398,
-    "./value-type": 399
+    "./utils": 400,
+    "./value-type": 401
   } ],
-  403: [ (function(require, module, exports) {
+  405: [ (function(require, module, exports) {
     "use strict";
     var js = cc.js;
     true;
@@ -62417,7 +62568,7 @@
     };
     markAsRemovedInObject(cc.audioEngine, [ "getProfile", "preload", "setMaxWebAudioSize" ], "cc.audioEngine");
   }), {} ],
-  404: [ (function(require, module, exports) {
+  406: [ (function(require, module, exports) {
     "use strict";
     require("./core/CCGame");
     require("./actions");
@@ -62425,7 +62576,7 @@
     "./actions": 8,
     "./core/CCGame": 103
   } ],
-  405: [ (function(require, module, exports) {
+  407: [ (function(require, module, exports) {
     "use strict";
     var zlib = require("../compression/zlib.min");
     var debug = require("../core/CCDebug");
@@ -62715,7 +62866,7 @@
     "../compression/zlib.min": 26,
     "../core/CCDebug": 101
   } ],
-  406: [ (function(require, module, exports) {
+  408: [ (function(require, module, exports) {
     "use strict";
     var Asset = require("../core/assets/CCAsset");
     var CCSpriteFrame = require("../core/assets/CCSpriteFrame");
@@ -62734,7 +62885,7 @@
     "../core/assets/CCAsset": 137,
     "../core/assets/CCSpriteFrame": 150
   } ],
-  407: [ (function(require, module, exports) {
+  409: [ (function(require, module, exports) {
     "use strict";
     var macro = require("../core/platform/CCMacro");
     var ParticleAsset = require("./CCParticleAsset");
@@ -63230,15 +63381,15 @@
     "../core/components/CCRenderComponent": 193,
     "../core/platform/CCMacro": 278,
     "../core/renderer/render-flow": 324,
-    "../core/utils/blend-func": 370,
-    "../core/utils/texture-util": 384,
-    "./CCPNGReader": 405,
-    "./CCParticleAsset": 406,
-    "./CCTIFFReader": 408,
-    "./particle-simulator": 410,
+    "../core/utils/blend-func": 372,
+    "../core/utils/texture-util": 386,
+    "./CCPNGReader": 407,
+    "./CCParticleAsset": 408,
+    "./CCTIFFReader": 410,
+    "./particle-simulator": 412,
     "fire-url": void 0
   } ],
-  408: [ (function(require, module, exports) {
+  410: [ (function(require, module, exports) {
     "use strict";
     var debug = require("../core/CCDebug");
     var tiffReader = {
@@ -63651,19 +63802,19 @@
   }), {
     "../core/CCDebug": 101
   } ],
-  409: [ (function(require, module, exports) {
+  411: [ (function(require, module, exports) {
     "use strict";
     require("./CCParticleAsset");
     require("./CCParticleSystem");
     require("./particle-simulator");
     require("./particle-system-assembler");
   }), {
-    "./CCParticleAsset": 406,
-    "./CCParticleSystem": 407,
-    "./particle-simulator": 410,
-    "./particle-system-assembler": 411
+    "./CCParticleAsset": 408,
+    "./CCParticleSystem": 409,
+    "./particle-simulator": 412,
+    "./particle-system-assembler": 413
   } ],
-  410: [ (function(require, module, exports) {
+  412: [ (function(require, module, exports) {
     "use strict";
     var js = require("../core/platform/js");
     var misc = require("../core/utils/misc");
@@ -63987,9 +64138,9 @@
     module.exports = Simulator;
   }), {
     "../core/platform/js": 295,
-    "../core/utils/misc": 376
+    "../core/utils/misc": 378
   } ],
-  411: [ (function(require, module, exports) {
+  413: [ (function(require, module, exports) {
     "use strict";
     var _assembler = _interopRequireDefault(require("../core/renderer/assembler"));
     var _inputAssembler = _interopRequireDefault(require("../renderer/core/input-assembler"));
@@ -64046,12 +64197,12 @@
   }), {
     "../core/renderer/": 323,
     "../core/renderer/assembler": 303,
-    "../core/renderer/webgl/quad-buffer": 363,
-    "../core/renderer/webgl/vertex-format": 365,
-    "../renderer/core/input-assembler": 413,
-    "./CCParticleSystem": 407
+    "../core/renderer/webgl/quad-buffer": 365,
+    "../core/renderer/webgl/vertex-format": 367,
+    "../renderer/core/input-assembler": 415,
+    "./CCParticleSystem": 409
   } ],
-  412: [ (function(require, module, exports) {
+  414: [ (function(require, module, exports) {
     "use strict";
     var enums = {
       USAGE_STATIC: 35044,
@@ -64933,7 +65084,7 @@
     };
     module.exports = mappings;
   }), {} ],
-  413: [ (function(require, module, exports) {
+  415: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -64990,9 +65141,9 @@
     })();
     module.exports = exports["default"];
   }), {
-    "../gfx": 417
+    "../gfx": 419
   } ],
-  414: [ (function(require, module, exports) {
+  416: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -65179,11 +65330,11 @@
     })();
     module.exports = exports["default"];
   }), {
-    "../../core/value-types/value-type": 399,
-    "../enums": 416,
-    "../gfx": 417
+    "../../core/value-types/value-type": 401,
+    "../enums": 418,
+    "../gfx": 419
   } ],
-  415: [ (function(require, module, exports) {
+  417: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -65238,7 +65389,7 @@
     })();
     module.exports = exports["default"];
   }), {} ],
-  416: [ (function(require, module, exports) {
+  418: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -65280,9 +65431,9 @@
     };
     module.exports = exports["default"];
   }), {
-    "./build/mappings": 412
+    "./build/mappings": 414
   } ],
-  417: [ (function(require, module, exports) {
+  419: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -65316,7 +65467,7 @@
     "./vertex-buffer": void 0,
     "./vertex-format": void 0
   } ],
-  418: [ (function(require, module, exports) {
+  420: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -65356,7 +65507,7 @@
     })();
     module.exports = exports["default"];
   }), {} ],
-  419: [ (function(require, module, exports) {
+  421: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -65436,9 +65587,9 @@
     cc.RecyclePool = RecyclePool;
     module.exports = exports["default"];
   }), {
-    "./timsort": 420
+    "./timsort": 422
   } ],
-  420: [ (function(require, module, exports) {
+  422: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = _default;
@@ -65899,7 +66050,7 @@
     }
     module.exports = exports["default"];
   }), {} ],
-  421: [ (function(require, module, exports) {
+  423: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = murmurhash2_32_gc;
@@ -65932,7 +66083,7 @@
     }
     module.exports = exports["default"];
   }), {} ],
-  422: [ (function(require, module, exports) {
+  424: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.getClassName = exports.enums2default = exports.ctor2enums = void 0;
@@ -66025,11 +66176,11 @@
     }
   }), {
     "../core/assets/CCTexture2D": 153,
-    "../core/value-types": 391,
-    "./enums": 416,
+    "../core/value-types": 393,
+    "./enums": 418,
     "./gfx/texture-2d": void 0
   } ],
-  423: [ (function(require, module, exports) {
+  425: [ (function(require, module, exports) {
     "use strict";
     var codec = require("../compression/ZipUtils");
     var zlib = require("../compression/zlib.min");
@@ -66689,7 +66840,7 @@
     "../core/platform/CCSAXParser": 280,
     "../core/platform/js": 295
   } ],
-  424: [ (function(require, module, exports) {
+  426: [ (function(require, module, exports) {
     "use strict";
     var _valueTypes = require("../core/value-types");
     var _materialVariant = _interopRequireDefault(require("../core/assets/material/material-variant"));
@@ -67540,9 +67691,9 @@
     "../core/assets/material/material-variant": 164,
     "../core/components/CCRenderComponent": 193,
     "../core/renderer/render-flow": 324,
-    "../core/value-types": 391
+    "../core/value-types": 393
   } ],
-  425: [ (function(require, module, exports) {
+  427: [ (function(require, module, exports) {
     "use strict";
     require("./CCTMXXMLParser");
     require("./CCTiledMapAsset");
@@ -67967,13 +68118,13 @@
       return [];
     }), false);
   }), {
-    "./CCTMXXMLParser": 423,
-    "./CCTiledLayer": 424,
-    "./CCTiledMapAsset": 426,
-    "./CCTiledObjectGroup": 428,
-    "./CCTiledTile": 429
+    "./CCTMXXMLParser": 425,
+    "./CCTiledLayer": 426,
+    "./CCTiledMapAsset": 428,
+    "./CCTiledObjectGroup": 430,
+    "./CCTiledTile": 431
   } ],
-  426: [ (function(require, module, exports) {
+  428: [ (function(require, module, exports) {
     "use strict";
     var TiledMapAsset = cc.Class({
       name: "cc.TiledMapAsset",
@@ -68005,7 +68156,7 @@
     cc.TiledMapAsset = TiledMapAsset;
     module.exports = TiledMapAsset;
   }), {} ],
-  427: [ (function(require, module, exports) {
+  429: [ (function(require, module, exports) {
     "use strict";
     var _inputAssembler = _interopRequireDefault(require("../renderer/core/input-assembler"));
     function _interopRequireDefault(e) {
@@ -68046,9 +68197,9 @@
     });
     cc.TiledMapRenderDataList = module.exports = TiledMapRenderDataList;
   }), {
-    "../renderer/core/input-assembler": 413
+    "../renderer/core/input-assembler": 415
   } ],
-  428: [ (function(require, module, exports) {
+  430: [ (function(require, module, exports) {
     "use strict";
     var TiledObjectGroup = cc.Class({
       name: "cc.TiledObjectGroup",
@@ -68210,7 +68361,7 @@
     });
     cc.TiledObjectGroup = module.exports = TiledObjectGroup;
   }), {} ],
-  429: [ (function(require, module, exports) {
+  431: [ (function(require, module, exports) {
     "use strict";
     var TiledTile = cc.Class({
       name: "cc.TiledTile",
@@ -68290,19 +68441,19 @@
     });
     cc.TiledTile = module.exports = TiledTile;
   }), {} ],
-  430: [ (function(require, module, exports) {
+  432: [ (function(require, module, exports) {
     "use strict";
     require("./CCTiledMap");
     require("./CCTiledMapRenderDataList");
     require("./tiledmap-buffer");
     require("./tmx-layer-assembler");
   }), {
-    "./CCTiledMap": 425,
-    "./CCTiledMapRenderDataList": 427,
-    "./tiledmap-buffer": 431,
-    "./tmx-layer-assembler": 432
+    "./CCTiledMap": 427,
+    "./CCTiledMapRenderDataList": 429,
+    "./tiledmap-buffer": 433,
+    "./tmx-layer-assembler": 434
   } ],
-  431: [ (function(require, module, exports) {
+  433: [ (function(require, module, exports) {
     "use strict";
     var TiledMapBuffer = cc.Class({
       name: "cc.TiledMapBuffer",
@@ -68323,9 +68474,9 @@
     });
     cc.TiledMapBuffer = module.exports = TiledMapBuffer;
   }), {
-    "../core/renderer/webgl/quad-buffer": 363
+    "../core/renderer/webgl/quad-buffer": 365
   } ],
-  432: [ (function(require, module, exports) {
+  434: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -68679,12 +68830,12 @@
     "../core/renderer/": 323,
     "../core/renderer/assembler": 303,
     "../core/renderer/render-flow": 324,
-    "../core/renderer/webgl/vertex-format": 365,
-    "../core/value-types": 391,
-    "./CCTiledLayer": 424,
-    "./CCTiledMap": 425
+    "../core/renderer/webgl/vertex-format": 367,
+    "../core/value-types": 393,
+    "./CCTiledLayer": 426,
+    "./CCTiledMap": 427
   } ],
-  433: [ (function(require, module, exports) {
+  435: [ (function(require, module, exports) {
     "use strict";
     var VideoPlayerImpl = require("./video-player-impl");
     var EventType = VideoPlayerImpl.EventType;
@@ -68941,9 +69092,9 @@
     });
     cc.VideoPlayer = module.exports = VideoPlayer;
   }), {
-    "./video-player-impl": 434
+    "./video-player-impl": 436
   } ],
-  434: [ (function(require, module, exports) {
+  436: [ (function(require, module, exports) {
     "use strict";
     var utils = require("../core/platform/utils");
     var sys = require("../core/platform/CCSys");
@@ -69338,7 +69489,7 @@
     "../core/platform/CCSys": 282,
     "../core/platform/utils": 298
   } ],
-  435: [ (function(require, module, exports) {
+  437: [ (function(require, module, exports) {
     "use strict";
     var WebViewImpl = require("./webview-impl");
     var EventType = WebViewImpl.EventType;
@@ -69428,9 +69579,9 @@
     });
     cc.WebView = module.exports = WebView;
   }), {
-    "./webview-impl": 436
+    "./webview-impl": 438
   } ],
-  436: [ (function(require, module, exports) {
+  438: [ (function(require, module, exports) {
     "use strict";
     var utils = require("../core/platform/utils");
     var sys = require("../core/platform/CCSys");
@@ -69687,7 +69838,7 @@
     "../core/platform/CCSys": 282,
     "../core/platform/utils": 298
   } ],
-  437: [ (function(require, module, exports) {
+  439: [ (function(require, module, exports) {
     "use strict";
     require("./cocos2d/core");
     require("./cocos2d/animation");
@@ -69708,18 +69859,18 @@
     "./cocos2d/animation": 17,
     "./cocos2d/core": 240,
     "./cocos2d/core/components/CCStudioComponent": 200,
-    "./cocos2d/deprecated": 403,
-    "./cocos2d/particle": 409,
-    "./cocos2d/particle/CCParticleAsset": 406,
-    "./cocos2d/tilemap": 430,
-    "./cocos2d/tilemap/CCTiledMapAsset": 426,
-    "./cocos2d/videoplayer/CCVideoPlayer": 433,
-    "./cocos2d/webview/CCWebView": 435,
-    "./extensions/ccpool/CCNodePool": 438,
-    "./extensions/dragonbones": 443,
-    "./extensions/spine": 447
+    "./cocos2d/deprecated": 405,
+    "./cocos2d/particle": 411,
+    "./cocos2d/particle/CCParticleAsset": 408,
+    "./cocos2d/tilemap": 432,
+    "./cocos2d/tilemap/CCTiledMapAsset": 428,
+    "./cocos2d/videoplayer/CCVideoPlayer": 435,
+    "./cocos2d/webview/CCWebView": 437,
+    "./extensions/ccpool/CCNodePool": 440,
+    "./extensions/dragonbones": 445,
+    "./extensions/spine": 449
   } ],
-  438: [ (function(require, module, exports) {
+  440: [ (function(require, module, exports) {
     "use strict";
     cc.NodePool = function(poolHandlerComp) {
       this.poolHandlerComp = poolHandlerComp;
@@ -69755,7 +69906,7 @@
     };
     module.exports = cc.NodePool;
   }), {} ],
-  439: [ (function(require, module, exports) {
+  441: [ (function(require, module, exports) {
     "use strict";
     var RenderComponent = require("../../cocos2d/core/components/CCRenderComponent");
     var EventTarget = require("../../cocos2d/core/event/event-target");
@@ -70212,9 +70363,9 @@
     "../../cocos2d/core/graphics/graphics": 236,
     "../../cocos2d/core/renderer/render-flow": 324,
     "./ArmatureCache": void 0,
-    "./AttachUtil": 440
+    "./AttachUtil": 442
   } ],
-  440: [ (function(require, module, exports) {
+  442: [ (function(require, module, exports) {
     "use strict";
     var _mat = _interopRequireDefault(require("../../cocos2d/core/value-types/mat4"));
     function _interopRequireDefault(e) {
@@ -70551,9 +70702,9 @@
     module.exports = dragonBones.AttachUtil = AttachUtil;
   }), {
     "../../cocos2d/core/renderer/render-flow": 324,
-    "../../cocos2d/core/value-types/mat4": 393
+    "../../cocos2d/core/value-types/mat4": 395
   } ],
-  441: [ (function(require, module, exports) {
+  443: [ (function(require, module, exports) {
     "use strict";
     var ArmatureCache = false;
     var DragonBonesAsset = cc.Class({
@@ -70626,7 +70777,7 @@
   }), {
     "./ArmatureCache": void 0
   } ],
-  442: [ (function(require, module, exports) {
+  444: [ (function(require, module, exports) {
     "use strict";
     var ArmatureCache = false;
     var DragonBonesAtlasAsset = cc.Class({
@@ -70687,7 +70838,7 @@
   }), {
     "./ArmatureCache": void 0
   } ],
-  443: [ (function(require, module, exports) {
+  445: [ (function(require, module, exports) {
     "use strict";
     var _global = "undefined" === typeof window ? global : window;
     false;
@@ -70781,17 +70932,17 @@
     }
   }), {
     "./ArmatureCache": void 0,
-    "./ArmatureDisplay": 439,
+    "./ArmatureDisplay": 441,
     "./CCArmatureDisplay": void 0,
     "./CCFactory": void 0,
     "./CCSlot": void 0,
     "./CCTextureData": void 0,
-    "./DragonBonesAsset": 441,
-    "./DragonBonesAtlasAsset": 442,
+    "./DragonBonesAsset": 443,
+    "./DragonBonesAtlasAsset": 444,
     "./lib/dragonBones": void 0,
-    "./webgl-assembler": 444
+    "./webgl-assembler": 446
   } ],
-  444: [ (function(require, module, exports) {
+  446: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -71071,10 +71222,10 @@
   }), {
     "../../cocos2d/core/renderer/assembler": 303,
     "../../cocos2d/core/renderer/render-flow": 324,
-    "../../cocos2d/core/value-types/mat4": 393,
-    "./ArmatureDisplay": 439
+    "../../cocos2d/core/value-types/mat4": 395,
+    "./ArmatureDisplay": 441
   } ],
-  445: [ (function(require, module, exports) {
+  447: [ (function(require, module, exports) {
     "use strict";
     var _mat = _interopRequireDefault(require("../../cocos2d/core/value-types/mat4"));
     function _interopRequireDefault(e) {
@@ -71358,9 +71509,9 @@
     module.exports = sp.AttachUtil = AttachUtil;
   }), {
     "../../cocos2d/core/renderer/render-flow": 324,
-    "../../cocos2d/core/value-types/mat4": 393
+    "../../cocos2d/core/value-types/mat4": 395
   } ],
-  446: [ (function(require, module, exports) {
+  448: [ (function(require, module, exports) {
     "use strict";
     var TrackEntryListeners = require("./track-entry-listeners");
     var RenderComponent = require("../../cocos2d/core/components/CCRenderComponent");
@@ -71996,12 +72147,12 @@
     "../../cocos2d/core/components/CCRenderComponent": 193,
     "../../cocos2d/core/graphics/graphics": 236,
     "../../cocos2d/core/renderer/render-flow": 324,
-    "./AttachUtil": 445,
+    "./AttachUtil": 447,
     "./lib/spine": void 0,
     "./skeleton-cache": void 0,
-    "./track-entry-listeners": 451
+    "./track-entry-listeners": 453
   } ],
-  447: [ (function(require, module, exports) {
+  449: [ (function(require, module, exports) {
     "use strict";
     var _global = "undefined" === typeof window ? global : window;
     var _isUseSpine = true;
@@ -72042,14 +72193,14 @@
       require("./spine-assembler");
     }
   }), {
-    "./Skeleton": 446,
+    "./Skeleton": 448,
     "./lib/spine": void 0,
-    "./skeleton-data": 448,
-    "./skeleton-texture": 449,
-    "./spine-assembler": 450,
+    "./skeleton-data": 450,
+    "./skeleton-texture": 451,
+    "./spine-assembler": 452,
     "./vertex-effect-delegate": void 0
   } ],
-  448: [ (function(require, module, exports) {
+  450: [ (function(require, module, exports) {
     "use strict";
     var SkeletonCache = false;
     var SkeletonData = cc.Class({
@@ -72199,7 +72350,7 @@
   }), {
     "./skeleton-cache": void 0
   } ],
-  449: [ (function(require, module, exports) {
+  451: [ (function(require, module, exports) {
     "use strict";
     sp.SkeletonTexture = cc.Class({
       name: "sp.SkeletonTexture",
@@ -72221,7 +72372,7 @@
       dispose: function dispose() {}
     });
   }), {} ],
-  450: [ (function(require, module, exports) {
+  452: [ (function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -72718,11 +72869,11 @@
   }), {
     "../../cocos2d/core/renderer/assembler": 303,
     "../../cocos2d/core/renderer/render-flow": 324,
-    "../../cocos2d/core/renderer/webgl/vertex-format": 365,
-    "./Skeleton": 446,
+    "../../cocos2d/core/renderer/webgl/vertex-format": 367,
+    "./Skeleton": 448,
     "./lib/spine": void 0
   } ],
-  451: [ (function(require, module, exports) {
+  453: [ (function(require, module, exports) {
     "use strict";
     var TrackEntryListeners = function TrackEntryListeners() {
       this.start = null;
@@ -72738,7 +72889,7 @@
     };
     module.exports = TrackEntryListeners;
   }), {} ],
-  452: [ (function(require, module, exports) {
+  454: [ (function(require, module, exports) {
     "use strict";
     (function(global, factory) {
       "object" === typeof exports && "undefined" !== typeof module ? factory(exports) : "function" === typeof define && define.amd ? define([ "exports" ], factory) : factory(global.box2d = {});
@@ -87727,7 +87878,7 @@
       });
     }));
   }), {} ],
-  453: [ (function(require, module, exports) {
+  455: [ (function(require, module, exports) {
     "use strict";
     !(function(e) {
       if ("object" == typeof exports && "undefined" != typeof module) module.exports = e(); else if ("function" == typeof define && define.amd) define([], e); else {
@@ -94899,7 +95050,7 @@
       }, {}, [ 2 ])(2);
     }));
   }), {} ],
-  454: [ (function(require, module, exports) {
+  456: [ (function(require, module, exports) {
     "use strict";
     var _global = "undefined" === typeof window ? global : window;
     _global.cc = _global.cc || {};
@@ -94920,20 +95071,20 @@
     false;
     module.exports = _global.cc;
   }), {
-    "./cocos2d": 404,
+    "./cocos2d": 406,
     "./cocos2d/core/predefine": 299,
-    "./extends": 437,
+    "./extends": 439,
     "./package": void 0,
-    "./polyfill/array": 456,
-    "./polyfill/array-buffer": 455,
-    "./polyfill/misc": 457,
-    "./polyfill/number": 458,
-    "./polyfill/object": 459,
-    "./polyfill/string": 460,
-    "./polyfill/typescript": 461,
-    "./predefine": 462
+    "./polyfill/array": 458,
+    "./polyfill/array-buffer": 457,
+    "./polyfill/misc": 459,
+    "./polyfill/number": 460,
+    "./polyfill/object": 461,
+    "./polyfill/string": 462,
+    "./polyfill/typescript": 463,
+    "./predefine": 464
   } ],
-  455: [ (function(require, module, exports) {
+  457: [ (function(require, module, exports) {
     "use strict";
     if (!ArrayBuffer.isView) {
       var TypedArray = Object.getPrototypeOf(Int8Array);
@@ -94946,7 +95097,7 @@
       };
     }
   }), {} ],
-  456: [ (function(require, module, exports) {
+  458: [ (function(require, module, exports) {
     "use strict";
     Array.isArray || (Array.isArray = function(arg) {
       return "[object Array]" === Object.prototype.toString.call(arg);
@@ -94963,7 +95114,7 @@
       return -1 !== this.indexOf(value);
     });
   }), {} ],
-  457: [ (function(require, module, exports) {
+  459: [ (function(require, module, exports) {
     "use strict";
     Math.sign || (Math.sign = function(x) {
       x = +x;
@@ -94988,12 +95139,12 @@
       console.log(label + ": " + duration + "ms");
     };
   }), {} ],
-  458: [ (function(require, module, exports) {
+  460: [ (function(require, module, exports) {
     "use strict";
     Number.parseFloat = Number.parseFloat || parseFloat;
     Number.parseInt = Number.parseInt || parseInt;
   }), {} ],
-  459: [ (function(require, module, exports) {
+  461: [ (function(require, module, exports) {
     "use strict";
     Object.assign || (Object.assign = function(target, source) {
       return cc.js.mixin(target, source);
@@ -95009,7 +95160,7 @@
       return descriptors;
     });
   }), {} ],
-  460: [ (function(require, module, exports) {
+  462: [ (function(require, module, exports) {
     "use strict";
     String.prototype.startsWith || (String.prototype.startsWith = function(searchString, position) {
       position = position || 0;
@@ -95025,7 +95176,7 @@
       return this.replace(/^\s+/, "");
     });
   }), {} ],
-  461: [ (function(require, module, exports) {
+  463: [ (function(require, module, exports) {
     "use strict";
     var extendStatics = Object.setPrototypeOf || {
       __proto__: []
@@ -95352,7 +95503,7 @@
       return value;
     };
   }), {} ],
-  462: [ (function(require, module, exports) {
+  464: [ (function(require, module, exports) {
     "use strict";
     var _global = "undefined" === typeof window ? global : window;
     function defineMacro(name, defaultValue) {
@@ -95396,4 +95547,4 @@
     var engineVersion = "2.4.14";
     _global["CocosEngine"] = cc.ENGINE_VERSION = engineVersion;
   }), {} ]
-}, {}, [ 454 ]);
+}, {}, [ 456 ]);

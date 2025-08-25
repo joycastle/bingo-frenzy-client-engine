@@ -8,7 +8,7 @@ export default class Assembler2D extends Assembler {
 
         this._renderData = new RenderData();
         this._renderData.init(this);
-        
+
         this.initData();
         this.initLocal();
     }
@@ -21,6 +21,7 @@ export default class Assembler2D extends Assembler {
         let data = this._renderData;
         data.createQuadData(0, this.verticesFloats, this.indicesCount);
     }
+
     initLocal () {
         this._local = [];
         this._local.length = 4;
@@ -52,7 +53,7 @@ export default class Assembler2D extends Assembler {
 
         let vl = local[0], vr = local[2],
             vb = local[1], vt = local[3];
-        
+
         let floatsPerVert = this.floatsPerVert;
         let vertexOffset = 0;
         let justTranslate = a === 1 && b === 0 && c === 0 && d === 1;
@@ -125,7 +126,7 @@ export default class Assembler2D extends Assembler {
         let ibuf = buffer._iData,
             indiceOffset = offsetInfo.indiceOffset,
             vertexId = offsetInfo.vertexOffset;
-        /** Since the update of indicesCout may occur before the update of iData.length, indicesCout does not always equal iData.length. 
+        /** Since the update of indicesCout may occur before the update of iData.length, indicesCout does not always equal iData.length.
           * It may be greater than or less than iData.length.
           */
         for (let i = 0, l = Math.min(this.indicesCount, iData.length); i < l; i++) {
@@ -135,7 +136,7 @@ export default class Assembler2D extends Assembler {
 
     packToDynamicAtlas (comp, frame) {
         if (CC_TEST) return;
-        
+
         if (!frame._original && dynamicAtlasManager && frame._texture.packable && frame._texture.loaded) {
             let packedFrame = dynamicAtlasManager.insertSpriteFrame(frame);
             if (packedFrame) {
@@ -144,7 +145,7 @@ export default class Assembler2D extends Assembler {
         }
         let material = comp._materials[0];
         if (!material) return;
-        
+
         if (material.getProperty('texture') !== frame._texture._texture) {
             // texture was packed to dynamic atlas, should update uvs
             comp._vertsDirty = true;
