@@ -52608,8 +52608,6 @@
         return t.__proto__ = e, t;
       }, _setPrototypeOf(t, e);
     }
-    var LabelShadow = require("../../../../../components/CCLabelShadow");
-    var WHITE = cc.color(255, 255, 255, 255);
     var COLOR_INDEX = [ 2, 3, 0, 1 ];
     var WebglOutlineTTFAssembler = exports["default"] = (function(_WebglTTFAssembler) {
       function WebglOutlineTTFAssembler() {
@@ -52644,28 +52642,20 @@
         }
       };
       _proto.updateColor = function updateColor(comp) {
-        WHITE._fastSetA(comp.node._color.a);
-        var color = WHITE._val;
         var uintVerts = this._renderData.uintVDatas[0];
         if (!uintVerts) return;
-        color = null != color ? color : comp.node.color._val;
-        var outlineColor = (comp._borderColor || cc.Color.BLACK)._val;
+        var outlineColor = comp._outlineColor._val;
         var floatsPerVert = this.floatsPerVert;
         var colorOffset = this.colorOffset;
-        if (comp._gradient) {
-          comp._gradientColors.forEach((function(o) {
-            o._fastSetA(color.getA());
-          }));
-          var j = 0;
-          for (var i = colorOffset, l = uintVerts.length; i < l; i += floatsPerVert) {
-            var c_i = j % 4;
-            uintVerts[i] = comp._gradientColors[COLOR_INDEX[c_i]]._val;
-            uintVerts[i + 1] = outlineColor;
-            j += 1;
-          }
-        } else for (var _i = colorOffset, _l = uintVerts.length; _i < _l; _i += floatsPerVert) {
-          uintVerts[_i] = color;
-          uintVerts[_i + 1] = outlineColor;
+        comp._gradientColors.forEach((function(o) {
+          o._fastSetA(comp.node._color.a);
+        }));
+        var j = 0;
+        for (var i = colorOffset, l = uintVerts.length; i < l; i += floatsPerVert) {
+          var c_i = j % 4;
+          uintVerts[i] = (comp._gradientColors[COLOR_INDEX[c_i]] || cc.Color.WHITE)._val;
+          uintVerts[i + 1] = outlineColor;
+          j += 1;
         }
       };
       return _createClass(WebglOutlineTTFAssembler, [ {
@@ -52677,7 +52667,6 @@
     })(_ttf["default"]);
     module.exports = exports["default"];
   }), {
-    "../../../../../components/CCLabelShadow": 186,
     "../../../vertex-format": 369,
     "./ttf": 341
   } ],

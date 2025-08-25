@@ -26,8 +26,6 @@
 import { vfmtPosUvTwoColor } from '../../../vertex-format';
 import WebglTTFAssembler from './ttf';
 
-const LabelShadow = require('../../../../../components/CCLabelShadow');
-const WHITE = cc.color(255, 255, 255, 255);
 const COLOR_INDEX = [2, 3, 0, 1];
 
 export default class WebglOutlineTTFAssembler extends WebglTTFAssembler {
@@ -64,32 +62,21 @@ export default class WebglOutlineTTFAssembler extends WebglTTFAssembler {
         }
     }
 
-    updateColor (comp) {
-        WHITE._fastSetA(comp.node._color.a);
-        let color = WHITE._val;
-
+    updateColor(comp) {
         let uintVerts = this._renderData.uintVDatas[0];
         if (!uintVerts) return;
-        color = color != null ? color : comp.node.color._val;
-        let outlineColor = (comp._borderColor || cc.Color.BLACK)._val;
+        let outlineColor = comp._outlineColor._val;
         let floatsPerVert = this.floatsPerVert;
         let colorOffset = this.colorOffset;
-        if (comp._gradient) {
-            comp._gradientColors.forEach((o) => {
-                o._fastSetA(color.getA());
-            });
-            let j = 0;
-            for (let i = colorOffset, l = uintVerts.length; i < l; i += floatsPerVert) {
-                let c_i = j % 4;
-                uintVerts[i] = comp._gradientColors[COLOR_INDEX[c_i]]._val;
-                uintVerts[i + 1] = outlineColor;
-                j += 1;
-            }
-        } else {
-            for (let i = colorOffset, l = uintVerts.length; i < l; i += floatsPerVert) {
-                uintVerts[i] = color;
-                uintVerts[i + 1] = outlineColor;
-            }
+        comp._gradientColors.forEach((o) => {
+            o._fastSetA(comp.node._color.a);
+        });
+        let j = 0;
+        for (let i = colorOffset, l = uintVerts.length; i < l; i += floatsPerVert) {
+            let c_i = j % 4;
+            uintVerts[i] = (comp._gradientColors[COLOR_INDEX[c_i]] || cc.Color.WHITE)._val;
+            uintVerts[i + 1] = outlineColor;
+            j += 1;
         }
     }
 }
