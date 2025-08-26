@@ -26,8 +26,6 @@
 import { vfmtPosUvTwoColor } from '../../../vertex-format';
 import WebglTTFAssembler from './ttf';
 
-const COLOR_INDEX = [2, 3, 0, 1];
-
 export default class WebglOutlineTTFAssembler extends WebglTTFAssembler {
     floatsPerVert = 6;
 
@@ -65,6 +63,9 @@ export default class WebglOutlineTTFAssembler extends WebglTTFAssembler {
     updateColor(comp) {
         let uintVerts = this._renderData.uintVDatas[0];
         if (!uintVerts) return;
+        if (comp._gradientColors.length < 1) {
+            return;
+        }
         let outlineColor = comp._outlineColor._val;
         let floatsPerVert = this.floatsPerVert;
         let colorOffset = this.colorOffset;
@@ -72,9 +73,10 @@ export default class WebglOutlineTTFAssembler extends WebglTTFAssembler {
             o._fastSetA(comp.node._color.a);
         });
         let j = 0;
+        let colorLength = comp._gradientColors.length;
         for (let i = colorOffset, l = uintVerts.length; i < l; i += floatsPerVert) {
-            let c_i = j % 4;
-            uintVerts[i] = (comp._gradientColors[COLOR_INDEX[c_i]] || cc.Color.WHITE)._val;
+            let c_i = j % colorLength;
+            uintVerts[i] = (comp._gradientColors[c_i] || cc.Color.WHITE)._val;
             uintVerts[i + 1] = outlineColor;
             j += 1;
         }

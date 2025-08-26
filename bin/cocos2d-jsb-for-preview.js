@@ -52470,7 +52470,6 @@
         return t.__proto__ = e, t;
       }, _setPrototypeOf(t, e);
     }
-    var COLOR_INDEX = [ 2, 3, 0, 1 ];
     var WebglOutlineTTFAssembler = exports["default"] = (function(_WebglTTFAssembler) {
       function WebglOutlineTTFAssembler() {
         var _this;
@@ -52506,6 +52505,7 @@
       _proto.updateColor = function updateColor(comp) {
         var uintVerts = this._renderData.uintVDatas[0];
         if (!uintVerts) return;
+        if (comp._gradientColors.length < 1) return;
         var outlineColor = comp._outlineColor._val;
         var floatsPerVert = this.floatsPerVert;
         var colorOffset = this.colorOffset;
@@ -52513,9 +52513,10 @@
           o._fastSetA(comp.node._color.a);
         }));
         var j = 0;
+        var colorLength = comp._gradientColors.length;
         for (var i = colorOffset, l = uintVerts.length; i < l; i += floatsPerVert) {
-          var c_i = j % 4;
-          uintVerts[i] = (comp._gradientColors[COLOR_INDEX[c_i]] || cc.Color.WHITE)._val;
+          var c_i = j % colorLength;
+          uintVerts[i] = (comp._gradientColors[c_i] || cc.Color.WHITE)._val;
           uintVerts[i + 1] = outlineColor;
           j += 1;
         }
