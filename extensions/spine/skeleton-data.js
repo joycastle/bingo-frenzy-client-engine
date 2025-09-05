@@ -169,7 +169,7 @@ let SkeletonData = cc.Class({
     },
 
     ensureTexturesLoaded (loaded, caller) {
-        let textures = this.textures; 
+        let textures = this.textures;
         let texsLen = textures.length;
         if (texsLen == 0) {
             loaded.call(caller, false);
@@ -194,7 +194,10 @@ let SkeletonData = cc.Class({
     },
 
     isTexturesLoaded () {
-        let textures = this.textures; 
+        if (!this.isValid) {
+            return false;
+        }
+        let textures = this.textures;
         let texsLen = textures.length;
         for (let i = 0; i < texsLen; i++) {
             let tex = textures[i];

@@ -93997,6 +93997,7 @@
         }
       },
       isTexturesLoaded: function isTexturesLoaded() {
+        if (!this.isValid) return false;
         var textures = this.textures;
         var texsLen = textures.length;
         for (var i = 0; i < texsLen; i++) {
