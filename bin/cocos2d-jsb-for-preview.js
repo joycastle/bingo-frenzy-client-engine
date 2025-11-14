@@ -30572,7 +30572,8 @@
     var MaskType = cc.Enum({
       RECT: 0,
       ELLIPSE: 1,
-      IMAGE_STENCIL: 2
+      IMAGE_STENCIL: 2,
+      GRAPHICS: 3
     });
     var SEGEMENTS_MIN = 3;
     var SEGEMENTS_MAX = 1e4;
@@ -30744,6 +30745,7 @@
       },
       _updateGraphics: function _updateGraphics() {
         if (!this.enabledInHierarchy) return;
+        if (this._type !== MaskType.RECT && this._type !== MaskType.ELLIPSE) return;
         var node = this.node;
         var graphics = this._graphics;
         graphics.clear(false);
@@ -30783,7 +30785,7 @@
         testPt.x += node._anchorPoint.x * w;
         testPt.y += node._anchorPoint.y * h;
         var result = false;
-        if (this.type === MaskType.RECT || this.type === MaskType.IMAGE_STENCIL) result = testPt.x >= 0 && testPt.y >= 0 && testPt.x <= w && testPt.y <= h; else if (this.type === MaskType.ELLIPSE) {
+        if (this.type === MaskType.RECT || this.type === MaskType.IMAGE_STENCIL || this.type === MaskType.GRAPHICS) result = testPt.x >= 0 && testPt.y >= 0 && testPt.x <= w && testPt.y <= h; else if (this.type === MaskType.ELLIPSE) {
           var rx = w / 2, ry = h / 2;
           var px = testPt.x - .5 * w, py = testPt.y - .5 * h;
           result = px * px / (rx * rx) + py * py / (ry * ry) < 1;
