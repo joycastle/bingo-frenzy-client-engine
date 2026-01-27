@@ -47535,7 +47535,7 @@
       };
       _proto.packToDynamicAtlas = function packToDynamicAtlas(comp, frame) {
         false;
-        if (!frame._original && _manager["default"] && frame._texture.packable && frame._texture.loaded) {
+        if (!frame._original && _manager["default"] && frame._texture && frame._texture.packable && frame._texture.loaded) {
           var packedFrame = _manager["default"].insertSpriteFrame(frame);
           packedFrame && frame._setDynamicAtlasFrame(packedFrame);
         }

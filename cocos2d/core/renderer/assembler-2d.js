@@ -137,7 +137,7 @@ export default class Assembler2D extends Assembler {
     packToDynamicAtlas (comp, frame) {
         if (CC_TEST) return;
 
-        if (!frame._original && dynamicAtlasManager && frame._texture.packable && frame._texture.loaded) {
+        if (!frame._original && dynamicAtlasManager && frame._texture && frame._texture.packable && frame._texture.loaded) {
             let packedFrame = dynamicAtlasManager.insertSpriteFrame(frame);
             if (packedFrame) {
                 frame._setDynamicAtlasFrame(packedFrame);
