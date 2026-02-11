@@ -342,7 +342,7 @@ export default class NativeTTF {
         this._updateTTFMaterial(comp);
 
         layout.render();
-        //comp._vertsDirty = false;
+        comp._vertsDirty = false;
     }
 
     _bindMaterial(comp) {

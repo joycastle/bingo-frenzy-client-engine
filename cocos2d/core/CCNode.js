@@ -102,6 +102,8 @@ const SIZE_ON = 1 << 3;
 const ANCHOR_ON = 1 << 4;
 const COLOR_ON = 1 << 5;
 
+const SIZE_EPSILON = 0.01;
+
 let _cachedPool = new js.Pool();
 _cachedPool.get = function () {
     return this._get() || [];
@@ -1491,7 +1493,7 @@ let NodeDefines = {
                 return this._contentSize.width;
             },
             set (value) {
-                if (value !== this._contentSize.width) {
+                if (!approx(value, this._contentSize.width, SIZE_EPSILON)) {
                     if (CC_EDITOR) {
                         var clone = cc.size(this._contentSize.width, this._contentSize.height);
                     }
@@ -1521,7 +1523,7 @@ let NodeDefines = {
                 return this._contentSize.height;
             },
             set (value) {
-                if (value !== this._contentSize.height) {
+                if (!approx(value, this._contentSize.height, SIZE_EPSILON)) {
                     if (CC_EDITOR) {
                         var clone = cc.size(this._contentSize.width, this._contentSize.height);
                     }
@@ -2907,7 +2909,7 @@ let NodeDefines = {
         var locContentSize = this._contentSize;
         var clone;
         if (height === undefined) {
-            if (approx(size.width, locContentSize.width) && approx(size.height, locContentSize.height))
+            if (approx(size.width, locContentSize.width, SIZE_EPSILON) && approx(size.height, locContentSize.height, SIZE_EPSILON))
                 return;
             if (CC_EDITOR) {
                 clone = cc.size(locContentSize.width, locContentSize.height);
@@ -2915,7 +2917,7 @@ let NodeDefines = {
             locContentSize.width = size.width;
             locContentSize.height = size.height;
         } else {
-            if (approx(size, locContentSize.width) && approx(height, locContentSize.height))
+            if (approx(size, locContentSize.width, SIZE_EPSILON) && approx(height, locContentSize.height, SIZE_EPSILON))
                 return;
             if (CC_EDITOR) {
                 clone = cc.size(locContentSize.width, locContentSize.height);

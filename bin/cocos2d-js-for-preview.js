@@ -18355,6 +18355,7 @@
     var SIZE_ON = 8;
     var ANCHOR_ON = 16;
     var COLOR_ON = 32;
+    var SIZE_EPSILON = .01;
     var _cachedPool = new js.Pool();
     _cachedPool.get = function() {
       return this._get() || [];
@@ -18986,7 +18987,7 @@
             return this._contentSize.width;
           },
           set: function set(value) {
-            if (value !== this._contentSize.width) {
+            if (!(0, _utils.approx)(value, this._contentSize.width, SIZE_EPSILON)) {
               var clone;
               false;
               this._contentSize.width = value;
@@ -19002,7 +19003,7 @@
             return this._contentSize.height;
           },
           set: function set(value) {
-            if (value !== this._contentSize.height) {
+            if (!(0, _utils.approx)(value, this._contentSize.height, SIZE_EPSILON)) {
               var clone;
               false;
               this._contentSize.height = value;
@@ -19626,12 +19627,12 @@
         var locContentSize = this._contentSize;
         var clone;
         if (void 0 === height) {
-          if ((0, _utils.approx)(size.width, locContentSize.width) && (0, _utils.approx)(size.height, locContentSize.height)) return;
+          if ((0, _utils.approx)(size.width, locContentSize.width, SIZE_EPSILON) && (0, _utils.approx)(size.height, locContentSize.height, SIZE_EPSILON)) return;
           false;
           locContentSize.width = size.width;
           locContentSize.height = size.height;
         } else {
-          if ((0, _utils.approx)(size, locContentSize.width) && (0, _utils.approx)(height, locContentSize.height)) return;
+          if ((0, _utils.approx)(size, locContentSize.width, SIZE_EPSILON) && (0, _utils.approx)(height, locContentSize.height, SIZE_EPSILON)) return;
           false;
           locContentSize.width = size;
           locContentSize.height = height;
@@ -29769,14 +29770,17 @@
       },
       onRestore: false,
       _nodeSizeChanged: function _nodeSizeChanged() {
-        (false, this.overflow !== Overflow.NONE) && this.setVertsDirty();
+        if (false, this.overflow !== Overflow.NONE) {
+          if (this._vertsDirty) return;
+          this.setVertsDirty();
+        }
       },
       _nodeColorChanged: function _nodeColorChanged() {
         this.font instanceof cc.BitmapFont || this.setVertsDirty();
       },
       setVertsDirty: function setVertsDirty() {
-        false;
         this._super();
+        false;
       },
       _updateColor: function _updateColor() {
         this.font instanceof cc.BitmapFont || this._srcBlendFactor === cc.macro.BlendFactor.SRC_ALPHA && this.node._renderFlag & cc.RenderFlow.FLAG_OPACITY || this.setVertsDirty();
@@ -52341,6 +52345,7 @@
         } else this.setShadow(0, 0, -1);
         this._updateTTFMaterial(comp);
         layout.render();
+        comp._vertsDirty = false;
       };
       _proto._bindMaterial = function _bindMaterial(comp) {
         var material = this.labelMaterial;

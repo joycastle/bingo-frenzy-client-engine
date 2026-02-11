@@ -657,6 +657,9 @@ let Label = cc.Class({
         // Because the content size is automatically updated when overflow is NONE.
         // And this will conflict with the alignment of the CCWidget.
         if (CC_EDITOR || this.overflow !== Overflow.NONE) {
+            if (this._vertsDirty) {
+                return;
+            }
             this.setVertsDirty();
         }
     },
@@ -668,10 +671,10 @@ let Label = cc.Class({
     },
 
     setVertsDirty() {
-        if(CC_JSB && this._nativeTTF()) {
+        this._super();
+        if (CC_JSB && this._nativeTTF()) {
             this._assembler && this._assembler.updateRenderData(this)
         }
-        this._super();
     },
 
     _updateColor () {
