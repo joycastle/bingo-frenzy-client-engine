@@ -306,6 +306,25 @@ Tween.prototype.stop = function () {
     return this;
 };
 
+/**
+ * !#en
+ * Force this tween to complete immediately: advance to the final state,
+ * execute all pending `call` actions along the way, then remove from ActionManager.
+ * !#zh
+ * 强制完成当前 tween：立即推进到终态，沿路执行所有 call，然后从 ActionManager 移除。
+ * @method complete
+ * @return {Tween}
+ * @typescript complete(): Tween<T>
+ */
+Tween.prototype.complete = function () {
+    if (this._finalAction) {
+        this._finalAction.update(1);
+        cc.director.getActionManager().removeAction(this._finalAction);
+        this._finalAction = null;
+    }
+    return this;
+};
+
 
 /**
  * !#en Sets tween tag

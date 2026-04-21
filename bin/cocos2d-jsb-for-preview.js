@@ -3300,6 +3300,14 @@
       }
       return this;
     };
+    Tween.prototype.complete = function() {
+      if (this._finalAction) {
+        this._finalAction.update(1);
+        cc.director.getActionManager().removeAction(this._finalAction);
+        this._finalAction = null;
+      }
+      return this;
+    };
     Tween.prototype.tag = function(tag) {
       this._tag = tag;
       return this;
