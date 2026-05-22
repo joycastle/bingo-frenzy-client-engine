@@ -175,7 +175,8 @@ sp.Skeleton = cc.Class({
                     return this._animationName;
                 } else {
                     var entry = this.getCurrent(0);
-                    return (entry && entry.animation.name) || "";
+                    // entry.animation 在低端机 V8 GC 与 spine 对象池地址复用并发时可能为 undefined，多加一层兜底。
+                    return (entry && entry.animation && entry.animation.name) || "";
                 }
             },
             set (value) {

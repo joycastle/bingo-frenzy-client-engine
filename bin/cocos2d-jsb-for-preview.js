@@ -71576,7 +71576,7 @@
           get: function get() {
             if (this.isAnimationCached()) return this._animationName;
             var entry = this.getCurrent(0);
-            return entry && entry.animation.name || "";
+            return entry && entry.animation && entry.animation.name || "";
           },
           set: function set(value) {
             this.defaultAnimation = value;
