@@ -144,7 +144,8 @@ let RichText = cc.Class({
             default: '<color=#00ff00>Rich</c><color=#0fffff>Text</color>',
             multiline: true,
             tooltip: CC_DEV && 'i18n:COMPONENT.richtext.string',
-            notify: function () {
+            notify: function (oldValue) {
+                if (this.string === oldValue) return;
                 this._updateRichTextStatus();
             }
         },

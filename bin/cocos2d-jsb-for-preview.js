@@ -31719,7 +31719,8 @@
           default: "<color=#00ff00>Rich</c><color=#0fffff>Text</color>",
           multiline: true,
           tooltip: (true, "i18n:COMPONENT.richtext.string"),
-          notify: function notify() {
+          notify: function notify(oldValue) {
+            if (this.string === oldValue) return;
             this._updateRichTextStatus();
           }
         },
