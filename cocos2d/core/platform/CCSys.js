@@ -788,6 +788,10 @@ function initSys () {
 
         if (sys.isMobile) {
             capabilities["accelerometer"] = true;
+            // external mouse or trackpad. The `!prohibition` guards inside
+            // inputManager.registerSystemEvent still skip mousedown/up/move on mobile,
+            // so this only enables mousewheel / DOMMouseScroll listeners.
+            capabilities["mouse"] = true;
         } else {
             // desktop
             capabilities["keyboard"] = true;
