@@ -99,8 +99,9 @@ export default class TTFAssembler extends Assembler2D {
 
     updateRenderData (comp) {
         super.updateRenderData(comp);
-        
+
         if (!comp._vertsDirty) return;
+        if (!comp._frame) return;
 
         this._updateProperties(comp);
         this._calculateLabelFont();
@@ -262,7 +263,7 @@ export default class TTFAssembler extends Assembler2D {
         if (_shadowComp) {
             this._setupShadow();
         }
-        
+
         if (_outlineComp) {
             this._setupOutline();
         }
@@ -412,7 +413,7 @@ export default class TTFAssembler extends Assembler2D {
 
     _calculateShrinkFont (paragraphedStrings) {
         let paragraphLength = this._calculateParagraphLength(paragraphedStrings, _context);
-        
+
         let i = 0;
         let totalHeight = 0;
         let maxLength = 0;
@@ -542,4 +543,3 @@ export default class TTFAssembler extends Assembler2D {
         }
     }
 }
-
