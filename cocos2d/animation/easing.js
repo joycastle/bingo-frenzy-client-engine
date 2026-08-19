@@ -38,7 +38,7 @@
   */
 
 var easing = {
-    constant: function () { return 0; },
+    constant: function (k) { return k < 1 ? 0 : 1; },
     linear: function (k) { return k; },
 
     // quad

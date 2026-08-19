@@ -4316,8 +4316,8 @@
   16: [ (function(require, module, exports) {
     "use strict";
     var easing = {
-      constant: function constant() {
-        return 0;
+      constant: function constant(k) {
+        return k < 1 ? 0 : 1;
       },
       linear: function linear(k) {
         return k;
@@ -50467,6 +50467,7 @@
       _proto.updateRenderData = function updateRenderData(comp) {
         _Assembler2D.prototype.updateRenderData.call(this, comp);
         if (!comp._vertsDirty) return;
+        if (!comp._frame) return;
         this._updateProperties(comp);
         this._calculateLabelFont();
         this._updateLabelDimensions();
