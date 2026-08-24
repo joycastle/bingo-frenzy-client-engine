@@ -32827,7 +32827,13 @@
         var wheelPrecision = -.1;
         cc.sys.os === cc.sys.OS_WINDOWS && cc.sys.browserType === cc.sys.BROWSER_TYPE_FIREFOX && (wheelPrecision = -.1 / 3);
         false, false;
-        this.vertical ? deltaMove = cc.v2(0, event.getScrollY() * wheelPrecision) : this.horizontal && (deltaMove = cc.v2(event.getScrollY() * wheelPrecision, 0));
+        var scrollX = event.getScrollX();
+        var scrollY = event.getScrollY();
+        this.vertical && (deltaMove.y = scrollY * wheelPrecision);
+        if (this.horizontal) {
+          0 !== scrollX || this.vertical || (scrollX = scrollY);
+          deltaMove.x = scrollX * wheelPrecision;
+        }
         this._mouseWheelEventElapsedTime = 0;
         this._processDeltaMove(deltaMove);
         if (!this._stopMouseWheel) {
@@ -43559,7 +43565,7 @@
             selfPointer.handleTouchesMove([ selfPointer.getTouchByXY(location.x, location.y, canvasBoundingRect) ]);
             selfPointer._mousePressed || mouseEvent.setButton(null);
           } ], [ "mousewheel", EventMouse.SCROLL, function(event, mouseEvent) {
-            mouseEvent.setScrollData(0, event.wheelDelta);
+            mouseEvent.setScrollData(event.wheelDeltaX || 0, event.wheelDelta);
           } ], [ "DOMMouseScroll", EventMouse.SCROLL, function(event, mouseEvent) {
             mouseEvent.setScrollData(0, -120 * event.detail);
           } ] ];

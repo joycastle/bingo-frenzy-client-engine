@@ -518,7 +518,7 @@ let inputManager = {
                     }
                 }],
                 ["mousewheel", EventMouse.SCROLL, function (event, mouseEvent) {
-                    mouseEvent.setScrollData(0, event.wheelDelta);
+                    mouseEvent.setScrollData(event.wheelDeltaX || 0, event.wheelDelta);
                 }],
                 /* firefox fix */
                 ["DOMMouseScroll", EventMouse.SCROLL, function (event, mouseEvent) {
