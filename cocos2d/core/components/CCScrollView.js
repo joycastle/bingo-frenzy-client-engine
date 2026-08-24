@@ -788,11 +788,16 @@ let ScrollView = cc.Class({
         if(CC_JSB || CC_RUNTIME) {
             wheelPrecision = -7;
         }
+        let scrollX = event.getScrollX();
+        let scrollY = event.getScrollY();
         if(this.vertical) {
-            deltaMove = cc.v2(0, event.getScrollY() * wheelPrecision);
+            deltaMove.y = scrollY * wheelPrecision;
         }
-        else if(this.horizontal) {
-            deltaMove = cc.v2(event.getScrollY() * wheelPrecision, 0);
+        if(this.horizontal) {
+            if(scrollX === 0 && !this.vertical) {
+                scrollX = scrollY;
+            }
+            deltaMove.x = scrollX * wheelPrecision;
         }
 
         this._mouseWheelEventElapsedTime = 0;
