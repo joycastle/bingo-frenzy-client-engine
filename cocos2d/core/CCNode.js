@@ -375,6 +375,13 @@ var EventType = cc.Enum({
      */
     SIZE_CHANGED: 'size-changed',
     /**
+     * !#en The event type for active in hierarchy change events.
+     * !#zh 当节点在层级中的激活状态改变时触发的事件。
+     * @property {String} ACTIVE_IN_HIERARCHY_CHANGED
+     * @static
+     */
+    ACTIVE_IN_HIERARCHY_CHANGED: 'active-in-hierarchy-changed',
+    /**
      * !#en The event type for anchor point change events.
      * Performance note, this event will be triggered every time corresponding properties being changed,
      * if the event callback have heavy logic it may have great performance impact, try to avoid such scenario.

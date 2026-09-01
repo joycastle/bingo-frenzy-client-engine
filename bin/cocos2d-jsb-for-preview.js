@@ -18371,6 +18371,7 @@
       ROTATION_CHANGED: "rotation-changed",
       SCALE_CHANGED: "scale-changed",
       SIZE_CHANGED: "size-changed",
+      ACTIVE_IN_HIERARCHY_CHANGED: "active-in-hierarchy-changed",
       ANCHOR_CHANGED: "anchor-changed",
       COLOR_CHANGED: "color-changed",
       CHILD_ADDED: "child-added",
