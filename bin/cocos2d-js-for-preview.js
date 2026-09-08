@@ -6983,7 +6983,7 @@
     var _CCEnum = _interopRequireDefault(require("../platform/CCEnum"));
     var _CCComponent2 = _interopRequireDefault(require("../components/CCComponent"));
     var _CCClassDecorator = require("../platform/CCClassDecorator");
-    var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _Light;
+    var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor0, _descriptor1, _descriptor10, _descriptor11, _Light;
     function _interopRequireDefault(e) {
       return e && e.__esModule ? e : {
         default: e
@@ -7081,10 +7081,10 @@
         _initializerDefineProperty(_this, "_shadowType", _descriptor7, _this);
         _initializerDefineProperty(_this, "_shadowResolution", _descriptor8, _this);
         _initializerDefineProperty(_this, "_shadowDarkness", _descriptor9, _this);
-        _initializerDefineProperty(_this, "_shadowMinDepth", _descriptor10, _this);
-        _initializerDefineProperty(_this, "_shadowMaxDepth", _descriptor11, _this);
-        _initializerDefineProperty(_this, "_shadowFrustumSize", _descriptor12, _this);
-        _initializerDefineProperty(_this, "_shadowBias", _descriptor13, _this);
+        _initializerDefineProperty(_this, "_shadowMinDepth", _descriptor0, _this);
+        _initializerDefineProperty(_this, "_shadowMaxDepth", _descriptor1, _this);
+        _initializerDefineProperty(_this, "_shadowFrustumSize", _descriptor10, _this);
+        _initializerDefineProperty(_this, "_shadowBias", _descriptor11, _this);
         _this._light = new RendererLight();
         return _this;
       }
@@ -7286,28 +7286,28 @@
       initializer: function initializer() {
         return .5;
       }
-    }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, "_shadowMinDepth", [ _CCClassDecorator.property ], {
+    }), _descriptor0 = _applyDecoratedDescriptor(_class2.prototype, "_shadowMinDepth", [ _CCClassDecorator.property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return 1;
       }
-    }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, "_shadowMaxDepth", [ _CCClassDecorator.property ], {
+    }), _descriptor1 = _applyDecoratedDescriptor(_class2.prototype, "_shadowMaxDepth", [ _CCClassDecorator.property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return 4096;
       }
-    }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, "_shadowFrustumSize", [ _CCClassDecorator.property ], {
+    }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, "_shadowFrustumSize", [ _CCClassDecorator.property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return 1024;
       }
-    }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, "_shadowBias", [ _CCClassDecorator.property ], {
+    }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, "_shadowBias", [ _CCClassDecorator.property ], {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -8750,7 +8750,7 @@
     var _CCEnum = _interopRequireDefault(require("../../../platform/CCEnum"));
     var _valueTypes = require("../../../value-types");
     var _curveRange = _interopRequireDefault(require("./curve-range"));
-    var _dec, _dec2, _dec3, _dec4, _dec5, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10;
+    var _dec, _dec2, _dec3, _dec4, _dec5, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor0;
     function _interopRequireDefault(e) {
       return e && e.__esModule ? e : {
         default: e
@@ -8832,7 +8832,7 @@
         _initializerDefineProperty(this, "rowIndex", _descriptor7, this);
         _initializerDefineProperty(this, "frameOverTime", _descriptor8, this);
         _initializerDefineProperty(this, "startFrame", _descriptor9, this);
-        _initializerDefineProperty(this, "cycleCount", _descriptor10, this);
+        _initializerDefineProperty(this, "cycleCount", _descriptor0, this);
         this._flipU = 0;
         this._flipV = 0;
         this._uvChannelMask = -1;
@@ -8997,7 +8997,7 @@
       initializer: function initializer() {
         return new _curveRange["default"]();
       }
-    }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, "cycleCount", [ _CCClassDecorator.property ], {
+    }), _descriptor0 = _applyDecoratedDescriptor(_class2.prototype, "cycleCount", [ _CCClassDecorator.property ], {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -9586,7 +9586,7 @@
     var _curveRange = _interopRequireDefault(require("../animator/curve-range"));
     var _particleGeneralFunction = require("../particle-general-function");
     var _enum = require("../enum");
-    var _dec, _dec2, _dec3, _dec4, _dec5, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19;
+    var _dec, _dec2, _dec3, _dec4, _dec5, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor0, _descriptor1, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17;
     function _interopRequireDefault(e) {
       return e && e.__esModule ? e : {
         default: e
@@ -9663,16 +9663,16 @@
         _initializerDefineProperty(this, "_arc", _descriptor7, this);
         _initializerDefineProperty(this, "arcMode", _descriptor8, this);
         _initializerDefineProperty(this, "arcSpread", _descriptor9, this);
-        _initializerDefineProperty(this, "arcSpeed", _descriptor10, this);
-        _initializerDefineProperty(this, "length", _descriptor11, this);
-        _initializerDefineProperty(this, "boxThickness", _descriptor12, this);
-        _initializerDefineProperty(this, "_position", _descriptor13, this);
-        _initializerDefineProperty(this, "_rotation", _descriptor14, this);
-        _initializerDefineProperty(this, "_scale", _descriptor15, this);
-        _initializerDefineProperty(this, "alignToDirection", _descriptor16, this);
-        _initializerDefineProperty(this, "randomDirectionAmount", _descriptor17, this);
-        _initializerDefineProperty(this, "sphericalDirectionAmount", _descriptor18, this);
-        _initializerDefineProperty(this, "randomPositionAmount", _descriptor19, this);
+        _initializerDefineProperty(this, "arcSpeed", _descriptor0, this);
+        _initializerDefineProperty(this, "length", _descriptor1, this);
+        _initializerDefineProperty(this, "boxThickness", _descriptor10, this);
+        _initializerDefineProperty(this, "_position", _descriptor11, this);
+        _initializerDefineProperty(this, "_rotation", _descriptor12, this);
+        _initializerDefineProperty(this, "_scale", _descriptor13, this);
+        _initializerDefineProperty(this, "alignToDirection", _descriptor14, this);
+        _initializerDefineProperty(this, "randomDirectionAmount", _descriptor15, this);
+        _initializerDefineProperty(this, "sphericalDirectionAmount", _descriptor16, this);
+        _initializerDefineProperty(this, "randomPositionAmount", _descriptor17, this);
         this.mat = null;
         this.Quat = null;
         this.particleSystem = null;
@@ -9876,28 +9876,28 @@
       initializer: function initializer() {
         return 0;
       }
-    }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, "arcSpeed", [ _dec5 ], {
+    }), _descriptor0 = _applyDecoratedDescriptor(_class2.prototype, "arcSpeed", [ _dec5 ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return new _curveRange["default"]();
       }
-    }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, "length", [ _CCClassDecorator.property ], {
+    }), _descriptor1 = _applyDecoratedDescriptor(_class2.prototype, "length", [ _CCClassDecorator.property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return 5;
       }
-    }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, "boxThickness", [ _CCClassDecorator.property ], {
+    }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, "boxThickness", [ _CCClassDecorator.property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return new _valueTypes.Vec3(0, 0, 0);
       }
-    }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, "_position", [ _CCClassDecorator.property ], {
+    }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, "_position", [ _CCClassDecorator.property ], {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -9905,7 +9905,7 @@
         return new _valueTypes.Vec3(0, 0, 0);
       }
     }), _applyDecoratedDescriptor(_class2.prototype, "position", [ _CCClassDecorator.property ], Object.getOwnPropertyDescriptor(_class2.prototype, "position"), _class2.prototype), 
-    _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, "_rotation", [ _CCClassDecorator.property ], {
+    _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, "_rotation", [ _CCClassDecorator.property ], {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -9913,7 +9913,7 @@
         return new _valueTypes.Vec3(0, 0, 0);
       }
     }), _applyDecoratedDescriptor(_class2.prototype, "rotation", [ _CCClassDecorator.property ], Object.getOwnPropertyDescriptor(_class2.prototype, "rotation"), _class2.prototype), 
-    _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, "_scale", [ _CCClassDecorator.property ], {
+    _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, "_scale", [ _CCClassDecorator.property ], {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -9921,28 +9921,28 @@
         return new _valueTypes.Vec3(1, 1, 1);
       }
     }), _applyDecoratedDescriptor(_class2.prototype, "scale", [ _CCClassDecorator.property ], Object.getOwnPropertyDescriptor(_class2.prototype, "scale"), _class2.prototype), 
-    _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, "alignToDirection", [ _CCClassDecorator.property ], {
+    _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, "alignToDirection", [ _CCClassDecorator.property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return false;
       }
-    }), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, "randomDirectionAmount", [ _CCClassDecorator.property ], {
+    }), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, "randomDirectionAmount", [ _CCClassDecorator.property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return 0;
       }
-    }), _descriptor18 = _applyDecoratedDescriptor(_class2.prototype, "sphericalDirectionAmount", [ _CCClassDecorator.property ], {
+    }), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, "sphericalDirectionAmount", [ _CCClassDecorator.property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return 0;
       }
-    }), _descriptor19 = _applyDecoratedDescriptor(_class2.prototype, "randomPositionAmount", [ _CCClassDecorator.property ], {
+    }), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, "randomPositionAmount", [ _CCClassDecorator.property ], {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -10257,29 +10257,23 @@
     var _particleGeneralFunction = require("./particle-general-function");
     var _trail = _interopRequireDefault(require("./renderer/trail"));
     var _CCMesh = _interopRequireDefault(require("../../mesh/CCMesh"));
-    var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _dec20, _dec21, _dec22, _dec23, _dec24, _dec25, _dec26, _dec27, _dec28, _dec29, _dec30, _dec31, _dec32, _dec33, _dec34, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19, _descriptor20, _descriptor21, _descriptor22, _descriptor23, _descriptor24, _descriptor25, _descriptor26, _descriptor27, _descriptor28, _descriptor29, _descriptor30, _descriptor31;
-    function _getRequireWildcardCache(e) {
-      if ("function" != typeof WeakMap) return null;
-      var r = new WeakMap(), t = new WeakMap();
-      return (_getRequireWildcardCache = function _getRequireWildcardCache(e) {
-        return e ? t : r;
-      })(e);
-    }
-    function _interopRequireWildcard(e, r) {
-      if (!r && e && e.__esModule) return e;
-      if (null === e || "object" != typeof e && "function" != typeof e) return {
-        default: e
-      };
-      var t = _getRequireWildcardCache(r);
-      if (t && t.has(e)) return t.get(e);
-      var n = {
-        __proto__: null
-      }, a = Object.defineProperty && Object.getOwnPropertyDescriptor;
-      for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) {
-        var i = a ? Object.getOwnPropertyDescriptor(e, u) : null;
-        i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u];
-      }
-      return n["default"] = e, t && t.set(e, n), n;
+    var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec0, _dec1, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _dec20, _dec21, _dec22, _dec23, _dec24, _dec25, _dec26, _dec27, _dec28, _dec29, _dec30, _dec31, _dec32, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor0, _descriptor1, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19, _descriptor20, _descriptor21, _descriptor22, _descriptor23, _descriptor24, _descriptor25, _descriptor26, _descriptor27, _descriptor28, _descriptor29;
+    function _interopRequireWildcard(e, t) {
+      if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap();
+      return (_interopRequireWildcard = function _interopRequireWildcard(e, t) {
+        if (!t && e && e.__esModule) return e;
+        var o, i, f = {
+          __proto__: null,
+          default: e
+        };
+        if (null === e || "object" != typeof e && "function" != typeof e) return f;
+        if (o = t ? n : r) {
+          if (o.has(e)) return o.get(e);
+          o.set(e, f);
+        }
+        for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]);
+        return f;
+      })(e, t);
     }
     function _interopRequireDefault(e) {
       return e && e.__esModule ? e : {
@@ -10388,75 +10382,75 @@
       type: _curveRange["default"]
     }), _dec9 = property({
       type: _curveRange["default"]
-    }), _dec10 = property({
+    }), _dec0 = property({
       type: _gradientRange["default"]
-    }), _dec11 = property({
+    }), _dec1 = property({
       type: _enum.Space
-    }), _dec12 = property({
+    }), _dec10 = property({
       type: _curveRange["default"]
+    }), _dec11 = property({
+      type: _curveRange["default"],
+      range: [ -1, 1 ]
+    }), _dec12 = property({
+      type: _curveRange["default"],
+      range: [ -1, 1 ],
+      radian: true
     }), _dec13 = property({
       type: _curveRange["default"],
       range: [ -1, 1 ]
     }), _dec14 = property({
-      type: _curveRange["default"],
-      range: [ -1, 1 ],
-      radian: true
+      type: _curveRange["default"]
     }), _dec15 = property({
-      type: _curveRange["default"],
-      range: [ -1, 1 ]
+      type: _curveRange["default"]
     }), _dec16 = property({
-      type: _curveRange["default"]
-    }), _dec17 = property({
-      type: _curveRange["default"]
-    }), _dec18 = property({
       type: [ _burst["default"] ],
       animatable: false
-    }), _dec19 = property({
+    }), _dec17 = property({
       type: [ _CCMaterial["default"] ],
       displayName: "Materials",
       visible: false,
       override: true
-    }), _dec20 = property({
+    }), _dec18 = property({
       type: _shapeModule["default"],
       animatable: false
-    }), _dec21 = property({
+    }), _dec19 = property({
       type: _colorOvertime["default"],
       animatable: false
-    }), _dec22 = property({
+    }), _dec20 = property({
       type: _sizeOvertime["default"],
       animatable: false
-    }), _dec23 = property({
+    }), _dec21 = property({
       type: _velocityOvertime["default"],
       animatable: false
-    }), _dec24 = property({
+    }), _dec22 = property({
       type: _forceOvertime["default"],
       animatable: false
-    }), _dec25 = property({
+    }), _dec23 = property({
       type: _limitVelocityOvertime["default"],
       animatable: false
-    }), _dec26 = property({
+    }), _dec24 = property({
       type: _rotationOvertime["default"],
       animatable: false
-    }), _dec27 = property({
+    }), _dec25 = property({
       type: _textureAnimation["default"],
       animatable: false
-    }), _dec28 = property({
+    }), _dec26 = property({
       type: _trail["default"],
       animatable: false
-    }), _dec29 = property({
+    }), _dec27 = property({
       type: _enum.RenderMode,
       animatable: false
+    }), _dec28 = property({
+      animatable: false
+    }), _dec29 = property({
+      animatable: false
     }), _dec30 = property({
-      animatable: false
-    }), _dec31 = property({
-      animatable: false
-    }), _dec32 = property({
       type: _CCMesh["default"],
       animatable: false
-    }), _dec33 = property({
+    }), _dec31 = property({
       type: _CCMaterial["default"],
       animatable: false
-    }), _dec34 = property({
+    }), _dec32 = property({
       type: _CCMaterial["default"],
       animatable: false
     }), _dec(_class = _dec2(_class = _dec3(_class = _dec4(_class = executeInEditMode(_class = (_class2 = (function(_RenderComponent) {
@@ -10472,28 +10466,28 @@
         _initializerDefineProperty(_this2, "simulationSpeed", _descriptor7, _this2);
         _initializerDefineProperty(_this2, "startDelay", _descriptor8, _this2);
         _initializerDefineProperty(_this2, "startLifetime", _descriptor9, _this2);
-        _initializerDefineProperty(_this2, "startColor", _descriptor10, _this2);
-        _initializerDefineProperty(_this2, "scaleSpace", _descriptor11, _this2);
-        _initializerDefineProperty(_this2, "startSize", _descriptor12, _this2);
-        _initializerDefineProperty(_this2, "startSpeed", _descriptor13, _this2);
-        _initializerDefineProperty(_this2, "startRotation", _descriptor14, _this2);
-        _initializerDefineProperty(_this2, "gravityModifier", _descriptor15, _this2);
-        _initializerDefineProperty(_this2, "rateOverTime", _descriptor16, _this2);
-        _initializerDefineProperty(_this2, "rateOverDistance", _descriptor17, _this2);
-        _initializerDefineProperty(_this2, "bursts", _descriptor18, _this2);
-        _initializerDefineProperty(_this2, "_shapeModule", _descriptor19, _this2);
-        _initializerDefineProperty(_this2, "_colorOverLifetimeModule", _descriptor20, _this2);
-        _initializerDefineProperty(_this2, "_sizeOvertimeModule", _descriptor21, _this2);
-        _initializerDefineProperty(_this2, "_velocityOvertimeModule", _descriptor22, _this2);
-        _initializerDefineProperty(_this2, "_forceOvertimeModule", _descriptor23, _this2);
-        _initializerDefineProperty(_this2, "_limitVelocityOvertimeModule", _descriptor24, _this2);
-        _initializerDefineProperty(_this2, "_rotationOvertimeModule", _descriptor25, _this2);
-        _initializerDefineProperty(_this2, "_textureAnimationModule", _descriptor26, _this2);
-        _initializerDefineProperty(_this2, "_trailModule", _descriptor27, _this2);
-        _initializerDefineProperty(_this2, "_renderMode", _descriptor28, _this2);
-        _initializerDefineProperty(_this2, "_velocityScale", _descriptor29, _this2);
-        _initializerDefineProperty(_this2, "_lengthScale", _descriptor30, _this2);
-        _initializerDefineProperty(_this2, "_mesh", _descriptor31, _this2);
+        _initializerDefineProperty(_this2, "startColor", _descriptor0, _this2);
+        _initializerDefineProperty(_this2, "scaleSpace", _descriptor1, _this2);
+        _initializerDefineProperty(_this2, "startSize", _descriptor10, _this2);
+        _initializerDefineProperty(_this2, "startSpeed", _descriptor11, _this2);
+        _initializerDefineProperty(_this2, "startRotation", _descriptor12, _this2);
+        _initializerDefineProperty(_this2, "gravityModifier", _descriptor13, _this2);
+        _initializerDefineProperty(_this2, "rateOverTime", _descriptor14, _this2);
+        _initializerDefineProperty(_this2, "rateOverDistance", _descriptor15, _this2);
+        _initializerDefineProperty(_this2, "bursts", _descriptor16, _this2);
+        _initializerDefineProperty(_this2, "_shapeModule", _descriptor17, _this2);
+        _initializerDefineProperty(_this2, "_colorOverLifetimeModule", _descriptor18, _this2);
+        _initializerDefineProperty(_this2, "_sizeOvertimeModule", _descriptor19, _this2);
+        _initializerDefineProperty(_this2, "_velocityOvertimeModule", _descriptor20, _this2);
+        _initializerDefineProperty(_this2, "_forceOvertimeModule", _descriptor21, _this2);
+        _initializerDefineProperty(_this2, "_limitVelocityOvertimeModule", _descriptor22, _this2);
+        _initializerDefineProperty(_this2, "_rotationOvertimeModule", _descriptor23, _this2);
+        _initializerDefineProperty(_this2, "_textureAnimationModule", _descriptor24, _this2);
+        _initializerDefineProperty(_this2, "_trailModule", _descriptor25, _this2);
+        _initializerDefineProperty(_this2, "_renderMode", _descriptor26, _this2);
+        _initializerDefineProperty(_this2, "_velocityScale", _descriptor27, _this2);
+        _initializerDefineProperty(_this2, "_lengthScale", _descriptor28, _this2);
+        _initializerDefineProperty(_this2, "_mesh", _descriptor29, _this2);
         _this2._isPlaying = void 0;
         _this2._isPaused = void 0;
         _this2._isStopped = void 0;
@@ -10967,176 +10961,176 @@
       initializer: function initializer() {
         return new _curveRange["default"]();
       }
-    }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, "startColor", [ _dec10 ], {
+    }), _descriptor0 = _applyDecoratedDescriptor(_class2.prototype, "startColor", [ _dec0 ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return new _gradientRange["default"]();
       }
-    }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, "scaleSpace", [ _dec11 ], {
+    }), _descriptor1 = _applyDecoratedDescriptor(_class2.prototype, "scaleSpace", [ _dec1 ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return _enum.Space.Local;
       }
-    }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, "startSize", [ _dec12 ], {
+    }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, "startSize", [ _dec10 ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return new _curveRange["default"]();
       }
-    }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, "startSpeed", [ _dec13 ], {
+    }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, "startSpeed", [ _dec11 ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return new _curveRange["default"]();
       }
-    }), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, "startRotation", [ _dec14 ], {
+    }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, "startRotation", [ _dec12 ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return new _curveRange["default"]();
       }
-    }), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, "gravityModifier", [ _dec15 ], {
+    }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, "gravityModifier", [ _dec13 ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return new _curveRange["default"]();
       }
-    }), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, "rateOverTime", [ _dec16 ], {
+    }), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, "rateOverTime", [ _dec14 ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return new _curveRange["default"]();
       }
-    }), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, "rateOverDistance", [ _dec17 ], {
+    }), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, "rateOverDistance", [ _dec15 ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return new _curveRange["default"]();
       }
-    }), _descriptor18 = _applyDecoratedDescriptor(_class2.prototype, "bursts", [ _dec18 ], {
+    }), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, "bursts", [ _dec16 ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return new Array();
       }
-    }), _applyDecoratedDescriptor(_class2.prototype, "materials", [ _dec19 ], Object.getOwnPropertyDescriptor(_class2.prototype, "materials"), _class2.prototype), 
-    _descriptor19 = _applyDecoratedDescriptor(_class2.prototype, "_shapeModule", [ property ], {
+    }), _applyDecoratedDescriptor(_class2.prototype, "materials", [ _dec17 ], Object.getOwnPropertyDescriptor(_class2.prototype, "materials"), _class2.prototype),
+    _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, "_shapeModule", [ property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return new _shapeModule["default"]();
       }
-    }), _applyDecoratedDescriptor(_class2.prototype, "shapeModule", [ _dec20 ], Object.getOwnPropertyDescriptor(_class2.prototype, "shapeModule"), _class2.prototype), 
-    _descriptor20 = _applyDecoratedDescriptor(_class2.prototype, "_colorOverLifetimeModule", [ property ], {
+    }), _applyDecoratedDescriptor(_class2.prototype, "shapeModule", [ _dec18 ], Object.getOwnPropertyDescriptor(_class2.prototype, "shapeModule"), _class2.prototype),
+    _descriptor18 = _applyDecoratedDescriptor(_class2.prototype, "_colorOverLifetimeModule", [ property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return new _colorOvertime["default"]();
       }
-    }), _applyDecoratedDescriptor(_class2.prototype, "colorOverLifetimeModule", [ _dec21 ], Object.getOwnPropertyDescriptor(_class2.prototype, "colorOverLifetimeModule"), _class2.prototype), 
-    _descriptor21 = _applyDecoratedDescriptor(_class2.prototype, "_sizeOvertimeModule", [ property ], {
+    }), _applyDecoratedDescriptor(_class2.prototype, "colorOverLifetimeModule", [ _dec19 ], Object.getOwnPropertyDescriptor(_class2.prototype, "colorOverLifetimeModule"), _class2.prototype),
+    _descriptor19 = _applyDecoratedDescriptor(_class2.prototype, "_sizeOvertimeModule", [ property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return new _sizeOvertime["default"]();
       }
-    }), _applyDecoratedDescriptor(_class2.prototype, "sizeOvertimeModule", [ _dec22 ], Object.getOwnPropertyDescriptor(_class2.prototype, "sizeOvertimeModule"), _class2.prototype), 
-    _descriptor22 = _applyDecoratedDescriptor(_class2.prototype, "_velocityOvertimeModule", [ property ], {
+    }), _applyDecoratedDescriptor(_class2.prototype, "sizeOvertimeModule", [ _dec20 ], Object.getOwnPropertyDescriptor(_class2.prototype, "sizeOvertimeModule"), _class2.prototype),
+    _descriptor20 = _applyDecoratedDescriptor(_class2.prototype, "_velocityOvertimeModule", [ property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return new _velocityOvertime["default"]();
       }
-    }), _applyDecoratedDescriptor(_class2.prototype, "velocityOvertimeModule", [ _dec23 ], Object.getOwnPropertyDescriptor(_class2.prototype, "velocityOvertimeModule"), _class2.prototype), 
-    _descriptor23 = _applyDecoratedDescriptor(_class2.prototype, "_forceOvertimeModule", [ property ], {
+    }), _applyDecoratedDescriptor(_class2.prototype, "velocityOvertimeModule", [ _dec21 ], Object.getOwnPropertyDescriptor(_class2.prototype, "velocityOvertimeModule"), _class2.prototype),
+    _descriptor21 = _applyDecoratedDescriptor(_class2.prototype, "_forceOvertimeModule", [ property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return new _forceOvertime["default"]();
       }
-    }), _applyDecoratedDescriptor(_class2.prototype, "forceOvertimeModule", [ _dec24 ], Object.getOwnPropertyDescriptor(_class2.prototype, "forceOvertimeModule"), _class2.prototype), 
-    _descriptor24 = _applyDecoratedDescriptor(_class2.prototype, "_limitVelocityOvertimeModule", [ property ], {
+    }), _applyDecoratedDescriptor(_class2.prototype, "forceOvertimeModule", [ _dec22 ], Object.getOwnPropertyDescriptor(_class2.prototype, "forceOvertimeModule"), _class2.prototype),
+    _descriptor22 = _applyDecoratedDescriptor(_class2.prototype, "_limitVelocityOvertimeModule", [ property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return new _limitVelocityOvertime["default"]();
       }
-    }), _applyDecoratedDescriptor(_class2.prototype, "limitVelocityOvertimeModule", [ _dec25 ], Object.getOwnPropertyDescriptor(_class2.prototype, "limitVelocityOvertimeModule"), _class2.prototype), 
-    _descriptor25 = _applyDecoratedDescriptor(_class2.prototype, "_rotationOvertimeModule", [ property ], {
+    }), _applyDecoratedDescriptor(_class2.prototype, "limitVelocityOvertimeModule", [ _dec23 ], Object.getOwnPropertyDescriptor(_class2.prototype, "limitVelocityOvertimeModule"), _class2.prototype),
+    _descriptor23 = _applyDecoratedDescriptor(_class2.prototype, "_rotationOvertimeModule", [ property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return new _rotationOvertime["default"]();
       }
-    }), _applyDecoratedDescriptor(_class2.prototype, "rotationOvertimeModule", [ _dec26 ], Object.getOwnPropertyDescriptor(_class2.prototype, "rotationOvertimeModule"), _class2.prototype), 
-    _descriptor26 = _applyDecoratedDescriptor(_class2.prototype, "_textureAnimationModule", [ property ], {
+    }), _applyDecoratedDescriptor(_class2.prototype, "rotationOvertimeModule", [ _dec24 ], Object.getOwnPropertyDescriptor(_class2.prototype, "rotationOvertimeModule"), _class2.prototype),
+    _descriptor24 = _applyDecoratedDescriptor(_class2.prototype, "_textureAnimationModule", [ property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return new _textureAnimation["default"]();
       }
-    }), _applyDecoratedDescriptor(_class2.prototype, "textureAnimationModule", [ _dec27 ], Object.getOwnPropertyDescriptor(_class2.prototype, "textureAnimationModule"), _class2.prototype), 
-    _descriptor27 = _applyDecoratedDescriptor(_class2.prototype, "_trailModule", [ property ], {
+    }), _applyDecoratedDescriptor(_class2.prototype, "textureAnimationModule", [ _dec25 ], Object.getOwnPropertyDescriptor(_class2.prototype, "textureAnimationModule"), _class2.prototype),
+    _descriptor25 = _applyDecoratedDescriptor(_class2.prototype, "_trailModule", [ property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return new _trail["default"]();
       }
-    }), _applyDecoratedDescriptor(_class2.prototype, "trailModule", [ _dec28 ], Object.getOwnPropertyDescriptor(_class2.prototype, "trailModule"), _class2.prototype), 
-    _descriptor28 = _applyDecoratedDescriptor(_class2.prototype, "_renderMode", [ property ], {
+    }), _applyDecoratedDescriptor(_class2.prototype, "trailModule", [ _dec26 ], Object.getOwnPropertyDescriptor(_class2.prototype, "trailModule"), _class2.prototype),
+    _descriptor26 = _applyDecoratedDescriptor(_class2.prototype, "_renderMode", [ property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return _enum.RenderMode.Billboard;
       }
-    }), _applyDecoratedDescriptor(_class2.prototype, "renderMode", [ _dec29 ], Object.getOwnPropertyDescriptor(_class2.prototype, "renderMode"), _class2.prototype), 
-    _descriptor29 = _applyDecoratedDescriptor(_class2.prototype, "_velocityScale", [ property ], {
+    }), _applyDecoratedDescriptor(_class2.prototype, "renderMode", [ _dec27 ], Object.getOwnPropertyDescriptor(_class2.prototype, "renderMode"), _class2.prototype),
+    _descriptor27 = _applyDecoratedDescriptor(_class2.prototype, "_velocityScale", [ property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return 1;
       }
-    }), _applyDecoratedDescriptor(_class2.prototype, "velocityScale", [ _dec30 ], Object.getOwnPropertyDescriptor(_class2.prototype, "velocityScale"), _class2.prototype), 
-    _descriptor30 = _applyDecoratedDescriptor(_class2.prototype, "_lengthScale", [ property ], {
+    }), _applyDecoratedDescriptor(_class2.prototype, "velocityScale", [ _dec28 ], Object.getOwnPropertyDescriptor(_class2.prototype, "velocityScale"), _class2.prototype),
+    _descriptor28 = _applyDecoratedDescriptor(_class2.prototype, "_lengthScale", [ property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return 1;
       }
-    }), _applyDecoratedDescriptor(_class2.prototype, "lengthScale", [ _dec31 ], Object.getOwnPropertyDescriptor(_class2.prototype, "lengthScale"), _class2.prototype), 
-    _descriptor31 = _applyDecoratedDescriptor(_class2.prototype, "_mesh", [ property ], {
+    }), _applyDecoratedDescriptor(_class2.prototype, "lengthScale", [ _dec29 ], Object.getOwnPropertyDescriptor(_class2.prototype, "lengthScale"), _class2.prototype),
+    _descriptor29 = _applyDecoratedDescriptor(_class2.prototype, "_mesh", [ property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return null;
       }
-    }), _applyDecoratedDescriptor(_class2.prototype, "mesh", [ _dec32 ], Object.getOwnPropertyDescriptor(_class2.prototype, "mesh"), _class2.prototype), 
-    _applyDecoratedDescriptor(_class2.prototype, "particleMaterial", [ _dec33 ], Object.getOwnPropertyDescriptor(_class2.prototype, "particleMaterial"), _class2.prototype), 
-    _applyDecoratedDescriptor(_class2.prototype, "trailMaterial", [ _dec34 ], Object.getOwnPropertyDescriptor(_class2.prototype, "trailMaterial"), _class2.prototype), 
+    }), _applyDecoratedDescriptor(_class2.prototype, "mesh", [ _dec30 ], Object.getOwnPropertyDescriptor(_class2.prototype, "mesh"), _class2.prototype),
+    _applyDecoratedDescriptor(_class2.prototype, "particleMaterial", [ _dec31 ], Object.getOwnPropertyDescriptor(_class2.prototype, "particleMaterial"), _class2.prototype),
+    _applyDecoratedDescriptor(_class2.prototype, "trailMaterial", [ _dec32 ], Object.getOwnPropertyDescriptor(_class2.prototype, "trailMaterial"), _class2.prototype),
     _class2)) || _class) || _class) || _class) || _class) || _class);
     false;
     cc.ParticleSystem3D = ParticleSystem3D;
@@ -11846,7 +11840,7 @@
     var _gradientRange = _interopRequireDefault(require("../animator/gradient-range"));
     var _enum = require("../enum");
     var _utils = _interopRequireDefault(require("../utils"));
-    var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12;
+    var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor0, _descriptor1, _descriptor10;
     function _interopRequireDefault(e) {
       return e && e.__esModule ? e : {
         default: e
@@ -12041,9 +12035,9 @@
         _initializerDefineProperty(this, "textureMode", _descriptor7, this);
         _initializerDefineProperty(this, "widthFromParticle", _descriptor8, this);
         _initializerDefineProperty(this, "widthRatio", _descriptor9, this);
-        _initializerDefineProperty(this, "colorFromParticle", _descriptor10, this);
-        _initializerDefineProperty(this, "colorOverTrail", _descriptor11, this);
-        _initializerDefineProperty(this, "colorOvertime", _descriptor12, this);
+        _initializerDefineProperty(this, "colorFromParticle", _descriptor0, this);
+        _initializerDefineProperty(this, "colorOverTrail", _descriptor1, this);
+        _initializerDefineProperty(this, "colorOvertime", _descriptor10, this);
         this._particleSystem = null;
         this._minSquaredDistance = 0;
         this._vertSize = 0;
@@ -12391,21 +12385,21 @@
       initializer: function initializer() {
         return new _curveRange["default"]();
       }
-    }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, "colorFromParticle", [ _CCClassDecorator.property ], {
+    }), _descriptor0 = _applyDecoratedDescriptor(_class2.prototype, "colorFromParticle", [ _CCClassDecorator.property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return false;
       }
-    }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, "colorOverTrail", [ _dec7 ], {
+    }), _descriptor1 = _applyDecoratedDescriptor(_class2.prototype, "colorOverTrail", [ _dec7 ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return new _gradientRange["default"]();
       }
-    }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, "colorOvertime", [ _dec8 ], {
+    }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, "colorOvertime", [ _dec8 ], {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -15002,7 +14996,7 @@
     exports.__esModule = true;
     exports.RigidBody3D = void 0;
     var _instance = require("../instance");
-    var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8;
+    var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec0, _dec1, _dec10, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8;
     function _initializerDefineProperty(e, i, r, l) {
       r && Object.defineProperty(e, i, {
         enumerable: r.enumerable,
@@ -15073,11 +15067,11 @@
       displayOrder: 3
     }), _dec9 = property({
       displayOrder: 4
-    }), _dec10 = property({
+    }), _dec0 = property({
       displayOrder: 5
-    }), _dec11 = property({
+    }), _dec1 = property({
       displayOrder: 6
-    }), _dec12 = property({
+    }), _dec10 = property({
       displayOrder: 7
     }), _dec(_class = _dec2(_class = _dec3(_class = _dec4(_class = executeInEditMode(_class = disallowMultiple(_class = (_class2 = (function(_cc$Component) {
       function RigidBody3D() {
@@ -15272,14 +15266,14 @@
           return !r;
         }
       } ]);
-    })(cc.Component), _applyDecoratedDescriptor(_class2.prototype, "mass", [ _dec5 ], Object.getOwnPropertyDescriptor(_class2.prototype, "mass"), _class2.prototype), 
-    _applyDecoratedDescriptor(_class2.prototype, "linearDamping", [ _dec6 ], Object.getOwnPropertyDescriptor(_class2.prototype, "linearDamping"), _class2.prototype), 
-    _applyDecoratedDescriptor(_class2.prototype, "angularDamping", [ _dec7 ], Object.getOwnPropertyDescriptor(_class2.prototype, "angularDamping"), _class2.prototype), 
-    _applyDecoratedDescriptor(_class2.prototype, "isKinematic", [ _dec8 ], Object.getOwnPropertyDescriptor(_class2.prototype, "isKinematic"), _class2.prototype), 
-    _applyDecoratedDescriptor(_class2.prototype, "useGravity", [ _dec9 ], Object.getOwnPropertyDescriptor(_class2.prototype, "useGravity"), _class2.prototype), 
-    _applyDecoratedDescriptor(_class2.prototype, "fixedRotation", [ _dec10 ], Object.getOwnPropertyDescriptor(_class2.prototype, "fixedRotation"), _class2.prototype), 
-    _applyDecoratedDescriptor(_class2.prototype, "linearFactor", [ _dec11 ], Object.getOwnPropertyDescriptor(_class2.prototype, "linearFactor"), _class2.prototype), 
-    _applyDecoratedDescriptor(_class2.prototype, "angularFactor", [ _dec12 ], Object.getOwnPropertyDescriptor(_class2.prototype, "angularFactor"), _class2.prototype), 
+    })(cc.Component), _applyDecoratedDescriptor(_class2.prototype, "mass", [ _dec5 ], Object.getOwnPropertyDescriptor(_class2.prototype, "mass"), _class2.prototype),
+    _applyDecoratedDescriptor(_class2.prototype, "linearDamping", [ _dec6 ], Object.getOwnPropertyDescriptor(_class2.prototype, "linearDamping"), _class2.prototype),
+    _applyDecoratedDescriptor(_class2.prototype, "angularDamping", [ _dec7 ], Object.getOwnPropertyDescriptor(_class2.prototype, "angularDamping"), _class2.prototype),
+    _applyDecoratedDescriptor(_class2.prototype, "isKinematic", [ _dec8 ], Object.getOwnPropertyDescriptor(_class2.prototype, "isKinematic"), _class2.prototype),
+    _applyDecoratedDescriptor(_class2.prototype, "useGravity", [ _dec9 ], Object.getOwnPropertyDescriptor(_class2.prototype, "useGravity"), _class2.prototype),
+    _applyDecoratedDescriptor(_class2.prototype, "fixedRotation", [ _dec0 ], Object.getOwnPropertyDescriptor(_class2.prototype, "fixedRotation"), _class2.prototype),
+    _applyDecoratedDescriptor(_class2.prototype, "linearFactor", [ _dec1 ], Object.getOwnPropertyDescriptor(_class2.prototype, "linearFactor"), _class2.prototype),
+    _applyDecoratedDescriptor(_class2.prototype, "angularFactor", [ _dec10 ], Object.getOwnPropertyDescriptor(_class2.prototype, "angularFactor"), _class2.prototype),
     _descriptor = _applyDecoratedDescriptor(_class2.prototype, "_mass", [ property ], {
       configurable: true,
       enumerable: true,
@@ -16344,28 +16338,22 @@
         default: e
       };
     }
-    function _getRequireWildcardCache(e) {
-      if ("function" != typeof WeakMap) return null;
-      var r = new WeakMap(), t = new WeakMap();
-      return (_getRequireWildcardCache = function _getRequireWildcardCache(e) {
-        return e ? t : r;
-      })(e);
-    }
-    function _interopRequireWildcard(e, r) {
-      if (!r && e && e.__esModule) return e;
-      if (null === e || "object" != typeof e && "function" != typeof e) return {
-        default: e
-      };
-      var t = _getRequireWildcardCache(r);
-      if (t && t.has(e)) return t.get(e);
-      var n = {
-        __proto__: null
-      }, a = Object.defineProperty && Object.getOwnPropertyDescriptor;
-      for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) {
-        var i = a ? Object.getOwnPropertyDescriptor(e, u) : null;
-        i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u];
-      }
-      return n["default"] = e, t && t.set(e, n), n;
+    function _interopRequireWildcard(e, t) {
+      if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap();
+      return (_interopRequireWildcard = function _interopRequireWildcard(e, t) {
+        if (!t && e && e.__esModule) return e;
+        var o, i, f = {
+          __proto__: null,
+          default: e
+        };
+        if (null === e || "object" != typeof e && "function" != typeof e) return f;
+        if (o = t ? n : r) {
+          if (o.has(e)) return o.get(e);
+          o.set(e, f);
+        }
+        for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]);
+        return f;
+      })(e, t);
     }
     cc.primitive = Object.assign({
       box: _box["default"],
@@ -21356,28 +21344,22 @@
   113: [ (function(require, module, exports) {
     "use strict";
     var _deserializeCompiled = _interopRequireWildcard(require("../platform/deserialize-compiled"));
-    function _getRequireWildcardCache(e) {
-      if ("function" != typeof WeakMap) return null;
-      var r = new WeakMap(), t = new WeakMap();
-      return (_getRequireWildcardCache = function _getRequireWildcardCache(e) {
-        return e ? t : r;
-      })(e);
-    }
-    function _interopRequireWildcard(e, r) {
-      if (!r && e && e.__esModule) return e;
-      if (null === e || "object" != typeof e && "function" != typeof e) return {
-        default: e
-      };
-      var t = _getRequireWildcardCache(r);
-      if (t && t.has(e)) return t.get(e);
-      var n = {
-        __proto__: null
-      }, a = Object.defineProperty && Object.getOwnPropertyDescriptor;
-      for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) {
-        var i = a ? Object.getOwnPropertyDescriptor(e, u) : null;
-        i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u];
-      }
-      return n["default"] = e, t && t.set(e, n), n;
+    function _interopRequireWildcard(e, t) {
+      if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap();
+      return (_interopRequireWildcard = function _interopRequireWildcard(e, t) {
+        if (!t && e && e.__esModule) return e;
+        var o, i, f = {
+          __proto__: null,
+          default: e
+        };
+        if (null === e || "object" != typeof e && "function" != typeof e) return f;
+        if (o = t ? n : r) {
+          if (o.has(e)) return o.get(e);
+          o.set(e, f);
+        }
+        for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]);
+        return f;
+      })(e, t);
     }
     var Cache = require("./cache");
     var deserialize = require("./deserialize");
@@ -24515,8 +24497,7 @@
         this._resetUnderlyingMipmaps();
         var rbo = this._depthStencilBuffer;
         rbo && rbo.update(this.width, this.height);
-        this._framebuffer._width = width;
-        this._framebuffer._height = height;
+        this._framebuffer.updateSize(this.width, this.height);
       },
       drawTextureAt: function drawTextureAt(texture, x, y) {
         if (!texture._image || 0 === texture._image.width) return;
@@ -37266,28 +37247,22 @@
     var _enums = _interopRequireDefault(require("./enums"));
     var _ray = _interopRequireDefault(require("./ray"));
     var _triangle = _interopRequireDefault(require("./triangle"));
-    function _getRequireWildcardCache(e) {
-      if ("function" != typeof WeakMap) return null;
-      var r = new WeakMap(), t = new WeakMap();
-      return (_getRequireWildcardCache = function _getRequireWildcardCache(e) {
-        return e ? t : r;
-      })(e);
-    }
-    function _interopRequireWildcard(e, r) {
-      if (!r && e && e.__esModule) return e;
-      if (null === e || "object" != typeof e && "function" != typeof e) return {
-        default: e
-      };
-      var t = _getRequireWildcardCache(r);
-      if (t && t.has(e)) return t.get(e);
-      var n = {
-        __proto__: null
-      }, a = Object.defineProperty && Object.getOwnPropertyDescriptor;
-      for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) {
-        var i = a ? Object.getOwnPropertyDescriptor(e, u) : null;
-        i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u];
-      }
-      return n["default"] = e, t && t.set(e, n), n;
+    function _interopRequireWildcard(e, t) {
+      if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap();
+      return (_interopRequireWildcard = function _interopRequireWildcard(e, t) {
+        if (!t && e && e.__esModule) return e;
+        var o, i, f = {
+          __proto__: null,
+          default: e
+        };
+        if (null === e || "object" != typeof e && "function" != typeof e) return f;
+        if (o = t ? n : r) {
+          if (o.has(e)) return o.get(e);
+          o.set(e, f);
+        }
+        for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]);
+        return f;
+      })(e, t);
     }
     function _interopRequireDefault(e) {
       return e && e.__esModule ? e : {
@@ -37758,25 +37733,25 @@
           1 === result && (intersects = true);
         }
         if (!intersects) return 1;
-        for (var _i10 = 0; _i10 < frustum.vertices.length; _i10++) _valueTypes.Vec3.subtract(tmp[_i10], frustum.vertices[_i10], obb.center);
+        for (var _i0 = 0; _i0 < frustum.vertices.length; _i0++) _valueTypes.Vec3.subtract(tmp[_i0], frustum.vertices[_i0], obb.center);
         out1 = 0, out2 = 0;
         var obbm = obb.orientation.m;
-        for (var _i11 = 0; _i11 < frustum.vertices.length; _i11++) {
-          dist = dot(tmp[_i11], obbm[0], obbm[1], obbm[2]);
+        for (var _i1 = 0; _i1 < frustum.vertices.length; _i1++) {
+          dist = dot(tmp[_i1], obbm[0], obbm[1], obbm[2]);
           dist > obb.halfExtents.x ? out1++ : dist < -obb.halfExtents.x && out2++;
         }
         if (out1 === frustum.vertices.length || out2 === frustum.vertices.length) return 0;
         out1 = 0;
         out2 = 0;
-        for (var _i12 = 0; _i12 < frustum.vertices.length; _i12++) {
-          dist = dot(tmp[_i12], obbm[3], obbm[4], obbm[5]);
+        for (var _i10 = 0; _i10 < frustum.vertices.length; _i10++) {
+          dist = dot(tmp[_i10], obbm[3], obbm[4], obbm[5]);
           dist > obb.halfExtents.y ? out1++ : dist < -obb.halfExtents.y && out2++;
         }
         if (out1 === frustum.vertices.length || out2 === frustum.vertices.length) return 0;
         out1 = 0;
         out2 = 0;
-        for (var _i13 = 0; _i13 < frustum.vertices.length; _i13++) {
-          dist = dot(tmp[_i13], obbm[6], obbm[7], obbm[8]);
+        for (var _i11 = 0; _i11 < frustum.vertices.length; _i11++) {
+          dist = dot(tmp[_i11], obbm[6], obbm[7], obbm[8]);
           dist > obb.halfExtents.z ? out1++ : dist < -obb.halfExtents.z && out2++;
         }
         if (out1 === frustum.vertices.length || out2 === frustum.vertices.length) return 0;
@@ -37788,9 +37763,9 @@
       for (var i = 0; i < 15; i++) test[i] = new _valueTypes.Vec3(0, 0, 0);
       var vertices = new Array(8);
       var vertices2 = new Array(8);
-      for (var _i14 = 0; _i14 < 8; _i14++) {
-        vertices[_i14] = new _valueTypes.Vec3(0, 0, 0);
-        vertices2[_i14] = new _valueTypes.Vec3(0, 0, 0);
+      for (var _i12 = 0; _i12 < 8; _i12++) {
+        vertices[_i12] = new _valueTypes.Vec3(0, 0, 0);
+        vertices2[_i12] = new _valueTypes.Vec3(0, 0, 0);
       }
       return function(obb1, obb2) {
         var obb1m = obb1.orientation.m;
@@ -37801,16 +37776,16 @@
         _valueTypes.Vec3.set(test[3], obb2m[0], obb2m[1], obb2m[2]);
         _valueTypes.Vec3.set(test[4], obb2m[3], obb2m[4], obb2m[5]);
         _valueTypes.Vec3.set(test[5], obb2m[6], obb2m[7], obb2m[8]);
-        for (var _i15 = 0; _i15 < 3; ++_i15) {
-          _valueTypes.Vec3.cross(test[6 + 3 * _i15 + 0], test[_i15], test[0]);
-          _valueTypes.Vec3.cross(test[6 + 3 * _i15 + 1], test[_i15], test[1]);
-          _valueTypes.Vec3.cross(test[6 + 3 * _i15 + 1], test[_i15], test[2]);
+        for (var _i13 = 0; _i13 < 3; ++_i13) {
+          _valueTypes.Vec3.cross(test[6 + 3 * _i13 + 0], test[_i13], test[0]);
+          _valueTypes.Vec3.cross(test[6 + 3 * _i13 + 1], test[_i13], test[1]);
+          _valueTypes.Vec3.cross(test[6 + 3 * _i13 + 1], test[_i13], test[2]);
         }
         getOBBVertices(obb1.center, obb1.halfExtents, test[0], test[1], test[2], vertices);
         getOBBVertices(obb2.center, obb2.halfExtents, test[3], test[4], test[5], vertices2);
-        for (var _i16 = 0; _i16 < 15; ++_i16) {
-          var a = getInterval(vertices, test[_i16]);
-          var b = getInterval(vertices2, test[_i16]);
+        for (var _i14 = 0; _i14 < 15; ++_i14) {
+          var a = getInterval(vertices, test[_i14]);
+          var b = getInterval(vertices2, test[_i14]);
           if (b[0] > a[1] || a[0] > b[1]) return 0;
         }
         return 1;
@@ -67429,6 +67404,10 @@
         this._glID = device._gl.createFramebuffer();
       }
       var _proto = FrameBuffer.prototype;
+      _proto.updateSize = function updateSize(width, height) {
+        this._width = width;
+        this._height = height;
+      };
       _proto.destroy = function destroy() {
         if (null === this._glID) {
           console.error("The frame-buffer already destroyed");
@@ -72285,8 +72264,8 @@
           this._textures[i] = tilesetInfo.sourceImage;
           totalTextures.push(tilesetInfo.sourceImage);
         }
-        for (var _i10 = 0; _i10 < this._imageLayers.length; _i10++) {
-          var imageLayer = this._imageLayers[_i10];
+        for (var _i0 = 0; _i0 < this._imageLayers.length; _i0++) {
+          var imageLayer = this._imageLayers[_i0];
           if (!imageLayer || !imageLayer.sourceImage) continue;
           totalTextures.push(imageLayer.sourceImage);
         }

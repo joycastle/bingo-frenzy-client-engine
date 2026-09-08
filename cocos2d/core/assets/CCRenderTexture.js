@@ -102,8 +102,7 @@ let RenderTexture = cc.Class({
 
         let rbo = this._depthStencilBuffer;
         if (rbo) rbo.update(this.width, this.height);
-        this._framebuffer._width = width;
-        this._framebuffer._height = height;
+        this._framebuffer.updateSize(this.width, this.height);
     },
 
     /**

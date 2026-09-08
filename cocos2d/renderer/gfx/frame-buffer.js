@@ -23,6 +23,11 @@ export default class FrameBuffer {
     this._glID = device._gl.createFramebuffer();
   }
 
+  updateSize(width, height) {
+    this._width = width;
+    this._height = height;
+  }
+
   /**
    * @method destroy
    */
