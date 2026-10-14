@@ -158,8 +158,8 @@ module.exports = function createBundler(entryFiles, options) {
     }
 
     return b
-        .transform(dropPureExport)
-        .transform(inlineProp.inlineConst)
+        .transform(dropPureExport, { sourceMaps: browserifyOpt.debug })
+        .transform(inlineProp.inlineConst, { sourceMaps: browserifyOpt.debug })
         .transform(Babelify, (options && options.babelifyOpt) || {
             extensions: ['.ts', '.js'],
             presets: (options && options.presets) || presets,
@@ -174,9 +174,9 @@ module.exports = function createBundler(entryFiles, options) {
             ast: false,
             babelrc: false,
             highlightCode: false,
-            sourceMaps: true,
+            sourceMaps: browserifyOpt.debug,
             compact: false
         })
-        .transform(inlineProp.inlineEnum)
+        .transform(inlineProp.inlineEnum, { sourceMaps: browserifyOpt.debug })
         .transform(aliasify, (options && options.aliasifyConfig) || {});
 };

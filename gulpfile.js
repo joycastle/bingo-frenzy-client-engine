@@ -26,7 +26,6 @@
 
 'use strict';
 
-const Path = require('path');
 const gulp = require('gulp');
 const Del = require('del');
 const Shell = require('gulp-shell');
@@ -205,18 +204,3 @@ gulp.task('build', gulp.parallel('clean-cache', 'build-html5-preview', 'build-js
 
 // default task
 gulp.task('default', gulp.series('build'));
-
-// 构建 bingo html 引擎代码, 排除 dragonbones 和 3d 粒子系统, 排除文件参考 modules.json
-gulp.task('build-bingo-html5-min', gulp.series(gulp.parallel('clean-cache', 'build-debug-infos'), function buildHtml5Min(done) {
-    Engine.buildCocosJsMin('./index.js', './bin/cocos2d-js-min.js',
-        [
-            Path.resolve(__dirname, "./extensions/dragonbones/index.js"),
-            Path.resolve(__dirname, "./cocos2d/core/3d/particle/particle-system-3d.ts"),
-            Path.resolve(__dirname, "./cocos2d/core/3d/particle/renderer/particle-system-3d-renderer.ts"),
-        ],
-    {}, done);
-}, function copyToBuildTemplet(done) {
-    return gulp.src("./bin/cocos2d-js-min.js")
-        .pipe(gulp.dest("../build-templates/web-mobile"))
-        .pipe(gulp.dest("../build-templates/fb-instant-games"));
-}));

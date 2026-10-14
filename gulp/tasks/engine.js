@@ -25,6 +25,8 @@
 
 'use strict';
 
+require('../util/invalidate-build-cache')();
+
 const Utils = require('../util/utils');
 const createBundler = require('../util/create-bundler');
 const Path = require('path');
@@ -38,6 +40,9 @@ const EventStream = require('event-stream');
 const Chalk = require('chalk');
 const HandleErrors = require('../util/handleErrors');
 const Optimizejs = require('gulp-optimize-js');
+const { pipeline, Transform } = require('stream');
+const { Buffer: NodeBuffer } = require('buffer');
+const { SourceMapConsumer, SourceMapGenerator } = require('source-map');
 
 let buildSkipModules = [
     '../../cocos2d/core/platform/deserialize-editor.js',
@@ -105,6 +110,64 @@ function excludedWebView (excludes) {
 
 exports.buildDebugInfos = require('./buildDebugInfos');
 
+function normalizeWebSourceMaps() {
+    return new Transform({
+        objectMode: true,
+        transform(file, encoding, callback) {
+            if (!file.path.endsWith('.map')) {
+                callback(null, file);
+                return;
+            }
+            // Map 解析/重建失败应使当前构建失败，不输出不匹配的产物。
+            try {
+                const map = JSON.parse(file.contents.toString('utf8'));
+                map.sources = map.sources.map(source => {
+                    const sourcePath = source.replace(/\\/g, '/');
+                    if (sourcePath === map.file) return sourcePath;
+                    const match = sourcePath.match(/(?:^|\/)engine\/(.+)$/);
+                    if (match) return `engine/${match[1]}`;
+                    const relative = Path.relative(Path.resolve(__dirname, '../..'), Path.resolve(__dirname, '../..', sourcePath)).replace(/\\/g, '/');
+                    return relative.startsWith('../') ? sourcePath : `engine/${relative}`;
+                });
+                map.sourceRoot = '';
+                const generatedSource = map.sources.findIndex((source, index) => source === map.file && map.sourcesContent[index] === null);
+                if (generatedSource !== -1) {
+                    // Browserify 包装只对应生成代码；保留未映射边界，不伪造源码。
+                    const consumer = new SourceMapConsumer(map);
+                    const generator = new SourceMapGenerator({ file: map.file });
+                    consumer.eachMapping(mapping => {
+                        const position = { generated: { line: mapping.generatedLine, column: mapping.generatedColumn } };
+                        if (mapping.source !== null && mapping.source !== map.file) {
+                            position.source = mapping.source;
+                            position.original = { line: mapping.originalLine, column: mapping.originalColumn };
+                            if (mapping.name !== null) position.name = mapping.name;
+                        }
+                        generator.addMapping(position);
+                    });
+                    map.sources.forEach((source, index) => {
+                        if (source !== map.file) generator.setSourceContent(source, map.sourcesContent[index]);
+                    });
+                    Object.assign(map, generator.toJSON());
+                    map.sourceRoot = '';
+                }
+                file.contents = NodeBuffer.from(JSON.stringify(map));
+                callback(null, file);
+            } catch (error) {
+                callback(error);
+            }
+        },
+    });
+}
+
+function pipeWebBuild({ streams, outDir, callback, hasSourceMaps }) {
+    const destination = Gulp.dest(outDir);
+    if (hasSourceMaps) streams.push(normalizeWebSourceMaps());
+    streams.push(destination);
+    pipeline(streams, callback);
+    destination.resume();
+    return destination;
+}
+
 exports.buildCocosJs = function (sourceFile, outputFile, excludes, opt_macroFlags, callback, createMap) {
     if (typeof opt_macroFlags === 'function') {
         callback = opt_macroFlags;
@@ -125,29 +188,23 @@ exports.buildCocosJs = function (sourceFile, outputFile, excludes, opt_macroFlag
         bundler.exclude(file);
     });
 
-    bundler = bundler.bundle();
-    bundler = bundler.pipe(Source(outFile));
-    bundler = bundler.pipe(Buffer());
+    const streams = [bundler.bundle(), Source(outFile), Buffer()];
 
     if (createMap) {
-        bundler = bundler.pipe(Sourcemaps.init({loadMaps: true}));
+        streams.push(Sourcemaps.init({loadMaps: true}));
     }
 
-    bundler = bundler.pipe(Utils.uglify('build', Object.assign({ debug: true }, opt_macroFlags)));
-    bundler = bundler.pipe(Optimizejs({
-        sourceMap: false
-    }));
+    streams.push(Utils.uglify('build', Object.assign({ debug: true }, opt_macroFlags)));
 
     if (createMap) {
-        bundler = bundler.pipe(Sourcemaps.write('./', {
+        streams.push(Sourcemaps.write('./', {
             sourceRoot: './',
             includeContent: true,
             addComment: true
         }));
     }
 
-    bundler = bundler.pipe(Gulp.dest(outDir));
-    return bundler.on('end', callback);
+    return pipeWebBuild({ streams, outDir, callback, hasSourceMaps: !!createMap });
 };
 
 exports.buildCocosJsMin = function (sourceFile, outputFile, excludes, opt_macroFlags, callback, createMap) {
@@ -184,22 +241,14 @@ exports.buildCocosJsMin = function (sourceFile, outputFile, excludes, opt_macroF
         var zippedSize = Size({ gzip: true, pretty: false, showTotal: false, showFiles: false });
     }
 
-    bundler = bundler.bundle();
-    bundler = bundler.pipe(Source(outFile));
-    bundler = bundler.pipe(Buffer());
+    const streams = [bundler.bundle(), Source(outFile), Buffer()];
     if (createMap) {
-        console.error('Can not use sourcemap with optimize-js');
-        bundler = bundler.pipe(Sourcemaps.init({loadMaps: true}));
+        streams.push(Sourcemaps.init({loadMaps: true}));
     }
-    bundler = bundler.pipe(Utils.uglify('build', opt_macroFlags));
-    bundler = bundler.pipe(Optimizejs({
-        sourceMap: false
-    }));
+    streams.push(Utils.uglify('build', opt_macroFlags));
 
     if (Size) {
-        bundler = bundler.pipe(rawSize);
-        bundler = bundler.pipe(zippedSize);
-        bundler = bundler.pipe(EventStream.through(null, function () {
+        streams.push(rawSize, zippedSize, EventStream.through(null, function () {
             var raw = rawSize.size;
             var zipped = zippedSize.size;
             var percent = ((zipped / raw) * 100).toFixed(2);
@@ -208,14 +257,13 @@ exports.buildCocosJsMin = function (sourceFile, outputFile, excludes, opt_macroF
         }));
     }
     if (createMap) {
-        bundler = bundler.pipe(Sourcemaps.write('./', {
+        streams.push(Sourcemaps.write('./', {
             sourceRoot: './',
             includeContent: true,
             addComment: true
         }));
     }
-    bundler = bundler.pipe(Gulp.dest(outDir));
-    return bundler.on('end', callback);
+    return pipeWebBuild({ streams, outDir, callback, hasSourceMaps: !!createMap });
 };
 
 exports.buildPreview = function (sourceFile, outputFile, callback, devMode) {
@@ -238,9 +286,6 @@ exports.buildPreview = function (sourceFile, outputFile, callback, devMode) {
         bundler = bundler
             .pipe(Sourcemaps.init({loadMaps: true}))
             .pipe(Utils.uglify('preview', {physics_cannon: true}))
-            .pipe(Optimizejs({
-                sourceMap: false
-            }))
             .pipe(Sourcemaps.write('./', {
                 sourceRoot: '../',
                 includeContent: false,

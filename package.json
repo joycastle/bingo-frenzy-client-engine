@@ -7,7 +7,8 @@
   "scripts": {
     "test": "gulp test-in-ci",
     "build-chunks": "node ./cocos2d/renderer/build/build-chunks",
-    "build-mapping": "node ./cocos2d/renderer/build/build-mapping"
+    "build-mapping": "node ./cocos2d/renderer/build/build-mapping",
+    "test-engine-build": "node --test test/engine-build-source-maps.test.cjs"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",
@@ -57,6 +58,9 @@
     "vinyl-buffer": "1.0.1",
     "vinyl-source-stream": "2.0.0",
     "vinyl-sourcemaps-apply": "0.2.1",
-    "watchify": "3.7.0"
+    "watchify": "3.7.0",
+    "magic-string": "0.16.0",
+    "convert-source-map": "1.9.0",
+    "source-map": "0.5.7"
   }
 }
