@@ -51,6 +51,7 @@ let WebViewImpl = cc.Class({
         this._m13 = 0;
         this._w = 0;
         this._h = 0;
+        this._opacity = -1;
         //
         this.__eventListeners = {};
     },
@@ -348,7 +349,8 @@ let WebViewImpl = cc.Class({
         }
 
         let _mat4_tempm = _mat4_temp.m;
-        if (!this._forceUpdate &&
+        // Opacity changes must refresh the iframe even when its transform is unchanged.
+        if (!this._forceUpdate && this._opacity === node.opacity &&
             this._m00 === _mat4_tempm[0] && this._m01 === _mat4_tempm[1] &&
             this._m04 === _mat4_tempm[4] && this._m05 === _mat4_tempm[5] &&
             this._m12 === _mat4_tempm[12] && this._m13 === _mat4_tempm[13] &&
@@ -365,6 +367,7 @@ let WebViewImpl = cc.Class({
         this._m13 = _mat4_tempm[13];
         this._w = node._contentSize.width;
         this._h = node._contentSize.height;
+        this._opacity = node.opacity;
 
         let dpr = cc.view._devicePixelRatio;
         let scaleX = 1 / dpr;

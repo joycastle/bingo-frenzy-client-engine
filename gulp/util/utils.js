@@ -197,7 +197,7 @@ exports.uglify = function (platform, isJSB, isDebugBuild) {
                 }
                 content = result.code;
 
-                file.contents = new Buffer(content);
+                file.contents = Buffer.from(content);
                 if (result.map) {
                     applySourceMap(file, result.map);
                 }

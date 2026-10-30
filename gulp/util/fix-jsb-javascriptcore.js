@@ -35,7 +35,7 @@ module.exports = function () {
             // make shim as local variables so that variable names will be mangled
             content = '(function () {' + content + '})();';
 
-            file.contents = new Buffer(content);
+            file.contents = Buffer.from(content);
         }
         this.emit('data', file);
     });

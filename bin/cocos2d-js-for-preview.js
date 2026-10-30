@@ -8,16 +8,16 @@
       module = cache[name] = {
         exports: exports
       };
-      moduleData[0]((function(x) {
+      moduleData[0](function(x) {
         return newRequire(moduleData[1][x] || x);
-      }), module, exports);
+      }, module, exports);
     }
     return module.exports;
   }
   for (var i = 0; i < entry.length; i++) newRequire(entry[i]);
   return newRequire;
 })({
-  1: [ (function(require, module, exports) {
+  1: [ function(require, module, exports) {
     module.exports = {
       1001: "cocos2d: removeAction: Target not found",
       1002: "cc.ActionManager.removeActionByTag(): an invalid tag",
@@ -429,8 +429,8 @@
       9200: "cc.view.enableAntiAlias is deprecated, please use cc.Texture2D.setFilters instead",
       "0100": "%s not yet implemented."
     };
-  }), {} ],
-  2: [ (function(require, module, exports) {
+  }, {} ],
+  2: [ function(require, module, exports) {
     "use strict";
     require("../core/platform/CCClass");
     var misc = require("../core/utils/misc");
@@ -639,11 +639,11 @@
     cc.follow = function(followedNode, rect) {
       return new cc.Follow(followedNode, rect);
     };
-  }), {
+  }, {
     "../core/platform/CCClass": 273,
     "../core/utils/misc": 380
   } ],
-  3: [ (function(require, module, exports) {
+  3: [ function(require, module, exports) {
     "use strict";
     function cardinalSplineAt(p0, p1, p2, p3, tension, t) {
       var t2 = t * t;
@@ -843,8 +843,8 @@
     cc.catmullRomBy = function(dt, points) {
       return new cc.CatmullRomBy(dt, points);
     };
-  }), {} ],
-  4: [ (function(require, module, exports) {
+  }, {} ],
+  4: [ function(require, module, exports) {
     "use strict";
     cc.easeIn = function(rate) {
       return {
@@ -1304,8 +1304,8 @@
     cc.easeCubicActionInOut = function() {
       return _easeCubicActionInOut;
     };
-  }), {} ],
-  5: [ (function(require, module, exports) {
+  }, {} ],
+  5: [ function(require, module, exports) {
     "use strict";
     cc.ActionInstant = cc.Class({
       name: "cc.ActionInstant",
@@ -1546,8 +1546,8 @@
     cc.callFunc = function(selector, selectorTarget, data) {
       return new cc.CallFunc(selector, selectorTarget, data);
     };
-  }), {} ],
-  6: [ (function(require, module, exports) {
+  }, {} ],
+  6: [ function(require, module, exports) {
     "use strict";
     cc.ActionInterval = cc.Class({
       name: "cc.ActionInterval",
@@ -2907,8 +2907,8 @@
     cc.targetedAction = function(target, action) {
       return new cc.TargetedAction(target, action);
     };
-  }), {} ],
-  7: [ (function(require, module, exports) {
+  }, {} ],
+  7: [ function(require, module, exports) {
     "use strict";
     require("../core/platform/CCClass");
     var js = require("../core/platform/js");
@@ -3123,11 +3123,11 @@
       }
     };
     false;
-  }), {
+  }, {
     "../core/platform/CCClass": 273,
     "../core/platform/js": 295
   } ],
-  8: [ (function(require, module, exports) {
+  8: [ function(require, module, exports) {
     "use strict";
     require("./CCActionManager");
     require("./CCAction");
@@ -3136,7 +3136,7 @@
     require("./CCActionEase");
     require("./CCActionCatmullRom");
     require("./tween");
-  }), {
+  }, {
     "./CCAction": 2,
     "./CCActionCatmullRom": 3,
     "./CCActionEase": 4,
@@ -3145,7 +3145,7 @@
     "./CCActionManager": 7,
     "./tween": 9
   } ],
-  9: [ (function(require, module, exports) {
+  9: [ function(require, module, exports) {
     "use strict";
     var _bezier = require("../animation/bezier");
     var _tweenID = 0;
@@ -3355,15 +3355,15 @@
       },
       flipX: function flipX() {
         var _this = this;
-        return this.call((function() {
+        return this.call(function() {
           _this._target.scaleX *= -1;
-        }), this);
+        }, this);
       },
       flipY: function flipY() {
         var _this2 = this;
-        return this.call((function() {
+        return this.call(function() {
           _this2._target.scaleY *= -1;
-        }), this);
+        }, this);
       },
       blink: function blink(duration, times, opts) {
         var slice = 1 / times;
@@ -3450,10 +3450,10 @@
       return new Tween(target);
     };
     cc.Tween = Tween;
-  }), {
+  }, {
     "../animation/bezier": 15
   } ],
-  10: [ (function(require, module, exports) {
+  10: [ function(require, module, exports) {
     "use strict";
     var js = cc.js;
     var Playable = require("./playable");
@@ -3607,13 +3607,13 @@
     }
     false;
     module.exports = AnimationAnimator;
-  }), {
+  }, {
     "../core/utils/binary-search": 373,
     "./animation-curves": 12,
     "./playable": 19,
     "./types": 20
   } ],
-  11: [ (function(require, module, exports) {
+  11: [ function(require, module, exports) {
     "use strict";
     var WrapMode = require("./types").WrapMode;
     var _require = require("./animation-curves"), DynamicAnimCurve = _require.DynamicAnimCurve, quickFindIndex = _require.quickFindIndex;
@@ -3758,13 +3758,13 @@
       }
     });
     cc.AnimationClip = module.exports = AnimationClip;
-  }), {
+  }, {
     "../core/utils/binary-search": 373,
     "./animation-curves": 12,
     "./motion-path-helper": 18,
     "./types": 20
   } ],
-  12: [ (function(require, module, exports) {
+  12: [ function(require, module, exports) {
     "use strict";
     var bezierByTime = require("./bezier").bezierByTime;
     var binarySearch = require("../core/utils/binary-search").binarySearchEpsilon;
@@ -3819,24 +3819,24 @@
       _lerpObject: function _lerpObject(from, to, t) {
         return from.lerp(to, t);
       },
-      _lerpQuat: (function() {
+      _lerpQuat: function() {
         var out = cc.quat();
         return function(from, to, t) {
           return from.lerp(to, t, out);
         };
-      })(),
-      _lerpVector2: (function() {
+      }(),
+      _lerpVector2: function() {
         var out = cc.v2();
         return function(from, to, t) {
           return from.lerp(to, t, out);
         };
-      })(),
-      _lerpVector3: (function() {
+      }(),
+      _lerpVector3: function() {
         var out = cc.v3();
         return function(from, to, t) {
           return from.lerp(to, t, out);
         };
-      })(),
+      }(),
       sample: function sample(time, ratio, state) {
         var values = this.values;
         var ratios = this.ratios;
@@ -3986,12 +3986,12 @@
       computeRatioByType: computeRatioByType,
       quickFindIndex: quickFindIndex
     };
-  }), {
+  }, {
     "../core/utils/binary-search": 373,
     "./bezier": 15,
     "./types": 20
   } ],
-  13: [ (function(require, module, exports) {
+  13: [ function(require, module, exports) {
     "use strict";
     var js = cc.js;
     var AnimationManager = cc.Class({
@@ -4032,8 +4032,8 @@
       }
     });
     cc.AnimationManager = module.exports = AnimationManager;
-  }), {} ],
-  14: [ (function(require, module, exports) {
+  }, {} ],
+  14: [ function(require, module, exports) {
     "use strict";
     var js = cc.js;
     var Playable = require("./playable");
@@ -4083,10 +4083,10 @@
       if (this._target && this._target.isValid) {
         "lastframe" === type && (this._lastframeEventOn = true);
         var self = this;
-        return this._target.once(type, (function(event) {
+        return this._target.once(type, function(event) {
           callback.call(target, event);
           self._lastframeEventOn = false;
-        }));
+        });
       }
       return null;
     };
@@ -4225,45 +4225,45 @@
       }
       return info;
     };
-    js.get(proto, "clip", (function() {
+    js.get(proto, "clip", function() {
       return this._clip;
-    }));
-    js.get(proto, "name", (function() {
+    });
+    js.get(proto, "name", function() {
       return this._name;
-    }));
+    });
     js.obsolete(proto, "AnimationState.length", "duration");
-    js.getset(proto, "curveLoaded", (function() {
+    js.getset(proto, "curveLoaded", function() {
       return this.curves.length > 0;
-    }), (function() {
+    }, function() {
       this.curves.length = 0;
-    }));
-    js.getset(proto, "wrapMode", (function() {
+    });
+    js.getset(proto, "wrapMode", function() {
       return this._wrapMode;
-    }), (function(value) {
+    }, function(value) {
       this._wrapMode = value;
       false;
       this.time = 0;
       value & WrapModeMask.Loop ? this.repeatCount = Infinity : this.repeatCount = 1;
-    }));
-    js.getset(proto, "repeatCount", (function() {
+    });
+    js.getset(proto, "repeatCount", function() {
       return this._repeatCount;
-    }), (function(value) {
+    }, function(value) {
       this._repeatCount = value;
       var shouldWrap = this._wrapMode & WrapModeMask.ShouldWrap;
       var reverse = (this.wrapMode & WrapModeMask.Reverse) === WrapModeMask.Reverse;
       this._process = Infinity !== value || shouldWrap || reverse ? process : simpleProcess;
-    }));
-    js.getset(proto, "delay", (function() {
+    });
+    js.getset(proto, "delay", function() {
       return this._delay;
-    }), (function(value) {
+    }, function(value) {
       this._delayTime = this._delay = value;
-    }));
+    });
     cc.AnimationState = module.exports = AnimationState;
-  }), {
+  }, {
     "./playable": 19,
     "./types": 20
   } ],
-  15: [ (function(require, module, exports) {
+  15: [ function(require, module, exports) {
     "use strict";
     function bezier(C1, C2, C3, C4, t) {
       var t1 = 1 - t;
@@ -4312,8 +4312,8 @@
       bezier: bezier,
       bezierByTime: bezierByTime
     };
-  }), {} ],
-  16: [ (function(require, module, exports) {
+  }, {} ],
+  16: [ function(require, module, exports) {
     "use strict";
     var easing = {
       constant: function constant(k) {
@@ -4481,8 +4481,8 @@
     };
     easing.bounceOutIn = _makeOutIn(easing.bounceIn, easing.bounceOut);
     cc.easing = module.exports = easing;
-  }), {} ],
-  17: [ (function(require, module, exports) {
+  }, {} ],
+  17: [ function(require, module, exports) {
     "use strict";
     require("./bezier");
     require("./easing");
@@ -4493,7 +4493,7 @@
     require("./animation-manager");
     require("./animation-state");
     require("./animation-animator");
-  }), {
+  }, {
     "./animation-animator": 10,
     "./animation-clip": 11,
     "./animation-curves": 12,
@@ -4504,7 +4504,7 @@
     "./motion-path-helper": 18,
     "./types": 20
   } ],
-  18: [ (function(require, module, exports) {
+  18: [ function(require, module, exports) {
     "use strict";
     var DynamicAnimCurve = require("./animation-curves").DynamicAnimCurve;
     var computeRatioByType = require("./animation-curves").computeRatioByType;
@@ -4639,10 +4639,10 @@
           out: cc.Vec2.ZERO
         };
       }
-      var values = data.values = data.values.map((function(value) {
+      var values = data.values = data.values.map(function(value) {
         Array.isArray(value) && (value = 2 === value.length ? cc.v2(value[0], value[1]) : cc.v3(value[0], value[1], value[2]));
         return value;
-      }));
+      });
       if (0 === motionPaths.length || 0 === values.length) return;
       var motionPathValid = false;
       for (var _i = 0; _i < motionPaths.length; _i++) {
@@ -4739,12 +4739,12 @@
       Curve: Curve,
       Bezier: Bezier
     };
-  }), {
+  }, {
     "../core/utils/binary-search": 373,
     "./animation-curves": 12,
     "./bezier": 15
   } ],
-  19: [ (function(require, module, exports) {
+  19: [ function(require, module, exports) {
     "use strict";
     var js = cc.js;
     var debug = require("../core/CCDebug");
@@ -4754,12 +4754,12 @@
       this._stepOnce = false;
     }
     var prototype = Playable.prototype;
-    js.get(prototype, "isPlaying", (function() {
+    js.get(prototype, "isPlaying", function() {
       return this._isPlaying;
-    }), true);
-    js.get(prototype, "isPaused", (function() {
+    }, true);
+    js.get(prototype, "isPaused", function() {
       return this._isPaused;
-    }), true);
+    }, true);
     var virtual = function virtual() {};
     prototype.onPlay = virtual;
     prototype.onPause = virtual;
@@ -4800,10 +4800,10 @@
       this._isPlaying || this.play();
     };
     module.exports = Playable;
-  }), {
+  }, {
     "../core/CCDebug": 101
   } ],
-  20: [ (function(require, module, exports) {
+  20: [ function(require, module, exports) {
     "use strict";
     var WrapModeMask = {
       Loop: 2,
@@ -4846,8 +4846,8 @@
       WrapMode: WrapMode,
       WrappedInfo: WrappedInfo
     };
-  }), {} ],
-  21: [ (function(require, module, exports) {
+  }, {} ],
+  21: [ function(require, module, exports) {
     "use strict";
     var EventTarget = require("../core/event/event-target");
     var sys = require("../core/platform/CCSys");
@@ -4909,13 +4909,13 @@
       };
       proto.play = function() {
         var self = this;
-        this._src && this._src._ensureLoaded((function() {
+        this._src && this._src._ensureLoaded(function() {
           self._state = _Audio.State.PLAYING;
           self._bindEnded();
           var playPromise = self._element.play();
-          window.Promise && playPromise instanceof Promise && playPromise["catch"]((function(err) {}));
+          window.Promise && playPromise instanceof Promise && playPromise["catch"](function(err) {});
           self._touchToPlay();
-        }));
+        });
       };
       proto._touchToPlay = function() {
         this._src && this._src.loadMode === LoadMode.DOM_AUDIO && this._element.paused && touchPlayList.push({
@@ -4926,10 +4926,10 @@
         if (touchBinded) return;
         touchBinded = true;
         var touchEventName = "ontouchend" in window ? "touchend" : "mousedown";
-        cc.game.canvas.addEventListener(touchEventName, (function() {
+        cc.game.canvas.addEventListener(touchEventName, function() {
           var item;
           while (item = touchPlayList.pop()) item.audio.play(item.offset);
-        }));
+        });
       };
       proto.destroy = function() {
         this._element = null;
@@ -4937,24 +4937,24 @@
       proto.pause = function() {
         if (this.getState() !== _Audio.State.PLAYING) return;
         var self = this;
-        this._src && this._src._ensureLoaded((function() {
+        this._src && this._src._ensureLoaded(function() {
           self._unbindEnded();
           self._element.pause();
           self._state = _Audio.State.PAUSED;
-        }));
+        });
       };
       proto.resume = function() {
         if (this.getState() !== _Audio.State.PAUSED) return;
         var self = this;
-        this._src && this._src._ensureLoaded((function() {
+        this._src && this._src._ensureLoaded(function() {
           self._bindEnded();
           self._element.play();
           self._state = _Audio.State.PLAYING;
-        }));
+        });
       };
       proto.stop = function() {
         var self = this;
-        this._src && this._src._ensureLoaded((function() {
+        this._src && this._src._ensureLoaded(function() {
           self._element.pause();
           self._element.currentTime = 0;
           for (var i = 0; i < touchPlayList.length; i++) if (touchPlayList[i].instance === self) {
@@ -4964,33 +4964,33 @@
           self._unbindEnded();
           self.emit("stop");
           self._state = _Audio.State.STOPPED;
-        }));
+        });
       };
       proto.setLoop = function(loop) {
         var self = this;
-        this._src && this._src._ensureLoaded((function() {
+        this._src && this._src._ensureLoaded(function() {
           self._element.loop = loop;
-        }));
+        });
       };
       proto.getLoop = function() {
         return !!this._element && this._element.loop;
       };
       proto.setVolume = function(num) {
         var self = this;
-        this._src && this._src._ensureLoaded((function() {
+        this._src && this._src._ensureLoaded(function() {
           self._element.volume = num;
-        }));
+        });
       };
       proto.getVolume = function() {
         return this._element ? this._element.volume : 1;
       };
       proto.setCurrentTime = function(num) {
         var self = this;
-        this._src && this._src._ensureLoaded((function() {
+        this._src && this._src._ensureLoaded(function() {
           self._unbindEnded();
           self._bindEnded(self._onendedSecond);
           self._element.currentTime = num;
-        }));
+        });
       };
       proto.getCurrentTime = function() {
         return this._element ? this._element.currentTime : 0;
@@ -5018,12 +5018,12 @@
               this._src = clip;
               if (clip.loaded) this._onLoaded(); else {
                 var self = this;
-                clip.once("load", (function() {
+                clip.once("load", function() {
                   if (clip === self._src) {
                     clip.loaded = true;
                     self._onLoaded();
                   }
-                }));
+                });
               }
             }
           } else {
@@ -5087,13 +5087,13 @@
         if ((!audio.context.state || "suspended" === audio.context.state) && 0 === this._context.currentTime) {
           var self = this;
           clearTimeout(this._currentTimer);
-          this._currentTimer = setTimeout((function() {
+          this._currentTimer = setTimeout(function() {
             0 === self._context.currentTime && touchPlayList.push({
               instance: self._audio,
               offset: offset,
               audio: self
             });
-          }), 10);
+          }, 10);
         }
         var sys = cc.sys;
         sys.os === sys.OS_IOS && sys.isBrowser && sys.isMobile && ("suspended" === audio.context.state && 0 !== this._context.currentTime || "interrupted" === audio.context.state) && audio.context.resume();
@@ -5180,12 +5180,12 @@
       });
     })(WebAudioElement.prototype);
     module.exports = cc._Audio = _Audio;
-  }), {
+  }, {
     "../core/assets/CCAudioClip": 138,
     "../core/event/event-target": 220,
     "../core/platform/CCSys": 282
   } ],
-  22: [ (function(require, module, exports) {
+  22: [ function(require, module, exports) {
     "use strict";
     var Audio = require("./CCAudio");
     var AudioClip = require("../core/assets/CCAudioClip");
@@ -5222,10 +5222,10 @@
         }
         recycleAudio(this);
       };
-      audio.on("ended", (function() {
+      audio.on("ended", function() {
         this._finishCallback && this._finishCallback();
         this.getLoop() || callback.call(this);
-      }), audio);
+      }, audio);
       audio.on("stop", callback, audio);
       audio.id = id;
       _id2audio[id] = audio;
@@ -5506,11 +5506,11 @@
       }
     };
     module.exports = cc.audioEngine = audioEngine;
-  }), {
+  }, {
     "../core/assets/CCAudioClip": 138,
     "./CCAudio": 21
   } ],
-  23: [ (function(require, module, exports) {
+  23: [ function(require, module, exports) {
     "use strict";
     var codec = {
       name: "Jacob__Codec"
@@ -5547,11 +5547,11 @@
       return ar;
     };
     cc.codec = module.exports = codec;
-  }), {
+  }, {
     "./base64": 24,
     "./gzip": 25
   } ],
-  24: [ (function(require, module, exports) {
+  24: [ function(require, module, exports) {
     "use strict";
     var misc = require("../core/utils/misc");
     var strValue = misc.BASE64_VALUES;
@@ -5585,10 +5585,10 @@
       return ar;
     };
     module.exports = Base64;
-  }), {
+  }, {
     "../core/utils/misc": 380
   } ],
-  25: [ (function(require, module, exports) {
+  25: [ function(require, module, exports) {
     "use strict";
     var GZip = function Jacob__GZip(data) {
       this.data = data;
@@ -5982,8 +5982,8 @@
       this.modeZIP && this.nextFile();
     };
     module.exports = GZip;
-  }), {} ],
-  26: [ (function(require, module, exports) {
+  }, {} ],
+  26: [ function(require, module, exports) {
     "use strict";
     (function() {
       function i(a) {
@@ -6675,9 +6675,9 @@
         return g;
       };
       y("Zlib.Deflate", Da);
-      y("Zlib.Deflate.compress", (function(a, c) {
+      y("Zlib.Deflate.compress", function(a, c) {
         return new Da(a, c).n();
-      }));
+      });
       y("Zlib.Deflate.CompressionType", U);
       y("Zlib.Deflate.CompressionType.NONE", U.NONE);
       y("Zlib.Deflate.CompressionType.FIXED", U.r);
@@ -6971,8 +6971,8 @@
     _p.Inflate.BufferType = _p.Inflate["BufferType"];
     _p.Inflate.prototype.decompress = _p.Inflate.prototype["decompress"];
     module.exports = _p;
-  }), {} ],
-  27: [ (function(require, module, exports) {
+  }, {} ],
+  27: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -6983,7 +6983,7 @@
     var _CCEnum = _interopRequireDefault(require("../platform/CCEnum"));
     var _CCComponent2 = _interopRequireDefault(require("../components/CCComponent"));
     var _CCClassDecorator = require("../platform/CCClassDecorator");
-    var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor0, _descriptor1, _descriptor10, _descriptor11, _Light;
+    var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _Light;
     function _interopRequireDefault(e) {
       return e && e.__esModule ? e : {
         default: e
@@ -7033,12 +7033,12 @@
     }
     function _applyDecoratedDescriptor(i, e, r, n, l) {
       var a = {};
-      return Object.keys(n).forEach((function(i) {
+      return Object.keys(n).forEach(function(i) {
         a[i] = n[i];
-      })), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
-      a = r.slice().reverse().reduce((function(r, n) {
+      }), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
+      a = r.slice().reverse().reduce(function(r, n) {
         return n(i, e, r) || r;
-      }), a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
+      }, a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
       a.initializer = void 0), void 0 === a.initializer ? (Object.defineProperty(i, e, a), 
       null) : a;
     }
@@ -7068,7 +7068,7 @@
       type: LightType
     }), _dec6 = (0, _CCClassDecorator.property)({
       type: LightShadowType
-    }), _dec(_class = _dec2(_class = (0, _CCClassDecorator.executeInEditMode)(_class = _dec3(_class = _dec4(_class = (_class2 = (_Light = (function(_CCComponent) {
+    }), _dec(_class = _dec2(_class = (0, _CCClassDecorator.executeInEditMode)(_class = _dec3(_class = _dec4(_class = (_class2 = (_Light = function(_CCComponent) {
       function Light() {
         var _this;
         _this = _CCComponent.call(this) || this;
@@ -7081,10 +7081,10 @@
         _initializerDefineProperty(_this, "_shadowType", _descriptor7, _this);
         _initializerDefineProperty(_this, "_shadowResolution", _descriptor8, _this);
         _initializerDefineProperty(_this, "_shadowDarkness", _descriptor9, _this);
-        _initializerDefineProperty(_this, "_shadowMinDepth", _descriptor0, _this);
-        _initializerDefineProperty(_this, "_shadowMaxDepth", _descriptor1, _this);
-        _initializerDefineProperty(_this, "_shadowFrustumSize", _descriptor10, _this);
-        _initializerDefineProperty(_this, "_shadowBias", _descriptor11, _this);
+        _initializerDefineProperty(_this, "_shadowMinDepth", _descriptor10, _this);
+        _initializerDefineProperty(_this, "_shadowMaxDepth", _descriptor11, _this);
+        _initializerDefineProperty(_this, "_shadowFrustumSize", _descriptor12, _this);
+        _initializerDefineProperty(_this, "_shadowBias", _descriptor13, _this);
         _this._light = new RendererLight();
         return _this;
       }
@@ -7222,7 +7222,7 @@
           this._light.setShadowFrustumSize(val);
         }
       } ]);
-    })(_CCComponent2["default"]), _Light.Type = LightType, _Light.ShadowType = LightShadowType, 
+    }(_CCComponent2["default"]), _Light.Type = LightType, _Light.ShadowType = LightShadowType, 
     _Light), _descriptor = _applyDecoratedDescriptor(_class2.prototype, "_type", [ _CCClassDecorator.property ], {
       configurable: true,
       enumerable: true,
@@ -7286,28 +7286,28 @@
       initializer: function initializer() {
         return .5;
       }
-    }), _descriptor0 = _applyDecoratedDescriptor(_class2.prototype, "_shadowMinDepth", [ _CCClassDecorator.property ], {
+    }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, "_shadowMinDepth", [ _CCClassDecorator.property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return 1;
       }
-    }), _descriptor1 = _applyDecoratedDescriptor(_class2.prototype, "_shadowMaxDepth", [ _CCClassDecorator.property ], {
+    }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, "_shadowMaxDepth", [ _CCClassDecorator.property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return 4096;
       }
-    }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, "_shadowFrustumSize", [ _CCClassDecorator.property ], {
+    }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, "_shadowFrustumSize", [ _CCClassDecorator.property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return 1024;
       }
-    }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, "_shadowBias", [ _CCClassDecorator.property ], {
+    }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, "_shadowBias", [ _CCClassDecorator.property ], {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -7329,7 +7329,7 @@
     _class2)) || _class) || _class) || _class) || _class) || _class);
     cc.Light = Light;
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../renderer/enums": 423,
     "../../renderer/scene/light": 449,
     "../components/CCComponent": 182,
@@ -7339,7 +7339,7 @@
     "../value-types": 395,
     "../value-types/color": 394
   } ],
-  28: [ (function(require, module, exports) {
+  28: [ function(require, module, exports) {
     "use strict";
     var Model = cc.Class({
       name: "cc.Model",
@@ -7386,8 +7386,8 @@
       }
     });
     cc.Model = module.exports = Model;
-  }), {} ],
-  29: [ (function(require, module, exports) {
+  }, {} ],
+  29: [ function(require, module, exports) {
     "use strict";
     var _quat = _interopRequireDefault(require("../value-types/quat"));
     var _vec = _interopRequireDefault(require("../value-types/vec3"));
@@ -7485,7 +7485,7 @@
         _quat["default"].fromEuler(this._dstQuat, startAngle.x + deltaAngle.x, startAngle.y + deltaAngle.y, startAngle.z + deltaAngle.z);
         this._startQuat.set(target.quat);
       },
-      update: (function() {
+      update: function() {
         var RAD = Math.PI / 180;
         return function(dt) {
           dt = this._computeEaseTime(dt);
@@ -7494,7 +7494,7 @@
             this.target.setRotation(_quat_tmp);
           }
         };
-      })(),
+      }(),
       reverse: function reverse() {
         var angle = this._angle;
         _vec3_tmp.x = -angle.x;
@@ -7509,11 +7509,11 @@
     cc.rotate3DBy = function(duration, deltaAngleX, deltaAngleY, deltaAngleZ) {
       return new cc.Rotate3DBy(duration, deltaAngleX, deltaAngleY, deltaAngleZ);
     };
-  }), {
+  }, {
     "../value-types/quat": 398,
     "../value-types/vec3": 405
   } ],
-  30: [ (function(require, module, exports) {
+  30: [ function(require, module, exports) {
     "use strict";
     true, true;
     require("./primitive");
@@ -7532,7 +7532,7 @@
     require("./CCLightComponent");
     require("./particle/particle-system-3d");
     require("./particle/renderer/particle-system-3d-renderer");
-  }), {
+  }, {
     "./CCLightComponent": 27,
     "./CCModel": 28,
     "./actions": 29,
@@ -7549,7 +7549,7 @@
     "./skeleton/CCSkinnedMeshRenderer": 99,
     "./skeleton/skinned-mesh-renderer": 100
   } ],
-  31: [ (function(require, module, exports) {
+  31: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -7572,12 +7572,12 @@
     }
     function _applyDecoratedDescriptor(i, e, r, n, l) {
       var a = {};
-      return Object.keys(n).forEach((function(i) {
+      return Object.keys(n).forEach(function(i) {
         a[i] = n[i];
-      })), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
-      a = r.slice().reverse().reduce((function(r, n) {
+      }), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
+      a = r.slice().reverse().reduce(function(r, n) {
         return n(i, e, r) || r;
-      }), a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
+      }, a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
       a.initializer = void 0), void 0 === a.initializer ? (Object.defineProperty(i, e, a), 
       null) : a;
     }
@@ -7588,7 +7588,7 @@
     var ColorOvertimeModule = exports["default"] = (_dec = (0, _CCClassDecorator.ccclass)("cc.ColorOvertimeModule"), 
     _dec2 = (0, _CCClassDecorator.property)({
       type: _gradientRange["default"]
-    }), _dec(_class = (_class2 = (function() {
+    }), _dec(_class = (_class2 = function() {
       function ColorOvertimeModule() {
         _initializerDefineProperty(this, "enable", _descriptor, this);
         _initializerDefineProperty(this, "color", _descriptor2, this);
@@ -7602,7 +7602,7 @@
         }
       };
       return ColorOvertimeModule;
-    })(), _descriptor = _applyDecoratedDescriptor(_class2.prototype, "enable", [ _CCClassDecorator.property ], {
+    }(), _descriptor = _applyDecoratedDescriptor(_class2.prototype, "enable", [ _CCClassDecorator.property ], {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -7618,12 +7618,12 @@
       }
     }), _class2)) || _class);
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../platform/CCClassDecorator": 274,
     "../../../value-types": 395,
     "./gradient-range": 34
   } ],
-  32: [ (function(require, module, exports) {
+  32: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = exports.Mode = void 0;
@@ -7647,12 +7647,12 @@
     }
     function _applyDecoratedDescriptor(i, e, r, n, l) {
       var a = {};
-      return Object.keys(n).forEach((function(i) {
+      return Object.keys(n).forEach(function(i) {
         a[i] = n[i];
-      })), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
-      a = r.slice().reverse().reduce((function(r, n) {
+      }), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
+      a = r.slice().reverse().reduce(function(r, n) {
         return n(i, e, r) || r;
-      }), a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
+      }, a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
       a.initializer = void 0), void 0 === a.initializer ? (Object.defineProperty(i, e, a), 
       null) : a;
     }
@@ -7675,7 +7675,7 @@
       type: _curve.AnimationCurve
     }), _dec5 = (0, _CCClassDecorator.property)({
       type: _curve.AnimationCurve
-    }), _dec(_class = (_class2 = (_CurveRange = (function() {
+    }), _dec(_class = (_class2 = (_CurveRange = function() {
       function CurveRange() {
         _initializerDefineProperty(this, "mode", _descriptor, this);
         _initializerDefineProperty(this, "curve", _descriptor2, this);
@@ -7719,7 +7719,7 @@
         return 0;
       };
       return CurveRange;
-    })(), _CurveRange.Mode = Mode, _CurveRange), _descriptor = _applyDecoratedDescriptor(_class2.prototype, "mode", [ _dec2 ], {
+    }(), _CurveRange.Mode = Mode, _CurveRange), _descriptor = _applyDecoratedDescriptor(_class2.prototype, "mode", [ _dec2 ], {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -7778,13 +7778,13 @@
     }), _class2)) || _class);
     false;
     cc.CurveRange = CurveRange;
-  }), {
+  }, {
     "../../../platform/CCClassDecorator": 274,
     "../../../platform/CCEnum": 275,
     "../../../value-types": 395,
     "../curve": 42
   } ],
-  33: [ (function(require, module, exports) {
+  33: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -7809,12 +7809,12 @@
     }
     function _applyDecoratedDescriptor(i, e, r, n, l) {
       var a = {};
-      return Object.keys(n).forEach((function(i) {
+      return Object.keys(n).forEach(function(i) {
         a[i] = n[i];
-      })), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
-      a = r.slice().reverse().reduce((function(r, n) {
+      }), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
+      a = r.slice().reverse().reduce(function(r, n) {
         return n(i, e, r) || r;
-      }), a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
+      }, a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
       a.initializer = void 0), void 0 === a.initializer ? (Object.defineProperty(i, e, a), 
       null) : a;
     }
@@ -7836,7 +7836,7 @@
       type: _curveRange["default"],
       range: [ -1, 1 ],
       displayOrder: 4
-    }), _dec(_class = (_class2 = (function() {
+    }), _dec(_class = (_class2 = function() {
       function ForceOvertimeModule() {
         _initializerDefineProperty(this, "enable", _descriptor, this);
         _initializerDefineProperty(this, "space", _descriptor2, this);
@@ -7862,7 +7862,7 @@
         _valueTypes.Vec3.scaleAndAdd(p.velocity, p.velocity, force, dt);
       };
       return ForceOvertimeModule;
-    })(), _descriptor = _applyDecoratedDescriptor(_class2.prototype, "enable", [ _CCClassDecorator.property ], {
+    }(), _descriptor = _applyDecoratedDescriptor(_class2.prototype, "enable", [ _CCClassDecorator.property ], {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -7899,14 +7899,14 @@
       }
     }), _class2)) || _class);
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../platform/CCClassDecorator": 274,
     "../../../value-types": 395,
     "../enum": 44,
     "../particle-general-function": 45,
     "./curve-range": 32
   } ],
-  34: [ (function(require, module, exports) {
+  34: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -7955,12 +7955,12 @@
     }
     function _applyDecoratedDescriptor(i, e, r, n, l) {
       var a = {};
-      return Object.keys(n).forEach((function(i) {
+      return Object.keys(n).forEach(function(i) {
         a[i] = n[i];
-      })), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
-      a = r.slice().reverse().reduce((function(r, n) {
+      }), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
+      a = r.slice().reverse().reduce(function(r, n) {
         return n(i, e, r) || r;
-      }), a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
+      }, a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
       a.initializer = void 0), void 0 === a.initializer ? (Object.defineProperty(i, e, a), 
       null) : a;
     }
@@ -7991,7 +7991,7 @@
       type: _gradient.Gradient
     }), _dec5 = (0, _CCClassDecorator.property)({
       type: _gradient.Gradient
-    }), _dec(_class = (_class2 = (_GradientRange = (function() {
+    }), _dec(_class = (_class2 = (_GradientRange = function() {
       function GradientRange() {
         _initializerDefineProperty(this, "_mode", _descriptor, this);
         _initializerDefineProperty(this, "_color", _descriptor2, this);
@@ -8036,7 +8036,7 @@
           this._mode = m;
         }
       } ]);
-    })(), _GradientRange.Mode = Mode, _GradientRange), _descriptor = _applyDecoratedDescriptor(_class2.prototype, "_mode", [ _CCClassDecorator.property ], {
+    }(), _GradientRange.Mode = Mode, _GradientRange), _descriptor = _applyDecoratedDescriptor(_class2.prototype, "_mode", [ _CCClassDecorator.property ], {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -8097,12 +8097,12 @@
     false;
     cc.GradientRange = GradientRange;
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../platform/CCClassDecorator": 274,
     "../../../platform/CCEnum": 275,
     "./gradient": 35
   } ],
-  35: [ (function(require, module, exports) {
+  35: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.Gradient = exports.ColorKey = exports.AlphaKey = void 0;
@@ -8125,12 +8125,12 @@
     }
     function _applyDecoratedDescriptor(i, e, r, n, l) {
       var a = {};
-      return Object.keys(n).forEach((function(i) {
+      return Object.keys(n).forEach(function(i) {
         a[i] = n[i];
-      })), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
-      a = r.slice().reverse().reduce((function(r, n) {
+      }), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
+      a = r.slice().reverse().reduce(function(r, n) {
         return n(i, e, r) || r;
-      }), a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
+      }, a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
       a.initializer = void 0), void 0 === a.initializer ? (Object.defineProperty(i, e, a), 
       null) : a;
     }
@@ -8186,7 +8186,7 @@
       type: [ AlphaKey ]
     }), _dec6 = (0, _CCClassDecorator.property)({
       type: Mode
-    }), _dec3(_class5 = (_class6 = (_Gradient = (function() {
+    }), _dec3(_class5 = (_class6 = (_Gradient = function() {
       function Gradient() {
         _initializerDefineProperty(this, "colorKeys", _descriptor5, this);
         _initializerDefineProperty(this, "alphaKeys", _descriptor6, this);
@@ -8200,12 +8200,12 @@
         this.alphaKeys = alphaKeys;
       };
       _proto.sortKeys = function sortKeys() {
-        this.colorKeys.length > 1 && this.colorKeys.sort((function(a, b) {
+        this.colorKeys.length > 1 && this.colorKeys.sort(function(a, b) {
           return a.time - b.time;
-        }));
-        this.alphaKeys.length > 1 && this.alphaKeys.sort((function(a, b) {
+        });
+        this.alphaKeys.length > 1 && this.alphaKeys.sort(function(a, b) {
           return a.time - b.time;
-        }));
+        });
       };
       _proto.evaluate = function evaluate(time) {
         this.getRGB(time);
@@ -8259,7 +8259,7 @@
         if (time > this.alphaKeys[lastIndex].time) return (0, _valueTypes.lerp)(this.alphaKeys[lastIndex].alpha, 255, (time - this.alphaKeys[lastIndex].time) / (1 - this.alphaKeys[lastIndex].time));
       };
       return Gradient;
-    })(), _Gradient.Mode = Mode, _Gradient), _descriptor5 = _applyDecoratedDescriptor(_class6.prototype, "colorKeys", [ _dec4 ], {
+    }(), _Gradient.Mode = Mode, _Gradient), _descriptor5 = _applyDecoratedDescriptor(_class6.prototype, "colorKeys", [ _dec4 ], {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -8284,12 +8284,12 @@
     cc.ColorKey = ColorKey;
     cc.AlphaKey = AlphaKey;
     cc.Gradient = Gradient;
-  }), {
+  }, {
     "../../../platform/CCClassDecorator": 274,
     "../../../platform/CCEnum": 275,
     "../../../value-types": 395
   } ],
-  36: [ (function(require, module, exports) {
+  36: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -8313,12 +8313,12 @@
     }
     function _applyDecoratedDescriptor(i, e, r, n, l) {
       var a = {};
-      return Object.keys(n).forEach((function(i) {
+      return Object.keys(n).forEach(function(i) {
         a[i] = n[i];
-      })), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
-      a = r.slice().reverse().reduce((function(r, n) {
+      }), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
+      a = r.slice().reverse().reduce(function(r, n) {
         return n(i, e, r) || r;
-      }), a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
+      }, a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
       a.initializer = void 0), void 0 === a.initializer ? (Object.defineProperty(i, e, a), 
       null) : a;
     }
@@ -8361,7 +8361,7 @@
       visible: function visible() {
         return this.separateAxes;
       }
-    }), _dec(_class = (_class2 = (function() {
+    }), _dec(_class = (_class2 = function() {
       function LimitVelocityOvertimeModule() {
         _initializerDefineProperty(this, "enable", _descriptor, this);
         _initializerDefineProperty(this, "space", _descriptor2, this);
@@ -8400,7 +8400,7 @@
         _valueTypes.Vec3.copy(p.ultimateVelocity, dampedVel);
       };
       return LimitVelocityOvertimeModule;
-    })(), _descriptor = _applyDecoratedDescriptor(_class2.prototype, "enable", [ _CCClassDecorator.property ], {
+    }(), _descriptor = _applyDecoratedDescriptor(_class2.prototype, "enable", [ _CCClassDecorator.property ], {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -8458,13 +8458,13 @@
       }
     }), _class2)) || _class);
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../platform/CCClassDecorator": 274,
     "../../../value-types": 395,
     "../enum": 44,
     "./curve-range": 32
   } ],
-  37: [ (function(require, module, exports) {
+  37: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -8513,12 +8513,12 @@
     }
     function _applyDecoratedDescriptor(i, e, r, n, l) {
       var a = {};
-      return Object.keys(n).forEach((function(i) {
+      return Object.keys(n).forEach(function(i) {
         a[i] = n[i];
-      })), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
-      a = r.slice().reverse().reduce((function(r, n) {
+      }), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
+      a = r.slice().reverse().reduce(function(r, n) {
         return n(i, e, r) || r;
-      }), a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
+      }, a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
       a.initializer = void 0), void 0 === a.initializer ? (Object.defineProperty(i, e, a), 
       null) : a;
     }
@@ -8545,7 +8545,7 @@
       type: _curveRange["default"],
       range: [ -1, 1 ],
       radian: true
-    }), _dec(_class = (_class2 = (function() {
+    }), _dec(_class = (_class2 = function() {
       function RotationOvertimeModule() {
         _initializerDefineProperty(this, "enable", _descriptor, this);
         _initializerDefineProperty(this, "_separateAxes", _descriptor2, this);
@@ -8572,7 +8572,7 @@
           this._separateAxes = val;
         }
       } ]);
-    })(), _descriptor = _applyDecoratedDescriptor(_class2.prototype, "enable", [ _CCClassDecorator.property ], {
+    }(), _descriptor = _applyDecoratedDescriptor(_class2.prototype, "enable", [ _CCClassDecorator.property ], {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -8610,12 +8610,12 @@
       }
     }), _class2)) || _class);
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../platform/CCClassDecorator": 274,
     "../../../value-types": 395,
     "./curve-range": 32
   } ],
-  38: [ (function(require, module, exports) {
+  38: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -8638,12 +8638,12 @@
     }
     function _applyDecoratedDescriptor(i, e, r, n, l) {
       var a = {};
-      return Object.keys(n).forEach((function(i) {
+      return Object.keys(n).forEach(function(i) {
         a[i] = n[i];
-      })), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
-      a = r.slice().reverse().reduce((function(r, n) {
+      }), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
+      a = r.slice().reverse().reduce(function(r, n) {
         return n(i, e, r) || r;
-      }), a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
+      }, a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
       a.initializer = void 0), void 0 === a.initializer ? (Object.defineProperty(i, e, a), 
       null) : a;
     }
@@ -8672,7 +8672,7 @@
       visible: function visible() {
         return this.separateAxes;
       }
-    }), _dec(_class = (_class2 = (function() {
+    }), _dec(_class = (_class2 = function() {
       function SizeOvertimeModule() {
         _initializerDefineProperty(this, "enable", _descriptor, this);
         _initializerDefineProperty(this, "separateAxes", _descriptor2, this);
@@ -8693,7 +8693,7 @@
         _valueTypes.pseudoRandom)(particle.randomSeed + SIZE_OVERTIME_RAND_OFFSET)));
       };
       return SizeOvertimeModule;
-    })(), _descriptor = _applyDecoratedDescriptor(_class2.prototype, "enable", [ _CCClassDecorator.property ], {
+    }(), _descriptor = _applyDecoratedDescriptor(_class2.prototype, "enable", [ _CCClassDecorator.property ], {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -8737,12 +8737,12 @@
       }
     }), _class2)) || _class);
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../platform/CCClassDecorator": 274,
     "../../../value-types": 395,
     "./curve-range": 32
   } ],
-  39: [ (function(require, module, exports) {
+  39: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -8750,7 +8750,7 @@
     var _CCEnum = _interopRequireDefault(require("../../../platform/CCEnum"));
     var _valueTypes = require("../../../value-types");
     var _curveRange = _interopRequireDefault(require("./curve-range"));
-    var _dec, _dec2, _dec3, _dec4, _dec5, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor0;
+    var _dec, _dec2, _dec3, _dec4, _dec5, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10;
     function _interopRequireDefault(e) {
       return e && e.__esModule ? e : {
         default: e
@@ -8792,12 +8792,12 @@
     }
     function _applyDecoratedDescriptor(i, e, r, n, l) {
       var a = {};
-      return Object.keys(n).forEach((function(i) {
+      return Object.keys(n).forEach(function(i) {
         a[i] = n[i];
-      })), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
-      a = r.slice().reverse().reduce((function(r, n) {
+      }), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
+      a = r.slice().reverse().reduce(function(r, n) {
         return n(i, e, r) || r;
-      }), a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
+      }, a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
       a.initializer = void 0), void 0 === a.initializer ? (Object.defineProperty(i, e, a), 
       null) : a;
     }
@@ -8821,7 +8821,7 @@
       type: _curveRange["default"]
     }), _dec5 = (0, _CCClassDecorator.property)({
       type: _curveRange["default"]
-    }), _dec(_class = (_class2 = (function() {
+    }), _dec(_class = (_class2 = function() {
       function TextureAnimationModule() {
         _initializerDefineProperty(this, "_enable", _descriptor, this);
         _initializerDefineProperty(this, "_mode", _descriptor2, this);
@@ -8832,7 +8832,7 @@
         _initializerDefineProperty(this, "rowIndex", _descriptor7, this);
         _initializerDefineProperty(this, "frameOverTime", _descriptor8, this);
         _initializerDefineProperty(this, "startFrame", _descriptor9, this);
-        _initializerDefineProperty(this, "cycleCount", _descriptor0, this);
+        _initializerDefineProperty(this, "cycleCount", _descriptor10, this);
         this._flipU = 0;
         this._flipV = 0;
         this._uvChannelMask = -1;
@@ -8930,7 +8930,7 @@
           console.error("particle texture animation's uvChannelMask is not supported!");
         }
       } ]);
-    })(), _descriptor = _applyDecoratedDescriptor(_class2.prototype, "_enable", [ _CCClassDecorator.property ], {
+    }(), _descriptor = _applyDecoratedDescriptor(_class2.prototype, "_enable", [ _CCClassDecorator.property ], {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -8997,7 +8997,7 @@
       initializer: function initializer() {
         return new _curveRange["default"]();
       }
-    }), _descriptor0 = _applyDecoratedDescriptor(_class2.prototype, "cycleCount", [ _CCClassDecorator.property ], {
+    }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, "cycleCount", [ _CCClassDecorator.property ], {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -9009,13 +9009,13 @@
     _applyDecoratedDescriptor(_class2.prototype, "uvChannelMask", [ _CCClassDecorator.property ], Object.getOwnPropertyDescriptor(_class2.prototype, "uvChannelMask"), _class2.prototype), 
     _class2)) || _class);
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../platform/CCClassDecorator": 274,
     "../../../platform/CCEnum": 275,
     "../../../value-types": 395,
     "./curve-range": 32
   } ],
-  40: [ (function(require, module, exports) {
+  40: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -9040,12 +9040,12 @@
     }
     function _applyDecoratedDescriptor(i, e, r, n, l) {
       var a = {};
-      return Object.keys(n).forEach((function(i) {
+      return Object.keys(n).forEach(function(i) {
         a[i] = n[i];
-      })), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
-      a = r.slice().reverse().reduce((function(r, n) {
+      }), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
+      a = r.slice().reverse().reduce(function(r, n) {
         return n(i, e, r) || r;
-      }), a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
+      }, a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
       a.initializer = void 0), void 0 === a.initializer ? (Object.defineProperty(i, e, a), 
       null) : a;
     }
@@ -9069,7 +9069,7 @@
     }), _dec6 = (0, _CCClassDecorator.property)({
       type: _curveRange["default"],
       range: [ -1, 1 ]
-    }), _dec(_class = (_class2 = (function() {
+    }), _dec(_class = (_class2 = function() {
       function VelocityOvertimeModule() {
         _initializerDefineProperty(this, "enable", _descriptor, this);
         _initializerDefineProperty(this, "space", _descriptor2, this);
@@ -9099,7 +9099,7 @@
         _valueTypes.pseudoRandom)(p.randomSeed + VELOCITY_OVERTIME_RAND_OFFSET)));
       };
       return VelocityOvertimeModule;
-    })(), _descriptor = _applyDecoratedDescriptor(_class2.prototype, "enable", [ _CCClassDecorator.property ], {
+    }(), _descriptor = _applyDecoratedDescriptor(_class2.prototype, "enable", [ _CCClassDecorator.property ], {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -9143,14 +9143,14 @@
       }
     }), _class2)) || _class);
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../platform/CCClassDecorator": 274,
     "../../../value-types": 395,
     "../enum": 44,
     "../particle-general-function": 45,
     "./curve-range": 32
   } ],
-  41: [ (function(require, module, exports) {
+  41: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -9199,12 +9199,12 @@
     }
     function _applyDecoratedDescriptor(i, e, r, n, l) {
       var a = {};
-      return Object.keys(n).forEach((function(i) {
+      return Object.keys(n).forEach(function(i) {
         a[i] = n[i];
-      })), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
-      a = r.slice().reverse().reduce((function(r, n) {
+      }), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
+      a = r.slice().reverse().reduce(function(r, n) {
         return n(i, e, r) || r;
-      }), a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
+      }, a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
       a.initializer = void 0), void 0 === a.initializer ? (Object.defineProperty(i, e, a), 
       null) : a;
     }
@@ -9214,7 +9214,7 @@
     var Burst = exports["default"] = (_dec = (0, _CCClassDecorator.ccclass)("cc.Burst"), 
     _dec2 = (0, _CCClassDecorator.property)({
       type: _curveRange["default"]
-    }), _dec(_class = (_class2 = (function() {
+    }), _dec(_class = (_class2 = function() {
       function Burst() {
         _initializerDefineProperty(this, "_time", _descriptor, this);
         _initializerDefineProperty(this, "minCount", _descriptor2, this);
@@ -9266,7 +9266,7 @@
           this._remainingCount = val;
         }
       } ]);
-    })(), _descriptor = _applyDecoratedDescriptor(_class2.prototype, "_time", [ _CCClassDecorator.property ], {
+    }(), _descriptor = _applyDecoratedDescriptor(_class2.prototype, "_time", [ _CCClassDecorator.property ], {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -9312,12 +9312,12 @@
       }
     }), _class2)) || _class);
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../platform/CCClassDecorator": 274,
     "../../value-types": 395,
     "./animator/curve-range": 32
   } ],
-  42: [ (function(require, module, exports) {
+  42: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.OptimizedKey = exports.Keyframe = exports.AnimationCurve = void 0;
@@ -9341,12 +9341,12 @@
     }
     function _applyDecoratedDescriptor(i, e, r, n, l) {
       var a = {};
-      return Object.keys(n).forEach((function(i) {
+      return Object.keys(n).forEach(function(i) {
         a[i] = n[i];
-      })), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
-      a = r.slice().reverse().reduce((function(r, n) {
+      }), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
+      a = r.slice().reverse().reduce(function(r, n) {
         return n(i, e, r) || r;
-      }), a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
+      }, a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
       a.initializer = void 0), void 0 === a.initializer ? (Object.defineProperty(i, e, a), 
       null) : a;
     }
@@ -9400,7 +9400,7 @@
         return 0;
       }
     }), _class2)) || _class);
-    var OptimizedKey = exports.OptimizedKey = (function() {
+    var OptimizedKey = exports.OptimizedKey = function() {
       function OptimizedKey() {
         this.index = 0;
         this.time = 0;
@@ -9417,7 +9417,7 @@
         return evalOptCurve(t, this.coefficient);
       };
       return OptimizedKey;
-    })();
+    }();
     function evalOptCurve(t, coefs) {
       return t * (t * (t * coefs[0] + coefs[1]) + coefs[2]) + coefs[3];
     }
@@ -9432,7 +9432,7 @@
     }), _dec5 = (0, _CCClassDecorator.property)({
       type: cc.Enum(WrapMode),
       visible: false
-    }), _dec2(_class3 = (_class4 = (function() {
+    }), _dec2(_class3 = (_class4 = function() {
       function AnimationCurve(keyFrames) {
         void 0 === keyFrames && (keyFrames = null);
         _initializerDefineProperty(this, "keyFrames", _descriptor5, this);
@@ -9548,7 +9548,7 @@
         return left;
       };
       return AnimationCurve;
-    })(), _descriptor5 = _applyDecoratedDescriptor(_class4.prototype, "keyFrames", [ _dec3 ], {
+    }(), _descriptor5 = _applyDecoratedDescriptor(_class4.prototype, "keyFrames", [ _dec3 ], {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -9572,12 +9572,12 @@
     }), _class4)) || _class3);
     cc.Keyframe = Keyframe;
     cc.AnimationCurve = AnimationCurve;
-  }), {
+  }, {
     "../../platform/CCClassDecorator": 274,
     "../../platform/CCEnum": 275,
     "../../value-types": 395
   } ],
-  43: [ (function(require, module, exports) {
+  43: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -9586,7 +9586,7 @@
     var _curveRange = _interopRequireDefault(require("../animator/curve-range"));
     var _particleGeneralFunction = require("../particle-general-function");
     var _enum = require("../enum");
-    var _dec, _dec2, _dec3, _dec4, _dec5, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor0, _descriptor1, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17;
+    var _dec, _dec2, _dec3, _dec4, _dec5, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19;
     function _interopRequireDefault(e) {
       return e && e.__esModule ? e : {
         default: e
@@ -9628,12 +9628,12 @@
     }
     function _applyDecoratedDescriptor(i, e, r, n, l) {
       var a = {};
-      return Object.keys(n).forEach((function(i) {
+      return Object.keys(n).forEach(function(i) {
         a[i] = n[i];
-      })), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
-      a = r.slice().reverse().reduce((function(r, n) {
+      }), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
+      a = r.slice().reverse().reduce(function(r, n) {
         return n(i, e, r) || r;
-      }), a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
+      }, a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
       a.initializer = void 0), void 0 === a.initializer ? (Object.defineProperty(i, e, a), 
       null) : a;
     }
@@ -9652,7 +9652,7 @@
       type: _enum.ArcMode
     }), _dec5 = (0, _CCClassDecorator.property)({
       type: _curveRange["default"]
-    }), _dec(_class = (_class2 = (function() {
+    }), _dec(_class = (_class2 = function() {
       function ShapeModule() {
         _initializerDefineProperty(this, "enable", _descriptor, this);
         _initializerDefineProperty(this, "_shapeType", _descriptor2, this);
@@ -9663,16 +9663,16 @@
         _initializerDefineProperty(this, "_arc", _descriptor7, this);
         _initializerDefineProperty(this, "arcMode", _descriptor8, this);
         _initializerDefineProperty(this, "arcSpread", _descriptor9, this);
-        _initializerDefineProperty(this, "arcSpeed", _descriptor0, this);
-        _initializerDefineProperty(this, "length", _descriptor1, this);
-        _initializerDefineProperty(this, "boxThickness", _descriptor10, this);
-        _initializerDefineProperty(this, "_position", _descriptor11, this);
-        _initializerDefineProperty(this, "_rotation", _descriptor12, this);
-        _initializerDefineProperty(this, "_scale", _descriptor13, this);
-        _initializerDefineProperty(this, "alignToDirection", _descriptor14, this);
-        _initializerDefineProperty(this, "randomDirectionAmount", _descriptor15, this);
-        _initializerDefineProperty(this, "sphericalDirectionAmount", _descriptor16, this);
-        _initializerDefineProperty(this, "randomPositionAmount", _descriptor17, this);
+        _initializerDefineProperty(this, "arcSpeed", _descriptor10, this);
+        _initializerDefineProperty(this, "length", _descriptor11, this);
+        _initializerDefineProperty(this, "boxThickness", _descriptor12, this);
+        _initializerDefineProperty(this, "_position", _descriptor13, this);
+        _initializerDefineProperty(this, "_rotation", _descriptor14, this);
+        _initializerDefineProperty(this, "_scale", _descriptor15, this);
+        _initializerDefineProperty(this, "alignToDirection", _descriptor16, this);
+        _initializerDefineProperty(this, "randomDirectionAmount", _descriptor17, this);
+        _initializerDefineProperty(this, "sphericalDirectionAmount", _descriptor18, this);
+        _initializerDefineProperty(this, "randomPositionAmount", _descriptor19, this);
         this.mat = null;
         this.Quat = null;
         this.particleSystem = null;
@@ -9810,7 +9810,7 @@
           this.constructMat();
         }
       } ]);
-    })(), _descriptor = _applyDecoratedDescriptor(_class2.prototype, "enable", [ _CCClassDecorator.property ], {
+    }(), _descriptor = _applyDecoratedDescriptor(_class2.prototype, "enable", [ _CCClassDecorator.property ], {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -9876,28 +9876,28 @@
       initializer: function initializer() {
         return 0;
       }
-    }), _descriptor0 = _applyDecoratedDescriptor(_class2.prototype, "arcSpeed", [ _dec5 ], {
+    }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, "arcSpeed", [ _dec5 ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return new _curveRange["default"]();
       }
-    }), _descriptor1 = _applyDecoratedDescriptor(_class2.prototype, "length", [ _CCClassDecorator.property ], {
+    }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, "length", [ _CCClassDecorator.property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return 5;
       }
-    }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, "boxThickness", [ _CCClassDecorator.property ], {
+    }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, "boxThickness", [ _CCClassDecorator.property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return new _valueTypes.Vec3(0, 0, 0);
       }
-    }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, "_position", [ _CCClassDecorator.property ], {
+    }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, "_position", [ _CCClassDecorator.property ], {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -9905,7 +9905,7 @@
         return new _valueTypes.Vec3(0, 0, 0);
       }
     }), _applyDecoratedDescriptor(_class2.prototype, "position", [ _CCClassDecorator.property ], Object.getOwnPropertyDescriptor(_class2.prototype, "position"), _class2.prototype), 
-    _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, "_rotation", [ _CCClassDecorator.property ], {
+    _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, "_rotation", [ _CCClassDecorator.property ], {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -9913,7 +9913,7 @@
         return new _valueTypes.Vec3(0, 0, 0);
       }
     }), _applyDecoratedDescriptor(_class2.prototype, "rotation", [ _CCClassDecorator.property ], Object.getOwnPropertyDescriptor(_class2.prototype, "rotation"), _class2.prototype), 
-    _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, "_scale", [ _CCClassDecorator.property ], {
+    _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, "_scale", [ _CCClassDecorator.property ], {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -9921,28 +9921,28 @@
         return new _valueTypes.Vec3(1, 1, 1);
       }
     }), _applyDecoratedDescriptor(_class2.prototype, "scale", [ _CCClassDecorator.property ], Object.getOwnPropertyDescriptor(_class2.prototype, "scale"), _class2.prototype), 
-    _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, "alignToDirection", [ _CCClassDecorator.property ], {
+    _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, "alignToDirection", [ _CCClassDecorator.property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return false;
       }
-    }), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, "randomDirectionAmount", [ _CCClassDecorator.property ], {
+    }), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, "randomDirectionAmount", [ _CCClassDecorator.property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return 0;
       }
-    }), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, "sphericalDirectionAmount", [ _CCClassDecorator.property ], {
+    }), _descriptor18 = _applyDecoratedDescriptor(_class2.prototype, "sphericalDirectionAmount", [ _CCClassDecorator.property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return 0;
       }
-    }), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, "randomPositionAmount", [ _CCClassDecorator.property ], {
+    }), _descriptor19 = _applyDecoratedDescriptor(_class2.prototype, "randomPositionAmount", [ _CCClassDecorator.property ], {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -10071,14 +10071,14 @@
       }
     }
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../platform/CCClassDecorator": 274,
     "../../../value-types": 395,
     "../animator/curve-range": 32,
     "../enum": 44,
     "../particle-general-function": 45
   } ],
-  44: [ (function(require, module, exports) {
+  44: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.TrailMode = exports.TextureMode = exports.Space = exports.ShapeType = exports.RenderMode = exports.EmitLocation = exports.ArcMode = void 0;
@@ -10126,10 +10126,10 @@
       Stretch: 0,
       Repeat: 1
     });
-  }), {
+  }, {
     "../../platform/CCEnum": 275
   } ],
-  45: [ (function(require, module, exports) {
+  45: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.calculateTransform = calculateTransform;
@@ -10230,12 +10230,12 @@
       0 === sgn ? sgn++ : sgn;
       return (0, _utils.sign)(sgn);
     }
-  }), {
+  }, {
     "../../value-types": 395,
     "../../value-types/utils": 402,
     "./enum": 44
   } ],
-  46: [ (function(require, module, exports) {
+  46: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -10257,23 +10257,29 @@
     var _particleGeneralFunction = require("./particle-general-function");
     var _trail = _interopRequireDefault(require("./renderer/trail"));
     var _CCMesh = _interopRequireDefault(require("../../mesh/CCMesh"));
-    var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec0, _dec1, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _dec20, _dec21, _dec22, _dec23, _dec24, _dec25, _dec26, _dec27, _dec28, _dec29, _dec30, _dec31, _dec32, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor0, _descriptor1, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19, _descriptor20, _descriptor21, _descriptor22, _descriptor23, _descriptor24, _descriptor25, _descriptor26, _descriptor27, _descriptor28, _descriptor29;
-    function _interopRequireWildcard(e, t) {
-      if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap();
-      return (_interopRequireWildcard = function _interopRequireWildcard(e, t) {
-        if (!t && e && e.__esModule) return e;
-        var o, i, f = {
-          __proto__: null,
-          default: e
-        };
-        if (null === e || "object" != typeof e && "function" != typeof e) return f;
-        if (o = t ? n : r) {
-          if (o.has(e)) return o.get(e);
-          o.set(e, f);
-        }
-        for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]);
-        return f;
-      })(e, t);
+    var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _dec13, _dec14, _dec15, _dec16, _dec17, _dec18, _dec19, _dec20, _dec21, _dec22, _dec23, _dec24, _dec25, _dec26, _dec27, _dec28, _dec29, _dec30, _dec31, _dec32, _dec33, _dec34, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14, _descriptor15, _descriptor16, _descriptor17, _descriptor18, _descriptor19, _descriptor20, _descriptor21, _descriptor22, _descriptor23, _descriptor24, _descriptor25, _descriptor26, _descriptor27, _descriptor28, _descriptor29, _descriptor30, _descriptor31;
+    function _getRequireWildcardCache(e) {
+      if ("function" != typeof WeakMap) return null;
+      var r = new WeakMap(), t = new WeakMap();
+      return (_getRequireWildcardCache = function _getRequireWildcardCache(e) {
+        return e ? t : r;
+      })(e);
+    }
+    function _interopRequireWildcard(e, r) {
+      if (!r && e && e.__esModule) return e;
+      if (null === e || "object" != typeof e && "function" != typeof e) return {
+        default: e
+      };
+      var t = _getRequireWildcardCache(r);
+      if (t && t.has(e)) return t.get(e);
+      var n = {
+        __proto__: null
+      }, a = Object.defineProperty && Object.getOwnPropertyDescriptor;
+      for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) {
+        var i = a ? Object.getOwnPropertyDescriptor(e, u) : null;
+        i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u];
+      }
+      return n["default"] = e, t && t.set(e, n), n;
     }
     function _interopRequireDefault(e) {
       return e && e.__esModule ? e : {
@@ -10353,12 +10359,12 @@
     }
     function _applyDecoratedDescriptor(i, e, r, n, l) {
       var a = {};
-      return Object.keys(n).forEach((function(i) {
+      return Object.keys(n).forEach(function(i) {
         a[i] = n[i];
-      })), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
-      a = r.slice().reverse().reduce((function(r, n) {
+      }), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
+      a = r.slice().reverse().reduce(function(r, n) {
         return n(i, e, r) || r;
-      }), a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
+      }, a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
       a.initializer = void 0), void 0 === a.initializer ? (Object.defineProperty(i, e, a), 
       null) : a;
     }
@@ -10382,78 +10388,78 @@
       type: _curveRange["default"]
     }), _dec9 = property({
       type: _curveRange["default"]
-    }), _dec0 = property({
-      type: _gradientRange["default"]
-    }), _dec1 = property({
-      type: _enum.Space
     }), _dec10 = property({
-      type: _curveRange["default"]
+      type: _gradientRange["default"]
     }), _dec11 = property({
-      type: _curveRange["default"],
-      range: [ -1, 1 ]
+      type: _enum.Space
     }), _dec12 = property({
-      type: _curveRange["default"],
-      range: [ -1, 1 ],
-      radian: true
+      type: _curveRange["default"]
     }), _dec13 = property({
       type: _curveRange["default"],
       range: [ -1, 1 ]
     }), _dec14 = property({
-      type: _curveRange["default"]
+      type: _curveRange["default"],
+      range: [ -1, 1 ],
+      radian: true
     }), _dec15 = property({
-      type: _curveRange["default"]
+      type: _curveRange["default"],
+      range: [ -1, 1 ]
     }), _dec16 = property({
+      type: _curveRange["default"]
+    }), _dec17 = property({
+      type: _curveRange["default"]
+    }), _dec18 = property({
       type: [ _burst["default"] ],
       animatable: false
-    }), _dec17 = property({
+    }), _dec19 = property({
       type: [ _CCMaterial["default"] ],
       displayName: "Materials",
       visible: false,
       override: true
-    }), _dec18 = property({
+    }), _dec20 = property({
       type: _shapeModule["default"],
       animatable: false
-    }), _dec19 = property({
+    }), _dec21 = property({
       type: _colorOvertime["default"],
       animatable: false
-    }), _dec20 = property({
+    }), _dec22 = property({
       type: _sizeOvertime["default"],
       animatable: false
-    }), _dec21 = property({
+    }), _dec23 = property({
       type: _velocityOvertime["default"],
       animatable: false
-    }), _dec22 = property({
+    }), _dec24 = property({
       type: _forceOvertime["default"],
       animatable: false
-    }), _dec23 = property({
+    }), _dec25 = property({
       type: _limitVelocityOvertime["default"],
       animatable: false
-    }), _dec24 = property({
+    }), _dec26 = property({
       type: _rotationOvertime["default"],
       animatable: false
-    }), _dec25 = property({
+    }), _dec27 = property({
       type: _textureAnimation["default"],
       animatable: false
-    }), _dec26 = property({
+    }), _dec28 = property({
       type: _trail["default"],
       animatable: false
-    }), _dec27 = property({
+    }), _dec29 = property({
       type: _enum.RenderMode,
       animatable: false
-    }), _dec28 = property({
-      animatable: false
-    }), _dec29 = property({
-      animatable: false
     }), _dec30 = property({
-      type: _CCMesh["default"],
       animatable: false
     }), _dec31 = property({
-      type: _CCMaterial["default"],
       animatable: false
     }), _dec32 = property({
+      type: _CCMesh["default"],
+      animatable: false
+    }), _dec33 = property({
       type: _CCMaterial["default"],
       animatable: false
-    }), _dec(_class = _dec2(_class = _dec3(_class = _dec4(_class = executeInEditMode(_class = (_class2 = (function(_RenderComponent) {
+    }), _dec34 = property({
+      type: _CCMaterial["default"],
+      animatable: false
+    }), _dec(_class = _dec2(_class = _dec3(_class = _dec4(_class = executeInEditMode(_class = (_class2 = function(_RenderComponent) {
       function ParticleSystem3D() {
         var _this2;
         _this2 = _RenderComponent.call(this) || this;
@@ -10466,28 +10472,28 @@
         _initializerDefineProperty(_this2, "simulationSpeed", _descriptor7, _this2);
         _initializerDefineProperty(_this2, "startDelay", _descriptor8, _this2);
         _initializerDefineProperty(_this2, "startLifetime", _descriptor9, _this2);
-        _initializerDefineProperty(_this2, "startColor", _descriptor0, _this2);
-        _initializerDefineProperty(_this2, "scaleSpace", _descriptor1, _this2);
-        _initializerDefineProperty(_this2, "startSize", _descriptor10, _this2);
-        _initializerDefineProperty(_this2, "startSpeed", _descriptor11, _this2);
-        _initializerDefineProperty(_this2, "startRotation", _descriptor12, _this2);
-        _initializerDefineProperty(_this2, "gravityModifier", _descriptor13, _this2);
-        _initializerDefineProperty(_this2, "rateOverTime", _descriptor14, _this2);
-        _initializerDefineProperty(_this2, "rateOverDistance", _descriptor15, _this2);
-        _initializerDefineProperty(_this2, "bursts", _descriptor16, _this2);
-        _initializerDefineProperty(_this2, "_shapeModule", _descriptor17, _this2);
-        _initializerDefineProperty(_this2, "_colorOverLifetimeModule", _descriptor18, _this2);
-        _initializerDefineProperty(_this2, "_sizeOvertimeModule", _descriptor19, _this2);
-        _initializerDefineProperty(_this2, "_velocityOvertimeModule", _descriptor20, _this2);
-        _initializerDefineProperty(_this2, "_forceOvertimeModule", _descriptor21, _this2);
-        _initializerDefineProperty(_this2, "_limitVelocityOvertimeModule", _descriptor22, _this2);
-        _initializerDefineProperty(_this2, "_rotationOvertimeModule", _descriptor23, _this2);
-        _initializerDefineProperty(_this2, "_textureAnimationModule", _descriptor24, _this2);
-        _initializerDefineProperty(_this2, "_trailModule", _descriptor25, _this2);
-        _initializerDefineProperty(_this2, "_renderMode", _descriptor26, _this2);
-        _initializerDefineProperty(_this2, "_velocityScale", _descriptor27, _this2);
-        _initializerDefineProperty(_this2, "_lengthScale", _descriptor28, _this2);
-        _initializerDefineProperty(_this2, "_mesh", _descriptor29, _this2);
+        _initializerDefineProperty(_this2, "startColor", _descriptor10, _this2);
+        _initializerDefineProperty(_this2, "scaleSpace", _descriptor11, _this2);
+        _initializerDefineProperty(_this2, "startSize", _descriptor12, _this2);
+        _initializerDefineProperty(_this2, "startSpeed", _descriptor13, _this2);
+        _initializerDefineProperty(_this2, "startRotation", _descriptor14, _this2);
+        _initializerDefineProperty(_this2, "gravityModifier", _descriptor15, _this2);
+        _initializerDefineProperty(_this2, "rateOverTime", _descriptor16, _this2);
+        _initializerDefineProperty(_this2, "rateOverDistance", _descriptor17, _this2);
+        _initializerDefineProperty(_this2, "bursts", _descriptor18, _this2);
+        _initializerDefineProperty(_this2, "_shapeModule", _descriptor19, _this2);
+        _initializerDefineProperty(_this2, "_colorOverLifetimeModule", _descriptor20, _this2);
+        _initializerDefineProperty(_this2, "_sizeOvertimeModule", _descriptor21, _this2);
+        _initializerDefineProperty(_this2, "_velocityOvertimeModule", _descriptor22, _this2);
+        _initializerDefineProperty(_this2, "_forceOvertimeModule", _descriptor23, _this2);
+        _initializerDefineProperty(_this2, "_limitVelocityOvertimeModule", _descriptor24, _this2);
+        _initializerDefineProperty(_this2, "_rotationOvertimeModule", _descriptor25, _this2);
+        _initializerDefineProperty(_this2, "_textureAnimationModule", _descriptor26, _this2);
+        _initializerDefineProperty(_this2, "_trailModule", _descriptor27, _this2);
+        _initializerDefineProperty(_this2, "_renderMode", _descriptor28, _this2);
+        _initializerDefineProperty(_this2, "_velocityScale", _descriptor29, _this2);
+        _initializerDefineProperty(_this2, "_lengthScale", _descriptor30, _this2);
+        _initializerDefineProperty(_this2, "_mesh", _descriptor31, _this2);
         _this2._isPlaying = void 0;
         _this2._isPaused = void 0;
         _this2._isStopped = void 0;
@@ -10895,7 +10901,7 @@
           return this._time;
         }
       } ]);
-    })(RenderComponent), _descriptor = _applyDecoratedDescriptor(_class2.prototype, "duration", [ property ], {
+    }(RenderComponent), _descriptor = _applyDecoratedDescriptor(_class2.prototype, "duration", [ property ], {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -10961,181 +10967,181 @@
       initializer: function initializer() {
         return new _curveRange["default"]();
       }
-    }), _descriptor0 = _applyDecoratedDescriptor(_class2.prototype, "startColor", [ _dec0 ], {
+    }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, "startColor", [ _dec10 ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return new _gradientRange["default"]();
       }
-    }), _descriptor1 = _applyDecoratedDescriptor(_class2.prototype, "scaleSpace", [ _dec1 ], {
+    }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, "scaleSpace", [ _dec11 ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return _enum.Space.Local;
       }
-    }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, "startSize", [ _dec10 ], {
+    }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, "startSize", [ _dec12 ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return new _curveRange["default"]();
       }
-    }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, "startSpeed", [ _dec11 ], {
+    }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, "startSpeed", [ _dec13 ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return new _curveRange["default"]();
       }
-    }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, "startRotation", [ _dec12 ], {
+    }), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, "startRotation", [ _dec14 ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return new _curveRange["default"]();
       }
-    }), _descriptor13 = _applyDecoratedDescriptor(_class2.prototype, "gravityModifier", [ _dec13 ], {
+    }), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, "gravityModifier", [ _dec15 ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return new _curveRange["default"]();
       }
-    }), _descriptor14 = _applyDecoratedDescriptor(_class2.prototype, "rateOverTime", [ _dec14 ], {
+    }), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, "rateOverTime", [ _dec16 ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return new _curveRange["default"]();
       }
-    }), _descriptor15 = _applyDecoratedDescriptor(_class2.prototype, "rateOverDistance", [ _dec15 ], {
+    }), _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, "rateOverDistance", [ _dec17 ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return new _curveRange["default"]();
       }
-    }), _descriptor16 = _applyDecoratedDescriptor(_class2.prototype, "bursts", [ _dec16 ], {
+    }), _descriptor18 = _applyDecoratedDescriptor(_class2.prototype, "bursts", [ _dec18 ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return new Array();
       }
-    }), _applyDecoratedDescriptor(_class2.prototype, "materials", [ _dec17 ], Object.getOwnPropertyDescriptor(_class2.prototype, "materials"), _class2.prototype),
-    _descriptor17 = _applyDecoratedDescriptor(_class2.prototype, "_shapeModule", [ property ], {
+    }), _applyDecoratedDescriptor(_class2.prototype, "materials", [ _dec19 ], Object.getOwnPropertyDescriptor(_class2.prototype, "materials"), _class2.prototype), 
+    _descriptor19 = _applyDecoratedDescriptor(_class2.prototype, "_shapeModule", [ property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return new _shapeModule["default"]();
       }
-    }), _applyDecoratedDescriptor(_class2.prototype, "shapeModule", [ _dec18 ], Object.getOwnPropertyDescriptor(_class2.prototype, "shapeModule"), _class2.prototype),
-    _descriptor18 = _applyDecoratedDescriptor(_class2.prototype, "_colorOverLifetimeModule", [ property ], {
+    }), _applyDecoratedDescriptor(_class2.prototype, "shapeModule", [ _dec20 ], Object.getOwnPropertyDescriptor(_class2.prototype, "shapeModule"), _class2.prototype), 
+    _descriptor20 = _applyDecoratedDescriptor(_class2.prototype, "_colorOverLifetimeModule", [ property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return new _colorOvertime["default"]();
       }
-    }), _applyDecoratedDescriptor(_class2.prototype, "colorOverLifetimeModule", [ _dec19 ], Object.getOwnPropertyDescriptor(_class2.prototype, "colorOverLifetimeModule"), _class2.prototype),
-    _descriptor19 = _applyDecoratedDescriptor(_class2.prototype, "_sizeOvertimeModule", [ property ], {
+    }), _applyDecoratedDescriptor(_class2.prototype, "colorOverLifetimeModule", [ _dec21 ], Object.getOwnPropertyDescriptor(_class2.prototype, "colorOverLifetimeModule"), _class2.prototype), 
+    _descriptor21 = _applyDecoratedDescriptor(_class2.prototype, "_sizeOvertimeModule", [ property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return new _sizeOvertime["default"]();
       }
-    }), _applyDecoratedDescriptor(_class2.prototype, "sizeOvertimeModule", [ _dec20 ], Object.getOwnPropertyDescriptor(_class2.prototype, "sizeOvertimeModule"), _class2.prototype),
-    _descriptor20 = _applyDecoratedDescriptor(_class2.prototype, "_velocityOvertimeModule", [ property ], {
+    }), _applyDecoratedDescriptor(_class2.prototype, "sizeOvertimeModule", [ _dec22 ], Object.getOwnPropertyDescriptor(_class2.prototype, "sizeOvertimeModule"), _class2.prototype), 
+    _descriptor22 = _applyDecoratedDescriptor(_class2.prototype, "_velocityOvertimeModule", [ property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return new _velocityOvertime["default"]();
       }
-    }), _applyDecoratedDescriptor(_class2.prototype, "velocityOvertimeModule", [ _dec21 ], Object.getOwnPropertyDescriptor(_class2.prototype, "velocityOvertimeModule"), _class2.prototype),
-    _descriptor21 = _applyDecoratedDescriptor(_class2.prototype, "_forceOvertimeModule", [ property ], {
+    }), _applyDecoratedDescriptor(_class2.prototype, "velocityOvertimeModule", [ _dec23 ], Object.getOwnPropertyDescriptor(_class2.prototype, "velocityOvertimeModule"), _class2.prototype), 
+    _descriptor23 = _applyDecoratedDescriptor(_class2.prototype, "_forceOvertimeModule", [ property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return new _forceOvertime["default"]();
       }
-    }), _applyDecoratedDescriptor(_class2.prototype, "forceOvertimeModule", [ _dec22 ], Object.getOwnPropertyDescriptor(_class2.prototype, "forceOvertimeModule"), _class2.prototype),
-    _descriptor22 = _applyDecoratedDescriptor(_class2.prototype, "_limitVelocityOvertimeModule", [ property ], {
+    }), _applyDecoratedDescriptor(_class2.prototype, "forceOvertimeModule", [ _dec24 ], Object.getOwnPropertyDescriptor(_class2.prototype, "forceOvertimeModule"), _class2.prototype), 
+    _descriptor24 = _applyDecoratedDescriptor(_class2.prototype, "_limitVelocityOvertimeModule", [ property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return new _limitVelocityOvertime["default"]();
       }
-    }), _applyDecoratedDescriptor(_class2.prototype, "limitVelocityOvertimeModule", [ _dec23 ], Object.getOwnPropertyDescriptor(_class2.prototype, "limitVelocityOvertimeModule"), _class2.prototype),
-    _descriptor23 = _applyDecoratedDescriptor(_class2.prototype, "_rotationOvertimeModule", [ property ], {
+    }), _applyDecoratedDescriptor(_class2.prototype, "limitVelocityOvertimeModule", [ _dec25 ], Object.getOwnPropertyDescriptor(_class2.prototype, "limitVelocityOvertimeModule"), _class2.prototype), 
+    _descriptor25 = _applyDecoratedDescriptor(_class2.prototype, "_rotationOvertimeModule", [ property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return new _rotationOvertime["default"]();
       }
-    }), _applyDecoratedDescriptor(_class2.prototype, "rotationOvertimeModule", [ _dec24 ], Object.getOwnPropertyDescriptor(_class2.prototype, "rotationOvertimeModule"), _class2.prototype),
-    _descriptor24 = _applyDecoratedDescriptor(_class2.prototype, "_textureAnimationModule", [ property ], {
+    }), _applyDecoratedDescriptor(_class2.prototype, "rotationOvertimeModule", [ _dec26 ], Object.getOwnPropertyDescriptor(_class2.prototype, "rotationOvertimeModule"), _class2.prototype), 
+    _descriptor26 = _applyDecoratedDescriptor(_class2.prototype, "_textureAnimationModule", [ property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return new _textureAnimation["default"]();
       }
-    }), _applyDecoratedDescriptor(_class2.prototype, "textureAnimationModule", [ _dec25 ], Object.getOwnPropertyDescriptor(_class2.prototype, "textureAnimationModule"), _class2.prototype),
-    _descriptor25 = _applyDecoratedDescriptor(_class2.prototype, "_trailModule", [ property ], {
+    }), _applyDecoratedDescriptor(_class2.prototype, "textureAnimationModule", [ _dec27 ], Object.getOwnPropertyDescriptor(_class2.prototype, "textureAnimationModule"), _class2.prototype), 
+    _descriptor27 = _applyDecoratedDescriptor(_class2.prototype, "_trailModule", [ property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return new _trail["default"]();
       }
-    }), _applyDecoratedDescriptor(_class2.prototype, "trailModule", [ _dec26 ], Object.getOwnPropertyDescriptor(_class2.prototype, "trailModule"), _class2.prototype),
-    _descriptor26 = _applyDecoratedDescriptor(_class2.prototype, "_renderMode", [ property ], {
+    }), _applyDecoratedDescriptor(_class2.prototype, "trailModule", [ _dec28 ], Object.getOwnPropertyDescriptor(_class2.prototype, "trailModule"), _class2.prototype), 
+    _descriptor28 = _applyDecoratedDescriptor(_class2.prototype, "_renderMode", [ property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return _enum.RenderMode.Billboard;
       }
-    }), _applyDecoratedDescriptor(_class2.prototype, "renderMode", [ _dec27 ], Object.getOwnPropertyDescriptor(_class2.prototype, "renderMode"), _class2.prototype),
-    _descriptor27 = _applyDecoratedDescriptor(_class2.prototype, "_velocityScale", [ property ], {
+    }), _applyDecoratedDescriptor(_class2.prototype, "renderMode", [ _dec29 ], Object.getOwnPropertyDescriptor(_class2.prototype, "renderMode"), _class2.prototype), 
+    _descriptor29 = _applyDecoratedDescriptor(_class2.prototype, "_velocityScale", [ property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return 1;
       }
-    }), _applyDecoratedDescriptor(_class2.prototype, "velocityScale", [ _dec28 ], Object.getOwnPropertyDescriptor(_class2.prototype, "velocityScale"), _class2.prototype),
-    _descriptor28 = _applyDecoratedDescriptor(_class2.prototype, "_lengthScale", [ property ], {
+    }), _applyDecoratedDescriptor(_class2.prototype, "velocityScale", [ _dec30 ], Object.getOwnPropertyDescriptor(_class2.prototype, "velocityScale"), _class2.prototype), 
+    _descriptor30 = _applyDecoratedDescriptor(_class2.prototype, "_lengthScale", [ property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return 1;
       }
-    }), _applyDecoratedDescriptor(_class2.prototype, "lengthScale", [ _dec29 ], Object.getOwnPropertyDescriptor(_class2.prototype, "lengthScale"), _class2.prototype),
-    _descriptor29 = _applyDecoratedDescriptor(_class2.prototype, "_mesh", [ property ], {
+    }), _applyDecoratedDescriptor(_class2.prototype, "lengthScale", [ _dec31 ], Object.getOwnPropertyDescriptor(_class2.prototype, "lengthScale"), _class2.prototype), 
+    _descriptor31 = _applyDecoratedDescriptor(_class2.prototype, "_mesh", [ property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return null;
       }
-    }), _applyDecoratedDescriptor(_class2.prototype, "mesh", [ _dec30 ], Object.getOwnPropertyDescriptor(_class2.prototype, "mesh"), _class2.prototype),
-    _applyDecoratedDescriptor(_class2.prototype, "particleMaterial", [ _dec31 ], Object.getOwnPropertyDescriptor(_class2.prototype, "particleMaterial"), _class2.prototype),
-    _applyDecoratedDescriptor(_class2.prototype, "trailMaterial", [ _dec32 ], Object.getOwnPropertyDescriptor(_class2.prototype, "trailMaterial"), _class2.prototype),
+    }), _applyDecoratedDescriptor(_class2.prototype, "mesh", [ _dec32 ], Object.getOwnPropertyDescriptor(_class2.prototype, "mesh"), _class2.prototype), 
+    _applyDecoratedDescriptor(_class2.prototype, "particleMaterial", [ _dec33 ], Object.getOwnPropertyDescriptor(_class2.prototype, "particleMaterial"), _class2.prototype), 
+    _applyDecoratedDescriptor(_class2.prototype, "trailMaterial", [ _dec34 ], Object.getOwnPropertyDescriptor(_class2.prototype, "trailMaterial"), _class2.prototype), 
     _class2)) || _class) || _class) || _class) || _class) || _class);
     false;
     cc.ParticleSystem3D = ParticleSystem3D;
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../assets/material/CCMaterial": 157,
     "../../components/CCRenderComponent": 193,
     "../../mesh/CCMesh": 241,
@@ -11157,7 +11163,7 @@
     "./particle-general-function": 45,
     "./renderer/trail": 50
   } ],
-  47: [ (function(require, module, exports) {
+  47: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -11201,10 +11207,10 @@
       this.frameIndex = 0;
     };
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../value-types": 395
   } ],
-  48: [ (function(require, module, exports) {
+  48: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -11217,7 +11223,7 @@
       };
     }
     var renderer = require("../../../renderer");
-    var ParticleBatchModel = exports["default"] = (function() {
+    var ParticleBatchModel = exports["default"] = function() {
       function ParticleBatchModel() {
         this._capacity = 0;
         this._vertFormat = null;
@@ -11415,15 +11421,15 @@
         this._subDatas[0] = null;
       };
       return ParticleBatchModel;
-    })();
+    }();
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../../renderer/core/input-assembler": 418,
     "../../../../renderer/gfx": 428,
     "../../../mesh/mesh-data": 244,
     "../../../renderer": 323
   } ],
-  49: [ (function(require, module, exports) {
+  49: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -11549,7 +11555,7 @@
     } ]);
     vfmtMesh.name = "vfmtMesh";
     var ParticleSystem3DAssembler = exports["default"] = (_dec = ccclass("cc.ParticleSystem3DAssembler"), 
-    _dec(_class = (function(_Assembler) {
+    _dec(_class = function(_Assembler) {
       function ParticleSystem3DAssembler() {
         var _this;
         _this = _Assembler.call(this) || this;
@@ -11810,13 +11816,13 @@
         }
       };
       return ParticleSystem3DAssembler;
-    })(_assembler["default"])) || _class);
+    }(_assembler["default"])) || _class);
     Object.assign(ParticleSystem3DAssembler, {
       uv: _uvs
     });
     _assembler["default"].register(_particleSystem3d["default"], ParticleSystem3DAssembler);
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../../renderer/gfx": 428,
     "../../../../renderer/memop/recycle-pool": 443,
     "../../../assets/material/material-variant": 164,
@@ -11828,7 +11834,7 @@
     "../particle-system-3d": 46,
     "./particle-batch-model": 48
   } ],
-  50: [ (function(require, module, exports) {
+  50: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -11840,7 +11846,7 @@
     var _gradientRange = _interopRequireDefault(require("../animator/gradient-range"));
     var _enum = require("../enum");
     var _utils = _interopRequireDefault(require("../utils"));
-    var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor0, _descriptor1, _descriptor10;
+    var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12;
     function _interopRequireDefault(e) {
       return e && e.__esModule ? e : {
         default: e
@@ -11911,12 +11917,12 @@
     }
     function _applyDecoratedDescriptor(i, e, r, n, l) {
       var a = {};
-      return Object.keys(n).forEach((function(i) {
+      return Object.keys(n).forEach(function(i) {
         a[i] = n[i];
-      })), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
-      a = r.slice().reverse().reduce((function(r, n) {
+      }), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
+      a = r.slice().reverse().reduce(function(r, n) {
         return n(i, e, r) || r;
-      }), a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
+      }, a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
       a.initializer = void 0), void 0 === a.initializer ? (Object.defineProperty(i, e, a), 
       null) : a;
     }
@@ -11942,7 +11948,7 @@
       this.velocity = void 0;
       this.color = void 0;
     };
-    var TrailSegment = (function() {
+    var TrailSegment = function() {
       function TrailSegment(maxTrailElementNum) {
         this.start = void 0;
         this.end = void 0;
@@ -12008,7 +12014,7 @@
         this.end = -1;
       };
       return TrailSegment;
-    })();
+    }();
     var TrailModule = exports["default"] = (_dec = (0, _CCClassDecorator.ccclass)("cc.TrailModule"), 
     _dec2 = (0, _CCClassDecorator.property)({
       type: _enum.TrailMode
@@ -12024,7 +12030,7 @@
       type: _gradientRange["default"]
     }), _dec8 = (0, _CCClassDecorator.property)({
       type: _gradientRange["default"]
-    }), _dec(_class = (_class2 = (function() {
+    }), _dec(_class = (_class2 = function() {
       function TrailModule() {
         _initializerDefineProperty(this, "_enable", _descriptor, this);
         _initializerDefineProperty(this, "mode", _descriptor2, this);
@@ -12035,9 +12041,9 @@
         _initializerDefineProperty(this, "textureMode", _descriptor7, this);
         _initializerDefineProperty(this, "widthFromParticle", _descriptor8, this);
         _initializerDefineProperty(this, "widthRatio", _descriptor9, this);
-        _initializerDefineProperty(this, "colorFromParticle", _descriptor0, this);
-        _initializerDefineProperty(this, "colorOverTrail", _descriptor1, this);
-        _initializerDefineProperty(this, "colorOvertime", _descriptor10, this);
+        _initializerDefineProperty(this, "colorFromParticle", _descriptor10, this);
+        _initializerDefineProperty(this, "colorOverTrail", _descriptor11, this);
+        _initializerDefineProperty(this, "colorOvertime", _descriptor12, this);
         this._particleSystem = null;
         this._minSquaredDistance = 0;
         this._vertSize = 0;
@@ -12099,9 +12105,9 @@
       _proto2.onDisable = function onDisable() {};
       _proto2.destroy = function destroy() {
         if (this._trailSegments) {
-          this._trailSegments.clear((function(obj) {
+          this._trailSegments.clear(function(obj) {
             obj.trailElements.length = 0;
-          }));
+          });
           this._trailSegments = null;
         }
       };
@@ -12319,7 +12325,7 @@
           this._particleSystem && this._particleSystem._assembler._updateTrailMaterial();
         }
       } ]);
-    })(), _descriptor = _applyDecoratedDescriptor(_class2.prototype, "_enable", [ _CCClassDecorator.property ], {
+    }(), _descriptor = _applyDecoratedDescriptor(_class2.prototype, "_enable", [ _CCClassDecorator.property ], {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -12385,21 +12391,21 @@
       initializer: function initializer() {
         return new _curveRange["default"]();
       }
-    }), _descriptor0 = _applyDecoratedDescriptor(_class2.prototype, "colorFromParticle", [ _CCClassDecorator.property ], {
+    }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, "colorFromParticle", [ _CCClassDecorator.property ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return false;
       }
-    }), _descriptor1 = _applyDecoratedDescriptor(_class2.prototype, "colorOverTrail", [ _dec7 ], {
+    }), _descriptor11 = _applyDecoratedDescriptor(_class2.prototype, "colorOverTrail", [ _dec7 ], {
       configurable: true,
       enumerable: true,
       writable: true,
       initializer: function initializer() {
         return new _gradientRange["default"]();
       }
-    }), _descriptor10 = _applyDecoratedDescriptor(_class2.prototype, "colorOvertime", [ _dec8 ], {
+    }), _descriptor12 = _applyDecoratedDescriptor(_class2.prototype, "colorOvertime", [ _dec8 ], {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -12408,7 +12414,7 @@
       }
     }), _class2)) || _class);
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../../renderer/gfx": 428,
     "../../../../renderer/memop/pool": 442,
     "../../../platform/CCClassDecorator": 274,
@@ -12418,25 +12424,25 @@
     "../enum": 44,
     "../utils": 51
   } ],
-  51: [ (function(require, module, exports) {
+  51: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
     Object.is || (Object.is = function(x, y) {
       return x === y ? 0 !== x || 1 / x === 1 / y : x !== x && y !== y;
     });
-    var MapUtils = exports["default"] = (function() {
+    var MapUtils = exports["default"] = function() {
       function MapUtils(data) {
         this.datas = [];
         !data && (data = []);
         this.datas = [];
         var that = this;
-        data.forEach((function(item) {
+        data.forEach(function(item) {
           that.has(item[0]) || that.datas.push({
             key: item[0],
             value: item[1]
           });
-        }));
+        });
       }
       var _proto = MapUtils.prototype;
       _proto.size = function size() {
@@ -12503,10 +12509,10 @@
         };
       };
       return MapUtils;
-    })();
+    }();
     module.exports = exports["default"];
-  }), {} ],
-  52: [ (function(require, module, exports) {
+  }, {} ],
+  52: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.CannonRigidBody = void 0;
@@ -12545,7 +12551,7 @@
     var v3_cannon0 = new _cannon["default"].Vec3();
     var v3_cannon1 = new _cannon["default"].Vec3();
     var Vec3 = cc.Vec3;
-    var CannonRigidBody = exports.CannonRigidBody = (function() {
+    var CannonRigidBody = exports.CannonRigidBody = function() {
       function CannonRigidBody() {
         this._rigidBody = void 0;
         this._sharedBody = void 0;
@@ -12737,11 +12743,11 @@
           return this._isEnabled;
         }
       } ]);
-    })();
-  }), {
+    }();
+  }, {
     "../../../../../external/cannon/cannon": 492
   } ],
-  53: [ (function(require, module, exports) {
+  53: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.CannonSharedBody = void 0;
@@ -12795,7 +12801,7 @@
       otherCollider: null,
       contacts: []
     };
-    var CannonSharedBody = exports.CannonSharedBody = (function() {
+    var CannonSharedBody = exports.CannonSharedBody = function() {
       function CannonSharedBody(node, wrappedWorld) {
         this.node = void 0;
         this.wrappedWorld = void 0;
@@ -12957,16 +12963,16 @@
           0 == this.ref && this.destroy();
         }
       } ]);
-    })();
+    }();
     _CannonSharedBody = CannonSharedBody;
     CannonSharedBody.sharedBodiesMap = new Map();
-  }), {
+  }, {
     "../../../../../external/cannon/cannon": 492,
     "../framework/physics-enum": 78,
     "../framework/util": 82,
     "./cannon-util": 54
   } ],
-  54: [ (function(require, module, exports) {
+  54: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.commitShapeUpdates = commitShapeUpdates;
@@ -13013,10 +13019,10 @@
       onTriggerStay: "trigger-stay",
       onTriggerExit: "trigger-exit"
     };
-  }), {
+  }, {
     "../framework/util": 82
   } ],
-  55: [ (function(require, module, exports) {
+  55: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.CannonWorld = void 0;
@@ -13058,7 +13064,7 @@
     }
     var Vec3 = cc.Vec3;
     var fastRemoveAt = cc.js.array.fastRemoveAt;
-    var CannonWorld = exports.CannonWorld = (function() {
+    var CannonWorld = exports.CannonWorld = function() {
       function CannonWorld() {
         this.bodies = [];
         this._world = void 0;
@@ -13126,11 +13132,11 @@
       _proto.raycast = function raycast(worldRay, options, pool, results) {
         setupFromAndTo(worldRay, options.maxDistance);
         (0, _cannonUtil.toCannonRaycastOptions)(raycastOpt, options);
-        var hit = this._world.raycastAll(from, to, raycastOpt, (function(result) {
+        var hit = this._world.raycastAll(from, to, raycastOpt, function(result) {
           var r = pool.add();
           (0, _cannonUtil.fillRaycastResult)(r, result);
           results.push(r);
-        }));
+        });
         return hit;
       };
       _proto.getSharedBody = function getSharedBody(node) {
@@ -13173,7 +13179,7 @@
           Vec3.copy(this._world.gravity, gravity);
         }
       } ]);
-    })();
+    }();
     var from = new _cannon["default"].Vec3();
     var to = new _cannon["default"].Vec3();
     function setupFromAndTo(worldRay, distance) {
@@ -13186,14 +13192,14 @@
       collisionFilterMask: -1,
       skipBackFaces: false
     };
-  }), {
+  }, {
     "../../../../../external/cannon/cannon": 492,
     "../framework/util": 82,
     "./cannon-shared-body": 53,
     "./cannon-util": 54,
     "./shapes/cannon-shape": 58
   } ],
-  56: [ (function(require, module, exports) {
+  56: [ function(require, module, exports) {
     "use strict";
     var _physicsSelector = require("../framework/physics-selector");
     var _cannonRigidBody = require("./cannon-rigid-body");
@@ -13202,14 +13208,14 @@
     var _cannonSphereShape = require("./shapes/cannon-sphere-shape");
     true;
     (0, _physicsSelector.instantiate)(_cannonBoxShape.CannonBoxShape, _cannonSphereShape.CannonSphereShape, _cannonRigidBody.CannonRigidBody, _cannonWorld.CannonWorld);
-  }), {
+  }, {
     "../framework/physics-selector": 81,
     "./cannon-rigid-body": 52,
     "./cannon-world": 55,
     "./shapes/cannon-box-shape": 57,
     "./shapes/cannon-sphere-shape": 59
   } ],
-  57: [ (function(require, module, exports) {
+  57: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.CannonBoxShape = void 0;
@@ -13257,7 +13263,7 @@
     }
     var Vec3 = cc.Vec3;
     var v3_0 = new Vec3();
-    var CannonBoxShape = exports.CannonBoxShape = (function(_CannonShape) {
+    var CannonBoxShape = exports.CannonBoxShape = function(_CannonShape) {
       function CannonBoxShape(size) {
         var _this;
         _this = _CannonShape.call(this) || this;
@@ -13299,13 +13305,13 @@
           -1 != this._index && (0, _cannonUtil.commitShapeUpdates)(this._body);
         }
       } ]);
-    })(_cannonShape.CannonShape);
-  }), {
+    }(_cannonShape.CannonShape);
+  }, {
     "../../../../../../external/cannon/cannon": 492,
     "../cannon-util": 54,
     "./cannon-shape": 58
   } ],
-  58: [ (function(require, module, exports) {
+  58: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.CannonShape = void 0;
@@ -13350,7 +13356,7 @@
     };
     var Vec3 = cc.Vec3;
     var v3_0 = new Vec3();
-    var CannonShape = exports.CannonShape = (function() {
+    var CannonShape = exports.CannonShape = function() {
       function CannonShape() {
         this._collider = void 0;
         this._shape = void 0;
@@ -13472,14 +13478,14 @@
           return this._sharedBody.body;
         }
       } ]);
-    })();
+    }();
     CannonShape.idToMaterial = {};
-  }), {
+  }, {
     "../../../../../../external/cannon/cannon": 492,
     "../../framework/util": 82,
     "../cannon-util": 54
   } ],
-  59: [ (function(require, module, exports) {
+  59: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.CannonSphereShape = void 0;
@@ -13526,7 +13532,7 @@
       }, _setPrototypeOf(t, e);
     }
     var v3_0 = new cc.Vec3();
-    var CannonSphereShape = exports.CannonSphereShape = (function(_CannonShape) {
+    var CannonSphereShape = exports.CannonSphereShape = function(_CannonShape) {
       function CannonSphereShape(radius) {
         var _this;
         _this = _CannonShape.call(this) || this;
@@ -13568,13 +13574,13 @@
           -1 != this._index && (0, _cannonUtil.commitShapeUpdates)(this._body);
         }
       } ]);
-    })(_cannonShape.CannonShape);
-  }), {
+    }(_cannonShape.CannonShape);
+  }, {
     "../../../../../../external/cannon/cannon": 492,
     "../cannon-util": 54,
     "./cannon-shape": 58
   } ],
-  60: [ (function(require, module, exports) {
+  60: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.BuiltinSharedBody = void 0;
@@ -13611,7 +13617,7 @@
     var v3_0 = new cc.Vec3();
     var v3_1 = new cc.Vec3();
     var quat_0 = new cc.Quat();
-    var BuiltinSharedBody = exports.BuiltinSharedBody = (function() {
+    var BuiltinSharedBody = exports.BuiltinSharedBody = function() {
       function BuiltinSharedBody(node, world) {
         this._id = void 0;
         this.index = -1;
@@ -13695,14 +13701,14 @@
           0 == this.ref && this.destroy();
         }
       } ]);
-    })();
+    }();
     _BuiltinSharedBody = BuiltinSharedBody;
     BuiltinSharedBody.sharedBodiesMap = new Map();
     BuiltinSharedBody.idCounter = 0;
-  }), {
+  }, {
     "../framework/util": 82
   } ],
-  61: [ (function(require, module, exports) {
+  61: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.BuiltInWorld = void 0;
@@ -13744,7 +13750,7 @@
       selfCollider: null,
       otherCollider: null
     };
-    var BuiltInWorld = exports.BuiltInWorld = (function() {
+    var BuiltInWorld = exports.BuiltInWorld = function() {
       function BuiltInWorld() {
         this.shapeArr = [];
         this.bodies = [];
@@ -13874,26 +13880,26 @@
         key: "defaultMaterial",
         set: function set(v) {}
       } ]);
-    })();
-  }), {
+    }();
+  }, {
     "../framework/util": 82,
     "./builtin-shared-body": 60,
     "./utils/array-collision-matrix": 66
   } ],
-  62: [ (function(require, module, exports) {
+  62: [ function(require, module, exports) {
     "use strict";
     var _physicsSelector = require("../framework/physics-selector");
     var _builtinWorld = require("./builtin-world");
     var _builtinBoxShape = require("./shapes/builtin-box-shape");
     var _builtinSphereShape = require("./shapes/builtin-sphere-shape");
     false;
-  }), {
+  }, {
     "../framework/physics-selector": 81,
     "./builtin-world": 61,
     "./shapes/builtin-box-shape": 63,
     "./shapes/builtin-sphere-shape": 65
   } ],
-  63: [ (function(require, module, exports) {
+  63: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.BuiltinBoxShape = void 0;
@@ -13935,7 +13941,7 @@
     var Obb = cc.geomUtils.Obb;
     var Vec3 = cc.Vec3;
     var _worldScale = new Vec3();
-    var BuiltinBoxShape = exports.BuiltinBoxShape = (function(_BuiltinShape) {
+    var BuiltinBoxShape = exports.BuiltinBoxShape = function(_BuiltinShape) {
       function BuiltinBoxShape(size) {
         var _this;
         _this = _BuiltinShape.call(this) || this;
@@ -13977,11 +13983,11 @@
           Vec3.multiply(this.worldObb.halfExtents, this.localObb.halfExtents, _worldScale);
         }
       } ]);
-    })(_builtinShape.BuiltinShape);
-  }), {
+    }(_builtinShape.BuiltinShape);
+  }, {
     "./builtin-shape": 64
   } ],
-  64: [ (function(require, module, exports) {
+  64: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.BuiltinShape = void 0;
@@ -14012,7 +14018,7 @@
       return ("string" === r ? String : Number)(t);
     }
     var Vec3 = cc.Vec3;
-    var BuiltinShape = exports.BuiltinShape = (function() {
+    var BuiltinShape = exports.BuiltinShape = function() {
       function BuiltinShape() {
         this.id = BuiltinShape.idCounter++;
         this._sharedBody = void 0;
@@ -14083,10 +14089,10 @@
           return this._collider;
         }
       } ]);
-    })();
+    }();
     BuiltinShape.idCounter = 0;
-  }), {} ],
-  65: [ (function(require, module, exports) {
+  }, {} ],
+  65: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.BuiltinSphereShape = void 0;
@@ -14127,7 +14133,7 @@
     }
     var Sphere = cc.geomUtils.Sphere;
     var _worldScale = new cc.Vec3();
-    var BuiltinSphereShape = exports.BuiltinSphereShape = (function(_BuiltinShape) {
+    var BuiltinSphereShape = exports.BuiltinSphereShape = function(_BuiltinShape) {
       function BuiltinSphereShape(radius) {
         var _this;
         _this = _BuiltinShape.call(this) || this;
@@ -14165,15 +14171,15 @@
           return this.collider;
         }
       } ]);
-    })(_builtinShape.BuiltinShape);
-  }), {
+    }(_builtinShape.BuiltinShape);
+  }, {
     "./builtin-shape": 64
   } ],
-  66: [ (function(require, module, exports) {
+  66: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.ArrayCollisionMatrix = void 0;
-    var ArrayCollisionMatrix = exports.ArrayCollisionMatrix = (function() {
+    var ArrayCollisionMatrix = exports.ArrayCollisionMatrix = function() {
       function ArrayCollisionMatrix() {
         this.matrix = [];
       }
@@ -14201,15 +14207,15 @@
         this.matrix.length = n * (n - 1) >> 1;
       };
       return ArrayCollisionMatrix;
-    })();
-  }), {} ],
-  67: [ (function(require, module, exports) {
+    }();
+  }, {} ],
+  67: [ function(require, module, exports) {
     "use strict";
     require("../cocos/instantiate");
-  }), {
+  }, {
     "../cocos/instantiate": 62
   } ],
-  68: [ (function(require, module, exports) {
+  68: [ function(require, module, exports) {
     "use strict";
     require("../cannon/instantiate");
     var _cannon = _interopRequireDefault(require("../../../../../external/cannon/cannon"));
@@ -14219,23 +14225,23 @@
       };
     }
     window && (window.CANNON = _cannon["default"]);
-  }), {
+  }, {
     "../../../../../external/cannon/cannon": 492,
     "../cannon/instantiate": 56
   } ],
-  69: [ (function(require, module, exports) {
+  69: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     var _framework = require("../framework");
-    Object.keys(_framework).forEach((function(key) {
+    Object.keys(_framework).forEach(function(key) {
       if ("default" === key || "__esModule" === key) return;
       if (key in exports && exports[key] === _framework[key]) return;
       exports[key] = _framework[key];
-    }));
-  }), {
+    });
+  }, {
     "../framework": 76
   } ],
-  70: [ (function(require, module, exports) {
+  70: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.PhysicsMaterial = void 0;
@@ -14284,12 +14290,12 @@
     }
     function _applyDecoratedDescriptor(i, e, r, n, l) {
       var a = {};
-      return Object.keys(n).forEach((function(i) {
+      return Object.keys(n).forEach(function(i) {
         a[i] = n[i];
-      })), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
-      a = r.slice().reverse().reduce((function(r, n) {
+      }), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
+      a = r.slice().reverse().reduce(function(r, n) {
         return n(i, e, r) || r;
-      }), a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
+      }, a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
       a.initializer = void 0), void 0 === a.initializer ? (Object.defineProperty(i, e, a), 
       null) : a;
     }
@@ -14300,7 +14306,7 @@
     var fastRemove = cc.js.array.fastRemove;
     var equals = cc.math.equals;
     var PhysicsMaterial = exports.PhysicsMaterial = (_dec = ccclass("cc.PhysicsMaterial"), 
-    _dec(_class = (_class2 = (_PhysicsMaterial = (function(_cc$Asset) {
+    _dec(_class = (_class2 = (_PhysicsMaterial = function(_cc$Asset) {
       function PhysicsMaterial() {
         var _this;
         _this = _cc$Asset.call(this) || this;
@@ -14349,7 +14355,7 @@
           }
         }
       } ]);
-    })(cc.Asset), _PhysicsMaterial.allMaterials = [], _PhysicsMaterial._idCounter = 0, 
+    }(cc.Asset), _PhysicsMaterial.allMaterials = [], _PhysicsMaterial._idCounter = 0, 
     _PhysicsMaterial), _descriptor = _applyDecoratedDescriptor(_class2.prototype, "_friction", [ property ], {
       configurable: true,
       enumerable: true,
@@ -14369,8 +14375,8 @@
     _class2)) || _class);
     cc.js.mixin(PhysicsMaterial.prototype, cc.EventTarget.prototype);
     cc.PhysicsMaterial = PhysicsMaterial;
-  }), {} ],
-  71: [ (function(require, module, exports) {
+  }, {} ],
+  71: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.BoxCollider3D = void 0;
@@ -14424,12 +14430,12 @@
     }
     function _applyDecoratedDescriptor(i, e, r, n, l) {
       var a = {};
-      return Object.keys(n).forEach((function(i) {
+      return Object.keys(n).forEach(function(i) {
         a[i] = n[i];
-      })), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
-      a = r.slice().reverse().reduce((function(r, n) {
+      }), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
+      a = r.slice().reverse().reduce(function(r, n) {
         return n(i, e, r) || r;
-      }), a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
+      }, a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
       a.initializer = void 0), void 0 === a.initializer ? (Object.defineProperty(i, e, a), 
       null) : a;
     }
@@ -14439,7 +14445,7 @@
     _dec2 = executionOrder(98), _dec3 = menu("i18n:MAIN_MENU.component.physics/Collider/Box 3D"), 
     _dec4 = help("i18n:COMPONENT.help_url.physics-collider"), _dec5 = property({
       type: cc.Vec3
-    }), _dec(_class = _dec2(_class = _dec3(_class = executeInEditMode(_class = _dec4(_class = (_class2 = (function(_Collider3D) {
+    }), _dec(_class = _dec2(_class = _dec3(_class = executeInEditMode(_class = _dec4(_class = (_class2 = function(_Collider3D) {
       function BoxCollider3D() {
         var _this;
         _this = _Collider3D.call(this) || this;
@@ -14465,7 +14471,7 @@
           return this._shape;
         }
       } ]);
-    })(_colliderComponent.Collider3D), _applyDecoratedDescriptor(_class2.prototype, "size", [ _dec5 ], Object.getOwnPropertyDescriptor(_class2.prototype, "size"), _class2.prototype), 
+    }(_colliderComponent.Collider3D), _applyDecoratedDescriptor(_class2.prototype, "size", [ _dec5 ], Object.getOwnPropertyDescriptor(_class2.prototype, "size"), _class2.prototype), 
     _descriptor = _applyDecoratedDescriptor(_class2.prototype, "_size", [ property ], {
       configurable: true,
       enumerable: true,
@@ -14474,11 +14480,11 @@
         return new Vec3(1, 1, 1);
       }
     }), _class2)) || _class) || _class) || _class) || _class) || _class);
-  }), {
+  }, {
     "../../instance": 77,
     "./collider-component": 72
   } ],
-  72: [ (function(require, module, exports) {
+  72: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.Collider3D = void 0;
@@ -14531,12 +14537,12 @@
     }
     function _applyDecoratedDescriptor(i, e, r, n, l) {
       var a = {};
-      return Object.keys(n).forEach((function(i) {
+      return Object.keys(n).forEach(function(i) {
         a[i] = n[i];
-      })), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
-      a = r.slice().reverse().reduce((function(r, n) {
+      }), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
+      a = r.slice().reverse().reduce(function(r, n) {
         return n(i, e, r) || r;
-      }), a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
+      }, a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
       a.initializer = void 0), void 0 === a.initializer ? (Object.defineProperty(i, e, a), 
       null) : a;
     }
@@ -14553,7 +14559,7 @@
       displayOrder: 1
     }), _dec5 = property({
       type: _physicsMaterial.PhysicsMaterial
-    }), _dec(_class = (_class2 = (function(_cc$Component) {
+    }), _dec(_class = (_class2 = function(_cc$Component) {
       function Collider3D() {
         var _this;
         _this = _cc$Component.call(this) || this;
@@ -14674,7 +14680,7 @@
           return !r;
         }
       } ]);
-    })(cc.Component), _applyDecoratedDescriptor(_class2.prototype, "sharedMaterial", [ _dec2 ], Object.getOwnPropertyDescriptor(_class2.prototype, "sharedMaterial"), _class2.prototype), 
+    }(cc.Component), _applyDecoratedDescriptor(_class2.prototype, "sharedMaterial", [ _dec2 ], Object.getOwnPropertyDescriptor(_class2.prototype, "sharedMaterial"), _class2.prototype), 
     _applyDecoratedDescriptor(_class2.prototype, "isTrigger", [ _dec3 ], Object.getOwnPropertyDescriptor(_class2.prototype, "isTrigger"), _class2.prototype), 
     _applyDecoratedDescriptor(_class2.prototype, "center", [ _dec4 ], Object.getOwnPropertyDescriptor(_class2.prototype, "center"), _class2.prototype), 
     _descriptor = _applyDecoratedDescriptor(_class2.prototype, "_material", [ _dec5 ], {
@@ -14700,10 +14706,10 @@
       }
     }), _class2)) || _class);
     cc.js.mixin(Collider3D.prototype, cc.EventTarget.prototype);
-  }), {
+  }, {
     "../../assets/physics-material": 70
   } ],
-  73: [ (function(require, module, exports) {
+  73: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.SphereCollider3D = void 0;
@@ -14757,19 +14763,19 @@
     }
     function _applyDecoratedDescriptor(i, e, r, n, l) {
       var a = {};
-      return Object.keys(n).forEach((function(i) {
+      return Object.keys(n).forEach(function(i) {
         a[i] = n[i];
-      })), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
-      a = r.slice().reverse().reduce((function(r, n) {
+      }), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
+      a = r.slice().reverse().reduce(function(r, n) {
         return n(i, e, r) || r;
-      }), a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
+      }, a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
       a.initializer = void 0), void 0 === a.initializer ? (Object.defineProperty(i, e, a), 
       null) : a;
     }
     var _cc$_decorator = cc._decorator, ccclass = _cc$_decorator.ccclass, executeInEditMode = _cc$_decorator.executeInEditMode, executionOrder = _cc$_decorator.executionOrder, menu = _cc$_decorator.menu, property = _cc$_decorator.property, help = _cc$_decorator.help;
     var SphereCollider3D = exports.SphereCollider3D = (_dec = ccclass("cc.SphereCollider3D"), 
     _dec2 = executionOrder(98), _dec3 = menu("i18n:MAIN_MENU.component.physics/Collider/Sphere 3D"), 
-    _dec4 = help("i18n:COMPONENT.help_url.physics-collider"), _dec(_class = _dec2(_class = _dec3(_class = _dec4(_class = executeInEditMode(_class = (_class2 = (function(_Collider3D) {
+    _dec4 = help("i18n:COMPONENT.help_url.physics-collider"), _dec(_class = _dec2(_class = _dec3(_class = _dec4(_class = executeInEditMode(_class = (_class2 = function(_Collider3D) {
       function SphereCollider3D() {
         var _this;
         _this = _Collider3D.call(this) || this;
@@ -14795,7 +14801,7 @@
           return this._shape;
         }
       } ]);
-    })(_colliderComponent.Collider3D), _applyDecoratedDescriptor(_class2.prototype, "radius", [ property ], Object.getOwnPropertyDescriptor(_class2.prototype, "radius"), _class2.prototype), 
+    }(_colliderComponent.Collider3D), _applyDecoratedDescriptor(_class2.prototype, "radius", [ property ], Object.getOwnPropertyDescriptor(_class2.prototype, "radius"), _class2.prototype), 
     _descriptor = _applyDecoratedDescriptor(_class2.prototype, "_radius", [ property ], {
       configurable: true,
       enumerable: true,
@@ -14804,11 +14810,11 @@
         return .5;
       }
     }), _class2)) || _class) || _class) || _class) || _class) || _class);
-  }), {
+  }, {
     "../../instance": 77,
     "./collider-component": 72
   } ],
-  74: [ (function(require, module, exports) {
+  74: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.ConstantForce = void 0;
@@ -14858,12 +14864,12 @@
     }
     function _applyDecoratedDescriptor(i, e, r, n, l) {
       var a = {};
-      return Object.keys(n).forEach((function(i) {
+      return Object.keys(n).forEach(function(i) {
         a[i] = n[i];
-      })), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
-      a = r.slice().reverse().reduce((function(r, n) {
+      }), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
+      a = r.slice().reverse().reduce(function(r, n) {
         return n(i, e, r) || r;
-      }), a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
+      }, a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
       a.initializer = void 0), void 0 === a.initializer ? (Object.defineProperty(i, e, a), 
       null) : a;
     }
@@ -14883,7 +14889,7 @@
       displayOrder: 2
     }), _dec9 = property({
       displayOrder: 3
-    }), _dec(_class = _dec2(_class = _dec3(_class = _dec4(_class = _dec5(_class = disallowMultiple(_class = executeInEditMode(_class = (_class2 = (function(_cc$Component) {
+    }), _dec(_class = _dec2(_class = _dec3(_class = _dec4(_class = _dec5(_class = disallowMultiple(_class = executeInEditMode(_class = (_class2 = function(_cc$Component) {
       function ConstantForce() {
         var _this;
         for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) args[_key] = arguments[_key];
@@ -14955,7 +14961,7 @@
           this._maskUpdate(this._localTorque, 8);
         }
       } ]);
-    })(cc.Component), _descriptor = _applyDecoratedDescriptor(_class2.prototype, "_force", [ property ], {
+    }(cc.Component), _descriptor = _applyDecoratedDescriptor(_class2.prototype, "_force", [ property ], {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -14988,15 +14994,15 @@
     _applyDecoratedDescriptor(_class2.prototype, "torque", [ _dec8 ], Object.getOwnPropertyDescriptor(_class2.prototype, "torque"), _class2.prototype), 
     _applyDecoratedDescriptor(_class2.prototype, "localTorque", [ _dec9 ], Object.getOwnPropertyDescriptor(_class2.prototype, "localTorque"), _class2.prototype), 
     _class2)) || _class) || _class) || _class) || _class) || _class) || _class) || _class);
-  }), {
+  }, {
     "./rigid-body-component": 75
   } ],
-  75: [ (function(require, module, exports) {
+  75: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.RigidBody3D = void 0;
     var _instance = require("../instance");
-    var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec0, _dec1, _dec10, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8;
+    var _dec, _dec2, _dec3, _dec4, _dec5, _dec6, _dec7, _dec8, _dec9, _dec10, _dec11, _dec12, _class, _class2, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8;
     function _initializerDefineProperty(e, i, r, l) {
       r && Object.defineProperty(e, i, {
         enumerable: r.enumerable,
@@ -15044,12 +15050,12 @@
     }
     function _applyDecoratedDescriptor(i, e, r, n, l) {
       var a = {};
-      return Object.keys(n).forEach((function(i) {
+      return Object.keys(n).forEach(function(i) {
         a[i] = n[i];
-      })), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
-      a = r.slice().reverse().reduce((function(r, n) {
+      }), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
+      a = r.slice().reverse().reduce(function(r, n) {
         return n(i, e, r) || r;
-      }), a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
+      }, a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
       a.initializer = void 0), void 0 === a.initializer ? (Object.defineProperty(i, e, a), 
       null) : a;
     }
@@ -15067,13 +15073,13 @@
       displayOrder: 3
     }), _dec9 = property({
       displayOrder: 4
-    }), _dec0 = property({
-      displayOrder: 5
-    }), _dec1 = property({
-      displayOrder: 6
     }), _dec10 = property({
+      displayOrder: 5
+    }), _dec11 = property({
+      displayOrder: 6
+    }), _dec12 = property({
       displayOrder: 7
-    }), _dec(_class = _dec2(_class = _dec3(_class = _dec4(_class = executeInEditMode(_class = disallowMultiple(_class = (_class2 = (function(_cc$Component) {
+    }), _dec(_class = _dec2(_class = _dec3(_class = _dec4(_class = executeInEditMode(_class = disallowMultiple(_class = (_class2 = function(_cc$Component) {
       function RigidBody3D() {
         var _this;
         _this = _cc$Component.call(this) || this;
@@ -15266,14 +15272,14 @@
           return !r;
         }
       } ]);
-    })(cc.Component), _applyDecoratedDescriptor(_class2.prototype, "mass", [ _dec5 ], Object.getOwnPropertyDescriptor(_class2.prototype, "mass"), _class2.prototype),
-    _applyDecoratedDescriptor(_class2.prototype, "linearDamping", [ _dec6 ], Object.getOwnPropertyDescriptor(_class2.prototype, "linearDamping"), _class2.prototype),
-    _applyDecoratedDescriptor(_class2.prototype, "angularDamping", [ _dec7 ], Object.getOwnPropertyDescriptor(_class2.prototype, "angularDamping"), _class2.prototype),
-    _applyDecoratedDescriptor(_class2.prototype, "isKinematic", [ _dec8 ], Object.getOwnPropertyDescriptor(_class2.prototype, "isKinematic"), _class2.prototype),
-    _applyDecoratedDescriptor(_class2.prototype, "useGravity", [ _dec9 ], Object.getOwnPropertyDescriptor(_class2.prototype, "useGravity"), _class2.prototype),
-    _applyDecoratedDescriptor(_class2.prototype, "fixedRotation", [ _dec0 ], Object.getOwnPropertyDescriptor(_class2.prototype, "fixedRotation"), _class2.prototype),
-    _applyDecoratedDescriptor(_class2.prototype, "linearFactor", [ _dec1 ], Object.getOwnPropertyDescriptor(_class2.prototype, "linearFactor"), _class2.prototype),
-    _applyDecoratedDescriptor(_class2.prototype, "angularFactor", [ _dec10 ], Object.getOwnPropertyDescriptor(_class2.prototype, "angularFactor"), _class2.prototype),
+    }(cc.Component), _applyDecoratedDescriptor(_class2.prototype, "mass", [ _dec5 ], Object.getOwnPropertyDescriptor(_class2.prototype, "mass"), _class2.prototype), 
+    _applyDecoratedDescriptor(_class2.prototype, "linearDamping", [ _dec6 ], Object.getOwnPropertyDescriptor(_class2.prototype, "linearDamping"), _class2.prototype), 
+    _applyDecoratedDescriptor(_class2.prototype, "angularDamping", [ _dec7 ], Object.getOwnPropertyDescriptor(_class2.prototype, "angularDamping"), _class2.prototype), 
+    _applyDecoratedDescriptor(_class2.prototype, "isKinematic", [ _dec8 ], Object.getOwnPropertyDescriptor(_class2.prototype, "isKinematic"), _class2.prototype), 
+    _applyDecoratedDescriptor(_class2.prototype, "useGravity", [ _dec9 ], Object.getOwnPropertyDescriptor(_class2.prototype, "useGravity"), _class2.prototype), 
+    _applyDecoratedDescriptor(_class2.prototype, "fixedRotation", [ _dec10 ], Object.getOwnPropertyDescriptor(_class2.prototype, "fixedRotation"), _class2.prototype), 
+    _applyDecoratedDescriptor(_class2.prototype, "linearFactor", [ _dec11 ], Object.getOwnPropertyDescriptor(_class2.prototype, "linearFactor"), _class2.prototype), 
+    _applyDecoratedDescriptor(_class2.prototype, "angularFactor", [ _dec12 ], Object.getOwnPropertyDescriptor(_class2.prototype, "angularFactor"), _class2.prototype), 
     _descriptor = _applyDecoratedDescriptor(_class2.prototype, "_mass", [ property ], {
       configurable: true,
       enumerable: true,
@@ -15331,10 +15337,10 @@
         return new Vec3(1, 1, 1);
       }
     }), _class2)) || _class) || _class) || _class) || _class) || _class) || _class);
-  }), {
+  }, {
     "../instance": 77
   } ],
-  76: [ (function(require, module, exports) {
+  76: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     var _physicsManager = require("./physics-manager");
@@ -15359,7 +15365,7 @@
     cc.RigidBody3D = _rigidBodyComponent.RigidBody3D;
     cc.PhysicsRayResult = _physicsRayResult.PhysicsRayResult;
     cc.ConstantForce = _constantForce.ConstantForce;
-  }), {
+  }, {
     "./assets/physics-material": 70,
     "./components/collider/box-collider-component": 71,
     "./components/collider/collider-component": 72,
@@ -15369,7 +15375,7 @@
     "./physics-manager": 79,
     "./physics-ray-result": 80
   } ],
-  77: [ (function(require, module, exports) {
+  77: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.createBoxShape = createBoxShape;
@@ -15389,21 +15395,21 @@
     function createSphereShape(radius) {
       return new _physicsSelector.SphereShape(radius);
     }
-  }), {
+  }, {
     "./physics-selector": 81
   } ],
-  78: [ (function(require, module, exports) {
+  78: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.ERigidBodyType = void 0;
-    var ERigidBodyType = exports.ERigidBodyType = (function(ERigidBodyType) {
+    var ERigidBodyType = exports.ERigidBodyType = function(ERigidBodyType) {
       ERigidBodyType[ERigidBodyType["DYNAMIC"] = 1] = "DYNAMIC";
       ERigidBodyType[ERigidBodyType["STATIC"] = 2] = "STATIC";
       ERigidBodyType[ERigidBodyType["KINEMATIC"] = 4] = "KINEMATIC";
       return ERigidBodyType;
-    })({});
-  }), {} ],
-  79: [ (function(require, module, exports) {
+    }({});
+  }, {} ],
+  79: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.Physics3DManager = void 0;
@@ -15447,12 +15453,12 @@
     }
     function _applyDecoratedDescriptor(i, e, r, n, l) {
       var a = {};
-      return Object.keys(n).forEach((function(i) {
+      return Object.keys(n).forEach(function(i) {
         a[i] = n[i];
-      })), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
-      a = r.slice().reverse().reduce((function(r, n) {
+      }), a.enumerable = !!a.enumerable, a.configurable = !!a.configurable, ("value" in a || a.initializer) && (a.writable = !0), 
+      a = r.slice().reverse().reduce(function(r, n) {
         return n(i, e, r) || r;
-      }), a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
+      }, a), l && void 0 !== a.initializer && (a.value = a.initializer ? a.initializer.call(l) : void 0, 
       a.initializer = void 0), void 0 === a.initializer ? (Object.defineProperty(i, e, a), 
       null) : a;
     }
@@ -15461,7 +15467,7 @@
     }
     var _cc$_decorator = cc._decorator, property = _cc$_decorator.property, ccclass = _cc$_decorator.ccclass;
     var Physics3DManager = exports.Physics3DManager = (_dec = ccclass("cc.Physics3DManager"), 
-    _dec(_class = (_class2 = (function() {
+    _dec(_class = (_class2 = function() {
       function Physics3DManager() {
         this.physicsWorld = void 0;
         this.raycastClosestResult = new _physicsRayResult.PhysicsRayResult();
@@ -15620,7 +15626,7 @@
           return this._material;
         }
       } ]);
-    })(), _descriptor = _applyDecoratedDescriptor(_class2.prototype, "_enabled", [ property ], {
+    }(), _descriptor = _applyDecoratedDescriptor(_class2.prototype, "_enabled", [ property ], {
       configurable: true,
       enumerable: true,
       writable: true,
@@ -15663,12 +15669,12 @@
         return true;
       }
     }), _class2)) || _class);
-  }), {
+  }, {
     "./assets/physics-material": 70,
     "./instance": 77,
     "./physics-ray-result": 80
   } ],
-  80: [ (function(require, module, exports) {
+  80: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.PhysicsRayResult = void 0;
@@ -15699,7 +15705,7 @@
       return ("string" === r ? String : Number)(t);
     }
     var Vec3 = cc.Vec3;
-    var PhysicsRayResult = exports.PhysicsRayResult = (function() {
+    var PhysicsRayResult = exports.PhysicsRayResult = function() {
       function PhysicsRayResult() {
         this._hitPoint = new Vec3();
         this._distance = 0;
@@ -15734,9 +15740,9 @@
           return this._collidier;
         }
       } ]);
-    })();
-  }), {} ],
-  81: [ (function(require, module, exports) {
+    }();
+  }, {} ],
+  81: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.SphereShape = exports.RigidBody = exports.PhysicsWorld = exports.BoxShape = void 0;
@@ -15751,8 +15757,8 @@
       exports.RigidBody = RigidBody = body;
       exports.PhysicsWorld = PhysicsWorld = world;
     }
-  }), {} ],
-  82: [ (function(require, module, exports) {
+  }, {} ],
+  82: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.clearNodeTransformDirtyFlag = clearNodeTransformDirtyFlag;
@@ -15890,8 +15896,8 @@
       }
       return false;
     }
-  }), {} ],
-  83: [ (function(require, module, exports) {
+  }, {} ],
+  83: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = _default;
@@ -15982,11 +15988,11 @@
       return new _vertexData["default"](positions, normals, uvs, indices, minPos, maxPos, boundingRadius);
     }
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../value-types/vec3": 405,
     "./vertex-data": 94
   } ],
-  84: [ (function(require, module, exports) {
+  84: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = _default;
@@ -16134,11 +16140,11 @@
       }
     }
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../value-types/vec3": 405,
     "./vertex-data": 94
   } ],
-  85: [ (function(require, module, exports) {
+  85: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = _default;
@@ -16160,10 +16166,10 @@
       return (0, _cylinder["default"])(0, radius, height, opts);
     }
     module.exports = exports["default"];
-  }), {
+  }, {
     "./cylinder": 86
   } ],
-  86: [ (function(require, module, exports) {
+  86: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = _default;
@@ -16316,11 +16322,11 @@
       }
     }
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../value-types/vec3": 405,
     "./vertex-data": 94
   } ],
-  87: [ (function(require, module, exports) {
+  87: [ function(require, module, exports) {
     "use strict";
     var utils = _interopRequireWildcard(require("./utils"));
     var _box = _interopRequireDefault(require("./box"));
@@ -16338,22 +16344,28 @@
         default: e
       };
     }
-    function _interopRequireWildcard(e, t) {
-      if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap();
-      return (_interopRequireWildcard = function _interopRequireWildcard(e, t) {
-        if (!t && e && e.__esModule) return e;
-        var o, i, f = {
-          __proto__: null,
-          default: e
-        };
-        if (null === e || "object" != typeof e && "function" != typeof e) return f;
-        if (o = t ? n : r) {
-          if (o.has(e)) return o.get(e);
-          o.set(e, f);
-        }
-        for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]);
-        return f;
-      })(e, t);
+    function _getRequireWildcardCache(e) {
+      if ("function" != typeof WeakMap) return null;
+      var r = new WeakMap(), t = new WeakMap();
+      return (_getRequireWildcardCache = function _getRequireWildcardCache(e) {
+        return e ? t : r;
+      })(e);
+    }
+    function _interopRequireWildcard(e, r) {
+      if (!r && e && e.__esModule) return e;
+      if (null === e || "object" != typeof e && "function" != typeof e) return {
+        default: e
+      };
+      var t = _getRequireWildcardCache(r);
+      if (t && t.has(e)) return t.get(e);
+      var n = {
+        __proto__: null
+      }, a = Object.defineProperty && Object.getOwnPropertyDescriptor;
+      for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) {
+        var i = a ? Object.getOwnPropertyDescriptor(e, u) : null;
+        i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u];
+      }
+      return n["default"] = e, t && t.set(e, n), n;
     }
     cc.primitive = Object.assign({
       box: _box["default"],
@@ -16368,7 +16380,7 @@
       PolyhedronType: _polyhedron.PolyhedronType,
       VertexData: _vertexData["default"]
     }, utils);
-  }), {
+  }, {
     "./box": 83,
     "./capsule": 84,
     "./cone": 85,
@@ -16381,7 +16393,7 @@
     "./utils": 93,
     "./vertex-data": 94
   } ],
-  88: [ (function(require, module, exports) {
+  88: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = _default;
@@ -16443,11 +16455,11 @@
       return new _vertexData["default"](positions, normals, uvs, indices, minPos, maxPos, boundingRadius);
     }
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../value-types/vec3": 405,
     "./vertex-data": 94
   } ],
-  89: [ (function(require, module, exports) {
+  89: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.polyhedron = exports.PolyhedronType = void 0;
@@ -16574,12 +16586,12 @@
       var boundingRadius = Math.sqrt(Math.pow(maxPos.x - minPos.x, 2), Math.pow(maxPos.y - minPos.y, 2), Math.pow(maxPos.z - minPos.z, 2));
       return new _vertexData["default"](positions, normals, uvs, indices, minPos, maxPos, boundingRadius);
     };
-  }), {
+  }, {
     "../../value-types": 395,
     "./utils": 93,
     "./vertex-data": 94
   } ],
-  90: [ (function(require, module, exports) {
+  90: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = _default;
@@ -16601,11 +16613,11 @@
       return new _vertexData["default"](positions, normals, uvs, indices, minPos, maxPos, boundingRadius);
     }
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../value-types": 395,
     "./vertex-data": 94
   } ],
-  91: [ (function(require, module, exports) {
+  91: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = _default;
@@ -16659,11 +16671,11 @@
       return new _vertexData["default"](positions, normals, uvs, indices, minPos, maxPos, boundingRadius);
     }
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../value-types": 395,
     "./vertex-data": 94
   } ],
-  92: [ (function(require, module, exports) {
+  92: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = _default;
@@ -16719,11 +16731,11 @@
       return new _vertexData["default"](positions, normals, uvs, indices, minPos, maxPos, boundingRadius);
     }
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../value-types": 395,
     "./vertex-data": 94
   } ],
-  93: [ (function(require, module, exports) {
+  93: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.calcNormals = calcNormals;
@@ -16828,10 +16840,10 @@
       }
       return normals;
     }
-  }), {
+  }, {
     "../../value-types/vec3": 405
   } ],
-  94: [ (function(require, module, exports) {
+  94: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -16852,8 +16864,8 @@
       this.boundingRadius = boundingRadius;
     };
     module.exports = exports["default"];
-  }), {} ],
-  95: [ (function(require, module, exports) {
+  }, {} ],
+  95: [ function(require, module, exports) {
     "use strict";
     var _require = require("../../../animation/animation-curves"), DynamicAnimCurve = _require.DynamicAnimCurve, quickFindIndex = _require.quickFindIndex;
     var JointMatrixCurve = cc.Class({
@@ -16872,10 +16884,10 @@
       }
     });
     module.exports = JointMatrixCurve;
-  }), {
+  }, {
     "../../../animation/animation-curves": 12
   } ],
-  96: [ (function(require, module, exports) {
+  96: [ function(require, module, exports) {
     "use strict";
     var Skeleton = cc.Class({
       name: "cc.Skeleton",
@@ -16925,8 +16937,8 @@
       }
     });
     cc.Skeleton = module.exports = Skeleton;
-  }), {} ],
-  97: [ (function(require, module, exports) {
+  }, {} ],
+  97: [ function(require, module, exports) {
     "use strict";
     var Animation = require("../../components/CCAnimation");
     var Model = require("../CCModel");
@@ -16987,13 +16999,13 @@
       searchClips: false
     });
     cc.SkeletonAnimation = module.exports = SkeletonAnimation;
-  }), {
+  }, {
     "../../components/CCAnimation": 177,
     "../CCModel": 28,
     "./CCSkeletonAnimationClip": 98,
     "fire-path": void 0
   } ],
-  98: [ (function(require, module, exports) {
+  98: [ function(require, module, exports) {
     "use strict";
     var _mat = _interopRequireDefault(require("../../value-types/mat4"));
     function _interopRequireDefault(e) {
@@ -17161,12 +17173,12 @@
       }
     });
     cc.SkeletonAnimationClip = module.exports = SkeletonAnimationClip;
-  }), {
+  }, {
     "../../../animation/animation-clip": 11,
     "../../value-types/mat4": 397,
     "./CCJointMatrixCurve": 95
   } ],
-  99: [ (function(require, module, exports) {
+  99: [ function(require, module, exports) {
     "use strict";
     var _mat = _interopRequireDefault(require("../../value-types/mat4"));
     function _interopRequireDefault(e) {
@@ -17398,14 +17410,14 @@
       }
     });
     cc.SkinnedMeshRenderer = module.exports = SkinnedMeshRenderer;
-  }), {
+  }, {
     "../../../renderer/enums": 423,
     "../../mesh/CCMeshRenderer": 242,
     "../../renderer/render-flow": 324,
     "../../value-types/mat4": 397,
     "./CCSkeleton": 96
   } ],
-  100: [ (function(require, module, exports) {
+  100: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -17420,7 +17432,7 @@
     var SkinnedMeshRenderer = require("./CCSkinnedMeshRenderer");
     var MeshRendererAssembler = require("../../mesh/mesh-renderer");
     var RenderFlow = require("../../renderer/render-flow");
-    var SkinnedMeshRendererAssembler = exports["default"] = (function(_MeshRendererAssemble) {
+    var SkinnedMeshRendererAssembler = exports["default"] = function(_MeshRendererAssemble) {
       function SkinnedMeshRendererAssembler() {
         return _MeshRendererAssemble.apply(this, arguments) || this;
       }
@@ -17431,15 +17443,15 @@
         _MeshRendererAssemble.prototype.fillBuffers.call(this, comp, renderer);
       };
       return SkinnedMeshRendererAssembler;
-    })(MeshRendererAssembler);
+    }(MeshRendererAssembler);
     cc.Assembler.register(SkinnedMeshRenderer, SkinnedMeshRendererAssembler);
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../mesh/mesh-renderer": 245,
     "../../renderer/render-flow": 324,
     "./CCSkinnedMeshRenderer": 99
   } ],
-  101: [ (function(require, module, exports) {
+  101: [ function(require, module, exports) {
     "use strict";
     var utils = require("./platform/utils");
     var debugInfos = require("../../DebugInfos") || {};
@@ -17526,9 +17538,9 @@
       }
     };
     cc._throw = function(error) {
-      utils.callInNextTick((function() {
+      utils.callInNextTick(function() {
         throw error;
-      }));
+      });
     };
     function getTypedFormatter(type) {
       return function() {
@@ -17580,11 +17592,11 @@
         }
       }
     };
-  }), {
+  }, {
     "../../DebugInfos": 1,
     "./platform/utils": 298
   } ],
-  102: [ (function(require, module, exports) {
+  102: [ function(require, module, exports) {
     "use strict";
     var EventTarget = require("./event/event-target");
     var ComponentScheduler = require("./component-scheduler");
@@ -17611,9 +17623,9 @@
       this._nodeActivator = null;
       this._actionManager = null;
       var self = this;
-      game.on(game.EVENT_SHOW, (function() {
+      game.on(game.EVENT_SHOW, function() {
         self._lastUpdate = performance.now();
-      }));
+      });
       game.once(game.EVENT_ENGINE_INITED, this.init, this);
     };
     cc.Director.prototype = {
@@ -17732,9 +17744,9 @@
         scene._load();
         false;
         false;
-        var persistNodeList = Object.keys(game._persistRootNodes).map((function(x) {
+        var persistNodeList = Object.keys(game._persistRootNodes).map(function(x) {
           return game._persistRootNodes[x];
-        }));
+        });
         for (var i = 0; i < persistNodeList.length; i++) {
           var node = persistNodeList[i];
           var existNode = scene.getChildByUuid(node.uuid);
@@ -17770,24 +17782,24 @@
         cc.assertID(scene instanceof cc.Scene || scene instanceof cc.SceneAsset, 1216);
         scene instanceof cc.SceneAsset && (scene = scene.scene);
         scene._load();
-        this.once(cc.Director.EVENT_AFTER_DRAW, (function() {
+        this.once(cc.Director.EVENT_AFTER_DRAW, function() {
           this.runSceneImmediate(scene, onBeforeLoadScene, onLaunched);
-        }), this);
+        }, this);
       },
       loadScene: function loadScene(sceneName, onLaunched, _onUnloaded) {
         if (this._loadingScene) {
           cc.warnID(1208, sceneName, this._loadingScene);
           return false;
         }
-        var bundle = cc.assetManager.bundles.find((function(bundle) {
+        var bundle = cc.assetManager.bundles.find(function(bundle) {
           return bundle.getSceneInfo(sceneName);
-        }));
+        });
         if (bundle) {
           this.emit(cc.Director.EVENT_BEFORE_SCENE_LOADING, sceneName);
           this._loadingScene = sceneName;
           var self = this;
           console.time("LoadScene " + sceneName);
-          bundle.loadScene(sceneName, (function(err, scene) {
+          bundle.loadScene(sceneName, function(err, scene) {
             console.timeEnd("LoadScene " + sceneName);
             self._loadingScene = "";
             if (err) {
@@ -17795,16 +17807,16 @@
               cc.error(err);
               onLaunched && onLaunched(err);
             } else self.runSceneImmediate(scene, _onUnloaded, onLaunched);
-          }));
+          });
           return true;
         }
         cc.errorID(1209, sceneName);
         return false;
       },
       preloadScene: function preloadScene(sceneName, onProgress, onLoaded) {
-        var bundle = cc.assetManager.bundles.find((function(bundle) {
+        var bundle = cc.assetManager.bundles.find(function(bundle) {
           return bundle.getSceneInfo(sceneName);
-        }));
+        });
         if (!bundle) {
           cc.errorID(1209, sceneName);
           return null;
@@ -17937,7 +17949,7 @@
     cc.Director.EVENT_AFTER_PHYSICS = "director_after_physics";
     cc.director = new cc.Director();
     module.exports = cc.director;
-  }), {
+  }, {
     "./CCGame": 103,
     "./CCScheduler": 107,
     "./component-scheduler": 176,
@@ -17947,7 +17959,7 @@
     "./platform/CCObject": 279,
     "./renderer": 323
   } ],
-  103: [ (function(require, module, exports) {
+  103: [ function(require, module, exports) {
     "use strict";
     var EventTarget = require("./event/event-target");
     require("../audio/CCAudioEngine");
@@ -18013,18 +18025,18 @@
         return this._paused;
       },
       restart: function restart() {
-        cc.director.once(cc.Director.EVENT_AFTER_DRAW, (function() {
+        cc.director.once(cc.Director.EVENT_AFTER_DRAW, function() {
           for (var id in game._persistRootNodes) game.removePersistRootNode(game._persistRootNodes[id]);
           cc.director.getScene().destroy();
           cc.Object._deferredDestroy();
           cc.audioEngine && cc.audioEngine.uncacheAll();
           cc.director.reset();
           game.pause();
-          cc.assetManager.builtins.init((function() {
+          cc.assetManager.builtins.init(function() {
             game.onStart();
             game.emit(game.EVENT_RESTART);
-          }));
-        }));
+          });
+        });
       },
       end: function end() {
         close();
@@ -18043,13 +18055,13 @@
         var _this = this;
         this._initEngine();
         this._setAnimFrame();
-        cc.assetManager.builtins.init((function() {
+        cc.assetManager.builtins.init(function() {
           console.log("Cocos Creator v" + cc.ENGINE_VERSION);
           _this._prepared = true;
           _this._runMainLoop();
           _this.emit(_this.EVENT_GAME_INITED);
           cb && cb();
-        }));
+        });
       },
       eventTargetOn: EventTarget.prototype.on,
       eventTargetOnce: EventTarget.prototype.once,
@@ -18065,9 +18077,9 @@
           cb && cb();
           return;
         }
-        this._loadPreviewScript((function() {
+        this._loadPreviewScript(function() {
           _this2._prepareFinished(cb);
-        }));
+        });
       },
       run: function run(config, onStart) {
         this._initConfig(config);
@@ -18126,18 +18138,18 @@
       _stTimeWithRAF: function _stTimeWithRAF(callback) {
         var currTime = performance.now();
         var timeToCall = Math.max(0, game._frameTime - (currTime - game._lastTime));
-        var id = window.setTimeout((function() {
+        var id = window.setTimeout(function() {
           window.requestAnimationFrame(callback);
-        }), timeToCall);
+        }, timeToCall);
         game._lastTime = currTime + timeToCall;
         return id;
       },
       _stTime: function _stTime(callback) {
         var currTime = performance.now();
         var timeToCall = Math.max(0, game._frameTime - (currTime - game._lastTime));
-        var id = window.setTimeout((function() {
+        var id = window.setTimeout(function() {
           callback();
-        }), timeToCall);
+        }, timeToCall);
         game._lastTime = currTime + timeToCall;
         return id;
       },
@@ -18267,11 +18279,11 @@
         }
         if (hiddenPropName) {
           var changeList = [ "visibilitychange", "mozvisibilitychange", "msvisibilitychange", "webkitvisibilitychange", "qbrowserVisibilityChange" ];
-          for (var i = 0; i < changeList.length; i++) document.addEventListener(changeList[i], (function(event) {
+          for (var i = 0; i < changeList.length; i++) document.addEventListener(changeList[i], function(event) {
             var visible = document[hiddenPropName];
             visible = visible || event["hidden"];
             visible ? onHidden() : onShown();
-          }));
+          });
         } else {
           win.addEventListener("blur", onHidden);
           win.addEventListener("focus", onShown);
@@ -18283,25 +18295,25 @@
           document.addEventListener("pagehide", onHidden);
           document.addEventListener("pageshow", onShown);
         }
-        this.on(game.EVENT_HIDE, (function() {
+        this.on(game.EVENT_HIDE, function() {
           game.pause();
-        }));
-        this.on(game.EVENT_SHOW, (function() {
+        });
+        this.on(game.EVENT_SHOW, function() {
           game.resume();
-        }));
+        });
       }
     };
     EventTarget.call(game);
     cc.js.addon(game, EventTarget.prototype);
     cc.game = module.exports = game;
-  }), {
+  }, {
     "../audio/CCAudioEngine": 22,
     "../core/renderer/utils/dynamic-atlas/manager": 326,
     "./CCDebug": 101,
     "./event/event-target": 220,
     "./renderer/index.js": 323
   } ],
-  104: [ (function(require, module, exports) {
+  104: [ function(require, module, exports) {
     "use strict";
     var _valueTypes = require("./value-types");
     var _utils = require("./value-types/utils");
@@ -19274,9 +19286,9 @@
           }
           forDispatch = true;
         }
-        newAdded && !this._activeInHierarchy && cc.director.getScheduler().schedule((function() {
+        newAdded && !this._activeInHierarchy && cc.director.getScheduler().schedule(function() {
           this._activeInHierarchy || eventManager.pauseTarget(this);
-        }), this, 0, 0, 0, false);
+        }, this, 0, 0, 0, false);
         return forDispatch;
       },
       on: function on(type, callback, target, useCapture) {
@@ -19315,9 +19327,9 @@
         var listeners = null;
         listeners = forDispatch && useCapture ? this._capturingListeners = this._capturingListeners || new EventTarget() : this._bubblingListeners = this._bubblingListeners || new EventTarget();
         listeners.once(type, callback, target);
-        listeners.once(type, (function() {
+        listeners.once(type, function() {
           _this.off(type, callback, target);
-        }), void 0);
+        }, void 0);
       },
       _onDispatch: function _onDispatch(type, callback, target, useCapture) {
         if ("boolean" === typeof target) {
@@ -19975,7 +19987,7 @@
     var vec3_tmp;
     false;
     cc.Node = module.exports = Node;
-  }), {
+  }, {
     "./event-manager": 218,
     "./event/event": 221,
     "./event/event-target": 220,
@@ -19989,7 +20001,7 @@
     "./value-types": 395,
     "./value-types/utils": 402
   } ],
-  105: [ (function(require, module, exports) {
+  105: [ function(require, module, exports) {
     "use strict";
     function _createForOfIteratorHelperLoose(r, e) {
       var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
@@ -20116,11 +20128,11 @@
     cc.js.getset(proto, "position", proto.getPosition, proto.setPosition);
     false;
     cc.PrivateNode = module.exports = PrivateNode;
-  }), {
+  }, {
     "./CCNode": 104,
     "./renderer/render-flow": 324
   } ],
-  106: [ (function(require, module, exports) {
+  106: [ function(require, module, exports) {
     "use strict";
     var NIL = function NIL() {};
     cc.Scene = cc.Class({
@@ -20165,10 +20177,10 @@
       }
     });
     module.exports = cc.Scene;
-  }), {
+  }, {
     "./CCNode": 104
   } ],
-  107: [ (function(require, module, exports) {
+  107: [ function(require, module, exports) {
     "use strict";
     var js = require("./platform/js");
     var IdGenerater = require("./platform/id-generater");
@@ -20685,11 +20697,11 @@
     cc.Scheduler.PRIORITY_SYSTEM = 1 << 31;
     cc.Scheduler.PRIORITY_NON_SYSTEM = cc.Scheduler.PRIORITY_SYSTEM + 1;
     module.exports = cc.Scheduler;
-  }), {
+  }, {
     "./platform/id-generater": 291,
     "./platform/js": 295
   } ],
-  108: [ (function(require, module, exports) {
+  108: [ function(require, module, exports) {
     "use strict";
     var preprocess = require("./preprocess");
     var fetch = require("./fetch");
@@ -20832,15 +20844,15 @@
         var depend = dependUtil.getNativeDep(asset._uuid);
         if (depend) {
           if (!bundles.has(depend.bundle)) {
-            var bundle = bundles.find((function(bundle) {
+            var bundle = bundles.find(function(bundle) {
               return bundle.getAssetInfo(asset._uuid);
-            }));
+            });
             bundle && (depend.bundle = bundle.name);
           }
-          this.loadAny(depend, options, (function(err, _native) {
+          this.loadAny(depend, options, function(err, _native) {
             err ? cc.error(err.message, err.stack) : asset.isValid && !asset._nativeAsset && (asset._nativeAsset = _native);
             onComplete && onComplete(err);
-          }));
+          });
         }
       },
       loadRemote: function loadRemote(url, options, onComplete) {
@@ -20850,14 +20862,14 @@
         options.preset = options.preset || "remote";
         this.loadAny({
           url: url
-        }, options, null, (function(err, data) {
+        }, options, null, function(err, data) {
           if (err) {
             cc.error(err.message, err.stack);
             onComplete && onComplete(err, null);
-          } else factory.create(url, data, options.ext || cc.path.extname(url), options, (function(err, out) {
+          } else factory.create(url, data, options.ext || cc.path.extname(url), options, function(err, out) {
             onComplete && onComplete(err, out);
-          }));
-        }));
+          });
+        });
       },
       loadScript: function loadScript(url, options, onComplete) {
         var _parseParameters5 = parseParameters(options, void 0, onComplete), options = _parseParameters5.options, onComplete = _parseParameters5.onComplete;
@@ -20877,14 +20889,14 @@
         releaseManager.tryRelease(asset, true);
       },
       releaseUnusedAssets: function releaseUnusedAssets() {
-        assets.forEach((function(asset) {
+        assets.forEach(function(asset) {
           releaseManager.tryRelease(asset);
-        }));
+        });
       },
       releaseAll: function releaseAll() {
-        assets.forEach((function(asset) {
+        assets.forEach(function(asset) {
           releaseManager.tryRelease(asset, true);
-        }));
+        });
         false;
       },
       _transform: function _transform(input, options) {
@@ -20917,7 +20929,7 @@
       }
     });
     module.exports = cc.assetManager;
-  }), {
+  }, {
     "./builtins": 109,
     "./bundle": 110,
     "./cache": 111,
@@ -20938,7 +20950,7 @@
     "./urlTransformer": 135,
     "./utilities": 136
   } ],
-  109: [ (function(require, module, exports) {
+  109: [ function(require, module, exports) {
     "use strict";
     var Cache = require("./cache");
     var releaseManager = require("./releaseManager");
@@ -20951,41 +20963,41 @@
       _loadBuiltins: function _loadBuiltins(name, cb) {
         var dirname = name + "s";
         var builtin = this._assets.get(name);
-        return cc.assetManager.internal.loadDir(dirname, null, null, (function(err, assets) {
+        return cc.assetManager.internal.loadDir(dirname, null, null, function(err, assets) {
           if (err) cc.error(err.message, err.stack); else for (var i = 0; i < assets.length; i++) {
             var asset = assets[i];
             builtin.add(asset.name, asset.addRef());
           }
           cb();
-        }));
+        });
       },
       init: function init(cb) {
         var _this = this;
         this.clear();
         if (cc.game.renderType === cc.game.RENDER_TYPE_CANVAS || !cc.assetManager.bundles.has(BuiltinBundleName.INTERNAL)) return cb && cb();
-        this._loadBuiltins("effect", (function() {
+        this._loadBuiltins("effect", function() {
           _this._loadBuiltins("material", cb);
-        }));
+        });
       },
       getBuiltin: function getBuiltin(type, name) {
         return 0 === arguments.length ? this._assets : 1 === arguments.length ? this._assets.get(type) : this._assets.get(type).get(name);
       },
       clear: function clear() {
-        this._assets.forEach((function(assets) {
-          assets.forEach((function(asset) {
+        this._assets.forEach(function(assets) {
+          assets.forEach(function(asset) {
             releaseManager.tryRelease(asset, true);
-          }));
+          });
           assets.clear();
-        }));
+        });
       }
     };
     module.exports = builtins;
-  }), {
+  }, {
     "./cache": 111,
     "./releaseManager": 131,
     "./shared": 133
   } ],
-  110: [ (function(require, module, exports) {
+  110: [ function(require, module, exports) {
     "use strict";
     var Config = require("./config");
     var releaseManager = require("./releaseManager");
@@ -21061,7 +21073,7 @@
         options.bundle = this.name;
         cc.assetManager.loadAny({
           scene: sceneName
-        }, options, onProgress, (function(err, sceneAsset) {
+        }, options, onProgress, function(err, sceneAsset) {
           if (err) {
             cc.error(err.message, err.stack);
             onComplete && onComplete(err);
@@ -21071,17 +21083,17 @@
             scene._name = sceneAsset._name;
             onComplete && onComplete(null, sceneAsset);
           } else onComplete && onComplete(new Error("The asset " + sceneAsset._uuid + " is not a scene"));
-        }));
+        });
       },
       preloadScene: function preloadScene(sceneName, options, onProgress, onComplete) {
         var _parseParameters2 = parseParameters(options, onProgress, onComplete), options = _parseParameters2.options, onProgress = _parseParameters2.onProgress, onComplete = _parseParameters2.onComplete;
         options.bundle = this.name;
         cc.assetManager.preloadAny({
           scene: sceneName
-        }, options, onProgress, (function(err) {
+        }, options, onProgress, function(err) {
           err && cc.errorID(1210, sceneName, err.message);
           onComplete && onComplete(err);
-        }));
+        });
       },
       get: function get(path, type) {
         var info = this.getInfoWithPath(path, type);
@@ -21092,30 +21104,30 @@
       },
       releaseUnusedAssets: function releaseUnusedAssets() {
         var self = this;
-        assets.forEach((function(asset) {
+        assets.forEach(function(asset) {
           var info = self.getAssetInfo(asset._uuid);
           info && !info.redirect && releaseManager.tryRelease(asset);
-        }));
+        });
       },
       releaseAll: function releaseAll() {
         var self = this;
-        assets.forEach((function(asset) {
+        assets.forEach(function(asset) {
           var info = self.getAssetInfo(asset._uuid);
           info && !info.redirect && releaseManager.tryRelease(asset, true);
-        }));
+        });
       },
       _destroy: function _destroy() {
         this._config.destroy();
       }
     };
     module.exports = Bundle;
-  }), {
+  }, {
     "./config": 112,
     "./releaseManager": 131,
     "./shared": 133,
     "./utilities": 136
   } ],
-  111: [ (function(require, module, exports) {
+  111: [ function(require, module, exports) {
     "use strict";
     var js = require("../platform/js");
     function Cache(map) {
@@ -21168,10 +21180,10 @@
       }
     };
     module.exports = Cache;
-  }), {
+  }, {
     "../platform/js": 295
   } ],
-  112: [ (function(require, module, exports) {
+  112: [ function(require, module, exports) {
     "use strict";
     var js = require("../platform/js");
     var Cache = require("./cache");
@@ -21308,12 +21320,12 @@
           }
           return true;
         }
-        this.paths.forEach((function(items, p) {
+        this.paths.forEach(function(items, p) {
           if (p.startsWith(path) && isMatchByWord(p, path) || !path) for (var i = 0, l = items.length; i < l; i++) {
             var entry = items[i];
             type && !js.isChildClassOf(entry.ctor, type) || infos.push(entry);
           }
-        }));
+        });
         return infos;
       },
       getAssetInfo: function getAssetInfo(uuid) {
@@ -21322,9 +21334,9 @@
       getSceneInfo: function getSceneInfo(name) {
         name.endsWith(".fire") || (name += ".fire");
         "/" === name[0] || name.startsWith("db://") || (name = "/" + name);
-        var info = this.scenes.find((function(val, key) {
+        var info = this.scenes.find(function(val, key) {
           return key.endsWith(name);
-        }));
+        });
         return info;
       },
       destroy: function destroy() {
@@ -21335,31 +21347,37 @@
     };
     false;
     module.exports = Config;
-  }), {
+  }, {
     "../platform/js": 295,
     "./cache": 111,
     "./helper": 124,
     "./utilities": 136
   } ],
-  113: [ (function(require, module, exports) {
+  113: [ function(require, module, exports) {
     "use strict";
     var _deserializeCompiled = _interopRequireWildcard(require("../platform/deserialize-compiled"));
-    function _interopRequireWildcard(e, t) {
-      if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap();
-      return (_interopRequireWildcard = function _interopRequireWildcard(e, t) {
-        if (!t && e && e.__esModule) return e;
-        var o, i, f = {
-          __proto__: null,
-          default: e
-        };
-        if (null === e || "object" != typeof e && "function" != typeof e) return f;
-        if (o = t ? n : r) {
-          if (o.has(e)) return o.get(e);
-          o.set(e, f);
-        }
-        for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]);
-        return f;
-      })(e, t);
+    function _getRequireWildcardCache(e) {
+      if ("function" != typeof WeakMap) return null;
+      var r = new WeakMap(), t = new WeakMap();
+      return (_getRequireWildcardCache = function _getRequireWildcardCache(e) {
+        return e ? t : r;
+      })(e);
+    }
+    function _interopRequireWildcard(e, r) {
+      if (!r && e && e.__esModule) return e;
+      if (null === e || "object" != typeof e && "function" != typeof e) return {
+        default: e
+      };
+      var t = _getRequireWildcardCache(r);
+      if (t && t.has(e)) return t.get(e);
+      var n = {
+        __proto__: null
+      }, a = Object.defineProperty && Object.getOwnPropertyDescriptor;
+      for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) {
+        var i = a ? Object.getOwnPropertyDescriptor(e, u) : null;
+        i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u];
+      }
+      return n["default"] = e, t && t.set(e, n), n;
     }
     var Cache = require("./cache");
     var deserialize = require("./deserialize");
@@ -21440,9 +21458,9 @@
       _parseDepsFromJson: (false, function(json) {
         if (_deserializeCompiled["default"].isCompiledJson(json)) {
           var _depends = (0, _deserializeCompiled.getDependUuidList)(json);
-          _depends.forEach((function(uuid, index) {
+          _depends.forEach(function(uuid, index) {
             return _depends[index] = cc.assetManager.utils.decodeUuid(uuid);
-          }));
+          });
           return _depends;
         }
         var depends = [];
@@ -21456,13 +21474,13 @@
       })
     };
     module.exports = dependUtil;
-  }), {
+  }, {
     "../platform/deserialize-compiled": 288,
     "./cache": 111,
     "./deserialize": 115,
     "./shared": 133
   } ],
-  114: [ (function(require, module, exports) {
+  114: [ function(require, module, exports) {
     "use strict";
     var js = require("../platform/js");
     require("../CCDirector");
@@ -21481,9 +21499,9 @@
       transformURL: function transformURL(url) {
         var uuid = helper.getUuidFromURL(url);
         if (!uuid) return url;
-        var bundle = cc.assetManager.bundles.find((function(b) {
+        var bundle = cc.assetManager.bundles.find(function(b) {
           return !!b.getAssetInfo(uuid);
-        }));
+        });
         if (!bundle) return url;
         var hashValue = "";
         var info = bundle.getAssetInfo(uuid);
@@ -21495,9 +21513,9 @@
           var dirname = cc.path.dirname(url);
           var basename = cc.path.basename(url);
           url = dirname + "." + hashValue + "/" + basename;
-        } else url = url.replace(/.*[/\\][0-9a-fA-F]{2}[/\\]([0-9a-fA-F-]{8,})/, (function(match, uuid) {
+        } else url = url.replace(/.*[/\\][0-9a-fA-F]{2}[/\\]([0-9a-fA-F-]{8,})/, function(match, uuid) {
           return match + "." + hashValue;
-        }));
+        });
         return url;
       }
     };
@@ -21528,10 +21546,10 @@
         }
         var images = [];
         var audios = [];
-        cc.assetManager.loadAny(resources, null, (function(finish, total, item) {
+        cc.assetManager.loadAny(resources, null, function(finish, total, item) {
           item.content && (ImageFmts.includes(item.ext) ? images.push(item.content) : AudioFmts.includes(item.ext) && audios.push(item.content));
           progressCallback && progressCallback(finish, total, item);
-        }), (function(err, _native) {
+        }, function(err, _native) {
           var res = null;
           if (!err) {
             _native = Array.isArray(_native) ? _native : [ _native ];
@@ -21540,19 +21558,19 @@
               if (!(item instanceof cc.Asset)) {
                 var asset = item;
                 var url = resources[i].url;
-                images.includes(asset) ? factory.create(url, item, ".png", null, (function(err, image) {
+                images.includes(asset) ? factory.create(url, item, ".png", null, function(err, image) {
                   asset = _native[i] = image;
-                })) : audios.includes(asset) && factory.create(url, item, ".mp3", null, (function(err, audio) {
+                }) : audios.includes(asset) && factory.create(url, item, ".mp3", null, function(err, audio) {
                   asset = _native[i] = audio;
-                }));
+                });
                 cc.assetManager.assets.add(url, asset);
               }
             }
             if (_native.length > 1) {
               var map = Object.create(null);
-              _native.forEach((function(asset) {
+              _native.forEach(function(asset) {
                 map[asset._uuid] = asset;
-              }));
+              });
               res = {
                 isCompleted: GetTrue,
                 _map: map
@@ -21560,7 +21578,7 @@
             } else res = _native[0];
           }
           completeCallback && completeCallback(err, res);
-        }));
+        });
       },
       getXMLHttpRequest: function getXMLHttpRequest() {
         return new XMLHttpRequest();
@@ -21579,24 +21597,24 @@
       },
       loadResArray: function loadResArray(urls, type, progressCallback, completeCallback) {
         var _this$_parseLoadResAr2 = this._parseLoadResArgs(type, progressCallback, completeCallback), type = _this$_parseLoadResAr2.type, onProgress = _this$_parseLoadResAr2.onProgress, onComplete = _this$_parseLoadResAr2.onComplete;
-        urls.forEach((function(url, i) {
+        urls.forEach(function(url, i) {
           var extname = cc.path.extname(url);
           extname && (urls[i] = url.slice(0, -extname.length));
-        }));
+        });
         cc.resources.load(urls, type, onProgress, onComplete);
       },
       loadResDir: function loadResDir(url, type, progressCallback, completeCallback) {
         var _this$_parseLoadResAr3 = this._parseLoadResArgs(type, progressCallback, completeCallback), type = _this$_parseLoadResAr3.type, onProgress = _this$_parseLoadResAr3.onProgress, onComplete = _this$_parseLoadResAr3.onComplete;
-        cc.resources.loadDir(url, type, onProgress, (function(err, assets) {
+        cc.resources.loadDir(url, type, onProgress, function(err, assets) {
           var urls = [];
           if (!err) {
             var infos = cc.resources.getDirWithPath(url, type);
-            urls = infos.map((function(info) {
+            urls = infos.map(function(info) {
               return info.path;
-            }));
+            });
           }
           onComplete && onComplete(err, assets, urls);
-        }));
+        });
       },
       getRes: function getRes(url, type) {
         return cc.assetManager.assets.has(url) ? cc.assetManager.assets.get(url) : cc.resources.get(url, type);
@@ -21657,20 +21675,20 @@
         if (Array.isArray(asset)) for (var i = 0; i < asset.length; i++) {
           var key = asset[i];
           "string" === typeof key && (key = cc.assetManager.assets.get(key));
-          var isBuiltin = cc.assetManager.builtins._assets.find((function(assets) {
-            return assets.find((function(builtinAsset) {
+          var isBuiltin = cc.assetManager.builtins._assets.find(function(assets) {
+            return assets.find(function(builtinAsset) {
               return builtinAsset === key;
-            }));
-          }));
+            });
+          });
           if (isBuiltin) continue;
           cc.assetManager.releaseAsset(key);
         } else if (asset) {
           "string" === typeof asset && (asset = cc.assetManager.assets.get(asset));
-          var _isBuiltin = cc.assetManager.builtins._assets.find((function(assets) {
-            return assets.find((function(builtinAsset) {
+          var _isBuiltin = cc.assetManager.builtins._assets.find(function(assets) {
+            return assets.find(function(builtinAsset) {
               return builtinAsset === asset;
-            }));
-          }));
+            });
+          });
           if (_isBuiltin) return;
           cc.assetManager.releaseAsset(asset);
         }
@@ -21817,9 +21835,9 @@
       _sceneInfos: {
         get: function get() {
           var scenes = [];
-          cc.assetManager.main._config.scenes.forEach((function(val) {
+          cc.assetManager.main._config.scenes.forEach(function(val) {
             scenes.push(val);
-          }));
+          });
           return scenes;
         }
       }
@@ -21843,7 +21861,7 @@
         }
       }
     };
-  }), {
+  }, {
     "../CCDirector": 102,
     "../platform/js": 295,
     "./depend-util": 113,
@@ -21853,7 +21871,7 @@
     "./releaseManager": 131,
     "./utilities": 136
   } ],
-  115: [ (function(require, module, exports) {
+  115: [ function(require, module, exports) {
     "use strict";
     var helper = require("./helper");
     var MissingClass = false;
@@ -21897,13 +21915,13 @@
       return asset;
     }
     module.exports = deserialize;
-  }), {
+  }, {
     "../platform/deserialize": 290,
     "../platform/deserialize-compiled": 288,
     "../platform/deserialize-editor": 289,
     "./helper": 124
   } ],
-  116: [ (function(require, module, exports) {
+  116: [ function(require, module, exports) {
     "use strict";
     var __audioSupport = cc.sys.__audioSupport;
     var _require = require("./utilities"), parseParameters = _require.parseParameters;
@@ -21917,9 +21935,9 @@
         dom.removeEventListener("error", failure, false);
         __audioSupport.USE_LOADER_EVENT && dom.removeEventListener(__audioSupport.USE_LOADER_EVENT, success, false);
       };
-      var timer = setTimeout((function() {
+      var timer = setTimeout(function() {
         0 === dom.readyState ? failure() : success();
-      }), 8e3);
+      }, 8e3);
       var success = function success() {
         clearEvent();
         onComplete && onComplete(null, dom);
@@ -21936,10 +21954,10 @@
       return dom;
     }
     module.exports = downloadDomAudio;
-  }), {
+  }, {
     "./utilities": 136
   } ],
-  117: [ (function(require, module, exports) {
+  117: [ function(require, module, exports) {
     "use strict";
     var _require = require("./utilities"), parseParameters = _require.parseParameters;
     function downloadDomImage(url, options, onComplete) {
@@ -21962,10 +21980,10 @@
       return img;
     }
     module.exports = downloadDomImage;
-  }), {
+  }, {
     "./utilities": 136
   } ],
-  118: [ (function(require, module, exports) {
+  118: [ function(require, module, exports) {
     "use strict";
     var _require = require("./utilities"), parseParameters = _require.parseParameters;
     function downloadFile(url, options, onProgress, onComplete) {
@@ -21996,10 +22014,10 @@
       return xhr;
     }
     module.exports = downloadFile;
-  }), {
+  }, {
     "./utilities": 136
   } ],
-  119: [ (function(require, module, exports) {
+  119: [ function(require, module, exports) {
     "use strict";
     var _require = require("./utilities"), parseParameters = _require.parseParameters;
     var downloaded = {};
@@ -22028,10 +22046,10 @@
       d.body.appendChild(s);
     }
     module.exports = downloadScript;
-  }), {
+  }, {
     "./utilities": 136
   } ],
-  120: [ (function(require, module, exports) {
+  120: [ function(require, module, exports) {
     "use strict";
     var js = require("../platform/js");
     var debug = require("../CCDebug");
@@ -22064,14 +22082,14 @@
     };
     var downloadJson = function downloadJson(url, options, onComplete) {
       options.responseType = "json";
-      downloadFile(url, options, options.onFileProgress, (function(err, data) {
+      downloadFile(url, options, options.onFileProgress, function(err, data) {
         if (!err && "string" === typeof data) try {
           data = JSON.parse(data);
         } catch (e) {
           err = e;
         }
         onComplete && onComplete(err, data);
-      }));
+      });
     };
     var downloadArrayBuffer = function downloadArrayBuffer(url, options, onComplete) {
       options.responseType = "arraybuffer";
@@ -22092,19 +22110,19 @@
       var count = 0;
       var config = url + "/config." + (version ? version + "." : "") + "json";
       var out = null, error = null;
-      downloadJson(config, options, (function(err, response) {
+      downloadJson(config, options, function(err, response) {
         err && (error = err);
         out = response;
         out && (out.base = url + "/");
         count++;
         2 === count && onComplete(error, out);
-      }));
+      });
       var js = url + "/index." + (version ? version + "." : "") + "js";
-      downloadScript(js, options, (function(err) {
+      downloadScript(js, options, function(err) {
         err && (error = err);
         count++;
         2 === count && onComplete(error, out);
-      }));
+      });
     };
     var _downloading = new Cache();
     var _queue = [];
@@ -22126,9 +22144,9 @@
       updateTime();
       while (_queue.length > 0 && _totalNum < maxConcurrency && _totalNumThisPeriod < maxRequestsPerFrame) {
         if (_queueDirty) {
-          _queue.sort((function(a, b) {
+          _queue.sort(function(a, b) {
             return a.priority - b.priority;
-          }));
+          });
           _queueDirty = false;
         }
         var nextOne = _queue.pop();
@@ -22191,14 +22209,14 @@
             if (!self.limited) return func(urlAppendTimestamp(url), options, callback);
             updateTime();
             function invoke() {
-              func(urlAppendTimestamp(url), options, (function() {
+              func(urlAppendTimestamp(url), options, function() {
                 _totalNum--;
                 if (!_checkNextPeriod && _queue.length > 0) {
                   callInNextTick(_handleQueue, maxConcurrency, maxRequestsPerFrame);
                   _checkNextPeriod = true;
                 }
                 callback.apply(this, arguments);
-              }));
+              });
             }
             if (_totalNum < maxConcurrency && _totalNumThisPeriod < maxRequestsPerFrame) {
               invoke();
@@ -22280,7 +22298,7 @@
     };
     downloader._downloaders = downloaders;
     module.exports = downloader;
-  }), {
+  }, {
     "../CCDebug": 101,
     "../platform/CCSys": 282,
     "../platform/js": 295,
@@ -22294,7 +22312,7 @@
     "./shared": 133,
     "./utilities": 136
   } ],
-  121: [ (function(require, module, exports) {
+  121: [ function(require, module, exports) {
     "use strict";
     var Bundle = require("./bundle");
     var Cache = require("./cache");
@@ -22370,14 +22388,14 @@
         var asset, creating;
         if (asset = assets.get(id)) onComplete(null, asset); else if (creating = _creating.get(id)) creating.push(onComplete); else {
           _creating.add(id, [ onComplete ]);
-          func(id, data, options, (function(err, data) {
+          func(id, data, options, function(err, data) {
             if (!err && data instanceof cc.Asset) {
               data._uuid = id;
               assets.add(id, data);
             }
             var callbacks = _creating.remove(id);
             for (var i = 0, l = callbacks.length; i < l; i++) callbacks[i](err, data);
-          }));
+          });
         }
       }
     };
@@ -22429,12 +22447,12 @@
       default: createAsset
     };
     module.exports = factory;
-  }), {
+  }, {
     "./bundle": 110,
     "./cache": 111,
     "./shared": 133
   } ],
-  122: [ (function(require, module, exports) {
+  122: [ function(require, module, exports) {
     "use strict";
     var packManager = require("./pack-manager");
     var Task = require("./task");
@@ -22453,14 +22471,14 @@
       var options = task.options, depends = [], progress = task.progress, total = progress.total;
       options.__exclude__ = options.__exclude__ || Object.create(null);
       task.output = [];
-      forEach(task.input, (function(item, cb) {
+      forEach(task.input, function(item, cb) {
         if (!item.isNative && assets.has(item.uuid)) {
           var asset = assets.get(item.uuid);
           asset.addRef();
           handle(item, task, asset, null, asset.__asyncLoadAssets__, depends, total, done);
           return cb();
         }
-        packManager.load(item, task.options, (function(err, data) {
+        packManager.load(item, task.options, function(err, data) {
           if (err) {
             if (!task.isFinish) if (!cc.assetManager.force || firstTask) {
               cc.error(err.message, err.stack);
@@ -22469,8 +22487,8 @@
             } else handle(item, task, null, null, false, depends, total, done);
           } else task.isFinish || handle(item, task, null, data, !item.isNative, depends, total, done);
           cb();
-        }));
-      }), (function() {
+        });
+      }, function() {
         if (task.isFinish) {
           clear(task, true);
           return task.dispatch("error");
@@ -22497,7 +22515,7 @@
         }
         firstTask && decreaseRef(task);
         done();
-      }));
+      });
     }
     function decreaseRef(task) {
       var output = task.output;
@@ -22517,13 +22535,13 @@
       progress.canInvoke && task.dispatch("progress", ++progress.finish, progress.total, item);
     }
     module.exports = fetch;
-  }), {
+  }, {
     "./pack-manager": 127,
     "./shared": 133,
     "./task": 134,
     "./utilities": 136
   } ],
-  123: [ (function(require, module, exports) {
+  123: [ function(require, module, exports) {
     "use strict";
     var textUtils = require("../utils/text-utils");
     var _canvasContext = null;
@@ -22532,7 +22550,7 @@
     var _intervalId = -1;
     var _loadingFonts = [];
     var _timeout = 3e3;
-    var useNativeCheck = (function() {
+    var useNativeCheck = function() {
       var nativeCheck = void 0;
       return function() {
         if (void 0 === nativeCheck) if (!window.FontFace) nativeCheck = false; else {
@@ -22542,7 +22560,7 @@
         }
         return nativeCheck;
       };
-    })();
+    }();
     function _checkFontLoaded() {
       var allFontsLoaded = true;
       var now = Date.now();
@@ -22573,27 +22591,27 @@
       var loader = new Promise(function(resolve, reject) {
         var _check = function check() {
           var now = Date.now();
-          now - start >= _timeout ? reject() : document.fonts.load("40px " + font).then((function(fonts) {
+          now - start >= _timeout ? reject() : document.fonts.load("40px " + font).then(function(fonts) {
             fonts.length >= 1 ? resolve() : setTimeout(_check, 100);
-          }), (function() {
+          }, function() {
             reject();
-          }));
+          });
         };
         _check();
       });
       var timeoutId = null, timer = new Promise(function(resolve, reject) {
         timeoutId = setTimeout(reject, _timeout);
       });
-      Promise.race([ timer, loader ]).then((function() {
+      Promise.race([ timer, loader ]).then(function() {
         if (timeoutId) {
           clearTimeout(timeoutId);
           timeoutId = null;
         }
         callback(null, font);
-      }), (function() {
+      }, function() {
         cc.warnID(4933, font);
         callback(null, font);
-      }));
+      });
     }
     var fontLoader = {
       loadFont: function loadFont(url, options, onComplete) {
@@ -22646,29 +22664,29 @@
       }
     };
     module.exports = fontLoader;
-  }), {
+  }, {
     "../utils/text-utils": 387
   } ],
-  124: [ (function(require, module, exports) {
+  124: [ function(require, module, exports) {
     "use strict";
     var _require = require("./shared"), bundles = _require.bundles;
     var helper = {
       decodeUuid: require("../utils/decode-uuid"),
-      getUuidFromURL: (function() {
+      getUuidFromURL: function() {
         var _uuidRegex = /.*[/\\][0-9a-fA-F]{2}[/\\]([0-9a-fA-F-]{8,})/;
         return function(url) {
           var matches = url.match(_uuidRegex);
           if (matches) return matches[1];
           return "";
         };
-      })(),
+      }(),
       getUrlWithUuid: function getUrlWithUuid(uuid, options) {
         options = options || Object.create(null);
         options.__isNative__ = options.isNative;
         options.ext = options.nativeExt;
-        var bundle = bundles.find((function(bundle) {
+        var bundle = bundles.find(function(bundle) {
           return bundle.getAssetInfo(uuid);
-        }));
+        });
         bundle && (options.bundle = bundle.name);
         return cc.assetManager._transform(uuid, options);
       },
@@ -22681,19 +22699,19 @@
       }
     };
     module.exports = helper;
-  }), {
+  }, {
     "../utils/decode-uuid": 375,
     "./shared": 133
   } ],
-  125: [ (function(require, module, exports) {
+  125: [ function(require, module, exports) {
     "use strict";
     require("./deprecated");
     require("./CCAssetManager");
-  }), {
+  }, {
     "./CCAssetManager": 108,
     "./deprecated": 114
   } ],
-  126: [ (function(require, module, exports) {
+  126: [ function(require, module, exports) {
     "use strict";
     var packManager = require("./pack-manager");
     var Pipeline = require("./pipeline");
@@ -22714,7 +22732,7 @@
       var options = task.options, progress = task.progress;
       options.__exclude__ = options.__exclude__ || Object.create(null);
       task.output = [];
-      forEach(task.input, (function(item, cb) {
+      forEach(task.input, function(item, cb) {
         var subTask = Task.create({
           input: item,
           onProgress: task.onProgress,
@@ -22733,7 +22751,7 @@
           }
         });
         loadOneAssetPipeline.async(subTask);
-      }), (function() {
+      }, function() {
         options.__exclude__ = null;
         if (task.isFinish) {
           clear(task, true);
@@ -22742,28 +22760,28 @@
         gatherAsset(task);
         clear(task, true);
         done();
-      }));
+      });
     }
     var loadOneAssetPipeline = new Pipeline("loadOneAsset", [ function fetch(task, done) {
       var item = task.output = task.input;
       var options = item.options, isNative = item.isNative, uuid = item.uuid, file = item.file;
       var reload = options.reload;
       if (file || !reload && !isNative && assets.has(uuid)) return done();
-      packManager.load(item, task.options, (function(err, data) {
+      packManager.load(item, task.options, function(err, data) {
         item.file = data;
         done(err);
-      }));
+      });
     }, function parse(task, done) {
       var item = task.output = task.input, progress = task.progress, exclude = task.options.__exclude__;
       var id = item.id, file = item.file, options = item.options;
-      if (item.isNative) parser.parse(id, file, item.ext, options, (function(err, asset) {
+      if (item.isNative) parser.parse(id, file, item.ext, options, function(err, asset) {
         if (err) return done(err);
         item.content = asset;
         progress.canInvoke && task.dispatch("progress", ++progress.finish, progress.total, item);
         files.remove(id);
         parsed.remove(id);
         done();
-      })); else {
+      }); else {
         var uuid = item.uuid;
         if (uuid in exclude) {
           var _exclude$uuid = exclude[uuid], finish = _exclude$uuid.finish, content = _exclude$uuid.content, err = _exclude$uuid.err, callbacks = _exclude$uuid.callbacks;
@@ -22783,11 +22801,11 @@
             progress.canInvoke && task.dispatch("progress", ++progress.finish, progress.total, item);
             done();
           } else loadDepends(task, asset, done, false);
-        } else parser.parse(id, file, "import", options, (function(err, asset) {
+        } else parser.parse(id, file, "import", options, function(err, asset) {
           if (err) return done(err);
           asset._uuid = uuid;
           loadDepends(task, asset, done, true);
-        }));
+        });
       }
     } ]);
     function loadDepends(task, asset, done, init) {
@@ -22859,7 +22877,7 @@
       pipeline.async(subTask);
     }
     module.exports = load;
-  }), {
+  }, {
     "./pack-manager": 127,
     "./parser": 128,
     "./pipeline": 129,
@@ -22867,7 +22885,7 @@
     "./task": 134,
     "./utilities": 136
   } ],
-  127: [ (function(require, module, exports) {
+  127: [ function(require, module, exports) {
     "use strict";
     var _deserializeCompiled = require("../platform/deserialize-compiled");
     var downloader = require("./downloader");
@@ -22935,10 +22953,10 @@
           ext: pack.ext,
           bundle: item.config.name
         });
-        downloader.download(pack.uuid, url, pack.ext, item.options, (function(err, data) {
+        downloader.download(pack.uuid, url, pack.ext, item.options, function(err, data) {
           files.remove(pack.uuid);
           err && cc.error(err.message, err.stack);
-          packManager.unpack(pack.packs, data, pack.ext, item.options, (function(err, result) {
+          packManager.unpack(pack.packs, data, pack.ext, item.options, function(err, result) {
             if (err) err.message = "unpack " + url + " failed! details: " + err.message; else for (var id in result) files.add(id, result[id]);
             var callbacks = _loading.remove(pack.uuid);
             for (var i = 0, l = callbacks.length; i < l; i++) {
@@ -22950,22 +22968,22 @@
               var data = result[cb.id];
               data ? cb.onComplete(null, data) : cb.onComplete(new Error("can not retrieve data from package"));
             }
-          }));
-        }));
+          });
+        });
       }
     };
     var unpackers = {
       ".json": packManager.unpackJson
     };
     module.exports = packManager;
-  }), {
+  }, {
     "../platform/deserialize-compiled": 288,
     "../platform/js": 295,
     "./cache": 111,
     "./downloader": 120,
     "./shared": 133
   } ],
-  128: [ (function(require, module, exports) {
+  128: [ function(require, module, exports) {
     "use strict";
     var plistParser = require("../platform/CCSAXParser").plistParser;
     var js = require("../platform/js");
@@ -22981,23 +22999,23 @@
           var imageOptions = {};
           imageOptions.imageOrientation = options.__flipY__ ? "flipY" : "none";
           imageOptions.premultiplyAlpha = options.__premultiplyAlpha__ ? "premultiply" : "none";
-          createImageBitmap(file, imageOptions).then((function(result) {
+          createImageBitmap(file, imageOptions).then(function(result) {
             result.flipY = !!options.__flipY__;
             result.premultiplyAlpha = !!options.__premultiplyAlpha__;
             onComplete && onComplete(null, result);
-          }), (function(err) {
+          }, function(err) {
             onComplete && onComplete(err, null);
-          }));
+          });
         } else onComplete && onComplete(null, file);
       },
       parseAudio: function parseAudio(file, options, onComplete) {
-        file instanceof ArrayBuffer ? __audioSupport.context.decodeAudioData(file, (function(buffer) {
+        file instanceof ArrayBuffer ? __audioSupport.context.decodeAudioData(file, function(buffer) {
           onComplete && onComplete(null, buffer);
-        }), (function(e) {
+        }, function(e) {
           onComplete && onComplete(e, null);
-        })) : onComplete && onComplete(null, file);
+        }) : onComplete && onComplete(null, file);
       },
-      parsePVRTex: (function() {
+      parsePVRTex: function() {
         var PVR_HEADER_LENGTH = 13;
         var PVR_MAGIC = 55727696;
         var PVR_HEADER_MAGIC = 0;
@@ -23027,8 +23045,8 @@
           }
           onComplete && onComplete(err, out);
         };
-      })(),
-      parsePKMTex: (function() {
+      }(),
+      parsePKMTex: function() {
         var ETC_PKM_HEADER_SIZE = 16;
         var ETC_PKM_FORMAT_OFFSET = 6;
         var ETC_PKM_ENCODED_WIDTH_OFFSET = 8;
@@ -23064,8 +23082,8 @@
           }
           onComplete && onComplete(err, out);
         };
-      })(),
-      parseASTCTex: (function() {
+      }(),
+      parseASTCTex: function() {
         var ASTC_MAGIC = 1554098963;
         var ASTC_HEADER_LENGTH = 16;
         var ASTC_HEADER_MAGIC = 4;
@@ -23125,7 +23143,7 @@
           }
           onComplete(err, out);
         };
-      })(),
+      }(),
       parsePlist: function parsePlist(file, options, onComplete) {
         var err = null;
         var result = plistParser.parse(file);
@@ -23152,11 +23170,11 @@
         var parsedAsset, parsing, parseHandler;
         if (parsedAsset = parsed.get(id)) onComplete(null, parsedAsset); else if (parsing = _parsing.get(id)) parsing.push(onComplete); else if (parseHandler = parsers[type]) {
           _parsing.add(id, [ onComplete ]);
-          parseHandler(file, options, (function(err, data) {
+          parseHandler(file, options, function(err, data) {
             err ? files.remove(id) : isScene(data) || parsed.add(id, data);
             var callbacks = _parsing.remove(id);
             for (var i = 0, l = callbacks.length; i < l; i++) callbacks[i](err, data);
-          }));
+          });
         } else onComplete(null, file);
       }
     };
@@ -23181,7 +23199,7 @@
       import: parser.parseImport
     };
     module.exports = parser;
-  }), {
+  }, {
     "../platform/CCSAXParser": 280,
     "../platform/CCSys": 282,
     "../platform/js": 295,
@@ -23190,7 +23208,7 @@
     "./helper": 124,
     "./shared": 133
   } ],
-  129: [ (function(require, module, exports) {
+  129: [ function(require, module, exports) {
     "use strict";
     var Task = require("./task");
     var _pipelineId = 0;
@@ -23261,7 +23279,7 @@
       _flow: function _flow(index, task) {
         var self = this;
         var pipe = this.pipes[index];
-        pipe(task, (function(result) {
+        pipe(task, function(result) {
           if (result) {
             task._isFinish = true;
             task.onComplete && task.onComplete(result);
@@ -23276,14 +23294,14 @@
               task.onComplete && task.onComplete(result, task.output);
             }
           }
-        }));
+        });
       }
     };
     module.exports = Pipeline;
-  }), {
+  }, {
     "./task": 134
   } ],
-  130: [ (function(require, module, exports) {
+  130: [ function(require, module, exports) {
     "use strict";
     var Task = require("./task");
     var _require = require("./shared"), transformPipeline = _require.transformPipeline, RequestType = _require.RequestType;
@@ -23332,11 +23350,11 @@
       done(err);
     }
     module.exports = preprocess;
-  }), {
+  }, {
     "./shared": 133,
     "./task": 134
   } ],
-  131: [ (function(require, module, exports) {
+  131: [ function(require, module, exports) {
     "use strict";
     var dependUtil = require("./depend-util");
     var Cache = require("./cache");
@@ -23398,9 +23416,9 @@
     var eventListener = false;
     function freeAssets() {
       eventListener = false;
-      _toDelete.forEach((function(asset) {
+      _toDelete.forEach(function(asset) {
         releaseManager._free(asset);
-      }));
+      });
       _toDelete.clear();
     }
     var releaseManager = {
@@ -23484,14 +23502,14 @@
       }
     };
     module.exports = releaseManager;
-  }), {
+  }, {
     "../assets/CCAsset": 137,
     "../platform/utils": 298,
     "./cache": 111,
     "./depend-util": 113,
     "./shared": 133
   } ],
-  132: [ (function(require, module, exports) {
+  132: [ function(require, module, exports) {
     "use strict";
     var MAX_DEAD_NUM = 500;
     var _deadPool = [];
@@ -23534,8 +23552,8 @@
       return out;
     };
     module.exports = RequestItem;
-  }), {} ],
-  133: [ (function(require, module, exports) {
+  }, {} ],
+  133: [ function(require, module, exports) {
     "use strict";
     var Cache = require("./cache");
     var Pipeline = require("./pipeline");
@@ -23570,11 +23588,11 @@
       bundles: bundles,
       BuiltinBundleName: BuiltinBundleName
     };
-  }), {
+  }, {
     "./cache": 111,
     "./pipeline": 129
   } ],
-  134: [ (function(require, module, exports) {
+  134: [ function(require, module, exports) {
     "use strict";
     var _taskId = 0;
     var MAX_DEAD_NUM = 500;
@@ -23646,8 +23664,8 @@
       return out;
     };
     module.exports = Task;
-  }), {} ],
-  135: [ (function(require, module, exports) {
+  }, {} ],
+  135: [ function(require, module, exports) {
     "use strict";
     var _require = require("./helper"), decodeUuid = _require.decodeUuid;
     var RequestItem = require("./request-item");
@@ -23791,12 +23809,12 @@
       parse: parse,
       combine: combine
     };
-  }), {
+  }, {
     "./helper": 124,
     "./request-item": 132,
     "./shared": 133
   } ],
-  136: [ (function(require, module, exports) {
+  136: [ function(require, module, exports) {
     "use strict";
     var dependUtil = require("./depend-util");
     var _require = require("./helper"), isScene = _require.isScene, decodeUuid = _require.decodeUuid;
@@ -23869,12 +23887,12 @@
       },
       retry: function retry(process, times, wait, onComplete, index) {
         index = index || 0;
-        process(index, (function(err, result) {
+        process(index, function(err, result) {
           index++;
-          !err || index > times ? onComplete && onComplete(err, result) : setTimeout((function() {
+          !err || index > times ? onComplete && onComplete(err, result) : setTimeout(function() {
             utils.retry(process, times, wait, onComplete, index);
-          }), wait);
-        }));
+          }, wait);
+        });
       },
       getDepends: function getDepends(uuid, data, exclude, depends, preload, asyncLoadAssets, config) {
         try {
@@ -23961,11 +23979,11 @@
         var count = 0;
         var errs = [];
         0 === array.length && onComplete && onComplete(errs);
-        for (var i = 0, l = array.length; i < l; i++) process(array[i], (function(err) {
+        for (var i = 0, l = array.length; i < l; i++) process(array[i], function(err) {
           err && errs.push(err);
           count++;
           count === l && onComplete && onComplete(errs);
-        }));
+        });
       },
       parseParameters: function parseParameters(options, onProgress, onComplete) {
         if (void 0 === onComplete) {
@@ -24032,27 +24050,27 @@
         return function(p1, p2) {
           if (!cb) return;
           var refs = [];
-          Array.isArray(p2) ? p2.forEach((function(x) {
+          Array.isArray(p2) ? p2.forEach(function(x) {
             return x instanceof cc.Asset && refs.push(x.addRef());
-          })) : p2 instanceof cc.Asset && refs.push(p2.addRef());
-          callInNextTick((function() {
-            refs.forEach((function(x) {
+          }) : p2 instanceof cc.Asset && refs.push(p2.addRef());
+          callInNextTick(function() {
+            refs.forEach(function(x) {
               return x.decRef(false);
-            }));
+            });
             cb(p1, p2);
-          }));
+          });
         };
       }
     };
     module.exports = utils;
-  }), {
+  }, {
     "../assets/CCAsset": 137,
     "../platform/utils": 298,
     "./depend-util": 113,
     "./helper": 124,
     "./shared": 133
   } ],
-  137: [ (function(require, module, exports) {
+  137: [ function(require, module, exports) {
     "use strict";
     var CCObject = require("../platform/CCObject");
     cc.Asset = cc.Class({
@@ -24138,10 +24156,10 @@
       }
     });
     module.exports = cc.Asset;
-  }), {
+  }, {
     "../platform/CCObject": 279
   } ],
-  138: [ (function(require, module, exports) {
+  138: [ function(require, module, exports) {
     "use strict";
     var Asset = require("./CCAsset");
     var EventTarget = require("../event/event-target");
@@ -24190,10 +24208,10 @@
         LoadMode: LoadMode,
         _loadByUrl: function _loadByUrl(url, callback) {
           var audioClip = cc.assetManager.assets.get(url);
-          audioClip ? callback(null, audioClip) : cc.assetManager.loadRemote(url, (function(error, data) {
+          audioClip ? callback(null, audioClip) : cc.assetManager.loadRemote(url, function(error, data) {
             if (error) return callback(error);
             callback(null, data);
-          }));
+          });
         }
       },
       _ensureLoaded: function _ensureLoaded(onComplete) {
@@ -24203,10 +24221,10 @@
         if (!this._loading) {
           this._loading = true;
           var self = this;
-          cc.assetManager.postLoadNative(this, (function(err) {
+          cc.assetManager.postLoadNative(this, function(err) {
             self._loading = false;
             self._audio && self.emit("load");
-          }));
+          });
         }
       },
       destroy: function destroy() {
@@ -24216,19 +24234,19 @@
     });
     cc.AudioClip = AudioClip;
     module.exports = AudioClip;
-  }), {
+  }, {
     "../event/event-target": 220,
     "./CCAsset": 137
   } ],
-  139: [ (function(require, module, exports) {
+  139: [ function(require, module, exports) {
     "use strict";
     var BankAsset = cc.Class({
       name: "cc.BankAsset",
       extends: cc.Asset
     });
     module.exports = cc.BankAsset = BankAsset;
-  }), {} ],
-  140: [ (function(require, module, exports) {
+  }, {} ],
+  140: [ function(require, module, exports) {
     "use strict";
     var FontLetterDefinition = function FontLetterDefinition() {
       this.u = 0;
@@ -24322,8 +24340,8 @@
     cc.BitmapFont.FontLetterDefinition = FontLetterDefinition;
     cc.BitmapFont.FontAtlas = FontAtlas;
     module.exports = BitmapFont;
-  }), {} ],
-  141: [ (function(require, module, exports) {
+  }, {} ],
+  141: [ function(require, module, exports) {
     "use strict";
     var BufferAsset = cc.Class({
       name: "cc.BufferAsset",
@@ -24347,16 +24365,16 @@
       }
     });
     cc.BufferAsset = module.exports = BufferAsset;
-  }), {} ],
-  142: [ (function(require, module, exports) {
+  }, {} ],
+  142: [ function(require, module, exports) {
     "use strict";
     var Font = cc.Class({
       name: "cc.Font",
       extends: cc.Asset
     });
     cc.Font = module.exports = Font;
-  }), {} ],
-  143: [ (function(require, module, exports) {
+  }, {} ],
+  143: [ function(require, module, exports) {
     "use strict";
     var JsonAsset = cc.Class({
       name: "cc.JsonAsset",
@@ -24366,8 +24384,8 @@
       }
     });
     module.exports = cc.JsonAsset = JsonAsset;
-  }), {} ],
-  144: [ (function(require, module, exports) {
+  }, {} ],
+  144: [ function(require, module, exports) {
     "use strict";
     var LabelAtlas = cc.Class({
       name: "cc.LabelAtlas",
@@ -24386,8 +24404,8 @@
     });
     cc.LabelAtlas = LabelAtlas;
     module.exports = LabelAtlas;
-  }), {} ],
-  145: [ (function(require, module, exports) {
+  }, {} ],
+  145: [ function(require, module, exports) {
     "use strict";
     var OptimizationPolicy = cc.Enum({
       AUTO: 0,
@@ -24444,10 +24462,10 @@
     });
     cc.Prefab = module.exports = Prefab;
     cc.js.obsolete(cc, "cc._Prefab", "Prefab");
-  }), {
+  }, {
     "../platform/instantiate-jit": 293
   } ],
-  146: [ (function(require, module, exports) {
+  146: [ function(require, module, exports) {
     "use strict";
     var _gfx = _interopRequireDefault(require("../../renderer/gfx"));
     function _interopRequireDefault(e) {
@@ -24546,12 +24564,12 @@
       }
     });
     cc.RenderTexture = module.exports = RenderTexture;
-  }), {
+  }, {
     "../../renderer/gfx": 428,
     "../renderer": 323,
     "./CCTexture2D": 153
   } ],
-  147: [ (function(require, module, exports) {
+  147: [ function(require, module, exports) {
     "use strict";
     var Scene = cc.Class({
       name: "cc.SceneAsset",
@@ -24563,8 +24581,8 @@
     });
     cc.SceneAsset = Scene;
     module.exports = Scene;
-  }), {} ],
-  148: [ (function(require, module, exports) {
+  }, {} ],
+  148: [ function(require, module, exports) {
     "use strict";
     var Script = cc.Class({
       name: "cc.Script",
@@ -24581,8 +24599,8 @@
       extends: Script
     });
     cc._TypeScript = TypeScript;
-  }), {} ],
-  149: [ (function(require, module, exports) {
+  }, {} ],
+  149: [ function(require, module, exports) {
     "use strict";
     var SpriteAtlas = cc.Class({
       name: "cc.SpriteAtlas",
@@ -24615,8 +24633,8 @@
     });
     cc.SpriteAtlas = SpriteAtlas;
     module.exports = SpriteAtlas;
-  }), {} ],
-  150: [ (function(require, module, exports) {
+  }, {} ],
+  150: [ function(require, module, exports) {
     "use strict";
     var EventTarget = require("../event/event-target");
     var INSET_LEFT = 0;
@@ -25042,11 +25060,11 @@
     proto.initWithTexture = proto.setTexture;
     cc.SpriteFrame = SpriteFrame;
     module.exports = SpriteFrame;
-  }), {
+  }, {
     "../assets/CCAsset": 137,
     "../event/event-target": 220
   } ],
-  151: [ (function(require, module, exports) {
+  151: [ function(require, module, exports) {
     "use strict";
     var Font = require("./CCFont");
     var TTFFont = cc.Class({
@@ -25078,10 +25096,10 @@
       }
     });
     cc.TTFFont = module.exports = TTFFont;
-  }), {
+  }, {
     "./CCFont": 142
   } ],
-  152: [ (function(require, module, exports) {
+  152: [ function(require, module, exports) {
     "use strict";
     var TextAsset = cc.Class({
       name: "cc.TextAsset",
@@ -25094,8 +25112,8 @@
       }
     });
     module.exports = cc.TextAsset = TextAsset;
-  }), {} ],
-  153: [ (function(require, module, exports) {
+  }, {} ],
+  153: [ function(require, module, exports) {
     "use strict";
     var _gfx = _interopRequireDefault(require("../../renderer/gfx"));
     function _interopRequireDefault(e) {
@@ -25355,12 +25373,12 @@
         this._image = element;
         if (element.complete || element instanceof HTMLCanvasElement) this.handleLoadedTexture(); else if (cc.sys.capabilities.imageBitmap && element instanceof ImageBitmap) this._checkImageBitmap(this.handleLoadedTexture.bind(this)); else {
           var self = this;
-          element.addEventListener("load", (function() {
+          element.addEventListener("load", function() {
             self.handleLoadedTexture();
-          }));
-          element.addEventListener("error", (function(err) {
+          });
+          element.addEventListener("error", function(err) {
             cc.warnID(3119, err.message);
-          }));
+          });
         }
       },
       initWithData: function initWithData(data, pixelFormat, pixelsWidth, pixelsHeight) {
@@ -25590,19 +25608,19 @@
         this._flipY !== image.flipY || this._premultiplyAlpha !== image.premultiplyAlpha ? createImageBitmap(image, {
           imageOrientation: flipY !== image.flipY ? "flipY" : "none",
           premultiplyAlpha: premultiplyAlpha ? "premultiply" : "none"
-        }).then((function(result) {
+        }).then(function(result) {
           image.close && image.close();
           result.flipY = flipY;
           result.premultiplyAlpha = premultiplyAlpha;
           _this._image = result;
           cb();
-        }), (function(err) {
+        }, function(err) {
           cc.error(err.message);
-        })) : cb();
+        }) : cb();
       }
     });
     cc.Texture2D = module.exports = Texture2D;
-  }), {
+  }, {
     "../../renderer/gfx": 428,
     "../assets/CCAsset": 137,
     "../event/event-target": 220,
@@ -25610,7 +25628,7 @@
     "../platform/id-generater": 291,
     "../renderer": 323
   } ],
-  154: [ (function(require, module, exports) {
+  154: [ function(require, module, exports) {
     "use strict";
     var Asset = require("./CCAsset");
     var EventTarget = require("../event/event-target");
@@ -25621,11 +25639,11 @@
     });
     cc.VideoClip = VideoClip;
     module.exports = VideoClip;
-  }), {
+  }, {
     "../event/event-target": 220,
     "./CCAsset": 137
   } ],
-  155: [ (function(require, module, exports) {
+  155: [ function(require, module, exports) {
     "use strict";
     require("./CCAsset");
     require("./CCFont");
@@ -25646,7 +25664,7 @@
     require("./CCBufferAsset");
     require("./CCBankAsset");
     require("./material");
-  }), {
+  }, {
     "./CCAsset": 137,
     "./CCAudioClip": 138,
     "./CCBankAsset": 139,
@@ -25667,7 +25685,7 @@
     "./CCVideoClip": 154,
     "./material": 162
   } ],
-  156: [ (function(require, module, exports) {
+  156: [ function(require, module, exports) {
     "use strict";
     var _CCAsset = _interopRequireDefault(require("../CCAsset"));
     var _effectParser = require("./effect-parser");
@@ -25708,11 +25726,11 @@
       }
     });
     module.exports = cc.EffectAsset = EffectAsset;
-  }), {
+  }, {
     "../CCAsset": 137,
     "./effect-parser": 159
   } ],
-  157: [ (function(require, module, exports) {
+  157: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -25887,13 +25905,13 @@
     var _default = exports["default"] = Material;
     cc.Material = Material;
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../utils/texture-util": 388,
     "../CCAsset": 137,
     "../CCTexture2D": 153,
     "./CCEffectAsset": 156
   } ],
-  158: [ (function(require, module, exports) {
+  158: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -25931,7 +25949,7 @@
       return ("string" === r ? String : Number)(t);
     }
     var gfx = cc.gfx;
-    var EffectBase = exports["default"] = (function() {
+    var EffectBase = exports["default"] = function() {
       function EffectBase() {
         this._dirty = true;
         this._name = "";
@@ -26052,14 +26070,14 @@
           return [];
         }
       } ]);
-    })();
+    }();
     cc.EffectBase = EffectBase;
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../renderer/core/pass": 419,
     "../../../renderer/enums": 423
   } ],
-  159: [ (function(require, module, exports) {
+  159: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.parseEffect = parseEffect;
@@ -26081,9 +26099,9 @@
       var propertiesJson = passJson.properties || {};
       var program = getInvolvedProgram(passJson.program);
       var _loop = function _loop(prop) {
-        var uniformInfo = program.uniforms.find((function(u) {
+        var uniformInfo = program.uniforms.find(function(u) {
           return u.name === prop;
-        }));
+        });
         if (!uniformInfo) {
           cc.warnID(9107, effectAsset.name, prop);
           return 1;
@@ -26091,21 +26109,21 @@
       };
       for (var prop in propertiesJson) if (_loop(prop)) continue;
       var properties = {};
-      program.uniforms.forEach((function(u) {
+      program.uniforms.forEach(function(u) {
         var name = u.name, prop = properties[name] = Object.assign({}, u), propInfo = propertiesJson[name];
         var value;
         value = propInfo ? propInfo.type === _enums["default"].PARAM_TEXTURE_2D ? null : propInfo.type === _enums["default"].PARAM_INT || propInfo.type === _enums["default"].PARAM_FLOAT ? Array.isArray(propInfo.value) ? propInfo.value[0] : propInfo.value : new Float32Array(propInfo.value) : _types.enums2default[u.type];
         void 0 === value && (value = null);
         prop.value = value;
-      }));
+      });
       return properties;
     }
     function passDefines(pass) {
       var defines = {};
       var program = getInvolvedProgram(pass.program);
-      program.defines.forEach((function(d) {
+      program.defines.forEach(function(d) {
         defines[d.name] = _types.enums2default[d.type];
-      }));
+      });
       return defines;
     }
     function parseTechniques(effectAsset) {
@@ -26143,14 +26161,14 @@
       return new _effect["default"](effect.name, techniques, 0, effect);
     }
     false;
-  }), {
+  }, {
     "../../../renderer/core/pass": 419,
     "../../../renderer/core/technique": 421,
     "../../../renderer/enums": 423,
     "../../../renderer/types": 452,
     "./effect": 161
   } ],
-  160: [ (function(require, module, exports) {
+  160: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -26197,7 +26215,7 @@
       }, _setPrototypeOf(t, e);
     }
     var gfx = cc.gfx;
-    var EffectVariant = exports["default"] = (function(_EffectBase) {
+    var EffectVariant = exports["default"] = function(_EffectBase) {
       function EffectVariant(effect) {
         var _this;
         _this = _EffectBase.call(this) || this;
@@ -26262,15 +26280,15 @@
           return this._stagePasses;
         }
       } ]);
-    })(_effectBase["default"]);
+    }(_effectBase["default"]);
     cc.EffectVariant = EffectVariant;
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../renderer/murmurhash2_gc": 446,
     "./effect-base": 158,
     "./utils": 165
   } ],
-  161: [ (function(require, module, exports) {
+  161: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -26314,7 +26332,7 @@
         return t.__proto__ = e, t;
       }, _setPrototypeOf(t, e);
     }
-    var Effect = exports["default"] = (function(_EffectBase) {
+    var Effect = exports["default"] = function(_EffectBase) {
       function Effect(name, techniques, techniqueIndex, asset) {
         var _this;
         _this = _EffectBase.call(this) || this;
@@ -26358,23 +26376,23 @@
           return this._technique.passes;
         }
       } ]);
-    })(_effectBase["default"]);
+    }(_effectBase["default"]);
     cc.Effect = Effect;
     module.exports = exports["default"];
-  }), {
+  }, {
     "./effect-base": 158
   } ],
-  162: [ (function(require, module, exports) {
+  162: [ function(require, module, exports) {
     "use strict";
     require("./CCEffectAsset");
     require("./CCMaterial");
     require("./material-variant");
-  }), {
+  }, {
     "./CCEffectAsset": 156,
     "./CCMaterial": 157,
     "./material-variant": 164
   } ],
-  163: [ (function(require, module, exports) {
+  163: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -26393,7 +26411,7 @@
         return t.__proto__ = e, t;
       }, _setPrototypeOf(t, e);
     }
-    var MaterialPool = (function(_Pool) {
+    var MaterialPool = function(_Pool) {
       function MaterialPool() {
         var _this;
         for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) args[_key] = arguments[_key];
@@ -26450,16 +26468,16 @@
         mat._owner = null;
       };
       return MaterialPool;
-    })(_pool["default"]);
+    }(_pool["default"]);
     var materialPool = new MaterialPool();
     _pool["default"].register("material", materialPool);
     var _default = exports["default"] = materialPool;
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../utils/pool": 382,
     "./utils": 165
   } ],
-  164: [ (function(require, module, exports) {
+  164: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -26508,7 +26526,7 @@
     }
     var ccclass = cc._decorator.ccclass;
     var MaterialVariant = exports["default"] = (_dec = ccclass("cc.MaterialVariant"), 
-    _dec(_class = (function(_Material) {
+    _dec(_class = function(_Material) {
       function MaterialVariant(material) {
         var _this;
         _this = _Material.call(this) || this;
@@ -26547,15 +26565,15 @@
           return this._material;
         }
       } ]);
-    })(_CCMaterial["default"])) || _class);
+    }(_CCMaterial["default"])) || _class);
     cc.MaterialVariant = MaterialVariant;
     module.exports = exports["default"];
-  }), {
+  }, {
     "./CCMaterial": 157,
     "./effect-variant": 160,
     "./material-pool": 163
   } ],
-  165: [ (function(require, module, exports) {
+  165: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -26607,10 +26625,10 @@
       serializeUniforms: serializeUniforms
     };
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../renderer/enums": 423
   } ],
-  166: [ (function(require, module, exports) {
+  166: [ function(require, module, exports) {
     "use strict";
     var Event;
     true;
@@ -26859,10 +26877,10 @@
       AlignMode: AlignMode
     };
     false;
-  }), {
+  }, {
     "../CCNode": 104
   } ],
-  167: [ (function(require, module, exports) {
+  167: [ function(require, module, exports) {
     "use strict";
     var _valueTypes = require("../value-types");
     var _geomUtils = require("../geom-utils");
@@ -27306,7 +27324,7 @@
       }
     });
     module.exports = cc.Camera = Camera;
-  }), {
+  }, {
     "../../renderer/scene/camera": 448,
     "../CCGame": 103,
     "../geom-utils": 228,
@@ -27315,7 +27333,7 @@
     "../utils/affine-transform": 371,
     "../value-types": 395
   } ],
-  168: [ (function(require, module, exports) {
+  168: [ function(require, module, exports) {
     "use strict";
     cc.Collider.Box = cc.Class({
       properties: {
@@ -27352,8 +27370,8 @@
       editor: false
     });
     cc.BoxCollider = module.exports = BoxCollider;
-  }), {} ],
-  169: [ (function(require, module, exports) {
+  }, {} ],
+  169: [ function(require, module, exports) {
     "use strict";
     cc.Collider.Circle = cc.Class({
       properties: {
@@ -27388,8 +27406,8 @@
       editor: false
     });
     cc.CircleCollider = module.exports = CircleCollider;
-  }), {} ],
-  170: [ (function(require, module, exports) {
+  }, {} ],
+  170: [ function(require, module, exports) {
     "use strict";
     var Collider = cc.Class({
       name: "cc.Collider",
@@ -27415,8 +27433,8 @@
       }
     });
     cc.Collider = module.exports = Collider;
-  }), {} ],
-  171: [ (function(require, module, exports) {
+  }, {} ],
+  171: [ function(require, module, exports) {
     "use strict";
     var _vec = _interopRequireDefault(require("../value-types/vec2"));
     function _interopRequireDefault(e) {
@@ -27527,9 +27545,9 @@
             world.points = [ cc.v2(), cc.v2(), cc.v2(), cc.v2() ];
           } else if (collider instanceof cc.PolygonCollider) {
             world.position = null;
-            world.points = collider.points.map((function(p) {
+            world.points = collider.points.map(function(p) {
               return cc.v2(p.x, p.y);
-            }));
+            });
           } else if (collider instanceof cc.CircleCollider) {
             world.position = cc.v2();
             world.points = null;
@@ -27690,9 +27708,9 @@
         }
       }
     });
-    cc.js.getset(CollisionManager.prototype, "enabledDebugDraw", (function() {
+    cc.js.getset(CollisionManager.prototype, "enabledDebugDraw", function() {
       return this._enabledDebugDraw;
-    }), (function(value) {
+    }, function(value) {
       if (value && !this._enabledDebugDraw) {
         this._checkDebugDrawValid();
         this._debugDrawer.node.active = true;
@@ -27701,14 +27719,14 @@
         this._debugDrawer.node.active = false;
       }
       this._enabledDebugDraw = value;
-    }));
+    });
     cc.CollisionManager = module.exports = CollisionManager;
-  }), {
+  }, {
     "../CCNode": 104,
     "../value-types/vec2": 404,
     "./CCContact": 172
   } ],
-  172: [ (function(require, module, exports) {
+  172: [ function(require, module, exports) {
     "use strict";
     var Intersection = require("./CCIntersection");
     var CollisionType = cc.Enum({
@@ -27754,10 +27772,10 @@
     };
     Contact.CollisionType = CollisionType;
     module.exports = Contact;
-  }), {
+  }, {
     "./CCIntersection": 173
   } ],
-  173: [ (function(require, module, exports) {
+  173: [ function(require, module, exports) {
     "use strict";
     var Intersection = {};
     function lineLine(a1, a2, b1, b2) {
@@ -27877,8 +27895,8 @@
     }
     Intersection.pointLineDistance = pointLineDistance;
     cc.Intersection = module.exports = Intersection;
-  }), {} ],
-  174: [ (function(require, module, exports) {
+  }, {} ],
+  174: [ function(require, module, exports) {
     "use strict";
     cc.Collider.Polygon = cc.Class({
       properties: {
@@ -27914,22 +27932,22 @@
       editor: false
     });
     cc.PolygonCollider = module.exports = PolygonCollider;
-  }), {} ],
-  175: [ (function(require, module, exports) {
+  }, {} ],
+  175: [ function(require, module, exports) {
     "use strict";
     require("./CCCollisionManager");
     require("./CCCollider");
     require("./CCBoxCollider");
     require("./CCCircleCollider");
     require("./CCPolygonCollider");
-  }), {
+  }, {
     "./CCBoxCollider": 168,
     "./CCCircleCollider": 169,
     "./CCCollider": 170,
     "./CCCollisionManager": 171,
     "./CCPolygonCollider": 174
   } ],
-  176: [ (function(require, module, exports) {
+  176: [ function(require, module, exports) {
     "use strict";
     require("./platform/CCClass");
     var Flags = require("./platform/CCObject").Flags;
@@ -28171,13 +28189,13 @@
       }
     });
     module.exports = ComponentScheduler;
-  }), {
+  }, {
     "./platform/CCClass": 273,
     "./platform/CCObject": 279,
     "./platform/js": 295,
     "./utils/misc": 380
   } ],
-  177: [ (function(require, module, exports) {
+  177: [ function(require, module, exports) {
     "use strict";
     var AnimationAnimator = require("../../animation/animation-animator");
     var AnimationClip = require("../../animation/animation-clip");
@@ -28383,9 +28401,9 @@
           }
           this.stop(state.name);
         }
-        this._clips = this._clips.filter((function(item) {
+        this._clips = this._clips.filter(function(item) {
           return !equalClips(item, clip);
-        }));
+        });
         state && delete this._nameToState[state.name];
       },
       sample: function sample(name) {
@@ -28441,14 +28459,14 @@
     Animation.prototype._EventTargetOn = EventTarget.prototype.on;
     Animation.prototype._EventTargetOff = EventTarget.prototype.off;
     cc.Animation = module.exports = Animation;
-  }), {
+  }, {
     "../../animation/animation-animator": 10,
     "../../animation/animation-clip": 11,
     "../event/event-target": 220,
     "../platform/js": 295,
     "./CCComponent": 182
   } ],
-  178: [ (function(require, module, exports) {
+  178: [ function(require, module, exports) {
     "use strict";
     var misc = require("../utils/misc");
     var Component = require("./CCComponent");
@@ -28605,12 +28623,12 @@
       }
     });
     cc.AudioSource = module.exports = AudioSource;
-  }), {
+  }, {
     "../assets/CCAudioClip": 138,
     "../utils/misc": 380,
     "./CCComponent": 182
   } ],
-  179: [ (function(require, module, exports) {
+  179: [ function(require, module, exports) {
     "use strict";
     var BlockEvents = [ "touchstart", "touchmove", "touchend", "mousedown", "mousemove", "mouseup", "mouseenter", "mouseleave", "mousewheel" ];
     function stopPropagation(event) {
@@ -28632,10 +28650,10 @@
       }
     });
     cc.BlockInputEvents = module.exports = BlockInputEvents;
-  }), {
+  }, {
     "./CCComponent": 182
   } ],
-  180: [ (function(require, module, exports) {
+  180: [ function(require, module, exports) {
     "use strict";
     var Component = require("./CCComponent");
     var GraySpriteState = require("../utils/gray-sprite-state");
@@ -29113,11 +29131,11 @@
       }
     });
     cc.Button = module.exports = Button;
-  }), {
+  }, {
     "../utils/gray-sprite-state": 377,
     "./CCComponent": 182
   } ],
-  181: [ (function(require, module, exports) {
+  181: [ function(require, module, exports) {
     "use strict";
     var Camera = require("../camera/CCCamera");
     var Component = require("./CCComponent");
@@ -29218,11 +29236,11 @@
       }
     });
     cc.Canvas = module.exports = Canvas;
-  }), {
+  }, {
     "../camera/CCCamera": 167,
     "./CCComponent": 182
   } ],
-  182: [ (function(require, module, exports) {
+  182: [ function(require, module, exports) {
     "use strict";
     var CCObject = require("../platform/CCObject");
     var js = require("../platform/js");
@@ -29369,7 +29387,7 @@
     Component._executionOrder = 0;
     false;
     false, false;
-    js.value(Component, "_registerEditorProps", (function(cls, props) {
+    js.value(Component, "_registerEditorProps", function(cls, props) {
       var reqComp = props.requireComponent;
       reqComp && (cls._requireComponent = reqComp);
       var order = props.executionOrder;
@@ -29380,15 +29398,15 @@
       var val;
       var willExecuteInEditMode;
       false, false;
-    }));
+    });
     Component.prototype.__scriptUuid = "";
     cc.Component = module.exports = Component;
-  }), {
+  }, {
     "../platform/CCObject": 279,
     "../platform/id-generater": 291,
     "../platform/js": 295
   } ],
-  183: [ (function(require, module, exports) {
+  183: [ function(require, module, exports) {
     "use strict";
     cc.Component.EventHandler = cc.Class({
       name: "cc.ClickEvent",
@@ -29459,8 +29477,8 @@
         }
       }
     });
-  }), {} ],
-  184: [ (function(require, module, exports) {
+  }, {} ],
+  184: [ function(require, module, exports) {
     "use strict";
     var macro = require("../platform/CCMacro");
     var RenderComponent = require("./CCRenderComponent");
@@ -29887,7 +29905,7 @@
       }
     });
     cc.Label = module.exports = Label;
-  }), {
+  }, {
     "../assets/material/CCMaterial": 157,
     "../platform/CCMacro": 278,
     "../renderer/utils/label/label-frame": 328,
@@ -29895,7 +29913,7 @@
     "../utils/blend-func": 374,
     "./CCRenderComponent": 193
   } ],
-  185: [ (function(require, module, exports) {
+  185: [ function(require, module, exports) {
     "use strict";
     var LabelOutline = cc.Class({
       name: "cc.LabelOutline",
@@ -29939,10 +29957,10 @@
       }
     });
     cc.LabelOutline = module.exports = LabelOutline;
-  }), {
+  }, {
     "./CCComponent": 182
   } ],
-  186: [ (function(require, module, exports) {
+  186: [ function(require, module, exports) {
     "use strict";
     var LabelShadow = cc.Class({
       name: "cc.LabelShadow",
@@ -29999,10 +30017,10 @@
       }
     });
     cc.LabelShadow = module.exports = LabelShadow;
-  }), {
+  }, {
     "./CCComponent": 182
   } ],
-  187: [ (function(require, module, exports) {
+  187: [ function(require, module, exports) {
     "use strict";
     var NodeEvent = require("../CCNode").EventType;
     var Type = cc.Enum({
@@ -30540,9 +30558,9 @@
       },
       updateLayout: function updateLayout() {
         if (this._layoutDirty && this.node.children.length > 0) {
-          var activeChild = this.node.children.find((function(node) {
+          var activeChild = this.node.children.find(function(node) {
             return node.activeInHierarchy;
-          }));
+          });
           if (activeChild) {
             this._doLayout();
             this._layoutDirty = false;
@@ -30551,11 +30569,11 @@
       }
     });
     cc.Layout = module.exports = Layout;
-  }), {
+  }, {
     "../CCNode": 104,
     "./CCComponent": 182
   } ],
-  188: [ (function(require, module, exports) {
+  188: [ function(require, module, exports) {
     "use strict";
     var _gfx = _interopRequireDefault(require("../../renderer/gfx"));
     var _mat = _interopRequireDefault(require("../value-types/mat4"));
@@ -30815,7 +30833,7 @@
       }
     });
     cc.Mask = module.exports = Mask;
-  }), {
+  }, {
     "../../renderer/gfx": 428,
     "../assets/material/material-variant": 164,
     "../graphics/graphics": 236,
@@ -30825,7 +30843,7 @@
     "../value-types/vec2": 404,
     "./CCRenderComponent": 193
   } ],
-  189: [ (function(require, module, exports) {
+  189: [ function(require, module, exports) {
     "use strict";
     var RenderComponent = require("../components/CCRenderComponent");
     var BlendFunc = require("../../core/utils/blend-func");
@@ -30942,11 +30960,11 @@
       }
     });
     cc.MotionStreak = module.exports = MotionStreak;
-  }), {
+  }, {
     "../../core/utils/blend-func": 374,
     "../components/CCRenderComponent": 193
   } ],
-  190: [ (function(require, module, exports) {
+  190: [ function(require, module, exports) {
     "use strict";
     var SizeMode = cc.Enum({
       Unified: 0,
@@ -31257,8 +31275,8 @@
       _onMouseWheel: function _onMouseWheel() {}
     });
     cc.PageView = module.exports = PageView;
-  }), {} ],
-  191: [ (function(require, module, exports) {
+  }, {} ],
+  191: [ function(require, module, exports) {
     "use strict";
     var Direction = cc.Enum({
       HORIZONTAL: 0,
@@ -31353,10 +31371,10 @@
       }
     });
     cc.PageViewIndicator = module.exports = PageViewIndicator;
-  }), {
+  }, {
     "./CCComponent": 182
   } ],
-  192: [ (function(require, module, exports) {
+  192: [ function(require, module, exports) {
     "use strict";
     var misc = require("../utils/misc");
     var Component = require("./CCComponent");
@@ -31489,11 +31507,11 @@
       }
     });
     cc.ProgressBar = module.exports = ProgressBar;
-  }), {
+  }, {
     "../utils/misc": 380,
     "./CCComponent": 182
   } ],
-  193: [ (function(require, module, exports) {
+  193: [ function(require, module, exports) {
     "use strict";
     var _assembler = _interopRequireDefault(require("../renderer/assembler"));
     var _materialVariant = _interopRequireDefault(require("../assets/material/material-variant"));
@@ -31640,7 +31658,7 @@
       }
     });
     cc.RenderComponent = module.exports = RenderComponent;
-  }), {
+  }, {
     "../assets/material/CCMaterial": 157,
     "../assets/material/material-variant": 164,
     "../renderer/assembler": 303,
@@ -31648,7 +31666,7 @@
     "../value-types": 395,
     "./CCComponent": 182
   } ],
-  194: [ (function(require, module, exports) {
+  194: [ function(require, module, exports) {
     "use strict";
     var js = require("../platform/js");
     var macro = require("../platform/CCMacro");
@@ -31848,9 +31866,9 @@
       },
       _onColorChanged: function _onColorChanged(parentColor) {
         var children = this.node.children;
-        children.forEach((function(childNode) {
+        children.forEach(function(childNode) {
           childNode.color = parentColor;
-        }));
+        });
       },
       _addEventListeners: function _addEventListeners() {
         this.node.on(cc.Node.EventType.TOUCH_END, this._onTouchEnded, this);
@@ -31874,10 +31892,10 @@
           this._updateRichTextStatus();
         } else {
           var self = this;
-          cc.assetManager.postLoadNative(this.font, (function(err) {
+          cc.assetManager.postLoadNative(this.font, function(err) {
             self._layoutDirty = true;
             self._updateRichTextStatus();
-          }));
+          });
         } else {
           this._layoutDirty = true;
           this._updateRichTextStatus();
@@ -31906,9 +31924,9 @@
           var clickHandler = labelSegment._clickHandler;
           var clickParam = labelSegment._clickParam;
           if (clickHandler && _this._containsTouchLocation(labelSegment, event.touch.getLocation())) {
-            components.forEach((function(component) {
+            components.forEach(function(component) {
               component.enabledInHierarchy && component[clickHandler] && component[clickHandler](event, clickParam);
-            }));
+            });
             event.stopPropagation();
           }
         };
@@ -32248,13 +32266,13 @@
       }
     });
     cc.RichText = module.exports = RichText;
-  }), {
+  }, {
     "../platform/CCMacro": 278,
     "../platform/js": 295,
     "../utils/html-text-parser": 378,
     "../utils/text-utils": 387
   } ],
-  195: [ (function(require, module, exports) {
+  195: [ function(require, module, exports) {
     "use strict";
     var Widget = require("./CCWidget");
     var WidgetManager = require("../base-ui/CCWidgetManager");
@@ -32293,12 +32311,12 @@
       }
     });
     cc.SafeArea = module.exports = SafeArea;
-  }), {
+  }, {
     "../base-ui/CCWidgetManager": 166,
     "./CCComponent": 182,
     "./CCWidget": 205
   } ],
-  196: [ (function(require, module, exports) {
+  196: [ function(require, module, exports) {
     "use strict";
     var misc = require("../utils/misc");
     var Component = require("./CCComponent");
@@ -32496,11 +32514,11 @@
       }
     });
     cc.Scrollbar = module.exports = Scrollbar;
-  }), {
+  }, {
     "../utils/misc": 380,
     "./CCComponent": 182
   } ],
-  197: [ (function(require, module, exports) {
+  197: [ function(require, module, exports) {
     "use strict";
     var NodeEvent = require("../CCNode").EventType;
     var NUMBER_OF_GATHERED_TOUCHES_FOR_MOVE_SPEED = 5;
@@ -33176,14 +33194,14 @@
       },
       _calculateTouchMoveVelocity: function _calculateTouchMoveVelocity() {
         var totalTime = 0;
-        totalTime = this._touchMoveTimeDeltas.reduce((function(a, b) {
+        totalTime = this._touchMoveTimeDeltas.reduce(function(a, b) {
           return a + b;
-        }), totalTime);
+        }, totalTime);
         if (totalTime <= 0 || totalTime >= .5) return cc.v2(0, 0);
         var totalMovement = cc.v2(0, 0);
-        totalMovement = this._touchMoveDisplacements.reduce((function(a, b) {
+        totalMovement = this._touchMoveDisplacements.reduce(function(a, b) {
           return a.add(b);
-        }), totalMovement);
+        }, totalMovement);
         return cc.v2(totalMovement.x * (1 - this.brake) / totalTime, totalMovement.y * (1 - this.brake) / totalTime);
       },
       _flattenVectorByDirection: function _flattenVectorByDirection(vector) {
@@ -33310,11 +33328,11 @@
       }
     });
     cc.ScrollView = module.exports = ScrollView;
-  }), {
+  }, {
     "../CCNode": 104,
     "./CCViewGroup": 204
   } ],
-  198: [ (function(require, module, exports) {
+  198: [ function(require, module, exports) {
     "use strict";
     var misc = require("../utils/misc");
     var Component = require("./CCComponent");
@@ -33439,11 +33457,11 @@
       }
     });
     cc.Slider = module.exports = Slider;
-  }), {
+  }, {
     "../utils/misc": 380,
     "./CCComponent": 182
   } ],
-  199: [ (function(require, module, exports) {
+  199: [ function(require, module, exports) {
     "use strict";
     var misc = require("../utils/misc");
     var NodeEvent = require("../CCNode").EventType;
@@ -33674,13 +33692,13 @@
     });
     false;
     cc.Sprite = module.exports = Sprite;
-  }), {
+  }, {
     "../CCNode": 104,
     "../utils/blend-func": 374,
     "../utils/misc": 380,
     "./CCRenderComponent": 193
   } ],
-  200: [ (function(require, module, exports) {
+  200: [ function(require, module, exports) {
     "use strict";
     var ComponentType = cc.Enum({
       NONE: 0,
@@ -33724,8 +33742,8 @@
       _validateTargetInDEV: function _validateTargetInDEV() {}
     });
     cc.StudioWidget = module.exports = StudioWidget;
-  }), {} ],
-  201: [ (function(require, module, exports) {
+  }, {} ],
+  201: [ function(require, module, exports) {
     "use strict";
     var GraySpriteState = require("../utils/gray-sprite-state");
     var Toggle = cc.Class({
@@ -33826,18 +33844,18 @@
     });
     cc.Toggle = module.exports = Toggle;
     var js = require("../platform/js");
-    js.get(Toggle.prototype, "_toggleContainer", (function() {
+    js.get(Toggle.prototype, "_toggleContainer", function() {
       var parent = this.node.parent;
       if (cc.Node.isNode(parent)) return parent.getComponent(cc.ToggleContainer);
       return null;
-    }));
-  }), {
+    });
+  }, {
     "../platform/js": 295,
     "../utils/gray-sprite-state": 377,
     "./CCButton": 180,
     "./CCToggleGroup": 203
   } ],
-  202: [ (function(require, module, exports) {
+  202: [ function(require, module, exports) {
     "use strict";
     var ToggleContainer = cc.Class({
       name: "cc.ToggleContainer",
@@ -33856,17 +33874,17 @@
       updateToggles: function updateToggles(toggle) {
         if (!this.enabledInHierarchy) return;
         if (toggle.isChecked) {
-          this.toggleItems.forEach((function(item) {
+          this.toggleItems.forEach(function(item) {
             item !== toggle && item.isChecked && item.enabled && item._hideCheckMark();
-          }));
+          });
           this.checkEvents && cc.Component.EventHandler.emitEvents(this.checkEvents, toggle);
         }
       },
       _allowOnlyOneToggleChecked: function _allowOnlyOneToggleChecked() {
         var isChecked = false;
-        this.toggleItems.forEach((function(item) {
+        this.toggleItems.forEach(function(item) {
           isChecked ? item._hideCheckMark() : item.isChecked && (isChecked = true);
-        }));
+        });
         return isChecked;
       },
       _makeAtLeastOneToggleChecked: function _makeAtLeastOneToggleChecked() {
@@ -33887,16 +33905,16 @@
       }
     });
     var js = require("../platform/js");
-    js.get(ToggleContainer.prototype, "toggleItems", (function() {
-      return this.node._children.map((function(item) {
+    js.get(ToggleContainer.prototype, "toggleItems", function() {
+      return this.node._children.map(function(item) {
         return item.getComponent(cc.Toggle);
-      })).filter(Boolean);
-    }));
+      }).filter(Boolean);
+    });
     cc.ToggleContainer = module.exports = ToggleContainer;
-  }), {
+  }, {
     "../platform/js": 295
   } ],
-  203: [ (function(require, module, exports) {
+  203: [ function(require, module, exports) {
     "use strict";
     var ToggleGroup = cc.Class({
       name: "cc.ToggleGroup",
@@ -33918,9 +33936,9 @@
       },
       updateToggles: function updateToggles(toggle) {
         if (!this.enabledInHierarchy) return;
-        this._toggleItems.forEach((function(item) {
+        this._toggleItems.forEach(function(item) {
           toggle.isChecked && item !== toggle && item.isChecked && item.enabled && item._hideCheckMark();
-        }));
+        });
       },
       addToggle: function addToggle(toggle) {
         var index = this._toggleItems.indexOf(toggle);
@@ -33934,10 +33952,10 @@
       },
       _allowOnlyOneToggleChecked: function _allowOnlyOneToggleChecked() {
         var isChecked = false;
-        this._toggleItems.forEach((function(item) {
+        this._toggleItems.forEach(function(item) {
           isChecked && item.enabled && item._hideCheckMark();
           item.isChecked && item.enabled && (isChecked = true);
-        }));
+        });
         return isChecked;
       },
       _makeAtLeastOneToggleChecked: function _makeAtLeastOneToggleChecked() {
@@ -33950,28 +33968,28 @@
     });
     var js = require("../platform/js");
     var showed = false;
-    js.get(cc, "ToggleGroup", (function() {
+    js.get(cc, "ToggleGroup", function() {
       if (!showed) {
         cc.errorID(1405, "cc.ToggleGroup", "cc.ToggleContainer");
         showed = true;
       }
       return ToggleGroup;
-    }));
+    });
     module.exports = ToggleGroup;
-  }), {
+  }, {
     "../platform/js": 295
   } ],
-  204: [ (function(require, module, exports) {
+  204: [ function(require, module, exports) {
     "use strict";
     var ViewGroup = cc.Class({
       name: "cc.ViewGroup",
       extends: require("./CCComponent")
     });
     cc.ViewGroup = module.exports = ViewGroup;
-  }), {
+  }, {
     "./CCComponent": 182
   } ],
-  205: [ (function(require, module, exports) {
+  205: [ function(require, module, exports) {
     "use strict";
     var WidgetManager = require("../base-ui/CCWidgetManager");
     var AlignMode = WidgetManager.AlignMode;
@@ -34281,11 +34299,11 @@
       }
     });
     cc.Widget = module.exports = Widget;
-  }), {
+  }, {
     "../base-ui/CCWidgetManager": 166,
     "./CCComponent": 182
   } ],
-  206: [ (function(require, module, exports) {
+  206: [ function(require, module, exports) {
     "use strict";
     var Component = require("./CCComponent");
     var SubContextView = cc.Class({
@@ -34432,10 +34450,10 @@
     cc.SubContextView = module.exports = SubContextView;
     cc.WXSubContextView = SubContextView;
     cc.SwanSubContextView = SubContextView;
-  }), {
+  }, {
     "./CCComponent": 182
   } ],
-  207: [ (function(require, module, exports) {
+  207: [ function(require, module, exports) {
     "use strict";
     var macro = require("../../platform/CCMacro");
     var EditBoxImplBase = require("../editbox/EditBoxImplBase");
@@ -34445,9 +34463,9 @@
     var InputFlag = Types.InputFlag;
     var KeyboardReturnType = Types.KeyboardReturnType;
     function capitalize(string) {
-      return string.replace(/(?:^|\s)\S/g, (function(a) {
+      return string.replace(/(?:^|\s)\S/g, function(a) {
         return a.toUpperCase();
-      }));
+      });
     }
     function capitalizeFirstLetter(string) {
       return string.charAt(0).toUpperCase() + string.slice(1);
@@ -34891,14 +34909,14 @@
     });
     cc.EditBox = module.exports = EditBox;
     cc.sys.isBrowser && require("./WebEditBoxImpl");
-  }), {
+  }, {
     "../../platform/CCMacro": 278,
     "../CCLabel": 184,
     "../editbox/EditBoxImplBase": 208,
     "./WebEditBoxImpl": 209,
     "./types": 211
   } ],
-  208: [ (function(require, module, exports) {
+  208: [ function(require, module, exports) {
     "use strict";
     var EditBoxImplBase = cc.Class({
       ctor: function ctor() {
@@ -34924,8 +34942,8 @@
       endEditing: function endEditing() {}
     });
     module.exports = EditBoxImplBase;
-  }), {} ],
-  209: [ (function(require, module, exports) {
+  }, {} ],
+  209: [ function(require, module, exports) {
     "use strict";
     var _mat = _interopRequireDefault(require("../../value-types/mat4"));
     function _interopRequireDefault(e) {
@@ -35077,30 +35095,30 @@
       _hideDomOnMobile: function _hideDomOnMobile() {
         if (cc.sys.os === cc.sys.OS_ANDROID) {
           _autoResize && cc.view.resizeWithBrowserSize(true);
-          setTimeout((function() {
+          setTimeout(function() {
             _currentEditBoxImpl || _fullscreen && cc.view.enableAutoFullScreen(true);
-          }), DELAY_TIME);
+          }, DELAY_TIME);
         }
       },
       _adjustWindowScroll: function _adjustWindowScroll() {
         var self = this;
-        setTimeout((function() {
+        setTimeout(function() {
           window.scrollY < SCROLLY && self._elem.scrollIntoView({
             block: "start",
             inline: "nearest",
             behavior: "smooth"
           });
-        }), DELAY_TIME);
+        }, DELAY_TIME);
       },
       _scrollBackWindow: function _scrollBackWindow() {
-        setTimeout((function() {
+        setTimeout(function() {
           var sys = cc.sys;
           if (sys.browserType === sys.BROWSER_TYPE_WECHAT && sys.os === sys.OS_IOS) {
             window.top && window.top.scrollTo(0, 0);
             return;
           }
           window.scrollTo(0, 0);
-        }), DELAY_TIME);
+        }, DELAY_TIME);
       },
       _updateCameraMatrix: function _updateCameraMatrix() {
         var node = this._delegate.node;
@@ -35339,7 +35357,7 @@
         cbs.onClick = null;
       }
     });
-  }), {
+  }, {
     "../../platform/CCMacro": 278,
     "../../platform/utils": 298,
     "../../value-types/mat4": 397,
@@ -35347,7 +35365,7 @@
     "./tabIndexUtil": 210,
     "./types": 211
   } ],
-  210: [ (function(require, module, exports) {
+  210: [ function(require, module, exports) {
     "use strict";
     var tabIndexUtil = {
       _tabIndexList: [],
@@ -35362,9 +35380,9 @@
         -1 !== index && list.splice(index, 1);
       },
       resort: function resort() {
-        this._tabIndexList.sort((function(a, b) {
+        this._tabIndexList.sort(function(a, b) {
           return a._delegate._tabIndex - b._delegate._tabIndex;
-        }));
+        });
       },
       next: function next(editBoxImpl) {
         var list = this._tabIndexList;
@@ -35377,8 +35395,8 @@
       }
     };
     module.exports = tabIndexUtil;
-  }), {} ],
-  211: [ (function(require, module, exports) {
+  }, {} ],
+  211: [ function(require, module, exports) {
     "use strict";
     var KeyboardReturnType = cc.Enum({
       DEFAULT: 0,
@@ -35410,8 +35428,8 @@
       InputMode: InputMode,
       InputFlag: InputFlag
     };
-  }), {} ],
-  212: [ (function(require, module, exports) {
+  }, {} ],
+  212: [ function(require, module, exports) {
     "use strict";
     require("./CCComponent");
     require("./CCComponentEventHandler");
@@ -35426,7 +35444,7 @@
     }
     var components = [ require("./CCSprite"), require("./CCWidget"), require("./CCCanvas"), require("./CCAudioSource"), require("./CCAnimation"), require("./CCButton"), require("./CCLabel"), require("./CCProgressBar"), require("./CCMask"), require("./CCScrollBar"), require("./CCScrollView"), require("./CCPageViewIndicator"), require("./CCPageView"), require("./CCSlider"), require("./CCLayout"), require("./editbox/CCEditBox"), require("./CCLabelOutline"), require("./CCLabelShadow"), require("./CCRichText"), require("./CCToggleContainer"), require("./CCToggleGroup"), require("./CCToggle"), require("./CCBlockInputEvents"), require("./CCMotionStreak"), require("./CCSafeArea"), SubContextView ];
     module.exports = components;
-  }), {
+  }, {
     "./CCAnimation": 177,
     "./CCAudioSource": 178,
     "./CCBlockInputEvents": 179,
@@ -35457,7 +35475,7 @@
     "./editbox/CCEditBox": 207,
     "./missing-script": 213
   } ],
-  213: [ (function(require, module, exports) {
+  213: [ function(require, module, exports) {
     "use strict";
     var js = cc.js;
     var MissingScript = cc.Class({
@@ -35491,8 +35509,8 @@
       }
     });
     cc._MissingScript = module.exports = MissingScript;
-  }), {} ],
-  214: [ (function(require, module, exports) {
+  }, {} ],
+  214: [ function(require, module, exports) {
     "use strict";
     var js = cc.js;
     require("../event/event");
@@ -35645,10 +35663,10 @@
     cc.Event.EventAcceleration = EventAcceleration;
     cc.Event.EventKeyboard = EventKeyboard;
     module.exports = cc.Event;
-  }), {
+  }, {
     "../event/event": 221
   } ],
-  215: [ (function(require, module, exports) {
+  215: [ function(require, module, exports) {
     "use strict";
     var js = require("../platform/js");
     cc.EventListener = function(type, listenerID, callback) {
@@ -35904,10 +35922,10 @@
       return listener;
     };
     module.exports = cc.EventListener;
-  }), {
+  }, {
     "../platform/js": 295
   } ],
-  216: [ (function(require, module, exports) {
+  216: [ function(require, module, exports) {
     "use strict";
     var js = require("../platform/js");
     require("./CCEventListener");
@@ -36524,16 +36542,16 @@
         this.dispatchEvent(ev);
       }
     };
-    js.get(cc, "eventManager", (function() {
+    js.get(cc, "eventManager", function() {
       cc.errorID(1405, "cc.eventManager", "cc.EventTarget or cc.systemEvent");
       return eventManager;
-    }));
+    });
     module.exports = cc.internal.eventManager = eventManager;
-  }), {
+  }, {
     "../platform/js": 295,
     "./CCEventListener": 215
   } ],
-  217: [ (function(require, module, exports) {
+  217: [ function(require, module, exports) {
     "use strict";
     cc.Touch = function(x, y, id) {
       this._lastModified = 0;
@@ -36594,8 +36612,8 @@
         this._prevPoint = void 0 === y ? cc.v2(x.x, x.y) : cc.v2(x || 0, y || 0);
       }
     };
-  }), {} ],
-  218: [ (function(require, module, exports) {
+  }, {} ],
+  218: [ function(require, module, exports) {
     "use strict";
     require("./CCEvent");
     require("./CCTouch");
@@ -36603,13 +36621,13 @@
     var eventManager = require("./CCEventManager");
     module.exports = eventManager;
     false;
-  }), {
+  }, {
     "./CCEvent": 214,
     "./CCEventListener": 215,
     "./CCEventManager": 216,
     "./CCTouch": 217
   } ],
-  219: [ (function(require, module, exports) {
+  219: [ function(require, module, exports) {
     "use strict";
     var js = cc.js;
     var CallbacksInvoker = require("../platform/callbacks-invoker");
@@ -36639,10 +36657,10 @@
     };
     module.exports = EventListeners;
     false;
-  }), {
+  }, {
     "../platform/callbacks-invoker": 286
   } ],
-  220: [ (function(require, module, exports) {
+  220: [ function(require, module, exports) {
     "use strict";
     var js = require("../platform/js");
     var CallbacksInvoker = require("../platform/callbacks-invoker");
@@ -36701,11 +36719,11 @@
       }
     };
     cc.EventTarget = module.exports = EventTarget;
-  }), {
+  }, {
     "../platform/callbacks-invoker": 286,
     "../platform/js": 295
   } ],
-  221: [ (function(require, module, exports) {
+  221: [ function(require, module, exports) {
     "use strict";
     var js = require("../platform/js");
     cc.Event = function(type, bubbles) {
@@ -36781,22 +36799,22 @@
     };
     cc.Event.EventCustom = EventCustom;
     module.exports = cc.Event;
-  }), {
+  }, {
     "../platform/js": 295
   } ],
-  222: [ (function(require, module, exports) {
+  222: [ function(require, module, exports) {
     "use strict";
     require("./event");
     require("./event-listeners");
     require("./event-target");
     require("./system-event");
-  }), {
+  }, {
     "./event": 221,
     "./event-listeners": 219,
     "./event-target": 220,
     "./system-event": 223
   } ],
-  223: [ (function(require, module, exports) {
+  223: [ function(require, module, exports) {
     "use strict";
     var EventTarget = require("../event/event-target");
     var eventManager = require("../event-manager");
@@ -36816,10 +36834,10 @@
       },
       setAccelerometerEnabled: function setAccelerometerEnabled(isEnable) {
         false;
-        isEnable && window.DeviceMotionEvent && "function" === typeof DeviceMotionEvent.requestPermission ? DeviceMotionEvent.requestPermission().then((function(response) {
+        isEnable && window.DeviceMotionEvent && "function" === typeof DeviceMotionEvent.requestPermission ? DeviceMotionEvent.requestPermission().then(function(response) {
           console.log("Device Motion Event request permission: " + response);
           inputManger.setAccelerometerEnabled("granted" === response);
-        })) : inputManger.setAccelerometerEnabled(isEnable);
+        }) : inputManger.setAccelerometerEnabled(isEnable);
       },
       setAccelerometerInterval: function setAccelerometerInterval(interval) {
         false;
@@ -36866,12 +36884,12 @@
     });
     cc.SystemEvent = module.exports = SystemEvent;
     cc.systemEvent = new cc.SystemEvent();
-  }), {
+  }, {
     "../event-manager": 218,
     "../event/event-target": 220,
     "../platform/CCInputManager": 277
   } ],
-  224: [ (function(require, module, exports) {
+  224: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -36899,7 +36917,7 @@
       _m3_tmpm[8] = Math.abs(m4m[10]);
       _vec["default"].transformMat3(out, extent, _m3_tmp);
     };
-    var aabb = exports["default"] = (function() {
+    var aabb = exports["default"] = function() {
       function aabb(px, py, pz, w, h, l) {
         this.center = void 0;
         this.halfExtents = void 0;
@@ -36940,14 +36958,14 @@
         transform_extent_m4(out.halfExtents, this.halfExtents, m);
       };
       return aabb;
-    })();
+    }();
     module.exports = exports["default"];
-  }), {
+  }, {
     "../value-types/mat3": 396,
     "../value-types/vec3": 405,
     "./enums": 226
   } ],
-  225: [ (function(require, module, exports) {
+  225: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.point_plane = point_plane;
@@ -37005,10 +37023,10 @@
       }
       return out;
     }
-  }), {
+  }, {
     "../value-types": 395
   } ],
-  226: [ (function(require, module, exports) {
+  226: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -37024,8 +37042,8 @@
       SHAPE_FRUSTUM_ACCURATE: 256
     };
     module.exports = exports["default"];
-  }), {} ],
-  227: [ (function(require, module, exports) {
+  }, {} ],
+  227: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -37073,7 +37091,7 @@
     _v[5] = new _valueTypes.Vec3(-1, 1, -1);
     _v[6] = new _valueTypes.Vec3(-1, -1, -1);
     _v[7] = new _valueTypes.Vec3(1, -1, -1);
-    var frustum = exports["default"] = (function() {
+    var frustum = exports["default"] = function() {
       function frustum() {
         this.planes = void 0;
         this.vertices = void 0;
@@ -37136,9 +37154,9 @@
           this._type = b ? _enums["default"].SHAPE_FRUSTUM_ACCURATE : _enums["default"].SHAPE_FRUSTUM;
         }
       } ]);
-    })();
+    }();
     _frustum = frustum;
-    frustum.createOrtho = (function() {
+    frustum.createOrtho = function() {
       var _temp_v3 = new _valueTypes.Vec3();
       return function(out, width, height, near, far, transform) {
         var halfWidth = width / 2;
@@ -37166,14 +37184,14 @@
         _plane["default"].fromPoints(out.planes[4], out.vertices[2], out.vertices[0], out.vertices[3]);
         _plane["default"].fromPoints(out.planes[0], out.vertices[7], out.vertices[5], out.vertices[6]);
       };
-    })();
+    }();
     module.exports = exports["default"];
-  }), {
+  }, {
     "../value-types": 395,
     "./enums": 226,
     "./plane": 232
   } ],
-  228: [ (function(require, module, exports) {
+  228: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     var _exportNames = {
@@ -37210,19 +37228,19 @@
     var _plane = _interopRequireDefault(require("./plane"));
     exports.Plane = _plane["default"];
     var _distance = require("./distance");
-    Object.keys(_distance).forEach((function(key) {
+    Object.keys(_distance).forEach(function(key) {
       if ("default" === key || "__esModule" === key) return;
       if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
       if (key in exports && exports[key] === _distance[key]) return;
       exports[key] = _distance[key];
-    }));
+    });
     function _interopRequireDefault(e) {
       return e && e.__esModule ? e : {
         default: e
       };
     }
     cc.geomUtils = module.exports;
-  }), {
+  }, {
     "./aabb": 224,
     "./distance": 225,
     "./enums": 226,
@@ -37235,7 +37253,7 @@
     "./sphere": 234,
     "./triangle": 235
   } ],
-  229: [ (function(require, module, exports) {
+  229: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -37247,29 +37265,35 @@
     var _enums = _interopRequireDefault(require("./enums"));
     var _ray = _interopRequireDefault(require("./ray"));
     var _triangle = _interopRequireDefault(require("./triangle"));
-    function _interopRequireWildcard(e, t) {
-      if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap();
-      return (_interopRequireWildcard = function _interopRequireWildcard(e, t) {
-        if (!t && e && e.__esModule) return e;
-        var o, i, f = {
-          __proto__: null,
-          default: e
-        };
-        if (null === e || "object" != typeof e && "function" != typeof e) return f;
-        if (o = t ? n : r) {
-          if (o.has(e)) return o.get(e);
-          o.set(e, f);
-        }
-        for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]);
-        return f;
-      })(e, t);
+    function _getRequireWildcardCache(e) {
+      if ("function" != typeof WeakMap) return null;
+      var r = new WeakMap(), t = new WeakMap();
+      return (_getRequireWildcardCache = function _getRequireWildcardCache(e) {
+        return e ? t : r;
+      })(e);
+    }
+    function _interopRequireWildcard(e, r) {
+      if (!r && e && e.__esModule) return e;
+      if (null === e || "object" != typeof e && "function" != typeof e) return {
+        default: e
+      };
+      var t = _getRequireWildcardCache(r);
+      if (t && t.has(e)) return t.get(e);
+      var n = {
+        __proto__: null
+      }, a = Object.defineProperty && Object.getOwnPropertyDescriptor;
+      for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) {
+        var i = a ? Object.getOwnPropertyDescriptor(e, u) : null;
+        i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u];
+      }
+      return n["default"] = e, t && t.set(e, n), n;
     }
     function _interopRequireDefault(e) {
       return e && e.__esModule ? e : {
         default: e
       };
     }
-    var ray_mesh = (function() {
+    var ray_mesh = function() {
       var tri = _triangle["default"].create();
       var minDist = Infinity;
       function getVec3(out, data, idx, stride) {
@@ -37296,9 +37320,9 @@
         }
         return minDist;
       };
-    })();
+    }();
     var rayMesh = ray_mesh;
-    var ray_cast = (function() {
+    var ray_cast = function() {
       function traversal(node, cb) {
         var children = node.children;
         for (var i = children.length - 1; i >= 0; i--) {
@@ -37340,7 +37364,7 @@
         resultsPool.reset();
         results.length = 0;
         root = root || cc.director.getScene();
-        traversal(root, (function(node) {
+        traversal(root, function(node) {
           if (filter && !filter(node)) return;
           _valueTypes.Mat4.invert(m4_2, node.getWorldMatrix(m4_1));
           _valueTypes.Vec3.transformMat4(modelRay.o, worldRay.o, m4_2);
@@ -37363,13 +37387,13 @@
             res.distance = _valueTypes.Vec3.mag(d);
             results.push(res);
           }
-        }));
+        });
         results.sort(cmp);
         return results;
       };
-    })();
+    }();
     var raycast = ray_cast;
-    var ray_plane = (function() {
+    var ray_plane = function() {
       var pt = new _valueTypes.Vec3(0, 0, 0);
       return function(ray, plane) {
         var denom = _valueTypes.Vec3.dot(ray.d, plane.n);
@@ -37379,8 +37403,8 @@
         if (t < 0) return 0;
         return t;
       };
-    })();
-    var line_plane = (function() {
+    }();
+    var line_plane = function() {
       var ab = new _valueTypes.Vec3(0, 0, 0);
       return function(line, plane) {
         _valueTypes.Vec3.subtract(ab, line.e, line.s);
@@ -37388,8 +37412,8 @@
         if (t < 0 || t > 1) return 0;
         return t;
       };
-    })();
-    var ray_triangle = (function() {
+    }();
+    var ray_triangle = function() {
       var ab = new _valueTypes.Vec3(0, 0, 0);
       var ac = new _valueTypes.Vec3(0, 0, 0);
       var pvec = new _valueTypes.Vec3(0, 0, 0);
@@ -37411,9 +37435,9 @@
         var t = _valueTypes.Vec3.dot(ac, qvec) * inv_det;
         return t < 0 ? 0 : t;
       };
-    })();
+    }();
     var rayTriangle = ray_triangle;
-    var line_triangle = (function() {
+    var line_triangle = function() {
       var ab = new _valueTypes.Vec3(0, 0, 0);
       var ac = new _valueTypes.Vec3(0, 0, 0);
       var qp = new _valueTypes.Vec3(0, 0, 0);
@@ -37444,8 +37468,8 @@
         }
         return 1;
       };
-    })();
-    var line_quad = (function() {
+    }();
+    var line_quad = function() {
       var pq = new _valueTypes.Vec3(0, 0, 0);
       var pa = new _valueTypes.Vec3(0, 0, 0);
       var pb = new _valueTypes.Vec3(0, 0, 0);
@@ -37489,8 +37513,8 @@
         }
         return 1;
       };
-    })();
-    var ray_sphere = (function() {
+    }();
+    var ray_sphere = function() {
       var e = new _valueTypes.Vec3(0, 0, 0);
       return function(ray, sphere) {
         var r = sphere.radius;
@@ -37508,8 +37532,8 @@
         if (t < 0) return 0;
         return t;
       };
-    })();
-    var ray_aabb = (function() {
+    }();
+    var ray_aabb = function() {
       var min = new _valueTypes.Vec3();
       var max = new _valueTypes.Vec3();
       return function(ray, aabb) {
@@ -37528,9 +37552,9 @@
         if (tmax < 0 || tmin > tmax) return 0;
         return tmin;
       };
-    })();
+    }();
     var rayAabb = ray_aabb;
-    var ray_obb = (function() {
+    var ray_obb = function() {
       var center = new _valueTypes.Vec3();
       var o = new _valueTypes.Vec3();
       var d = new _valueTypes.Vec3();
@@ -37573,8 +37597,8 @@
         if (tmax < 0 || tmin > tmax || tmin < 0) return 0;
         return tmin;
       };
-    })();
-    var aabb_aabb = (function() {
+    }();
+    var aabb_aabb = function() {
       var aMin = new _valueTypes.Vec3();
       var aMax = new _valueTypes.Vec3();
       var bMin = new _valueTypes.Vec3();
@@ -37586,7 +37610,7 @@
         _valueTypes.Vec3.add(bMax, aabb2.center, aabb2.halfExtents);
         return aMin.x <= bMax.x && aMax.x >= bMin.x && aMin.y <= bMax.y && aMax.y >= bMin.y && aMin.z <= bMax.z && aMax.z >= bMin.z;
       };
-    })();
+    }();
     function getAABBVertices(min, max, out) {
       _valueTypes.Vec3.set(out[0], min.x, max.y, max.z);
       _valueTypes.Vec3.set(out[1], min.x, max.y, min.z);
@@ -37616,7 +37640,7 @@
       }
       return [ min, max ];
     }
-    var aabb_obb = (function() {
+    var aabb_obb = function() {
       var test = new Array(15);
       for (var i = 0; i < 15; i++) test[i] = new _valueTypes.Vec3(0, 0, 0);
       var vertices = new Array(8);
@@ -37651,7 +37675,7 @@
         }
         return 1;
       };
-    })();
+    }();
     var aabb_plane = function aabb_plane(aabb, plane) {
       var r = aabb.halfExtents.x * Math.abs(plane.n.x) + aabb.halfExtents.y * Math.abs(plane.n.y) + aabb.halfExtents.z * Math.abs(plane.n.z);
       var dot = _valueTypes.Vec3.dot(plane.n, aabb.center);
@@ -37663,7 +37687,7 @@
       for (var i = 0; i < frustum.planes.length; i++) if (-1 === aabb_plane(aabb, frustum.planes[i])) return 0;
       return 1;
     };
-    var aabb_frustum_accurate = (function() {
+    var aabb_frustum_accurate = function() {
       var tmp = new Array(8);
       var out1 = 0, out2 = 0;
       for (var i = 0; i < tmp.length; i++) tmp[i] = new _valueTypes.Vec3(0, 0, 0);
@@ -37689,8 +37713,8 @@
         if (out1 === frustum.vertices.length || out2 === frustum.vertices.length) return 0;
         return 1;
       };
-    })();
-    var obb_point = (function() {
+    }();
+    var obb_point = function() {
       var tmp = new _valueTypes.Vec3(0, 0, 0), m3 = new _valueTypes.Mat3();
       var lessThan = function lessThan(a, b) {
         return Math.abs(a.x) < b.x && Math.abs(a.y) < b.y && Math.abs(a.z) < b.z;
@@ -37700,8 +37724,8 @@
         _valueTypes.Vec3.transformMat3(tmp, tmp, _valueTypes.Mat3.transpose(m3, obb.orientation));
         return lessThan(tmp, obb.halfExtents);
       };
-    })();
-    var obb_plane = (function() {
+    }();
+    var obb_plane = function() {
       var absDot = function absDot(n, x, y, z) {
         return Math.abs(n.x * x + n.y * y + n.z * z);
       };
@@ -37713,12 +37737,12 @@
         if (dot - r > plane.d) return 0;
         return 1;
       };
-    })();
+    }();
     var obb_frustum = function obb_frustum(obb, frustum) {
       for (var i = 0; i < frustum.planes.length; i++) if (-1 === obb_plane(obb, frustum.planes[i])) return 0;
       return 1;
     };
-    var obb_frustum_accurate = (function() {
+    var obb_frustum_accurate = function() {
       var tmp = new Array(8);
       var dist = 0, out1 = 0, out2 = 0;
       for (var i = 0; i < tmp.length; i++) tmp[i] = new _valueTypes.Vec3(0, 0, 0);
@@ -37733,39 +37757,39 @@
           1 === result && (intersects = true);
         }
         if (!intersects) return 1;
-        for (var _i0 = 0; _i0 < frustum.vertices.length; _i0++) _valueTypes.Vec3.subtract(tmp[_i0], frustum.vertices[_i0], obb.center);
+        for (var _i10 = 0; _i10 < frustum.vertices.length; _i10++) _valueTypes.Vec3.subtract(tmp[_i10], frustum.vertices[_i10], obb.center);
         out1 = 0, out2 = 0;
         var obbm = obb.orientation.m;
-        for (var _i1 = 0; _i1 < frustum.vertices.length; _i1++) {
-          dist = dot(tmp[_i1], obbm[0], obbm[1], obbm[2]);
+        for (var _i11 = 0; _i11 < frustum.vertices.length; _i11++) {
+          dist = dot(tmp[_i11], obbm[0], obbm[1], obbm[2]);
           dist > obb.halfExtents.x ? out1++ : dist < -obb.halfExtents.x && out2++;
         }
         if (out1 === frustum.vertices.length || out2 === frustum.vertices.length) return 0;
         out1 = 0;
         out2 = 0;
-        for (var _i10 = 0; _i10 < frustum.vertices.length; _i10++) {
-          dist = dot(tmp[_i10], obbm[3], obbm[4], obbm[5]);
+        for (var _i12 = 0; _i12 < frustum.vertices.length; _i12++) {
+          dist = dot(tmp[_i12], obbm[3], obbm[4], obbm[5]);
           dist > obb.halfExtents.y ? out1++ : dist < -obb.halfExtents.y && out2++;
         }
         if (out1 === frustum.vertices.length || out2 === frustum.vertices.length) return 0;
         out1 = 0;
         out2 = 0;
-        for (var _i11 = 0; _i11 < frustum.vertices.length; _i11++) {
-          dist = dot(tmp[_i11], obbm[6], obbm[7], obbm[8]);
+        for (var _i13 = 0; _i13 < frustum.vertices.length; _i13++) {
+          dist = dot(tmp[_i13], obbm[6], obbm[7], obbm[8]);
           dist > obb.halfExtents.z ? out1++ : dist < -obb.halfExtents.z && out2++;
         }
         if (out1 === frustum.vertices.length || out2 === frustum.vertices.length) return 0;
         return 1;
       };
-    })();
-    var obb_obb = (function() {
+    }();
+    var obb_obb = function() {
       var test = new Array(15);
       for (var i = 0; i < 15; i++) test[i] = new _valueTypes.Vec3(0, 0, 0);
       var vertices = new Array(8);
       var vertices2 = new Array(8);
-      for (var _i12 = 0; _i12 < 8; _i12++) {
-        vertices[_i12] = new _valueTypes.Vec3(0, 0, 0);
-        vertices2[_i12] = new _valueTypes.Vec3(0, 0, 0);
+      for (var _i14 = 0; _i14 < 8; _i14++) {
+        vertices[_i14] = new _valueTypes.Vec3(0, 0, 0);
+        vertices2[_i14] = new _valueTypes.Vec3(0, 0, 0);
       }
       return function(obb1, obb2) {
         var obb1m = obb1.orientation.m;
@@ -37776,21 +37800,21 @@
         _valueTypes.Vec3.set(test[3], obb2m[0], obb2m[1], obb2m[2]);
         _valueTypes.Vec3.set(test[4], obb2m[3], obb2m[4], obb2m[5]);
         _valueTypes.Vec3.set(test[5], obb2m[6], obb2m[7], obb2m[8]);
-        for (var _i13 = 0; _i13 < 3; ++_i13) {
-          _valueTypes.Vec3.cross(test[6 + 3 * _i13 + 0], test[_i13], test[0]);
-          _valueTypes.Vec3.cross(test[6 + 3 * _i13 + 1], test[_i13], test[1]);
-          _valueTypes.Vec3.cross(test[6 + 3 * _i13 + 1], test[_i13], test[2]);
+        for (var _i15 = 0; _i15 < 3; ++_i15) {
+          _valueTypes.Vec3.cross(test[6 + 3 * _i15 + 0], test[_i15], test[0]);
+          _valueTypes.Vec3.cross(test[6 + 3 * _i15 + 1], test[_i15], test[1]);
+          _valueTypes.Vec3.cross(test[6 + 3 * _i15 + 1], test[_i15], test[2]);
         }
         getOBBVertices(obb1.center, obb1.halfExtents, test[0], test[1], test[2], vertices);
         getOBBVertices(obb2.center, obb2.halfExtents, test[3], test[4], test[5], vertices2);
-        for (var _i14 = 0; _i14 < 15; ++_i14) {
-          var a = getInterval(vertices, test[_i14]);
-          var b = getInterval(vertices2, test[_i14]);
+        for (var _i16 = 0; _i16 < 15; ++_i16) {
+          var a = getInterval(vertices, test[_i16]);
+          var b = getInterval(vertices2, test[_i16]);
           if (b[0] > a[1] || a[0] > b[1]) return 0;
         }
         return 1;
       };
-    })();
+    }();
     var sphere_plane = function sphere_plane(sphere, plane) {
       var dot = _valueTypes.Vec3.dot(plane.n, sphere.center);
       var r = sphere.radius * plane.n.length();
@@ -37802,7 +37826,7 @@
       for (var i = 0; i < frustum.planes.length; i++) if (-1 === sphere_plane(sphere, frustum.planes[i])) return 0;
       return 1;
     };
-    var sphere_frustum_accurate = (function() {
+    var sphere_frustum_accurate = function() {
       var pt = new _valueTypes.Vec3(0, 0, 0), map = [ 1, -1, 1, -1, 1, -1 ];
       return function(sphere, frustum) {
         for (var i = 0; i < 6; i++) {
@@ -37821,25 +37845,25 @@
         }
         return 1;
       };
-    })();
+    }();
     var sphere_sphere = function sphere_sphere(sphere0, sphere1) {
       var r = sphere0.radius + sphere1.radius;
       return _valueTypes.Vec3.squaredDistance(sphere0.center, sphere1.center) < r * r;
     };
-    var sphere_aabb = (function() {
+    var sphere_aabb = function() {
       var pt = new _valueTypes.Vec3();
       return function(sphere, aabb) {
         distance.pt_point_aabb(pt, sphere.center, aabb);
         return _valueTypes.Vec3.squaredDistance(sphere.center, pt) < sphere.radius * sphere.radius;
       };
-    })();
-    var sphere_obb = (function() {
+    }();
+    var sphere_obb = function() {
       var pt = new _valueTypes.Vec3();
       return function(sphere, obb) {
         distance.pt_point_obb(pt, sphere.center, obb);
         return _valueTypes.Vec3.squaredDistance(sphere.center, pt) < sphere.radius * sphere.radius;
       };
-    })();
+    }();
     var intersect = {
       rayAabb: rayAabb,
       rayMesh: rayMesh,
@@ -37900,7 +37924,7 @@
     intersect[_enums["default"].SHAPE_OBB | _enums["default"].SHAPE_FRUSTUM_ACCURATE] = obb_frustum_accurate;
     var _default = exports["default"] = intersect;
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../renderer/gfx": 428,
     "../../renderer/memop/recycle-pool": 443,
     "../value-types": 395,
@@ -37910,7 +37934,7 @@
     "./ray": 233,
     "./triangle": 235
   } ],
-  230: [ (function(require, module, exports) {
+  230: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -37921,7 +37945,7 @@
         default: e
       };
     }
-    var line = exports["default"] = (function() {
+    var line = exports["default"] = function() {
       function line(sx, sy, sz, ex, ey, ez) {
         void 0 === sx && (sx = 0);
         void 0 === sy && (sy = 0);
@@ -37969,13 +37993,13 @@
         return _valueTypes.Vec3.distance(this.s, this.e);
       };
       return line;
-    })();
+    }();
     module.exports = exports["default"];
-  }), {
+  }, {
     "../value-types": 395,
     "./enums": 226
   } ],
-  231: [ (function(require, module, exports) {
+  231: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -38028,7 +38052,7 @@
       m3_tmpm[8] = Math.abs(m3m[8]);
       _valueTypes.Vec3.transformMat3(out, extent, _m3_tmp);
     };
-    var obb = exports["default"] = (function() {
+    var obb = exports["default"] = function() {
       function obb(cx, cy, cz, hw, hh, hl, ox_1, ox_2, ox_3, oy_1, oy_2, oy_3, oz_1, oz_2, oz_3) {
         void 0 === cx && (cx = 0);
         void 0 === cy && (cy = 0);
@@ -38103,13 +38127,13 @@
           return this._type;
         }
       } ]);
-    })();
+    }();
     module.exports = exports["default"];
-  }), {
+  }, {
     "../value-types": 395,
     "./enums": 226
   } ],
-  232: [ (function(require, module, exports) {
+  232: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -38124,7 +38148,7 @@
     var v2 = new _valueTypes.Vec3(0, 0, 0);
     var temp_mat = cc.mat4();
     var temp_vec4 = cc.v4();
-    var plane = exports["default"] = (function() {
+    var plane = exports["default"] = function() {
       function plane(nx, ny, nz, d) {
         void 0 === nx && (nx = 0);
         void 0 === ny && (ny = 1);
@@ -38183,13 +38207,13 @@
         this.d = temp_vec4.w;
       };
       return plane;
-    })();
+    }();
     module.exports = exports["default"];
-  }), {
+  }, {
     "../value-types": 395,
     "./enums": 226
   } ],
-  233: [ (function(require, module, exports) {
+  233: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -38200,7 +38224,7 @@
         default: e
       };
     }
-    var ray = exports["default"] = (function() {
+    var ray = exports["default"] = function() {
       function ray(ox, oy, oz, dx, dy, dz) {
         void 0 === ox && (ox = 0);
         void 0 === oy && (oy = 0);
@@ -38252,13 +38276,13 @@
         _valueTypes.Vec3.scaleAndAdd(out, this.o, out, distance);
       };
       return ray;
-    })();
+    }();
     module.exports = exports["default"];
-  }), {
+  }, {
     "../value-types": 395,
     "./enums": 226
   } ],
-  234: [ (function(require, module, exports) {
+  234: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -38270,7 +38294,7 @@
       };
     }
     var _v3_tmp = new _valueTypes.Vec3();
-    var sphere = exports["default"] = (function() {
+    var sphere = exports["default"] = function() {
       function sphere(cx, cy, cz, r) {
         void 0 === cx && (cx = 0);
         void 0 === cy && (cy = 0);
@@ -38328,13 +38352,13 @@
         out.radius = this.radius * scale.maxAxis();
       };
       return sphere;
-    })();
+    }();
     module.exports = exports["default"];
-  }), {
+  }, {
     "../value-types": 395,
     "./enums": 226
   } ],
-  235: [ (function(require, module, exports) {
+  235: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -38345,7 +38369,7 @@
         default: e
       };
     }
-    var triangle = exports["default"] = (function() {
+    var triangle = exports["default"] = function() {
       function triangle(ax, ay, az, bx, by, bz, cx, cy, cz) {
         this.a = void 0;
         this.b = void 0;
@@ -38387,13 +38411,13 @@
         return out;
       };
       return triangle;
-    })();
+    }();
     module.exports = exports["default"];
-  }), {
+  }, {
     "../value-types/vec3": 405,
     "./enums": 226
   } ],
-  236: [ (function(require, module, exports) {
+  236: [ function(require, module, exports) {
     "use strict";
     var RenderComponent = require("../components/CCRenderComponent");
     var Material = require("../assets/material/CCMaterial");
@@ -38548,13 +38572,13 @@
     cc.Graphics = module.exports = Graphics;
     cc.Graphics.Types = Types;
     cc.Graphics.Helper = require("./helper");
-  }), {
+  }, {
     "../assets/material/CCMaterial": 157,
     "../components/CCRenderComponent": 193,
     "./helper": 237,
     "./types": 239
   } ],
-  237: [ (function(require, module, exports) {
+  237: [ function(require, module, exports) {
     "use strict";
     var PointFlags = require("./types").PointFlags;
     var PI = Math.PI;
@@ -38650,16 +38674,16 @@
       roundRect: roundRect,
       tesselateBezier: tesselateBezier
     };
-  }), {
+  }, {
     "./types": 239
   } ],
-  238: [ (function(require, module, exports) {
+  238: [ function(require, module, exports) {
     "use strict";
     require("./graphics");
-  }), {
+  }, {
     "./graphics": 236
   } ],
-  239: [ (function(require, module, exports) {
+  239: [ function(require, module, exports) {
     "use strict";
     var LineCap = cc.Enum({
       BUTT: 0,
@@ -38682,8 +38706,8 @@
       LineJoin: LineJoin,
       PointFlags: PointFlags
     };
-  }), {} ],
-  240: [ (function(require, module, exports) {
+  }, {} ],
+  240: [ function(require, module, exports) {
     "use strict";
     require("./platform");
     require("./assets");
@@ -38701,7 +38725,7 @@
     require("./mesh");
     require("./3d");
     require("./base-ui/CCWidgetManager");
-  }), {
+  }, {
     "./3d": 30,
     "./CCNode": 104,
     "./CCPrivateNode": 105,
@@ -38718,7 +38742,7 @@
     "./physics": 258,
     "./platform": 292
   } ],
-  241: [ (function(require, module, exports) {
+  241: [ function(require, module, exports) {
     "use strict";
     var _inputAssembler = _interopRequireDefault(require("../../renderer/core/input-assembler"));
     var _gfx = _interopRequireDefault(require("../../renderer/gfx"));
@@ -38760,11 +38784,11 @@
       5125: "setUint32",
       5126: "setFloat32"
     };
-    var littleEndian = (function() {
+    var littleEndian = function() {
       var buffer = new ArrayBuffer(2);
       new DataView(buffer).setInt16(0, 256, true);
       return 256 === new Int16Array(buffer)[0];
-    })();
+    }();
     var Mesh = cc.Class({
       name: "cc.Mesh",
       extends: cc.Asset,
@@ -39027,14 +39051,14 @@
       }
     });
     cc.Mesh = module.exports = Mesh;
-  }), {
+  }, {
     "../../renderer/core/input-assembler": 418,
     "../../renderer/gfx": 428,
     "../event/event-target": 220,
     "../renderer": 323,
     "./mesh-data": 244
   } ],
-  242: [ (function(require, module, exports) {
+  242: [ function(require, module, exports) {
     "use strict";
     var _gfx = _interopRequireDefault(require("../../renderer/gfx"));
     var _inputAssembler = _interopRequireDefault(require("../../renderer/core/input-assembler"));
@@ -39136,11 +39160,11 @@
         this._super();
         if (this._mesh && !this._mesh.loaded) {
           this.disableRender();
-          this._mesh.once("load", (function() {
+          this._mesh.once("load", function() {
             if (!_this.isValid) return;
             _this._setMesh(_this._mesh);
             _this.markForRender(true);
-          }));
+          });
           cc.assetManager.postLoadNative(this._mesh);
         } else this._setMesh(this._mesh);
         this._updateRenderNode();
@@ -39318,7 +39342,7 @@
       }
     };
     cc.MeshRenderer = module.exports = MeshRenderer;
-  }), {
+  }, {
     "../../renderer/core/input-assembler": 418,
     "../../renderer/gfx": 428,
     "../assets/material/CCMaterial": 157,
@@ -39331,18 +39355,18 @@
     "../value-types/vec3": 405,
     "./CCMesh": 241
   } ],
-  243: [ (function(require, module, exports) {
+  243: [ function(require, module, exports) {
     "use strict";
     require("./CCMesh");
     true;
     require("./CCMeshRenderer");
     require("./mesh-renderer");
-  }), {
+  }, {
     "./CCMesh": 241,
     "./CCMeshRenderer": 242,
     "./mesh-renderer": 245
   } ],
-  244: [ (function(require, module, exports) {
+  244: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.BufferRange = void 0;
@@ -39436,10 +39460,10 @@
       }
       return this.iData;
     };
-  }), {
+  }, {
     "../../renderer/gfx": 428
   } ],
-  245: [ (function(require, module, exports) {
+  245: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -39461,7 +39485,7 @@
     }
     var MeshRenderer = require("./CCMeshRenderer");
     var _tmp_vec3 = new _vec["default"]();
-    var MeshRendererAssembler = exports["default"] = (function(_Assembler) {
+    var MeshRendererAssembler = exports["default"] = function(_Assembler) {
       function MeshRendererAssembler() {
         return _Assembler.apply(this, arguments) || this;
       }
@@ -39560,16 +39584,16 @@
         }
       };
       return MeshRendererAssembler;
-    })(_assembler["default"]);
+    }(_assembler["default"]);
     _assembler["default"].register(MeshRenderer, MeshRendererAssembler);
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../renderer/gfx": 428,
     "../renderer/assembler": 303,
     "../value-types/vec3": 405,
     "./CCMeshRenderer": 242
   } ],
-  246: [ (function(require, module, exports) {
+  246: [ function(require, module, exports) {
     "use strict";
     var CompScheduler = require("./component-scheduler");
     var Flags = require("./platform/CCObject").Flags;
@@ -39742,13 +39766,13 @@
       resetComp: false
     });
     module.exports = NodeActivator;
-  }), {
+  }, {
     "./component-scheduler": 176,
     "./platform/CCObject": 279,
     "./platform/js": 295,
     "./utils/misc": 380
   } ],
-  247: [ (function(require, module, exports) {
+  247: [ function(require, module, exports) {
     "use strict";
     var PTM_RATIO = require("./CCPhysicsTypes").PTM_RATIO;
     var ContactType = require("./CCPhysicsTypes").ContactType;
@@ -39953,10 +39977,10 @@
     };
     PhysicsContact.ContactType = ContactType;
     cc.PhysicsContact = module.exports = PhysicsContact;
-  }), {
+  }, {
     "./CCPhysicsTypes": 249
   } ],
-  248: [ (function(require, module, exports) {
+  248: [ function(require, module, exports) {
     "use strict";
     var PhysicsTypes = require("./CCPhysicsTypes");
     var ContactType = PhysicsTypes.ContactType;
@@ -40060,9 +40084,9 @@
         callback.init();
         this._world.QueryAABB(callback, b2_aabb_tmp);
         var fixtures = callback.getFixtures();
-        var colliders = fixtures.map((function(fixture) {
+        var colliders = fixtures.map(function(fixture) {
           return fixture.collider;
-        }));
+        });
         return colliders;
       },
       rayCast: function rayCast(p1, p2, type) {
@@ -40085,9 +40109,9 @@
             var fixture = fixtures[i];
             var collider = fixture.collider;
             if (type === RayCastType.AllClosest) {
-              var result = results.find((function(result) {
+              var result = results.find(function(result) {
                 return result.collider === collider;
-              }));
+              });
               if (result) {
                 if (fractions[i] < result.fraction) {
                   result.fixtureIndex = collider._getFixtureIndex(fixture);
@@ -40233,9 +40257,9 @@
         }
       }
     });
-    cc.js.getset(PhysicsManager.prototype, "enabled", (function() {
+    cc.js.getset(PhysicsManager.prototype, "enabled", function() {
       return this._enabled;
-    }), (function(value) {
+    }, function(value) {
       false;
       if (value && !this._world) {
         var world = new b2.World(new b2.Vec2(0, -10));
@@ -40244,10 +40268,10 @@
         this._initCallback();
       }
       this._enabled = value;
-    }));
-    cc.js.getset(PhysicsManager.prototype, "debugDrawFlags", (function() {
+    });
+    cc.js.getset(PhysicsManager.prototype, "debugDrawFlags", function() {
       return this._debugDrawFlags;
-    }), (function(value) {
+    }, function(value) {
       false;
       value && !this._debugDrawFlags ? this._debugDrawer && this._debugDrawer.node && (this._debugDrawer.node.active = true) : !value && this._debugDrawFlags && this._debugDrawer && this._debugDrawer.node && (this._debugDrawer.node.active = false);
       if (value) {
@@ -40259,23 +40283,23 @@
         this._checkDebugDrawValid();
         this._world.m_debugDraw.SetFlags(value);
       }
-    }));
-    cc.js.getset(PhysicsManager.prototype, "gravity", (function() {
+    });
+    cc.js.getset(PhysicsManager.prototype, "gravity", function() {
       if (this._world) {
         var g = this._world.GetGravity();
         return cc.v2(g.x * PTM_RATIO, g.y * PTM_RATIO);
       }
       return cc.v2();
-    }), (function(value) {
+    }, function(value) {
       this._world && this._world.SetGravity(new b2.Vec2(value.x / PTM_RATIO, value.y / PTM_RATIO));
-    }));
+    });
     cc.PhysicsManager = module.exports = PhysicsManager;
-  }), {
+  }, {
     "./CCPhysicsTypes": 249,
     "./platform/CCPhysicsDebugDraw": 270,
     "./utils": 272
   } ],
-  249: [ (function(require, module, exports) {
+  249: [ function(require, module, exports) {
     "use strict";
     var ContactType = {
       BEGIN_CONTACT: "begin-contact",
@@ -40306,8 +40330,8 @@
       ANGLE_TO_PHYSICS_ANGLE: -Math.PI / 180,
       PHYSICS_ANGLE_TO_ANGLE: -180 / Math.PI
     };
-  }), {} ],
-  250: [ (function(require, module, exports) {
+  }, {} ],
+  250: [ function(require, module, exports) {
     "use strict";
     function At(i, vertices) {
       var s = vertices.length;
@@ -40491,8 +40515,8 @@
       ForceCounterClockWise: ForceCounterClockWise,
       IsCounterClockWise: IsCounterClockWise
     };
-  }), {} ],
-  251: [ (function(require, module, exports) {
+  }, {} ],
+  251: [ function(require, module, exports) {
     "use strict";
     var NodeEvent = require("../CCNode").EventType;
     var PTM_RATIO = require("./CCPhysicsTypes").PTM_RATIO;
@@ -40890,12 +40914,12 @@
       }
     });
     cc.RigidBody = module.exports = RigidBody;
-  }), {
+  }, {
     "../CCNode": 104,
     "./CCPhysicsTypes": 249,
     "./utils": 272
   } ],
-  252: [ (function(require, module, exports) {
+  252: [ function(require, module, exports) {
     "use strict";
     var box2d = require("../../../external/box2d/box2d");
     var sys = cc.sys;
@@ -40906,10 +40930,10 @@
       b2[newKey] = box2d[key];
     }
     b2.maxPolygonVertices = 8;
-  }), {
+  }, {
     "../../../external/box2d/box2d": 491
   } ],
-  253: [ (function(require, module, exports) {
+  253: [ function(require, module, exports) {
     "use strict";
     var PTM_RATIO = require("../CCPhysicsTypes").PTM_RATIO;
     var PhysicsBoxCollider = cc.Class({
@@ -40934,10 +40958,10 @@
       }
     });
     cc.PhysicsBoxCollider = module.exports = PhysicsBoxCollider;
-  }), {
+  }, {
     "../CCPhysicsTypes": 249
   } ],
-  254: [ (function(require, module, exports) {
+  254: [ function(require, module, exports) {
     "use strict";
     var PTM_RATIO = require("../CCPhysicsTypes").PTM_RATIO;
     var PhysicsChainCollider = cc.Class({
@@ -40978,10 +41002,10 @@
       resetPointsByContour: false
     });
     cc.PhysicsChainCollider = module.exports = PhysicsChainCollider;
-  }), {
+  }, {
     "../CCPhysicsTypes": 249
   } ],
-  255: [ (function(require, module, exports) {
+  255: [ function(require, module, exports) {
     "use strict";
     var PTM_RATIO = require("../CCPhysicsTypes").PTM_RATIO;
     var PhysicsCircleCollider = cc.Class({
@@ -41005,10 +41029,10 @@
       }
     });
     cc.PhysicsCircleCollider = module.exports = PhysicsCircleCollider;
-  }), {
+  }, {
     "../CCPhysicsTypes": 249
   } ],
-  256: [ (function(require, module, exports) {
+  256: [ function(require, module, exports) {
     "use strict";
     var PTM_RATIO = require("../CCPhysicsTypes").PTM_RATIO;
     var getWorldScale = require("../utils").getWorldScale;
@@ -41180,11 +41204,11 @@
       }
     });
     cc.PhysicsCollider = module.exports = PhysicsCollider;
-  }), {
+  }, {
     "../CCPhysicsTypes": 249,
     "../utils": 272
   } ],
-  257: [ (function(require, module, exports) {
+  257: [ function(require, module, exports) {
     "use strict";
     var PTM_RATIO = require("../CCPhysicsTypes").PTM_RATIO;
     var PolygonSeparator = require("../CCPolygonSeparator");
@@ -41232,11 +41256,11 @@
       }
     });
     cc.PhysicsPolygonCollider = module.exports = PhysicsPolygonCollider;
-  }), {
+  }, {
     "../CCPhysicsTypes": 249,
     "../CCPolygonSeparator": 250
   } ],
-  258: [ (function(require, module, exports) {
+  258: [ function(require, module, exports) {
     "use strict";
     require("./box2d-adapter");
     require("./CCPhysicsManager");
@@ -41259,7 +41283,7 @@
     require("./platform/CCPhysicsContactListner");
     require("./platform/CCPhysicsAABBQueryCallback");
     require("./platform/CCPhysicsRayCastCallback");
-  }), {
+  }, {
     "./CCPhysicsContact": 247,
     "./CCPhysicsManager": 248,
     "./CCRigidBody": 251,
@@ -41282,7 +41306,7 @@
     "./platform/CCPhysicsContactListner": 269,
     "./platform/CCPhysicsRayCastCallback": 271
   } ],
-  259: [ (function(require, module, exports) {
+  259: [ function(require, module, exports) {
     "use strict";
     var PTM_RATIO = require("../CCPhysicsTypes").PTM_RATIO;
     var DistanceJoint = cc.Class({
@@ -41335,10 +41359,10 @@
       }
     });
     cc.DistanceJoint = module.exports = DistanceJoint;
-  }), {
+  }, {
     "../CCPhysicsTypes": 249
   } ],
-  260: [ (function(require, module, exports) {
+  260: [ function(require, module, exports) {
     "use strict";
     var PTM_RATIO = require("../CCPhysicsTypes").PTM_RATIO;
     var Joint = cc.Class({
@@ -41435,10 +41459,10 @@
       }
     });
     cc.Joint = module.exports = Joint;
-  }), {
+  }, {
     "../CCPhysicsTypes": 249
   } ],
-  261: [ (function(require, module, exports) {
+  261: [ function(require, module, exports) {
     "use strict";
     var PTM_RATIO = require("../CCPhysicsTypes").PTM_RATIO;
     var ANGLE_TO_PHYSICS_ANGLE = require("../CCPhysicsTypes").ANGLE_TO_PHYSICS_ANGLE;
@@ -41526,10 +41550,10 @@
       }
     });
     cc.MotorJoint = module.exports = MotorJoint;
-  }), {
+  }, {
     "../CCPhysicsTypes": 249
   } ],
-  262: [ (function(require, module, exports) {
+  262: [ function(require, module, exports) {
     "use strict";
     var PTM_RATIO = require("../CCPhysicsTypes").PTM_RATIO;
     var tempB2Vec2 = new b2.Vec2();
@@ -41662,10 +41686,10 @@
       }
     });
     cc.MouseJoint = module.exports = MouseJoint;
-  }), {
+  }, {
     "../CCPhysicsTypes": 249
   } ],
-  263: [ (function(require, module, exports) {
+  263: [ function(require, module, exports) {
     "use strict";
     var PTM_RATIO = require("../CCPhysicsTypes").PTM_RATIO;
     var ANGLE_TO_PHYSICS_ANGLE = require("../CCPhysicsTypes").ANGLE_TO_PHYSICS_ANGLE;
@@ -41737,10 +41761,10 @@
       }
     });
     cc.PrismaticJoint = module.exports = PrismaticJoint;
-  }), {
+  }, {
     "../CCPhysicsTypes": 249
   } ],
-  264: [ (function(require, module, exports) {
+  264: [ function(require, module, exports) {
     "use strict";
     var PTM_RATIO = require("../CCPhysicsTypes").PTM_RATIO;
     var ANGLE_TO_PHYSICS_ANGLE = require("../CCPhysicsTypes").ANGLE_TO_PHYSICS_ANGLE;
@@ -41829,10 +41853,10 @@
       }
     });
     cc.RevoluteJoint = module.exports = RevoluteJoint;
-  }), {
+  }, {
     "../CCPhysicsTypes": 249
   } ],
-  265: [ (function(require, module, exports) {
+  265: [ function(require, module, exports) {
     "use strict";
     var PTM_RATIO = require("../CCPhysicsTypes").PTM_RATIO;
     var RopeJoint = cc.Class({
@@ -41861,10 +41885,10 @@
       }
     });
     cc.RopeJoint = module.exports = RopeJoint;
-  }), {
+  }, {
     "../CCPhysicsTypes": 249
   } ],
-  266: [ (function(require, module, exports) {
+  266: [ function(require, module, exports) {
     "use strict";
     var PTM_RATIO = require("../CCPhysicsTypes").PTM_RATIO;
     var ANGLE_TO_PHYSICS_ANGLE = require("../CCPhysicsTypes").ANGLE_TO_PHYSICS_ANGLE;
@@ -41911,10 +41935,10 @@
       }
     });
     cc.WeldJoint = module.exports = WeldJoint;
-  }), {
+  }, {
     "../CCPhysicsTypes": 249
   } ],
-  267: [ (function(require, module, exports) {
+  267: [ function(require, module, exports) {
     "use strict";
     var PTM_RATIO = require("../CCPhysicsTypes").PTM_RATIO;
     var ANGLE_TO_PHYSICS_ANGLE = require("../CCPhysicsTypes").ANGLE_TO_PHYSICS_ANGLE;
@@ -41997,10 +42021,10 @@
       }
     });
     cc.WheelJoint = module.exports = WheelJoint;
-  }), {
+  }, {
     "../CCPhysicsTypes": 249
   } ],
-  268: [ (function(require, module, exports) {
+  268: [ function(require, module, exports) {
     "use strict";
     var BodyType = require("../CCPhysicsTypes").BodyType;
     function PhysicsAABBQueryCallback() {
@@ -42033,10 +42057,10 @@
       return this._fixtures;
     };
     cc.PhysicsAABBQueryCallback = module.exports = PhysicsAABBQueryCallback;
-  }), {
+  }, {
     "../CCPhysicsTypes": 249
   } ],
-  269: [ (function(require, module, exports) {
+  269: [ function(require, module, exports) {
     "use strict";
     function PhysicsContactListener() {
       this._contactFixtures = [];
@@ -42083,8 +42107,8 @@
       cc.js.array.remove(this._contactFixtures, fixture);
     };
     cc.PhysicsContactListener = module.exports = PhysicsContactListener;
-  }), {} ],
-  270: [ (function(require, module, exports) {
+  }, {} ],
+  270: [ function(require, module, exports) {
     "use strict";
     var PTM_RATIO = require("../CCPhysicsTypes").PTM_RATIO;
     var _tmp_vec2 = cc.v2();
@@ -42192,10 +42216,10 @@
       }
     });
     module.exports = PhysicsDebugDraw;
-  }), {
+  }, {
     "../CCPhysicsTypes": 249
   } ],
-  271: [ (function(require, module, exports) {
+  271: [ function(require, module, exports) {
     "use strict";
     function PhysicsRayCastCallback() {
       this._type = 0;
@@ -42240,8 +42264,8 @@
       return this._fractions;
     };
     cc.PhysicsRayCastCallback = module.exports = PhysicsRayCastCallback;
-  }), {} ],
-  272: [ (function(require, module, exports) {
+  }, {} ],
+  272: [ function(require, module, exports) {
     "use strict";
     function getWorldRotation(node) {
       var rot = node.angle;
@@ -42277,8 +42301,8 @@
       getWorldScale: getWorldScale,
       convertToNodeRotation: convertToNodeRotation
     };
-  }), {} ],
-  273: [ (function(require, module, exports) {
+  }, {} ],
+  273: [ function(require, module, exports) {
     "use strict";
     var js = require("./js");
     var Enum = require("./CCEnum");
@@ -42300,9 +42324,9 @@
         if (this.datas) this.datas.push(data); else {
           this.datas = [ data ];
           var self = this;
-          setTimeout((function() {
+          setTimeout(function() {
             self.init();
-          }), 0);
+          }, 0);
         }
       },
       init: function init() {
@@ -42340,9 +42364,9 @@
         cc.errorID(3636, className, propName, propName);
         return;
       }
-      if (CCClass.getInheritanceChain(cls).some((function(x) {
+      if (CCClass.getInheritanceChain(cls).some(function(x) {
         return x.prototype.hasOwnProperty(propName);
-      }))) {
+      })) {
         cc.errorID(3637, className, propName, className);
         return;
       }
@@ -42413,10 +42437,10 @@
       } else {
         ctors = __ctor__ ? [ __ctor__ ] : _getAllCtors(baseClass, mixins, options);
         fireClass = _createCtor(ctors, baseClass, className, options);
-        js.value(fireClass, "extend", (function(options) {
+        js.value(fireClass, "extend", function(options) {
           options["extends"] = this;
           return CCClass(options);
-        }), true);
+        }, true);
       }
       js.value(fireClass, "__ctors__", ctors.length > 0 ? ctors : null, true);
       var prototype = fireClass.prototype;
@@ -42432,9 +42456,9 @@
         for (var m = mixins.length - 1; m >= 0; m--) {
           var mixin = mixins[m];
           mixinWithInherited(prototype, mixin.prototype);
-          mixinWithInherited(fireClass, mixin, (function(prop) {
+          mixinWithInherited(fireClass, mixin, function(prop) {
             return mixin.hasOwnProperty(prop) && (false, INVALID_STATICS_DEV.indexOf(prop) < 0);
-          }));
+          });
           CCClass._isCCClass(mixin) && mixinWithInherited(Attr.getClassAttrs(fireClass), Attr.getClassAttrs(mixin));
         }
         prototype.constructor = fireClass;
@@ -42625,12 +42649,12 @@
       ctor && ctors.push(ctor);
       return ctors;
     }
-    var SuperCallReg = /xyz/.test((function() {
+    var SuperCallReg = /xyz/.test(function() {
       xyz;
-    })) ? /\b\._super\b/ : /.*/;
-    var SuperCallRegStrict = /xyz/.test((function() {
+    }) ? /\b\._super\b/ : /.*/;
+    var SuperCallRegStrict = /xyz/.test(function() {
       xyz;
-    })) ? /this\._super\s*\(/ : /(NONE){99}/;
+    }) ? /this\._super\s*\(/ : /(NONE){99}/;
     function boundSuperCalls(baseClass, options, className) {
       var hasSuperCall = false;
       for (var funcName in options) {
@@ -42643,7 +42667,7 @@
           if ("function" === typeof superFunc) {
             if (SuperCallReg.test(func)) {
               hasSuperCall = true;
-              options[funcName] = (function(superFunc, func) {
+              options[funcName] = function(superFunc, func) {
                 return function() {
                   var tmp = this._super;
                   this._super = superFunc;
@@ -42651,7 +42675,7 @@
                   this._super = tmp;
                   return ret;
                 };
-              })(superFunc, func);
+              }(superFunc, func);
             }
             continue;
           }
@@ -42665,9 +42689,9 @@
       baseClass && baseClass.__props__ && (cls.__props__ = baseClass.__props__.slice());
       if (mixins) for (var m = 0; m < mixins.length; ++m) {
         var mixin = mixins[m];
-        mixin.__props__ && (cls.__props__ = cls.__props__.concat(mixin.__props__.filter((function(x) {
+        mixin.__props__ && (cls.__props__ = cls.__props__.concat(mixin.__props__.filter(function(x) {
           return cls.__props__.indexOf(x) < 0;
-        }))));
+        })));
       }
       if (properties) {
         preprocess.preprocessAttrs(properties, className, cls, es6);
@@ -42677,9 +42701,9 @@
         }
       }
       var attrs = Attr.getClassAttrs(cls);
-      cls.__values__ = cls.__props__.filter((function(prop) {
+      cls.__values__ = cls.__props__.filter(function(prop) {
         return false !== attrs[prop + DELIMETER + "serializable"];
-      }));
+      });
     }
     function CCClass(options) {
       options = options || {};
@@ -42691,9 +42715,9 @@
       cls._sealed = true;
       base && (base._sealed = false);
       var properties = options.properties;
-      if ("function" === typeof properties || base && null === base.__props__ || mixins && mixins.some((function(x) {
+      if ("function" === typeof properties || base && null === base.__props__ || mixins && mixins.some(function(x) {
         return null === x.__props__;
-      }))) if (true, options.__ES6__) cc.error("not yet implement deferred properties for ES6 Classes"); else {
+      })) if (true, options.__ES6__) cc.error("not yet implement deferred properties for ES6 Classes"); else {
         deferredInitializer.push({
           cls: cls,
           props: properties,
@@ -42840,7 +42864,7 @@
       getDefault: getDefault
     };
     false;
-  }), {
+  }, {
     "./CCEnum": 275,
     "./attribute": 285,
     "./js": 295,
@@ -42848,7 +42872,7 @@
     "./requiring-frame": 297,
     "./utils": 298
   } ],
-  274: [ (function(require, module, exports) {
+  274: [ function(require, module, exports) {
     "use strict";
     require("./CCClass");
     var Preprocess = require("./preprocess-class");
@@ -42966,7 +42990,7 @@
       }
       properties[propName] = prop;
     }
-    var ccclass = checkCtorArgument((function(ctor, name) {
+    var ccclass = checkCtorArgument(function(ctor, name) {
       var base = js.getSuper(ctor);
       base === Object && (base = null);
       var proto = {
@@ -42993,7 +43017,7 @@
         }
       }
       return res;
-    }));
+    });
     function property(ctorProtoOrOptions, propName, desc) {
       var options = null;
       function normalized(ctorProto, propName, desc) {
@@ -43011,14 +43035,14 @@
       normalized(ctorProtoOrOptions, propName, desc);
     }
     function createEditorDecorator(argCheckFunc, editorPropName, staticValue) {
-      return argCheckFunc((function(ctor, decoratedValue) {
+      return argCheckFunc(function(ctor, decoratedValue) {
         var cache = getClassCache(ctor, editorPropName);
         if (cache) {
           var value = void 0 !== staticValue ? staticValue : decoratedValue;
           var proto = getSubDict(cache, "proto");
           getSubDict(proto, "editor")[editorPropName] = value;
         }
-      }), editorPropName);
+      }, editorPropName);
     }
     function createDummyDecorator(argCheckFunc) {
       return argCheckFunc(fNOP);
@@ -43054,13 +43078,13 @@
       help: help,
       mixins: mixins
     };
-  }), {
+  }, {
     "./CCClass": 273,
     "./js": 295,
     "./preprocess-class": 296,
     "./utils": 298
   } ],
-  275: [ (function(require, module, exports) {
+  275: [ function(require, module, exports) {
     "use strict";
     var js = require("./js");
     function Enum(obj) {
@@ -43099,9 +43123,9 @@
           value: value
         });
       }
-      enums.sort((function(a, b) {
+      enums.sort(function(a, b) {
         return a.value - b.value;
-      }));
+      });
       return enums;
     };
     true;
@@ -43113,10 +43137,10 @@
     });
     0 === _TestEnum.ZERO && 1 === _TestEnum.ONE && 3 === _TestEnum.THREE || cc.errorID(7101);
     module.exports = cc.Enum = Enum;
-  }), {
+  }, {
     "./js": 295
   } ],
-  276: [ (function(require, module, exports) {
+  276: [ function(require, module, exports) {
     "use strict";
     var eventManager = require("../event-manager");
     var inputManager = require("./CCInputManager");
@@ -43155,16 +43179,16 @@
       }
     };
     inputManager._registerKeyboardEvent = function() {
-      cc.game.canvas.addEventListener("keydown", (function(e) {
+      cc.game.canvas.addEventListener("keydown", function(e) {
         eventManager.dispatchEvent(new cc.Event.EventKeyboard(e.keyCode, true));
         e.stopPropagation();
         e.preventDefault();
-      }), false);
-      cc.game.canvas.addEventListener("keyup", (function(e) {
+      }, false);
+      cc.game.canvas.addEventListener("keyup", function(e) {
         eventManager.dispatchEvent(new cc.Event.EventKeyboard(e.keyCode, false));
         e.stopPropagation();
         e.preventDefault();
-      }), false);
+      }, false);
     };
     inputManager._registerAccelerometerEvent = function() {
       var w = window, _t = this;
@@ -43222,11 +43246,11 @@
         mAcceleration.y = -mAcceleration.y;
       }
     };
-  }), {
+  }, {
     "../event-manager": 218,
     "./CCInputManager": 277
   } ],
-  277: [ (function(require, module, exports) {
+  277: [ function(require, module, exports) {
     "use strict";
     var macro = require("./CCMacro");
     var sys = require("./CCSys");
@@ -43514,10 +43538,10 @@
         var supportTouches = "touches" in sys.capabilities;
         if (supportMouse) {
           if (!prohibition) {
-            window.addEventListener("mousedown", (function() {
+            window.addEventListener("mousedown", function() {
               selfPointer._mousePressed = true;
-            }), false);
-            window.addEventListener("mouseup", (function(event) {
+            }, false);
+            window.addEventListener("mouseup", function(event) {
               if (!selfPointer._mousePressed) return;
               selfPointer._mousePressed = false;
               var location = selfPointer.getPointByEvent(event, canvasBoundingRect);
@@ -43527,7 +43551,7 @@
                 mouseEvent.setButton(event.button);
                 eventManager.dispatchEvent(mouseEvent);
               }
-            }), false);
+            }, false);
           }
           var EventMouse = cc.Event.EventMouse;
           var _mouseEventsOnElement = [ !prohibition && [ "mousedown", EventMouse.DOWN, function(event, mouseEvent, location, canvasBoundingRect) {
@@ -43551,7 +43575,7 @@
               var name = entry[0];
               var type = entry[1];
               var handler = entry[2];
-              element.addEventListener(name, (function(event) {
+              element.addEventListener(name, function(event) {
                 var location = selfPointer.getPointByEvent(event, canvasBoundingRect);
                 var mouseEvent = selfPointer.getMouseEvent(location, canvasBoundingRect, type);
                 var targetButton = event.button;
@@ -43561,7 +43585,7 @@
                 eventManager.dispatchEvent(mouseEvent);
                 event.stopPropagation();
                 event.preventDefault();
-              }), false);
+              }, false);
             }
           };
           for (var i = 0; i < _mouseEventsOnElement.length; ++i) _loop();
@@ -43575,13 +43599,13 @@
           };
           var _loop2 = function _loop2() {
             var touchEvent = _pointerEventsMap[eventName];
-            element.addEventListener(eventName, (function(event) {
+            element.addEventListener(eventName, function(event) {
               var documentElement = document.documentElement;
               canvasBoundingRect.adjustedLeft = canvasBoundingRect.left - documentElement.scrollLeft;
               canvasBoundingRect.adjustedTop = canvasBoundingRect.top - documentElement.scrollTop;
               touchEvent.call(selfPointer, [ selfPointer.getTouchByXY(event.clientX, event.clientY, canvasBoundingRect) ]);
               event.stopPropagation();
-            }), false);
+            }, false);
           };
           for (var eventName in _pointerEventsMap) _loop2();
         }
@@ -43603,14 +43627,14 @@
           };
           var registerTouchEvent = function registerTouchEvent(eventName) {
             var handler = _touchEventsMap[eventName];
-            element.addEventListener(eventName, (function(event) {
+            element.addEventListener(eventName, function(event) {
               if (!event.changedTouches) return;
               var body = document.body;
               canvasBoundingRect.adjustedLeft = canvasBoundingRect.left - (body.scrollLeft || window.scrollX || 0);
               canvasBoundingRect.adjustedTop = canvasBoundingRect.top - (body.scrollTop || window.scrollY || 0);
               handler(selfPointer.getTouchesByEvent(event, canvasBoundingRect));
               event.stopPropagation();
-            }), false);
+            }, false);
           };
           for (var _eventName in _touchEventsMap) registerTouchEvent(_eventName);
         }
@@ -43628,12 +43652,12 @@
       }
     };
     module.exports = cc.internal.inputManager = inputManager;
-  }), {
+  }, {
     "../event-manager": 218,
     "./CCMacro": 278,
     "./CCSys": 282
   } ],
-  278: [ (function(require, module, exports) {
+  278: [ function(require, module, exports) {
     "use strict";
     cc.macro = {
       RAD: Math.PI / 180,
@@ -43834,8 +43858,8 @@
       BOTTOM: 2
     });
     module.exports = cc.macro;
-  }), {} ],
-  279: [ (function(require, module, exports) {
+  }, {} ],
+  279: [ function(require, module, exports) {
     "use strict";
     var js = require("./js");
     var CCClass = require("./CCClass");
@@ -43906,14 +43930,14 @@
     js.value(CCObject, "_deferredDestroy", deferredDestroy);
     false;
     var prototype = CCObject.prototype;
-    js.getset(prototype, "name", (function() {
+    js.getset(prototype, "name", function() {
       return this._name;
-    }), (function(value) {
+    }, function(value) {
       this._name = value;
-    }), true);
-    js.get(prototype, "isValid", (function() {
+    }, true);
+    js.get(prototype, "isValid", function() {
       return !(this._objFlags & Destroyed);
-    }), true);
+    }, true);
     false, false;
     var deferredDestroyTimer = null;
     prototype.destroy = function() {
@@ -44006,11 +44030,11 @@
     };
     false, false;
     cc.Object = module.exports = CCObject;
-  }), {
+  }, {
     "./CCClass": 273,
     "./js": 295
   } ],
-  280: [ (function(require, module, exports) {
+  280: [ function(require, module, exports) {
     "use strict";
     var js = require("../platform/js");
     cc.SAXParser = function() {
@@ -44091,10 +44115,10 @@
       saxParser: cc.saxParser,
       plistParser: cc.plistParser
     };
-  }), {
+  }, {
     "../platform/js": 295
   } ],
-  281: [ (function(require, module, exports) {
+  281: [ function(require, module, exports) {
     "use strict";
     cc.screen = {
       _supportsFullScreen: false,
@@ -44147,7 +44171,7 @@
           });
         }
         var requestPromise = element[this._fn.requestFullscreen]();
-        "undefined" === typeof document[this._fn.fullscreenerror] && window.Promise && requestPromise instanceof Promise && requestPromise["catch"]((function(err) {}));
+        "undefined" === typeof document[this._fn.fullscreenerror] && window.Promise && requestPromise instanceof Promise && requestPromise["catch"](function(err) {});
       },
       exitFullScreen: function exitFullScreen(element) {
         if (element && "video" === element.tagName.toLowerCase()) {
@@ -44197,8 +44221,8 @@
       }
     };
     cc.screen.init();
-  }), {} ],
-  282: [ (function(require, module, exports) {
+  }, {} ],
+  282: [ function(require, module, exports) {
     "use strict";
     var settingPlatform;
     true;
@@ -44451,10 +44475,10 @@
         })();
         if ("undefined" !== typeof createImageBitmap && "undefined" !== typeof Blob) {
           _tmpCanvas1.width = _tmpCanvas1.height = 2;
-          createImageBitmap(_tmpCanvas1, {}).then((function(imageBitmap) {
+          createImageBitmap(_tmpCanvas1, {}).then(function(imageBitmap) {
             capabilities.imageBitmap = true;
             imageBitmap.close && imageBitmap.close();
-          }))["catch"]((function(err) {}));
+          })["catch"](function(err) {});
         }
         (void 0 !== docEle["ontouchstart"] || void 0 !== doc["ontouchstart"] || nav.msPointerEnabled || "string" === typeof __wxjs_environment && "miniprogram" === __wxjs_environment) && (capabilities["touches"] = true);
         void 0 !== docEle["onmouseup"] && (capabilities["mouse"] = true);
@@ -44476,20 +44500,20 @@
             __audioSupport.USE_LOADER_EVENT = "canplay";
           }
           sys.os === sys.OS_ANDROID && sys.browserType === sys.BROWSER_TYPE_UC && (__audioSupport.ONE_SOURCE = true);
-          DEBUG && setTimeout((function() {
+          DEBUG && setTimeout(function() {
             cc.log("browse type: " + sys.browserType);
             cc.log("browse version: " + version);
             cc.log("MULTI_CHANNEL: " + __audioSupport.MULTI_CHANNEL);
             cc.log("WEB_AUDIO: " + __audioSupport.WEB_AUDIO);
             cc.log("AUTOPLAY: " + __audioSupport.AUTOPLAY);
-          }), 0);
+          }, 0);
         })();
         try {
           if (__audioSupport.WEB_AUDIO) {
             __audioSupport.context = new (window.AudioContext || window.webkitAudioContext || window.mozAudioContext)();
-            __audioSupport.DELAY_CREATE_CTX && setTimeout((function() {
+            __audioSupport.DELAY_CREATE_CTX && setTimeout(function() {
               __audioSupport.context = new (window.AudioContext || window.webkitAudioContext || window.mozAudioContext)();
-            }), 0);
+            }, 0);
           }
         } catch (error) {
           __audioSupport.WEB_AUDIO = false;
@@ -44556,8 +44580,8 @@
     }
     var sys = cc && cc.sys ? cc.sys : initSys();
     module.exports = sys;
-  }), {} ],
-  283: [ (function(require, module, exports) {
+  }, {} ],
+  283: [ function(require, module, exports) {
     "use strict";
     var EventTarget = require("../event/event-target");
     var js = require("../platform/js");
@@ -44646,9 +44670,9 @@
         view = this.setDesignResolutionSize ? this : cc.view;
         var sys = cc.sys;
         if (sys.browserType === sys.BROWSER_TYPE_UC && sys.os === sys.OS_IOS) {
-          setTimeout((function() {
+          setTimeout(function() {
             view._resizeEvent(forceOrEvent);
-          }), 0);
+          }, 0);
           return;
         }
         var prevFrameW = view._frameSize.width, prevFrameH = view._frameSize.height, prevRotated = view._isRotated;
@@ -44672,9 +44696,9 @@
       _orientationChange: function _orientationChange() {
         cc.view._orientationChanging = true;
         cc.view._resizeEvent(true);
-        cc.sys.browserType === cc.sys.BROWSER_TYPE_SAFARI && cc.sys.isMobile && setTimeout((function() {
+        cc.sys.browserType === cc.sys.BROWSER_TYPE_SAFARI && cc.sys.isMobile && setTimeout(function() {
           window.innerHeight > window.innerWidth && window.scrollTo(0, 1);
-        }), 500);
+        }, 500);
       },
       _resize: function _resize() {
         cc.view._resizeEvent(false);
@@ -44725,9 +44749,9 @@
           cc.game.container.style.transformOrigin = "0px 0px 0px";
           this._isRotated = true;
         }
-        this._orientationChanging && setTimeout((function() {
+        this._orientationChanging && setTimeout(function() {
           cc.view._orientationChanging = false;
-        }), 1e3);
+        }, 1e3);
       },
       _setViewportMeta: function _setViewportMeta(metas, overwrite) {
         var vp = document.getElementById("cocosMetaElement");
@@ -44768,12 +44792,12 @@
         this._antiAliasEnabled = enabled;
         if (cc.game.renderType === cc.game.RENDER_TYPE_WEBGL) {
           var cache = cc.assetManager.assets;
-          cache.forEach((function(asset) {
+          cache.forEach(function(asset) {
             if (asset instanceof cc.Texture2D) {
               var Filter = cc.Texture2D.Filter;
               enabled ? asset.setFilters(Filter.LINEAR, Filter.LINEAR) : asset.setFilters(Filter.NEAREST, Filter.NEAREST);
             }
-          }));
+          });
         } else if (cc.game.renderType === cc.game.RENDER_TYPE_CANVAS) {
           var ctx = cc.game.canvas.getContext("2d");
           ctx.imageSmoothingEnabled = enabled;
@@ -45194,9 +45218,9 @@
         contentStg instanceof cc.ContentStrategy && (this._contentStrategy = contentStg);
       }
     });
-    js.get(cc.ResolutionPolicy.prototype, "canvasSize", (function() {
+    js.get(cc.ResolutionPolicy.prototype, "canvasSize", function() {
       return cc.v2(cc.game.canvas.width, cc.game.canvas.height);
-    }));
+    });
     cc.ResolutionPolicy.EXACT_FIT = 0;
     cc.ResolutionPolicy.NO_BORDER = 1;
     cc.ResolutionPolicy.SHOW_ALL = 2;
@@ -45206,13 +45230,13 @@
     cc.view = new View();
     cc.winSize = cc.size();
     module.exports = cc.view;
-  }), {
+  }, {
     "../event/event-target": 220,
     "../platform/CCClass": 273,
     "../platform/js": 295,
     "../renderer": 323
   } ],
-  284: [ (function(require, module, exports) {
+  284: [ function(require, module, exports) {
     "use strict";
     cc.visibleRect = {
       topLeft: cc.v2(0, 0),
@@ -45250,8 +45274,8 @@
         this.right.y = b + h / 2;
       }
     };
-  }), {} ],
-  285: [ (function(require, module, exports) {
+  }, {} ],
+  285: [ function(require, module, exports) {
     "use strict";
     var js = require("./js");
     var isPlainEmptyObj = require("./utils").isPlainEmptyObj_DEV;
@@ -45360,12 +45384,12 @@
       getObjTypeChecker_ET: (false, false) && getObjTypeChecker,
       ScriptUuid: {}
     };
-  }), {
+  }, {
     "./CCClass": 273,
     "./js": 295,
     "./utils": 298
   } ],
-  286: [ (function(require, module, exports) {
+  286: [ function(require, module, exports) {
     "use strict";
     var js = require("./js");
     var fastRemoveAt = js.array.fastRemoveAt;
@@ -45542,10 +45566,10 @@
     };
     false;
     module.exports = CallbacksInvoker;
-  }), {
+  }, {
     "./js": 295
   } ],
-  287: [ (function(require, module, exports) {
+  287: [ function(require, module, exports) {
     "use strict";
     function deepFlatten(strList, array) {
       for (var i = 0; i < array.length; i++) {
@@ -45562,8 +45586,8 @@
     module.exports = {
       flattenCodeArray: flattenCodeArray
     };
-  }), {} ],
-  288: [ (function(require, module, exports) {
+  }, {} ],
+  288: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = deserialize;
@@ -45695,7 +45719,7 @@
       ARRAY_LENGTH: 11
     };
     var PACKED_SECTIONS = 5;
-    var Details = (function() {
+    var Details = function() {
       function Details() {
         this.uuidObjList = null;
         this.uuidPropList = null;
@@ -45718,7 +45742,7 @@
         this.uuidList.push(uuid);
       };
       return Details;
-    })();
+    }();
     Details.pool = new _js["default"].Pool(function(obj) {
       obj.reset();
     }, 5);
@@ -45876,13 +45900,13 @@
       var klass = classFinder(type);
       if (!klass) {
         if (silent) {
-          container[index] = (function(container, index, type) {
+          container[index] = function(container, index, type) {
             return function proxy() {
               var klass = classFinder(type) || getMissingClass(hasCustomFinder, type);
               container[index] = klass;
               return new klass();
             };
-          })(container, index, type);
+          }(container, index, type);
           return;
         }
         klass = getMissingClass(hasCustomFinder, type);
@@ -45997,13 +46021,13 @@
     };
     function getDependUuidList(json) {
       var sharedUuids = json[1];
-      return json[10].map((function(index) {
+      return json[10].map(function(index) {
         return sharedUuids[index];
-      }));
+      });
     }
     false, false;
     false;
-  }), {
+  }, {
     "../value-types/color": 394,
     "../value-types/mat4": 397,
     "../value-types/quat": 398,
@@ -46014,7 +46038,7 @@
     "../value-types/vec4": 406,
     "./js": 295
   } ],
-  289: [ (function(require, module, exports) {
+  289: [ function(require, module, exports) {
     "use strict";
     var _deserializeCompiled = _interopRequireDefault(require("./deserialize-compiled"));
     function _interopRequireDefault(e) {
@@ -46048,7 +46072,7 @@
     Details.pool.get = function() {
       return this._get() || new Details();
     };
-    var _Deserializer = (function() {
+    var _Deserializer = function() {
       function _Deserializer(result, classFinder, customEnv, ignoreEditorOnly) {
         this.result = result;
         this.customEnv = customEnv;
@@ -46310,7 +46334,7 @@
         return new _Deserializer(result, classFinder, customEnv, ignoreEditorOnly);
       };
       return _Deserializer;
-    })();
+    }();
     var deserialize = module.exports = function(data, details, options) {
       options = options || {};
       var classFinder = options.classFinder || js._getClassById;
@@ -46329,14 +46353,14 @@
       return res;
     };
     deserialize.Details = Details;
-  }), {
+  }, {
     "../utils/misc": 380,
     "./CCClass": 273,
     "./attribute": 285,
     "./deserialize-compiled": 288,
     "./js": 295
   } ],
-  290: [ (function(require, module, exports) {
+  290: [ function(require, module, exports) {
     "use strict";
     var _deserializeCompiled = _interopRequireDefault(require("./deserialize-compiled"));
     function _interopRequireDefault(e) {
@@ -46359,11 +46383,11 @@
     };
     cc.deserialize.reportMissingClass = _deserializeCompiled["default"].reportMissingClass;
     cc.deserialize.Details = deserializeForEditor.Details;
-  }), {
+  }, {
     "./deserialize-compiled": 288,
     "./deserialize-editor": 289
   } ],
-  291: [ (function(require, module, exports) {
+  291: [ function(require, module, exports) {
     "use strict";
     var NonUuidMark = ".";
     function IdGenerater(category) {
@@ -46375,8 +46399,8 @@
     };
     IdGenerater.global = new IdGenerater("global");
     module.exports = IdGenerater;
-  }), {} ],
-  292: [ (function(require, module, exports) {
+  }, {} ],
+  292: [ function(require, module, exports) {
     "use strict";
     require("./js");
     require("./CCClass");
@@ -46392,7 +46416,7 @@
     require("./CCMacro");
     true;
     require("./CCVisibleRect");
-  }), {
+  }, {
     "./CCClass": 273,
     "./CCClassDecorator": 274,
     "./CCEnum": 275,
@@ -46407,7 +46431,7 @@
     "./js": 295,
     "./requiring-frame": 297
   } ],
-  293: [ (function(require, module, exports) {
+  293: [ function(require, module, exports) {
     "use strict";
     var CCObject = require("./CCObject");
     var Destroyed = CCObject.Flags.Destroyed;
@@ -46720,14 +46744,14 @@
       equalsToDefault: equalsToDefault
     };
     false;
-  }), {
+  }, {
     "./CCClass": 273,
     "./CCObject": 279,
     "./attribute": 285,
     "./compiler": 287,
     "./js": 295
   } ],
-  294: [ (function(require, module, exports) {
+  294: [ function(require, module, exports) {
     "use strict";
     var CCObject = require("./CCObject");
     var CCValueType = require("../value-types/value-type");
@@ -46865,13 +46889,13 @@
     instantiate._clone = doInstantiate;
     cc.instantiate = instantiate;
     module.exports = instantiate;
-  }), {
+  }, {
     "../value-types/value-type": 403,
     "./CCObject": 279,
     "./js": 295,
     "./utils": 298
   } ],
-  295: [ (function(require, module, exports) {
+  295: [ function(require, module, exports) {
     "use strict";
     var tempCIDGenerater = new (require("./id-generater"))("TmpCId.");
     function _getPropertyDescriptor(obj, name) {
@@ -47052,12 +47076,12 @@
       var _idToClass = {};
       var _nameToClass = {};
       function setup(key, publicName, table) {
-        js.getset(js, publicName, (function() {
+        js.getset(js, publicName, function() {
           return Object.assign({}, table);
-        }), (function(value) {
+        }, function(value) {
           js.clear(table);
           Object.assign(table, value);
-        }));
+        });
         return function(id, constructor) {
           constructor.prototype.hasOwnProperty(key) && delete table[constructor.prototype[key]];
           js.value(constructor.prototype, key, id);
@@ -47123,11 +47147,11 @@
         cc.warnID(1400, obsoleted, newExpr);
         return this[newProp];
       }
-      writable ? js.getset(obj, oldProp, get, (function(value) {
+      writable ? js.getset(obj, oldProp, get, function(value) {
         true;
         cc.warnID(1400, obsoleted, newExpr);
         this[newProp] = value;
-      })) : js.get(obj, oldProp, get);
+      }) : js.get(obj, oldProp, get);
     };
     js.obsoletes = function(obj, objName, props, writable) {
       for (var obsoleted in props) {
@@ -47265,11 +47289,11 @@
     js.Pool = Pool;
     cc.js = js;
     module.exports = js;
-  }), {
+  }, {
     "../utils/mutable-forward-iterator": 381,
     "./id-generater": 291
   } ],
-  296: [ (function(require, module, exports) {
+  296: [ function(require, module, exports) {
     "use strict";
     var js = require("./js");
     var Attrs = require("./attribute");
@@ -47436,12 +47460,12 @@
       this.doValidateMethodWithProps_DEV(func, funcName, className, cls, base);
       return true;
     };
-  }), {
+  }, {
     "./CCClass": 273,
     "./attribute": 285,
     "./js": 295
   } ],
-  297: [ (function(require, module, exports) {
+  297: [ function(require, module, exports) {
     "use strict";
     var requiringFrames = [];
     cc._RF = {
@@ -47472,8 +47496,8 @@
       }
     };
     false;
-  }), {} ],
-  298: [ (function(require, module, exports) {
+  }, {} ],
+  298: [ function(require, module, exports) {
     "use strict";
     var js = require("./js");
     module.exports = {
@@ -47493,9 +47517,9 @@
         return obj && "object" === typeof obj && "number" === typeof obj.nodeType && "string" === typeof obj.nodeName;
       }),
       callInNextTick: function(callback, p1, p2) {
-        callback && setTimeout((function() {
+        callback && setTimeout(function() {
           callback(p1, p2);
-        }), 0);
+        }, 0);
       }
     };
     true;
@@ -47507,10 +47531,10 @@
       return obj && "function" === typeof obj.clone && (obj.constructor && obj.constructor.prototype.hasOwnProperty("clone") || obj.hasOwnProperty("clone"));
     };
     false;
-  }), {
+  }, {
     "./js": 295
   } ],
-  299: [ (function(require, module, exports) {
+  299: [ function(require, module, exports) {
     "use strict";
     require("./platform/js");
     require("./value-types");
@@ -47528,7 +47552,7 @@
     require("./platform/CCScreen");
     require("./CCScheduler");
     require("./event-manager");
-  }), {
+  }, {
     "./CCDirector": 102,
     "./CCScheduler": 107,
     "./asset-manager": 125,
@@ -47545,7 +47569,7 @@
     "./utils": 379,
     "./value-types": 395
   } ],
-  300: [ (function(require, module, exports) {
+  300: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -47591,7 +47615,7 @@
         return t.__proto__ = e, t;
       }, _setPrototypeOf(t, e);
     }
-    var Assembler2D = exports["default"] = (function(_Assembler) {
+    var Assembler2D = exports["default"] = function(_Assembler) {
       function Assembler2D() {
         var _this;
         _this = _Assembler.call(this) || this;
@@ -47689,7 +47713,7 @@
           return this.verticesCount * this.floatsPerVert;
         }
       } ]);
-    })(_assembler["default"]);
+    }(_assembler["default"]);
     cc.js.addon(Assembler2D.prototype, {
       floatsPerVert: 5,
       verticesCount: 4,
@@ -47699,12 +47723,12 @@
     });
     cc.Assembler2D = Assembler2D;
     module.exports = exports["default"];
-  }), {
+  }, {
     "./assembler": 303,
     "./utils/dynamic-atlas/manager": 326,
     "./webgl/render-data": 367
   } ],
-  301: [ (function(require, module, exports) {
+  301: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -47749,11 +47773,11 @@
     cc.Assembler3D = Assembler3D;
     var _default = exports["default"] = Assembler3D;
     module.exports = exports["default"];
-  }), {
+  }, {
     "../value-types/vec3": 405,
     "./webgl/vertex-format": 369
   } ],
-  302: [ (function(require, module, exports) {
+  302: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -47776,7 +47800,7 @@
       Object.getOwnPropertyDescriptor(assemblerCtor, "__assemblerId__") || (assemblerCtor.__assemblerId__ = ++_assemblerId);
       return assemblerCtor.__assemblerId__;
     }
-    var AssemblerPool = (function(_Pool) {
+    var AssemblerPool = function(_Pool) {
       function AssemblerPool() {
         var _this;
         for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) args[_key] = arguments[_key];
@@ -47824,15 +47848,15 @@
         assembler._renderComp = null;
       };
       return AssemblerPool;
-    })(_pool3["default"]);
+    }(_pool3["default"]);
     var pool = new AssemblerPool();
     _pool3["default"].register("assembler", pool);
     var _default = exports["default"] = pool;
     module.exports = exports["default"];
-  }), {
+  }, {
     "../utils/pool": 382
   } ],
-  303: [ (function(require, module, exports) {
+  303: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -47843,7 +47867,7 @@
         default: e
       };
     }
-    var Assembler = exports["default"] = (function() {
+    var Assembler = exports["default"] = function() {
       function Assembler() {
         this._extendNative && this._extendNative();
       }
@@ -47857,7 +47881,7 @@
         return _vertexFormat.vfmtPosUvColor;
       };
       return Assembler;
-    })();
+    }();
     Assembler.register = function(renderCompCtor, assembler) {
       renderCompCtor.__assembler__ = assembler;
     };
@@ -47881,11 +47905,11 @@
     };
     cc.Assembler = Assembler;
     module.exports = exports["default"];
-  }), {
+  }, {
     "./assembler-pool": 302,
     "./webgl/vertex-format": 369
   } ],
-  304: [ (function(require, module, exports) {
+  304: [ function(require, module, exports) {
     "use strict";
     var Device = function Device(canvasEL) {
       var ctx;
@@ -47937,8 +47961,8 @@
       return this._stats.drawcalls;
     };
     module.exports = Device;
-  }), {} ],
-  305: [ (function(require, module, exports) {
+  }, {} ],
+  305: [ function(require, module, exports) {
     "use strict";
     var Texture2D = function Texture2D(device, options) {
       this._device = device;
@@ -47964,8 +47988,8 @@
       this._image = null;
     };
     module.exports = Texture2D;
-  }), {} ],
-  306: [ (function(require, module, exports) {
+  }, {} ],
+  306: [ function(require, module, exports) {
     "use strict";
     var ForwardRenderer = function ForwardRenderer() {};
     ForwardRenderer.prototype = {
@@ -47974,8 +47998,8 @@
       render: function render() {}
     };
     module.exports = ForwardRenderer;
-  }), {} ],
-  307: [ (function(require, module, exports) {
+  }, {} ],
+  307: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -47993,13 +48017,13 @@
       RenderComponentHandle: _renderComponentHandle["default"]
     };
     module.exports = exports["default"];
-  }), {
+  }, {
     "./forward-renderer": 306,
     "./render-component-handle": 308,
     "./render-flow": 309,
     "./renderers": 312
   } ],
-  308: [ (function(require, module, exports) {
+  308: [ function(require, module, exports) {
     "use strict";
     var utils = require("./renderers/utils");
     var RenderComponentHandle = function RenderComponentHandle(device, defaultCamera) {
@@ -48027,10 +48051,10 @@
       terminate: function terminate() {}
     };
     module.exports = RenderComponentHandle;
-  }), {
+  }, {
     "./renderers/utils": 322
   } ],
-  309: [ (function(require, module, exports) {
+  309: [ function(require, module, exports) {
     "use strict";
     var _renderFlow = _interopRequireDefault(require("../render-flow"));
     function _interopRequireDefault(e) {
@@ -48054,10 +48078,10 @@
     _renderFlow["default"].prototype._postRender = function(node) {
       this._draw(node, "postDraw");
     };
-  }), {
+  }, {
     "../render-flow": 324
   } ],
-  310: [ (function(require, module, exports) {
+  310: [ function(require, module, exports) {
     "use strict";
     var Helper = require("../../../../graphics/helper");
     var Types = require("../../../../graphics/types");
@@ -48120,44 +48144,44 @@
         this.cmds.push([ "fill", [] ]);
       }
     });
-    js.set(_proto, "strokeColor", (function(v) {
+    js.set(_proto, "strokeColor", function(v) {
       var strokeStyle = "rgba(" + (0 | v.r) + "," + (0 | v.g) + "," + (0 | v.b) + "," + v.a / 255 + ")";
       this.cmds.push([ "strokeStyle", strokeStyle ]);
       this.style.strokeStyle = strokeStyle;
-    }));
-    js.set(_proto, "fillColor", (function(v) {
+    });
+    js.set(_proto, "fillColor", function(v) {
       var fillStyle = "rgba(" + (0 | v.r) + "," + (0 | v.g) + "," + (0 | v.b) + "," + v.a / 255 + ")";
       this.cmds.push([ "fillStyle", fillStyle ]);
       this.style.fillStyle = fillStyle;
-    }));
-    js.set(_proto, "lineWidth", (function(v) {
+    });
+    js.set(_proto, "lineWidth", function(v) {
       this.cmds.push([ "lineWidth", v ]);
       this.style.lineWidth = v;
-    }));
-    js.set(_proto, "lineCap", (function(v) {
+    });
+    js.set(_proto, "lineCap", function(v) {
       var lineCap = "butt";
       v === LineCap.BUTT ? lineCap = "butt" : v === LineCap.ROUND ? lineCap = "round" : v === LineCap.SQUARE && (lineCap = "square");
       this.cmds.push([ "lineCap", lineCap ]);
       this.style.lineCap = lineCap;
-    }));
-    js.set(_proto, "lineJoin", (function(v) {
+    });
+    js.set(_proto, "lineJoin", function(v) {
       var lineJoin = "bevel";
       v === LineJoin.BEVEL ? lineJoin = "bevel" : v === LineJoin.ROUND ? lineJoin = "round" : v === LineJoin.MITER && (lineJoin = "miter");
       this.cmds.push([ "lineJoin", lineJoin ]);
       this.style.lineJoin = lineJoin;
-    }));
-    js.set(_proto, "miterLimit", (function(v) {
+    });
+    js.set(_proto, "miterLimit", function(v) {
       this.cmds.push([ "miterLimit", v ]);
       this.style.miterLimit = v;
-    }));
+    });
     cc.Graphics._Impl = Impl;
     module.exports = Impl;
-  }), {
+  }, {
     "../../../../graphics/helper": 237,
     "../../../../graphics/types": 239,
     "../../../../platform/js": 295
   } ],
-  311: [ (function(require, module, exports) {
+  311: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -48169,7 +48193,7 @@
         default: e
       };
     }
-    var CanvasGraphicsAssembler = exports["default"] = (function() {
+    var CanvasGraphicsAssembler = exports["default"] = function() {
       function CanvasGraphicsAssembler() {}
       var _proto = CanvasGraphicsAssembler.prototype;
       _proto.init = function init() {};
@@ -48210,15 +48234,15 @@
       };
       _proto.clear = function clear() {};
       return CanvasGraphicsAssembler;
-    })();
+    }();
     _assembler["default"].register(_graphics["default"], CanvasGraphicsAssembler);
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../../graphics/graphics": 236,
     "../../../assembler": 303,
     "./impl": 310
   } ],
-  312: [ (function(require, module, exports) {
+  312: [ function(require, module, exports) {
     "use strict";
     require("../../../components/CCSprite");
     require("../../../components/CCLabel");
@@ -48228,7 +48252,7 @@
     require("./label");
     require("./graphics");
     require("./mask");
-  }), {
+  }, {
     "../../../components/CCLabel": 184,
     "../../../components/CCMask": 188,
     "../../../components/CCSprite": 199,
@@ -48238,7 +48262,7 @@
     "./mask": 316,
     "./sprite": 318
   } ],
-  313: [ (function(require, module, exports) {
+  313: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -48258,7 +48282,7 @@
         return t.__proto__ = e, t;
       }, _setPrototypeOf(t, e);
     }
-    var CanvasBmfontAssembler = exports["default"] = (function(_BmfontAssembler) {
+    var CanvasBmfontAssembler = exports["default"] = function(_BmfontAssembler) {
       function CanvasBmfontAssembler() {
         return _BmfontAssembler.apply(this, arguments) || this;
       }
@@ -48324,14 +48348,14 @@
         return 1;
       };
       return CanvasBmfontAssembler;
-    })(_bmfont["default"]);
+    }(_bmfont["default"]);
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../utils/label/bmfont": 327,
     "../render-data": 317,
     "../utils": 322
   } ],
-  314: [ (function(require, module, exports) {
+  314: [ function(require, module, exports) {
     "use strict";
     var _assembler = _interopRequireDefault(require("../../../assembler"));
     var _CCLabel = _interopRequireDefault(require("../../../../components/CCLabel"));
@@ -48372,13 +48396,13 @@
       TTF: _ttf["default"],
       Bmfont: _bmfont["default"]
     });
-  }), {
+  }, {
     "../../../../components/CCLabel": 184,
     "../../../assembler": 303,
     "./bmfont": 313,
     "./ttf": 315
   } ],
-  315: [ (function(require, module, exports) {
+  315: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -48398,7 +48422,7 @@
         return t.__proto__ = e, t;
       }, _setPrototypeOf(t, e);
     }
-    var CanvasTTFAssembler = exports["default"] = (function(_TTFAssembler) {
+    var CanvasTTFAssembler = exports["default"] = function(_TTFAssembler) {
       function CanvasTTFAssembler() {
         return _TTFAssembler.apply(this, arguments) || this;
       }
@@ -48442,14 +48466,14 @@
         return 1;
       };
       return CanvasTTFAssembler;
-    })(_ttf["default"]);
+    }(_ttf["default"]);
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../utils/label/ttf": 330,
     "../render-data": 317,
     "../utils": 322
   } ],
-  316: [ (function(require, module, exports) {
+  316: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -48469,7 +48493,7 @@
     }
     var Mask = require("../../../components/CCMask");
     var graphicsHandler = require("./graphics");
-    var CanvasMaskAssembler = exports["default"] = (function(_Assembler) {
+    var CanvasMaskAssembler = exports["default"] = function(_Assembler) {
       function CanvasMaskAssembler() {
         return _Assembler.apply(this, arguments) || this;
       }
@@ -48484,15 +48508,15 @@
         ctx.restore();
       };
       return CanvasMaskAssembler;
-    })(_assembler["default"]);
+    }(_assembler["default"]);
     _assembler["default"].register(Mask, CanvasMaskAssembler);
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../components/CCMask": 188,
     "../../assembler": 303,
     "./graphics": 311
   } ],
-  317: [ (function(require, module, exports) {
+  317: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -48522,7 +48546,7 @@
       }
       return ("string" === r ? String : Number)(t);
     }
-    var RenderData = exports["default"] = (function() {
+    var RenderData = exports["default"] = function() {
       function RenderData() {
         this.vertices = [];
       }
@@ -48542,10 +48566,10 @@
           };
         }
       } ]);
-    })();
+    }();
     module.exports = exports["default"];
-  }), {} ],
-  318: [ (function(require, module, exports) {
+  }, {} ],
+  318: [ function(require, module, exports) {
     "use strict";
     var _assembler = _interopRequireDefault(require("../../../assembler"));
     var _CCSprite = require("../../../../components/CCSprite");
@@ -48575,14 +48599,14 @@
       Tiled: _tiled["default"]
     };
     _assembler["default"].register(cc.Sprite, ctor);
-  }), {
+  }, {
     "../../../../components/CCSprite": 199,
     "../../../assembler": 303,
     "./simple": 319,
     "./sliced": 320,
     "./tiled": 321
   } ],
-  319: [ (function(require, module, exports) {
+  319: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -48602,7 +48626,7 @@
       }, _setPrototypeOf(t, e);
     }
     var utils = require("../utils");
-    var CanvasSimpleSprite = exports["default"] = (function(_Assembler) {
+    var CanvasSimpleSprite = exports["default"] = function(_Assembler) {
       function CanvasSimpleSprite() {
         return _Assembler.apply(this, arguments) || this;
       }
@@ -48698,14 +48722,14 @@
         return 1;
       };
       return CanvasSimpleSprite;
-    })(_assembler["default"]);
+    }(_assembler["default"]);
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../assembler": 303,
     "../render-data": 317,
     "../utils": 322
   } ],
-  320: [ (function(require, module, exports) {
+  320: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -48726,7 +48750,7 @@
       }, _setPrototypeOf(t, e);
     }
     var utils = require("../utils");
-    var CanvasSlicedSprite = exports["default"] = (function(_CanvasSimpleSprite) {
+    var CanvasSlicedSprite = exports["default"] = function(_CanvasSimpleSprite) {
       function CanvasSlicedSprite() {
         return _CanvasSimpleSprite.apply(this, arguments) || this;
       }
@@ -48841,15 +48865,15 @@
         return drawCall;
       };
       return CanvasSlicedSprite;
-    })(_simple["default"]);
+    }(_simple["default"]);
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../assembler": 303,
     "../render-data": 317,
     "../utils": 322,
     "./simple": 319
   } ],
-  321: [ (function(require, module, exports) {
+  321: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -48868,7 +48892,7 @@
       }, _setPrototypeOf(t, e);
     }
     var utils = require("../utils");
-    var CanvasTiledSprite = exports["default"] = (function(_Assembler) {
+    var CanvasTiledSprite = exports["default"] = function(_Assembler) {
       function CanvasTiledSprite() {
         return _Assembler.apply(this, arguments) || this;
       }
@@ -48898,13 +48922,13 @@
         return 1;
       };
       return CanvasTiledSprite;
-    })(_assembler["default"]);
+    }(_assembler["default"]);
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../assembler": 303,
     "../utils": 322
   } ],
-  322: [ (function(require, module, exports) {
+  322: [ function(require, module, exports) {
     "use strict";
     var WHITE = 16777215;
     var MAX_CANVAS_COUNT = 32;
@@ -49016,8 +49040,8 @@
       }
     };
     module.exports.context = context;
-  }), {} ],
-  323: [ (function(require, module, exports) {
+  }, {} ],
+  323: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -49125,7 +49149,7 @@
       }
     };
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../renderer/core/input-assembler": 418,
     "../../renderer/core/pass": 419,
     "../../renderer/gfx": 428,
@@ -49137,7 +49161,7 @@
     "./webgl/assemblers": 335,
     "./webgl/model-batcher": 365
   } ],
-  324: [ (function(require, module, exports) {
+  324: [ function(require, module, exports) {
     "use strict";
     var FlagOfset = 0;
     var DONOTHING = 1 << FlagOfset++;
@@ -49356,8 +49380,8 @@
     RenderFlow.FLAG_POST_RENDER = POST_RENDER;
     RenderFlow.FLAG_FINAL = FINAL;
     module.exports = cc.RenderFlow = RenderFlow;
-  }), {} ],
-  325: [ (function(require, module, exports) {
+  }, {} ],
+  325: [ function(require, module, exports) {
     "use strict";
     var RenderTexture = require("../../../assets/CCRenderTexture");
     var space = 2;
@@ -49456,10 +49480,10 @@
       }
     });
     module.exports = Atlas;
-  }), {
+  }, {
     "../../../assets/CCRenderTexture": 146
   } ],
-  326: [ (function(require, module, exports) {
+  326: [ function(require, module, exports) {
     "use strict";
     var Atlas = require("./atlas");
     var _atlases = [];
@@ -49601,10 +49625,10 @@
       }
     };
     module.exports = cc.dynamicAtlasManager = dynamicAtlasManager;
-  }), {
+  }, {
     "./atlas": 325
   } ],
-  327: [ (function(require, module, exports) {
+  327: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -49664,7 +49688,7 @@
     var _labelWidth = 0;
     var _labelHeight = 0;
     var _maxLineWidth = 0;
-    var BmfontAssembler = exports["default"] = (function(_Assembler2D) {
+    var BmfontAssembler = exports["default"] = function(_Assembler2D) {
       function BmfontAssembler() {
         return _Assembler2D.apply(this, arguments) || this;
       }
@@ -50054,16 +50078,16 @@
       _proto._quadsUpdated = function _quadsUpdated(comp) {};
       _proto._reserveQuads = function _reserveQuads() {};
       return BmfontAssembler;
-    })(_assembler2d["default"]);
+    }(_assembler2d["default"]);
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../components/CCLabel": 184,
     "../../../platform/CCMacro": 278,
     "../../../utils/text-utils": 387,
     "../../assembler-2d": 300,
     "../utils": 331
   } ],
-  328: [ (function(require, module, exports) {
+  328: [ function(require, module, exports) {
     "use strict";
     function LabelFrame() {
       this._rect = null;
@@ -50122,8 +50146,8 @@
       }
     };
     module.exports = LabelFrame;
-  }), {} ],
-  329: [ (function(require, module, exports) {
+  }, {} ],
+  329: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -50316,7 +50340,7 @@
     var _atlasWidth = 2048;
     var _atlasHeight = 2048;
     var _isBold = false;
-    var LetterFontAssembler = exports["default"] = (function(_WebglBmfontAssembler) {
+    var LetterFontAssembler = exports["default"] = function(_WebglBmfontAssembler) {
       function LetterFontAssembler() {
         return _WebglBmfontAssembler.apply(this, arguments) || this;
       }
@@ -50361,9 +50385,9 @@
         return false;
       };
       return LetterFontAssembler;
-    })(_bmfont["default"]);
+    }(_bmfont["default"]);
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../assets/CCRenderTexture": 146,
     "../../../components/CCComponent": 182,
     "../../../components/CCLabel": 184,
@@ -50372,7 +50396,7 @@
     "../../webgl/assemblers/label/2d/bmfont": 336,
     "../utils": 331
   } ],
-  330: [ (function(require, module, exports) {
+  330: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -50432,7 +50456,7 @@
     var _drawUnderlineWidth = 0;
     var _sharedLabelData;
     var Alignment = [ "left", "center", "right" ];
-    var TTFAssembler = exports["default"] = (function(_Assembler2D) {
+    var TTFAssembler = exports["default"] = function(_Assembler2D) {
       function TTFAssembler() {
         return _Assembler2D.apply(this, arguments) || this;
       }
@@ -50739,9 +50763,9 @@
         }
       };
       return TTFAssembler;
-    })(_assembler2d["default"]);
+    }(_assembler2d["default"]);
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../components/CCLabel": 184,
     "../../../components/CCLabelOutline": 185,
     "../../../components/CCLabelShadow": 186,
@@ -50750,7 +50774,7 @@
     "../../assembler-2d": 300,
     "../utils": 331
   } ],
-  331: [ (function(require, module, exports) {
+  331: [ function(require, module, exports) {
     "use strict";
     var dynamicAtlasManager = require("./dynamic-atlas/manager");
     var WHITE = cc.Color.WHITE;
@@ -50779,19 +50803,19 @@
         if (comp.useSystemFont) return comp.fontFamily || "Arial";
         if (comp.font) {
           if (comp.font._nativeAsset) return comp.font._nativeAsset;
-          cc.assetManager.postLoadNative(comp.font, (function(err) {
+          cc.assetManager.postLoadNative(comp.font, function(err) {
             comp.isValid && comp.setVertsDirty();
-          }));
+          });
           return "Arial";
         }
         return "Arial";
       },
       shareLabelInfo: shareLabelInfo
     };
-  }), {
+  }, {
     "./dynamic-atlas/manager": 326
   } ],
-  332: [ (function(require, module, exports) {
+  332: [ function(require, module, exports) {
     "use strict";
     cc.Graphics.earcut = module.exports = earcut;
     function earcut(data, holeIndices, dim) {
@@ -51182,8 +51206,8 @@
       }
       return result;
     };
-  }), {} ],
-  333: [ (function(require, module, exports) {
+  }, {} ],
+  333: [ function(require, module, exports) {
     "use strict";
     var Helper = require("../../../../graphics/helper");
     var PointFlags = require("../../../../graphics/types").PointFlags;
@@ -51327,11 +51351,11 @@
     });
     cc.Graphics._Impl = Impl;
     module.exports = Impl;
-  }), {
+  }, {
     "../../../../graphics/helper": 237,
     "../../../../graphics/types": 239
   } ],
-  334: [ (function(require, module, exports) {
+  334: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -51393,7 +51417,7 @@
       num: 1
     } ]);
     vfmtPosColorSdf.name = "vfmtPosColorSdf";
-    var GraphicsAssembler = exports["default"] = (function(_Assembler) {
+    var GraphicsAssembler = exports["default"] = function(_Assembler) {
       function GraphicsAssembler(graphics) {
         var _this;
         _this = _Assembler.call(this, graphics) || this;
@@ -51821,10 +51845,10 @@
         meshbuffer._dirty = true;
       };
       return GraphicsAssembler;
-    })(_assembler["default"]);
+    }(_assembler["default"]);
     _assembler["default"].register(cc.Graphics, GraphicsAssembler);
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../../../renderer/core/input-assembler": 418,
     "../../../../graphics/graphics": 236,
     "../../../../graphics/types": 239,
@@ -51834,7 +51858,7 @@
     "./earcut": 332,
     "./impl": 333
   } ],
-  335: [ (function(require, module, exports) {
+  335: [ function(require, module, exports) {
     "use strict";
     cc.assemblers = {};
     require("./sprite");
@@ -51842,14 +51866,14 @@
     require("./graphics");
     require("./label");
     require("./motion-streak");
-  }), {
+  }, {
     "./graphics": 334,
     "./label": 347,
     "./mask-assembler": 348,
     "./motion-streak": 349,
     "./sprite": 362
   } ],
-  336: [ (function(require, module, exports) {
+  336: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -51869,7 +51893,7 @@
     }
     var _dataOffset = 0;
     var COLOR_INDEX = [ 2, 3, 0, 1 ];
-    var WebglBmfontAssembler = exports["default"] = (function(_BmfontAssembler) {
+    var WebglBmfontAssembler = exports["default"] = function(_BmfontAssembler) {
       function WebglBmfontAssembler() {
         return _BmfontAssembler.apply(this, arguments) || this;
       }
@@ -51885,9 +51909,9 @@
         var floatsPerVert = this.floatsPerVert;
         var colorOffset = this.colorOffset;
         if (comp._gradient) {
-          comp._gradientColors.forEach((function(o) {
+          comp._gradientColors.forEach(function(o) {
             o._fastSetA(color.getA());
-          }));
+          });
           var j = 0;
           for (var _i = colorOffset, l = uintVerts.length; _i < l; _i += floatsPerVert) {
             var c_i = j % 4;
@@ -52005,12 +52029,12 @@
         }
       };
       return WebglBmfontAssembler;
-    })(_bmfont["default"]);
+    }(_bmfont["default"]);
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../../utils/label/bmfont": 327
   } ],
-  337: [ (function(require, module, exports) {
+  337: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -52026,7 +52050,7 @@
     var WebglBmfontAssembler = require("./bmfont");
     var LetterFontAssembler = require("../../../../utils/label/letter-font");
     var WHITE = cc.color(255, 255, 255, 255);
-    var WebglLetterFontAssembler = exports["default"] = (function(_LetterFontAssembler) {
+    var WebglLetterFontAssembler = exports["default"] = function(_LetterFontAssembler) {
       function WebglLetterFontAssembler() {
         return _LetterFontAssembler.apply(this, arguments) || this;
       }
@@ -52044,14 +52068,14 @@
         _LetterFontAssembler.prototype.updateColor.call(this, comp, color);
       };
       return WebglLetterFontAssembler;
-    })(LetterFontAssembler);
+    }(LetterFontAssembler);
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../../../platform/js": 295,
     "../../../../utils/label/letter-font": 329,
     "./bmfont": 336
   } ],
-  338: [ (function(require, module, exports) {
+  338: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -52068,7 +52092,7 @@
     var UPDATE_CONTENT = 1;
     var UPDATE_FONT = 2;
     var UPDATE_EFFECT = 4;
-    var NativeTTF = exports["default"] = (function() {
+    var NativeTTF = exports["default"] = function() {
       function NativeTTF() {}
       var _proto = NativeTTF.prototype;
       _proto.init = function init(comp) {
@@ -52371,16 +52395,16 @@
       };
       _proto.getVfmt = function getVfmt() {};
       return NativeTTF;
-    })();
+    }();
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../../../assets/material/CCMaterial": 157,
     "../../../../../assets/material/material-variant": 164,
     "../../../../../components/CCLabel": 184,
     "../../../../../components/CCLabelOutline": 185,
     "../../../../../components/CCLabelShadow": 186
   } ],
-  339: [ (function(require, module, exports) {
+  339: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -52401,7 +52425,7 @@
     }
     var _dataOffset = 0;
     var COLOR_INDEX = [ 2, 3, 0, 1 ];
-    var WebglColorBmfontAssembler = exports["default"] = (function(_BmfontAssembler) {
+    var WebglColorBmfontAssembler = exports["default"] = function(_BmfontAssembler) {
       function WebglColorBmfontAssembler() {
         var _this;
         for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) args[_key] = arguments[_key];
@@ -52422,9 +52446,9 @@
         var floatsPerVert = this.floatsPerVert;
         var colorOffset = this.colorOffset;
         if (comp._gradient) {
-          comp._gradientColors.forEach((function(o) {
+          comp._gradientColors.forEach(function(o) {
             o._fastSetA(color.getA());
-          }));
+          });
           var j = 0;
           for (var i = colorOffset, l = uintVerts.length; i < l; i += floatsPerVert) {
             var c_i = j % 4;
@@ -52556,13 +52580,13 @@
         }
       };
       return WebglColorBmfontAssembler;
-    })(_bmfont["default"]);
+    }(_bmfont["default"]);
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../../utils/label/bmfont": 327,
     "../../../vertex-format": 369
   } ],
-  340: [ (function(require, module, exports) {
+  340: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -52607,7 +52631,7 @@
         return t.__proto__ = e, t;
       }, _setPrototypeOf(t, e);
     }
-    var WebglOutlineTTFAssembler = exports["default"] = (function(_WebglTTFAssembler) {
+    var WebglOutlineTTFAssembler = exports["default"] = function(_WebglTTFAssembler) {
       function WebglOutlineTTFAssembler() {
         var _this;
         for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) args[_key] = arguments[_key];
@@ -52646,9 +52670,9 @@
         var outlineColor = comp._outlineColor._val;
         var floatsPerVert = this.floatsPerVert;
         var colorOffset = this.colorOffset;
-        comp._gradientColors.forEach((function(o) {
+        comp._gradientColors.forEach(function(o) {
           o._fastSetA(comp.node._color.a);
-        }));
+        });
         var j = 0;
         var colorLength = comp._gradientColors.length;
         for (var i = colorOffset, l = uintVerts.length; i < l; i += floatsPerVert) {
@@ -52664,13 +52688,13 @@
           return 24;
         }
       } ]);
-    })(_ttf["default"]);
+    }(_ttf["default"]);
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../vertex-format": 369,
     "./ttf": 341
   } ],
-  341: [ (function(require, module, exports) {
+  341: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -52690,7 +52714,7 @@
     }
     var LabelShadow = require("../../../../../components/CCLabelShadow");
     var WHITE = cc.color(255, 255, 255, 255);
-    var WebglTTFAssembler = exports["default"] = (function(_TTFAssembler) {
+    var WebglTTFAssembler = exports["default"] = function(_TTFAssembler) {
       function WebglTTFAssembler() {
         return _TTFAssembler.apply(this, arguments) || this;
       }
@@ -52732,13 +52756,13 @@
         this.updateWorldVerts(comp);
       };
       return WebglTTFAssembler;
-    })(_ttf["default"]);
+    }(_ttf["default"]);
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../../../components/CCLabelShadow": 186,
     "../../../../utils/label/ttf": 330
   } ],
-  342: [ (function(require, module, exports) {
+  342: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -52760,13 +52784,13 @@
     var WebglBmfontAssembler = require("../2d/bmfont");
     var vec3_temp_local = new _vec["default"]();
     var vec3_temp_world = new _vec["default"]();
-    var WebglBmfontAssembler3D = exports["default"] = (function(_WebglBmfontAssembler) {
+    var WebglBmfontAssembler3D = exports["default"] = function(_WebglBmfontAssembler) {
       function WebglBmfontAssembler3D() {
         return _WebglBmfontAssembler.apply(this, arguments) || this;
       }
       _inheritsLoose(WebglBmfontAssembler3D, _WebglBmfontAssembler);
       return WebglBmfontAssembler3D;
-    })(WebglBmfontAssembler);
+    }(WebglBmfontAssembler);
     cc.js.mixin(WebglBmfontAssembler3D.prototype, Assembler3D, {
       updateWorldVerts: function updateWorldVerts(comp) {
         var matrix = comp.node._worldMatrix;
@@ -52783,12 +52807,12 @@
       }
     });
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../../../value-types/vec3": 405,
     "../../../../assembler-3d": 301,
     "../2d/bmfont": 336
   } ],
-  343: [ (function(require, module, exports) {
+  343: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -52810,13 +52834,13 @@
     var WebglLetterFontAssembler = require("../2d/letter");
     var vec3_temp_local = new _vec["default"]();
     var vec3_temp_world = new _vec["default"]();
-    var WebglLetterFontAssembler3D = exports["default"] = (function(_WebglLetterFontAssem) {
+    var WebglLetterFontAssembler3D = exports["default"] = function(_WebglLetterFontAssem) {
       function WebglLetterFontAssembler3D() {
         return _WebglLetterFontAssem.apply(this, arguments) || this;
       }
       _inheritsLoose(WebglLetterFontAssembler3D, _WebglLetterFontAssem);
       return WebglLetterFontAssembler3D;
-    })(WebglLetterFontAssembler);
+    }(WebglLetterFontAssembler);
     cc.js.mixin(WebglLetterFontAssembler3D.prototype, Assembler3D, {
       updateWorldVerts: function updateWorldVerts(comp) {
         var matrix = comp.node._worldMatrix;
@@ -52833,12 +52857,12 @@
       }
     });
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../../../value-types/vec3": 405,
     "../../../../assembler-3d": 301,
     "../2d/letter": 337
   } ],
-  344: [ (function(require, module, exports) {
+  344: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -52861,7 +52885,7 @@
     var WebglColorBmfontAssembler = require("../2d/outline-bmfont");
     var vec3_temp_local = new _vec["default"]();
     var vec3_temp_world = new _vec["default"]();
-    var WebglColorBmfontAssembler3D = exports["default"] = (function(_WebglColorBmfontAsse) {
+    var WebglColorBmfontAssembler3D = exports["default"] = function(_WebglColorBmfontAsse) {
       function WebglColorBmfontAssembler3D() {
         var _this;
         for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) args[_key] = arguments[_key];
@@ -52871,7 +52895,7 @@
       }
       _inheritsLoose(WebglColorBmfontAssembler3D, _WebglColorBmfontAsse);
       return WebglColorBmfontAssembler3D;
-    })(WebglColorBmfontAssembler);
+    }(WebglColorBmfontAssembler);
     cc.js.mixin(WebglColorBmfontAssembler3D.prototype, Assembler3D, {
       getBuffer: function getBuffer() {
         return cc.renderer._handle.getBuffer("mesh", this.getVfmt());
@@ -52894,13 +52918,13 @@
       }
     });
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../../../value-types/vec3": 405,
     "../../../../assembler-3d": 301,
     "../../../vertex-format": 369,
     "../2d/outline-bmfont": 339
   } ],
-  345: [ (function(require, module, exports) {
+  345: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -52914,20 +52938,20 @@
     }
     var Assembler3D = require("../../../../assembler-3d");
     var WebglOutlineTTFAssembler = require("../2d/outline-ttf");
-    var WebglOutlineTTFAssembler3D = exports["default"] = (function(_WebglOutlineTTFAssem) {
+    var WebglOutlineTTFAssembler3D = exports["default"] = function(_WebglOutlineTTFAssem) {
       function WebglOutlineTTFAssembler3D() {
         return _WebglOutlineTTFAssem.apply(this, arguments) || this;
       }
       _inheritsLoose(WebglOutlineTTFAssembler3D, _WebglOutlineTTFAssem);
       return WebglOutlineTTFAssembler3D;
-    })(WebglOutlineTTFAssembler);
+    }(WebglOutlineTTFAssembler);
     cc.js.mixin(WebglOutlineTTFAssembler3D.prototype, Assembler3D);
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../../assembler-3d": 301,
     "../2d/outline-ttf": 340
   } ],
-  346: [ (function(require, module, exports) {
+  346: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -52941,20 +52965,20 @@
     }
     var Assembler3D = require("../../../../assembler-3d");
     var WebglTTFAssembler = require("../2d/ttf");
-    var WebglTTFAssembler3D = exports["default"] = (function(_WebglTTFAssembler) {
+    var WebglTTFAssembler3D = exports["default"] = function(_WebglTTFAssembler) {
       function WebglTTFAssembler3D() {
         return _WebglTTFAssembler.apply(this, arguments) || this;
       }
       _inheritsLoose(WebglTTFAssembler3D, _WebglTTFAssembler);
       return WebglTTFAssembler3D;
-    })(WebglTTFAssembler);
+    }(WebglTTFAssembler);
     cc.js.mixin(WebglTTFAssembler3D.prototype, Assembler3D);
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../../assembler-3d": 301,
     "../2d/ttf": 341
   } ],
-  347: [ (function(require, module, exports) {
+  347: [ function(require, module, exports) {
     "use strict";
     var _assembler = _interopRequireDefault(require("../../../assembler"));
     var _CCLabel = _interopRequireDefault(require("../../../../components/CCLabel"));
@@ -53017,7 +53041,7 @@
       Letter3D: _letter2["default"],
       NativeTTF: NativeTTF
     });
-  }), {
+  }, {
     "../../../../components/CCLabel": 184,
     "../../../assembler": 303,
     "./2d/bmfont": 336,
@@ -53032,7 +53056,7 @@
     "./3d/outline-ttf": 345,
     "./3d/ttf": 346
   } ],
-  348: [ (function(require, module, exports) {
+  348: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.MaskAssembler = void 0;
@@ -53135,7 +53159,7 @@
       applyStencil(mask._enableMaterial, func, failOp, ref, stencilMask, writeMask);
       renderer._flushMaterial(mask._enableMaterial);
     }
-    var MaskAssembler = exports.MaskAssembler = (function(_SimpleSpriteAssemble) {
+    var MaskAssembler = exports.MaskAssembler = function(_SimpleSpriteAssemble) {
       function MaskAssembler() {
         return _SimpleSpriteAssemble.apply(this, arguments) || this;
       }
@@ -53161,9 +53185,9 @@
         mask.node._renderFlag |= RenderFlow.FLAG_UPDATE_RENDER_DATA;
       };
       return MaskAssembler;
-    })(SimpleSpriteAssembler);
+    }(SimpleSpriteAssembler);
     _assembler["default"].register(Mask, MaskAssembler);
-  }), {
+  }, {
     "../../../../renderer/gfx": 428,
     "../../../components/CCMask": 188,
     "../../assembler": 303,
@@ -53172,7 +53196,7 @@
     "./graphics": 334,
     "./sprite/2d/simple": 353
   } ],
-  349: [ (function(require, module, exports) {
+  349: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -53228,7 +53252,7 @@
       maxMultiple && (multiple = Math.min(multiple, maxMultiple));
       return halfThick * multiple;
     }
-    var MotionStreakAssembler = exports["default"] = (function(_Assembler2D) {
+    var MotionStreakAssembler = exports["default"] = function(_Assembler2D) {
       function MotionStreakAssembler() {
         var _this;
         _this = _Assembler2D.call(this) || this;
@@ -53361,16 +53385,16 @@
         comp.node._renderFlag |= RenderFlow.FLAG_UPDATE_RENDER_DATA;
       };
       return MotionStreakAssembler;
-    })(_assembler2d["default"]);
+    }(_assembler2d["default"]);
     MotionStreakAssembler.register(MotionStreak, MotionStreakAssembler);
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../components/CCMotionStreak": 189,
     "../../../value-types/mat4": 397,
     "../../assembler-2d": 300,
     "../../render-flow": 324
   } ],
-  350: [ (function(require, module, exports) {
+  350: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -53390,7 +53414,7 @@
     }
     var Sprite = require("../../../../../components/CCSprite");
     var FillType = Sprite.FillType;
-    var BarFilledAssembler = exports["default"] = (function(_Assembler2D) {
+    var BarFilledAssembler = exports["default"] = function(_Assembler2D) {
       function BarFilledAssembler() {
         return _Assembler2D.apply(this, arguments) || this;
       }
@@ -53505,13 +53529,13 @@
         this.updateWorldVerts(sprite);
       };
       return BarFilledAssembler;
-    })(_assembler2d["default"]);
+    }(_assembler2d["default"]);
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../../../components/CCSprite": 199,
     "../../../../assembler-2d": 300
   } ],
-  351: [ (function(require, module, exports) {
+  351: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -53529,7 +53553,7 @@
         return t.__proto__ = e, t;
       }, _setPrototypeOf(t, e);
     }
-    var MeshSpriteAssembler = exports["default"] = (function(_Assembler2D) {
+    var MeshSpriteAssembler = exports["default"] = function(_Assembler2D) {
       function MeshSpriteAssembler() {
         return _Assembler2D.apply(this, arguments) || this;
       }
@@ -53610,12 +53634,12 @@
         }
       };
       return MeshSpriteAssembler;
-    })(_assembler2d["default"]);
+    }(_assembler2d["default"]);
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../../assembler-2d": 300
   } ],
-  352: [ (function(require, module, exports) {
+  352: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -53727,7 +53751,7 @@
       placementX < 0 && (angle += Math.PI);
       return angle;
     }
-    var RadialFilledAssembler = exports["default"] = (function(_Assembler2D) {
+    var RadialFilledAssembler = exports["default"] = function(_Assembler2D) {
       function RadialFilledAssembler() {
         return _Assembler2D.apply(this, arguments) || this;
       }
@@ -53873,12 +53897,12 @@
         verts[offset + 1] = py1 + (py2 - py1) * progressY;
       };
       return RadialFilledAssembler;
-    })(_assembler2d["default"]);
+    }(_assembler2d["default"]);
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../../assembler-2d": 300
   } ],
-  353: [ (function(require, module, exports) {
+  353: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -53896,7 +53920,7 @@
         return t.__proto__ = e, t;
       }, _setPrototypeOf(t, e);
     }
-    var SimpleSpriteAssembler = exports["default"] = (function(_Assembler2D) {
+    var SimpleSpriteAssembler = exports["default"] = function(_Assembler2D) {
       function SimpleSpriteAssembler() {
         return _Assembler2D.apply(this, arguments) || this;
       }
@@ -53948,12 +53972,12 @@
         this.updateWorldVerts(sprite);
       };
       return SimpleSpriteAssembler;
-    })(_assembler2d["default"]);
+    }(_assembler2d["default"]);
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../../assembler-2d": 300
   } ],
-  354: [ (function(require, module, exports) {
+  354: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -53971,7 +53995,7 @@
         return t.__proto__ = e, t;
       }, _setPrototypeOf(t, e);
     }
-    var SlicedAssembler = exports["default"] = (function(_Assembler2D) {
+    var SlicedAssembler = exports["default"] = function(_Assembler2D) {
       function SlicedAssembler() {
         return _Assembler2D.apply(this, arguments) || this;
       }
@@ -54061,16 +54085,16 @@
         }
       };
       return SlicedAssembler;
-    })(_assembler2d["default"]);
+    }(_assembler2d["default"]);
     Object.assign(SlicedAssembler.prototype, {
       verticesCount: 16,
       indicesCount: 54
     });
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../../assembler-2d": 300
   } ],
-  355: [ (function(require, module, exports) {
+  355: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -54088,7 +54112,7 @@
         return t.__proto__ = e, t;
       }, _setPrototypeOf(t, e);
     }
-    var TiledAssembler = exports["default"] = (function(_Assembler2D) {
+    var TiledAssembler = exports["default"] = function(_Assembler2D) {
       function TiledAssembler() {
         return _Assembler2D.apply(this, arguments) || this;
       }
@@ -54298,12 +54322,12 @@
         }
       };
       return TiledAssembler;
-    })(_assembler2d["default"]);
+    }(_assembler2d["default"]);
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../../assembler-2d": 300
   } ],
-  356: [ (function(require, module, exports) {
+  356: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -54317,20 +54341,20 @@
     }
     var Assembler3D = require("../../../../assembler-3d");
     var BarFilledAssembler = require("../2d/bar-filled");
-    var BarFilledAssembler3D = exports["default"] = (function(_BarFilledAssembler) {
+    var BarFilledAssembler3D = exports["default"] = function(_BarFilledAssembler) {
       function BarFilledAssembler3D() {
         return _BarFilledAssembler.apply(this, arguments) || this;
       }
       _inheritsLoose(BarFilledAssembler3D, _BarFilledAssembler);
       return BarFilledAssembler3D;
-    })(BarFilledAssembler);
+    }(BarFilledAssembler);
     cc.js.mixin(BarFilledAssembler3D.prototype, Assembler3D);
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../../assembler-3d": 301,
     "../2d/bar-filled": 350
   } ],
-  357: [ (function(require, module, exports) {
+  357: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -54351,13 +54375,13 @@
     var Assembler3D = require("../../../../assembler-3d");
     var MeshAssembler = require("../2d/mesh");
     var vec3_temp = new _vec["default"]();
-    var MeshAssembler3D = exports["default"] = (function(_MeshAssembler) {
+    var MeshAssembler3D = exports["default"] = function(_MeshAssembler) {
       function MeshAssembler3D() {
         return _MeshAssembler.apply(this, arguments) || this;
       }
       _inheritsLoose(MeshAssembler3D, _MeshAssembler);
       return MeshAssembler3D;
-    })(MeshAssembler);
+    }(MeshAssembler);
     cc.js.mixin(MeshAssembler3D.prototype, Assembler3D, {
       updateWorldVerts: function updateWorldVerts(comp) {
         var matrix = comp.node._worldMatrix;
@@ -54375,12 +54399,12 @@
       }
     });
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../../../value-types/vec3": 405,
     "../../../../assembler-3d": 301,
     "../2d/mesh": 351
   } ],
-  358: [ (function(require, module, exports) {
+  358: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -54402,13 +54426,13 @@
     var RadialFilledAssembler = require("../2d/radial-filled");
     var vec3_temp_local = new _vec["default"]();
     var vec3_temp_world = new _vec["default"]();
-    var RadialFilledAssembler3D = exports["default"] = (function(_RadialFilledAssemble) {
+    var RadialFilledAssembler3D = exports["default"] = function(_RadialFilledAssemble) {
       function RadialFilledAssembler3D() {
         return _RadialFilledAssemble.apply(this, arguments) || this;
       }
       _inheritsLoose(RadialFilledAssembler3D, _RadialFilledAssemble);
       return RadialFilledAssembler3D;
-    })(RadialFilledAssembler);
+    }(RadialFilledAssembler);
     cc.js.mixin(RadialFilledAssembler3D.prototype, Assembler3D, {
       updateWorldVerts: function updateWorldVerts(sprite) {
         var matrix = sprite.node._worldMatrix;
@@ -54425,12 +54449,12 @@
       }
     });
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../../../value-types/vec3": 405,
     "../../../../assembler-3d": 301,
     "../2d/radial-filled": 352
   } ],
-  359: [ (function(require, module, exports) {
+  359: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -54444,20 +54468,20 @@
     }
     var Assembler3D = require("../../../../assembler-3d");
     var SimpleAssembler = require("../2d/simple");
-    var SimpleAssembler3D = exports["default"] = (function(_SimpleAssembler) {
+    var SimpleAssembler3D = exports["default"] = function(_SimpleAssembler) {
       function SimpleAssembler3D() {
         return _SimpleAssembler.apply(this, arguments) || this;
       }
       _inheritsLoose(SimpleAssembler3D, _SimpleAssembler);
       return SimpleAssembler3D;
-    })(SimpleAssembler);
+    }(SimpleAssembler);
     cc.js.mixin(SimpleAssembler3D.prototype, Assembler3D);
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../../assembler-3d": 301,
     "../2d/simple": 353
   } ],
-  360: [ (function(require, module, exports) {
+  360: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -54479,13 +54503,13 @@
     var SlicedAssembler = require("../2d/sliced");
     var vec3_temp_local = new _vec["default"]();
     var vec3_temp_world = new _vec["default"]();
-    var SlicedAssembler3D = exports["default"] = (function(_SlicedAssembler) {
+    var SlicedAssembler3D = exports["default"] = function(_SlicedAssembler) {
       function SlicedAssembler3D() {
         return _SlicedAssembler.apply(this, arguments) || this;
       }
       _inheritsLoose(SlicedAssembler3D, _SlicedAssembler);
       return SlicedAssembler3D;
-    })(SlicedAssembler);
+    }(SlicedAssembler);
     cc.js.mixin(SlicedAssembler3D.prototype, Assembler3D, {
       updateWorldVerts: function updateWorldVerts(sprite) {
         var matrix = sprite.node._worldMatrix;
@@ -54507,12 +54531,12 @@
       }
     });
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../../../value-types/vec3": 405,
     "../../../../assembler-3d": 301,
     "../2d/sliced": 354
   } ],
-  361: [ (function(require, module, exports) {
+  361: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -54534,13 +54558,13 @@
     var TiledAssembler = require("../2d/tiled");
     var vec3_temps = [];
     for (var i = 0; i < 4; i++) vec3_temps.push(new _vec["default"]());
-    var TiledAssembler3D = exports["default"] = (function(_TiledAssembler) {
+    var TiledAssembler3D = exports["default"] = function(_TiledAssembler) {
       function TiledAssembler3D() {
         return _TiledAssembler.apply(this, arguments) || this;
       }
       _inheritsLoose(TiledAssembler3D, _TiledAssembler);
       return TiledAssembler3D;
-    })(TiledAssembler);
+    }(TiledAssembler);
     cc.js.mixin(TiledAssembler3D.prototype, Assembler3D, {
       updateWorldVerts: function updateWorldVerts(sprite) {
         var local = this._local;
@@ -54574,12 +54598,12 @@
       }
     });
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../../../../value-types/vec3": 405,
     "../../../../assembler-3d": 301,
     "../2d/tiled": 355
   } ],
-  362: [ (function(require, module, exports) {
+  362: [ function(require, module, exports) {
     "use strict";
     var _assembler = _interopRequireDefault(require("../../../assembler"));
     var _CCSprite = require("../../../../components/CCSprite");
@@ -54636,7 +54660,7 @@
       Mesh3D: _mesh2["default"]
     };
     _assembler["default"].register(cc.Sprite, ctor);
-  }), {
+  }, {
     "../../../../components/CCSprite": 199,
     "../../../assembler": 303,
     "./2d/bar-filled": 350,
@@ -54652,11 +54676,11 @@
     "./3d/sliced": 360,
     "./3d/tiled": 361
   } ],
-  363: [ (function(require, module, exports) {
+  363: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
-    var FlexBuffer = exports["default"] = (function() {
+    var FlexBuffer = exports["default"] = function() {
       function FlexBuffer(handler, index, verticesCount, indicesCount, vfmt) {
         this._handler = handler;
         this._index = index;
@@ -54710,11 +54734,11 @@
         this.usedIndices = 0;
       };
       return FlexBuffer;
-    })();
+    }();
     cc.FlexBuffer = FlexBuffer;
     module.exports = exports["default"];
-  }), {} ],
-  364: [ (function(require, module, exports) {
+  }, {} ],
+  364: [ function(require, module, exports) {
     "use strict";
     var _gfx = _interopRequireDefault(require("../../../renderer/gfx"));
     function _interopRequireDefault(e) {
@@ -54890,10 +54914,10 @@
       };
     }
     cc.MeshBuffer = module.exports = MeshBuffer;
-  }), {
+  }, {
     "../../../renderer/gfx": 428
   } ],
-  365: [ (function(require, module, exports) {
+  365: [ function(require, module, exports) {
     "use strict";
     var _inputAssembler = _interopRequireDefault(require("../../../renderer/core/input-assembler"));
     var _recyclePool = _interopRequireDefault(require("../../../renderer/memop/recycle-pool"));
@@ -55032,7 +55056,7 @@
       }
     };
     module.exports = ModelBatcher;
-  }), {
+  }, {
     "../../../renderer/core/input-assembler": 418,
     "../../../renderer/memop/recycle-pool": 443,
     "../../../renderer/scene/model": 450,
@@ -55043,7 +55067,7 @@
     "./spine-buffer": 368,
     "./vertex-format": 369
   } ],
-  366: [ (function(require, module, exports) {
+  366: [ function(require, module, exports) {
     "use strict";
     var MeshBuffer = require("./mesh-buffer");
     var QuadBuffer = cc.Class({
@@ -55082,10 +55106,10 @@
       }
     });
     cc.QuadBuffer = module.exports = QuadBuffer;
-  }), {
+  }, {
     "./mesh-buffer": 364
   } ],
-  367: [ (function(require, module, exports) {
+  367: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = RenderData;
@@ -55149,11 +55173,11 @@
     });
     cc.RenderData = RenderData;
     module.exports = exports["default"];
-  }), {
+  }, {
     "./flex-buffer": 363,
     "./vertex-format": 369
   } ],
-  368: [ (function(require, module, exports) {
+  368: [ function(require, module, exports) {
     "use strict";
     var SpineBuffer = cc.Class({
       name: "cc.SpineBuffer",
@@ -55186,10 +55210,10 @@
       }
     });
     cc.SpineBuffer = module.exports = SpineBuffer;
-  }), {
+  }, {
     "./mesh-buffer": 364
   } ],
-  369: [ (function(require, module, exports) {
+  369: [ function(require, module, exports) {
     "use strict";
     var _gfx = _interopRequireDefault(require("../../../renderer/gfx"));
     function _interopRequireDefault(e) {
@@ -55310,10 +55334,10 @@
       vfmtPosColor: vfmtPosColor,
       vfmtPos: vfmtPos
     };
-  }), {
+  }, {
     "../../../renderer/gfx": 428
   } ],
-  370: [ (function(require, module, exports) {
+  370: [ function(require, module, exports) {
     "use strict";
     require("../platform/CCSys");
     var EXTNAME_RE = /(\.[^\.\/\?\\]*)(\?.*)?$/;
@@ -55390,10 +55414,10 @@
       }
     };
     module.exports = cc.path;
-  }), {
+  }, {
     "../platform/CCSys": 282
   } ],
-  371: [ (function(require, module, exports) {
+  371: [ function(require, module, exports) {
     "use strict";
     var AffineTransform = function AffineTransform(a, b, c, d, tx, ty) {
       this.a = a;
@@ -55528,8 +55552,8 @@
       out_br.y = xb + yd + ty;
     };
     cc.AffineTransform = module.exports = AffineTransform;
-  }), {} ],
-  372: [ (function(require, module, exports) {
+  }, {} ],
+  372: [ function(require, module, exports) {
     "use strict";
     var Flags = require("../platform/CCObject").Flags;
     var misc = require("./misc");
@@ -56023,7 +56047,7 @@
     var SameNameGetSets = [ "parent", "name", "children", "childrenCount" ];
     misc.propertyDefine(BaseNode, SameNameGetSets, {});
     true;
-    js.get(BaseNode.prototype, " INFO ", (function() {
+    js.get(BaseNode.prototype, " INFO ", function() {
       var path = "";
       var node = this;
       while (node && !(node instanceof cc.Scene)) {
@@ -56031,9 +56055,9 @@
         node = node._parent;
       }
       return this.name + ", path: " + path;
-    }));
+    });
     cc._BaseNode = module.exports = BaseNode;
-  }), {
+  }, {
     "../event-manager": 218,
     "../platform/CCObject": 279,
     "../platform/id-generater": 291,
@@ -56041,7 +56065,7 @@
     "../renderer/render-flow": 324,
     "./misc": 380
   } ],
-  373: [ (function(require, module, exports) {
+  373: [ function(require, module, exports) {
     "use strict";
     var EPSILON = 1e-6;
     function binarySearchEpsilon(array, value) {
@@ -56057,8 +56081,8 @@
     module.exports = {
       binarySearchEpsilon: binarySearchEpsilon
     };
-  }), {} ],
-  374: [ (function(require, module, exports) {
+  }, {} ],
+  374: [ function(require, module, exports) {
     "use strict";
     var RenderComponent = require("../components/CCRenderComponent");
     var BlendFactor = require("../platform/CCMacro").BlendFactor;
@@ -56119,20 +56143,20 @@
       }
     });
     module.exports = cc.BlendFunc = BlendFunc;
-  }), {
+  }, {
     "../../renderer/gfx": 428,
     "../components/CCRenderComponent": 193,
     "../platform/CCMacro": 278
   } ],
-  375: [ (function(require, module, exports) {
+  375: [ function(require, module, exports) {
     "use strict";
     var Base64Values = require("./misc").BASE64_VALUES;
     var HexChars = "0123456789abcdef".split("");
     var _t = [ "", "", "", "" ];
     var UuidTemplate = _t.concat(_t, "-", _t, "-", _t, "-", _t, "-", _t, _t, _t);
-    var Indices = UuidTemplate.map((function(x, i) {
+    var Indices = UuidTemplate.map(function(x, i) {
       return "-" === x ? NaN : i;
-    })).filter(isFinite);
+    }).filter(isFinite);
     module.exports = function(base64) {
       if (22 !== base64.length) return base64;
       UuidTemplate[0] = base64[0];
@@ -56147,10 +56171,10 @@
       return UuidTemplate.join("");
     };
     false;
-  }), {
+  }, {
     "./misc": 380
   } ],
-  376: [ (function(require, module, exports) {
+  376: [ function(require, module, exports) {
     "use strict";
     cc.find = module.exports = function(path, referenceNode) {
       if (null == path) {
@@ -56193,8 +56217,8 @@
       }
       return match;
     };
-  }), {} ],
-  377: [ (function(require, module, exports) {
+  }, {} ],
+  377: [ function(require, module, exports) {
     "use strict";
     var _materialVariant = _interopRequireDefault(require("../assets/material/material-variant"));
     function _interopRequireDefault(e) {
@@ -56247,11 +56271,11 @@
       }
     });
     module.exports = GraySpriteState;
-  }), {
+  }, {
     "../assets/material/CCMaterial": 157,
     "../assets/material/material-variant": 164
   } ],
-  378: [ (function(require, module, exports) {
+  378: [ function(require, module, exports) {
     "use strict";
     var eventRegx = /^(click)(\s)*=|(param)(\s)*=/;
     var imageAttrReg = /(\s)*src(\s)*=|(\s)*height(\s)*=|(\s)*width(\s)*=|(\s)*align(\s)*=|(\s)*offset(\s)*=|(\s)*click(\s)*=|(\s)*param(\s)*=/;
@@ -56503,21 +56527,21 @@
     };
     false;
     module.exports = HtmlTextParser;
-  }), {} ],
-  379: [ (function(require, module, exports) {
+  }, {} ],
+  379: [ function(require, module, exports) {
     "use strict";
     require("./CCPath");
     true;
     require("./profiler/CCProfiler");
     require("./find");
     require("./mutable-forward-iterator");
-  }), {
+  }, {
     "./CCPath": 370,
     "./find": 376,
     "./mutable-forward-iterator": 381,
     "./profiler/CCProfiler": 384
   } ],
-  380: [ (function(require, module, exports) {
+  380: [ function(require, module, exports) {
     "use strict";
     var js = require("../platform/js");
     var misc = {};
@@ -56590,10 +56614,10 @@
       return angle * cc.macro.DEG;
     };
     cc.misc = module.exports = misc;
-  }), {
+  }, {
     "../platform/js": 295
   } ],
-  381: [ (function(require, module, exports) {
+  381: [ function(require, module, exports) {
     "use strict";
     function MutableForwardIterator(array) {
       this.i = 0;
@@ -56622,12 +56646,12 @@
       this.array.push(item);
     };
     module.exports = MutableForwardIterator;
-  }), {} ],
-  382: [ (function(require, module, exports) {
+  }, {} ],
+  382: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
-    var Pool = exports["default"] = (function() {
+    var Pool = exports["default"] = function() {
       function Pool() {
         this.enabled = false;
         this.count = 0;
@@ -56638,14 +56662,14 @@
       _proto.put = function put() {};
       _proto.clear = function clear() {};
       return Pool;
-    })();
+    }();
     cc.pool = {};
     Pool.register = function(name, pool) {
       cc.pool[name] = pool;
     };
     module.exports = exports["default"];
-  }), {} ],
-  383: [ (function(require, module, exports) {
+  }, {} ],
+  383: [ function(require, module, exports) {
     "use strict";
     cc._PrefabInfo = cc.Class({
       name: "cc.PrefabInfo",
@@ -56701,8 +56725,8 @@
         node._eulerAngles.z = eulerAnglesZ;
       }
     };
-  }), {} ],
-  384: [ (function(require, module, exports) {
+  }, {} ],
+  384: [ function(require, module, exports) {
     "use strict";
     var macro = require("../../platform/CCMacro");
     var PerfCounter = require("./perf-counter");
@@ -56842,11 +56866,11 @@
         }
       }
     };
-  }), {
+  }, {
     "../../platform/CCMacro": 278,
     "./perf-counter": 386
   } ],
-  385: [ (function(require, module, exports) {
+  385: [ function(require, module, exports) {
     "use strict";
     var Counter = cc.Class({
       name: "cc.Counter",
@@ -56895,8 +56919,8 @@
       }
     });
     module.exports = Counter;
-  }), {} ],
-  386: [ (function(require, module, exports) {
+  }, {} ],
+  386: [ function(require, module, exports) {
     "use strict";
     var Counter = require("./counter");
     var PerfCounter = cc.Class({
@@ -56930,10 +56954,10 @@
       }
     });
     module.exports = PerfCounter;
-  }), {
+  }, {
     "./counter": 385
   } ],
-  387: [ (function(require, module, exports) {
+  387: [ function(require, module, exports) {
     "use strict";
     var _js = _interopRequireDefault(require("../platform/js"));
     function _interopRequireDefault(e) {
@@ -57129,10 +57153,10 @@
       }
     };
     cc.textUtils = module.exports = textUtils;
-  }), {
+  }, {
     "../platform/js": 295
   } ],
-  388: [ (function(require, module, exports) {
+  388: [ function(require, module, exports) {
     "use strict";
     var Texture2D = require("../assets/CCTexture2D");
     var textureUtil = {
@@ -57144,14 +57168,14 @@
             cb && cb.call(target, null, tex);
             return tex;
           }
-          tex.once("load", (function() {
+          tex.once("load", function() {
             cb && cb.call(target, null, tex);
-          }), target);
+          }, target);
           return tex;
         }
-        cc.assetManager.loadRemote(url, (function(err, texture) {
+        cc.assetManager.loadRemote(url, function(err, texture) {
           cb && cb.call(target, err, texture);
-        }));
+        });
       },
       cacheImage: function cacheImage(url, image) {
         if (url && image) {
@@ -57174,21 +57198,21 @@
       }
     };
     module.exports = textureUtil;
-  }), {
+  }, {
     "../assets/CCTexture2D": 153
   } ],
-  389: [ (function(require, module, exports) {
+  389: [ function(require, module, exports) {
     "use strict";
     var NodeUnit = require("./node-unit");
     var NodeMemPool = require("./node-mem-pool");
     module.exports = {
       NodeMemPool: new NodeMemPool(NodeUnit)
     };
-  }), {
+  }, {
     "./node-mem-pool": 391,
     "./node-unit": 392
   } ],
-  390: [ (function(require, module, exports) {
+  390: [ function(require, module, exports) {
     "use strict";
     var MemPool = function MemPool(unitClass) {
       this._unitClass = unitClass;
@@ -57255,8 +57279,8 @@
       return unit;
     };
     module.exports = MemPool;
-  }), {} ],
-  391: [ (function(require, module, exports) {
+  }, {} ],
+  391: [ function(require, module, exports) {
     "use strict";
     var MemPool = require("./mem-pool");
     var NodeMemPool = function NodeMemPool(unitClass) {
@@ -57276,10 +57300,10 @@
       false;
     };
     module.exports = NodeMemPool;
-  }), {
+  }, {
     "./mem-pool": 390
   } ],
-  392: [ (function(require, module, exports) {
+  392: [ function(require, module, exports) {
     "use strict";
     var _utils = require("../../value-types/utils");
     var Uint32_Bytes = 4;
@@ -57334,11 +57358,11 @@
       NodeUnit.prototype = new Super();
     })();
     module.exports = NodeUnit;
-  }), {
+  }, {
     "../../value-types/utils": 402,
     "./unit-base": 393
   } ],
-  393: [ (function(require, module, exports) {
+  393: [ function(require, module, exports) {
     "use strict";
     var POINTER_INVALID_FLAG = 65535;
     var SPACE_FREE_FLAG = 0;
@@ -57418,8 +57442,8 @@
       spaceNum + usingNum != this._contentNum && cc.error("total num error", "calc total num:", totalNum, "actually total num:", this._contentNum);
     };
     module.exports = UnitBase;
-  }), {} ],
-  394: [ (function(require, module, exports) {
+  }, {} ],
+  394: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -57466,7 +57490,7 @@
         return t.__proto__ = e, t;
       }, _setPrototypeOf(t, e);
     }
-    var Color = exports["default"] = (function(_ValueType) {
+    var Color = exports["default"] = function(_ValueType) {
       function Color(r, g, b, a) {
         var _this;
         void 0 === r && (r = 0);
@@ -57860,7 +57884,7 @@
           return new Color(255, 0, 255);
         }
       } ]);
-    })(_valueType["default"]);
+    }(_valueType["default"]);
     _Color = Color;
     Color.div = _Color.divide;
     Color.sub = _Color.subtract;
@@ -57892,12 +57916,12 @@
       return new Color(r, g, b, a);
     };
     module.exports = exports["default"];
-  }), {
+  }, {
     "../platform/CCClass": 273,
     "../utils/misc": 380,
     "./value-type": 403
   } ],
-  395: [ (function(require, module, exports) {
+  395: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     var _exportNames = {
@@ -57934,19 +57958,19 @@
     var _trs = _interopRequireDefault(require("./trs"));
     exports.Trs = _trs["default"];
     var _utils = require("./utils");
-    Object.keys(_utils).forEach((function(key) {
+    Object.keys(_utils).forEach(function(key) {
       if ("default" === key || "__esModule" === key) return;
       if (Object.prototype.hasOwnProperty.call(_exportNames, key)) return;
       if (key in exports && exports[key] === _utils[key]) return;
       exports[key] = _utils[key];
-    }));
+    });
     function _interopRequireDefault(e) {
       return e && e.__esModule ? e : {
         default: e
       };
     }
     cc.math = module.exports;
-  }), {
+  }, {
     "./color": 394,
     "./mat3": 396,
     "./mat4": 397,
@@ -57959,7 +57983,7 @@
     "./vec3": 405,
     "./vec4": 406
   } ],
-  396: [ (function(require, module, exports) {
+  396: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -57971,7 +57995,7 @@
         default: e
       };
     }
-    var Mat3 = exports["default"] = (function() {
+    var Mat3 = exports["default"] = function() {
       function Mat3(m00, m01, m02, m03, m04, m05, m06, m07, m08) {
         void 0 === m00 && (m00 = 1);
         void 0 === m01 && (m01 = 0);
@@ -58264,7 +58288,7 @@
         return out;
       };
       Mat3.fromViewUp = function fromViewUp(out, view, up) {
-        var _fromViewUpIIFE = (function() {
+        var _fromViewUpIIFE = function() {
           var default_up = new _vec["default"](0, 1, 0);
           var x = new _vec["default"]();
           var y = new _vec["default"]();
@@ -58283,7 +58307,7 @@
             Mat3.set(out, x.x, x.y, x.z, y.x, y.y, y.z, view.x, view.y, view.z);
             return out;
           };
-        })();
+        }();
         return _fromViewUpIIFE(out, view, up);
       };
       Mat3.normalFromMat4 = function normalFromMat4(out, a) {
@@ -58399,18 +58423,18 @@
         return "mat3(" + am[0] + ", " + am[1] + ", " + am[2] + ", " + am[3] + ", " + am[4] + ", " + am[5] + ", " + am[6] + ", " + am[7] + ", " + am[8] + ")";
       };
       return Mat3;
-    })();
+    }();
     _Mat = Mat3;
     Mat3.sub = _Mat.subtract;
     Mat3.mul = _Mat.multiply;
     Mat3.IDENTITY = Object.freeze(new _Mat());
     cc.Mat3 = Mat3;
     module.exports = exports["default"];
-  }), {
+  }, {
     "../value-types/utils": 402,
     "./vec3": 405
   } ],
-  397: [ (function(require, module, exports) {
+  397: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -58450,7 +58474,7 @@
     var _a31 = 0;
     var _a32 = 0;
     var _a33 = 0;
-    var Mat4 = exports["default"] = (function(_ValueType) {
+    var Mat4 = exports["default"] = function(_ValueType) {
       function Mat4(m00, m01, m02, m03, m10, m11, m12, m13, m20, m21, m22, m23, m30, m31, m32, m33) {
         var _this;
         void 0 === m00 && (m00 = 1);
@@ -59687,7 +59711,7 @@
         return Mat4.fromQuat(this, quat);
       };
       return Mat4;
-    })(_valueType["default"]);
+    }(_valueType["default"]);
     _Mat = Mat4;
     Mat4.mul = _Mat.multiply;
     Mat4.sub = _Mat.subtract;
@@ -59730,7 +59754,7 @@
     };
     cc.Mat4 = Mat4;
     module.exports = exports["default"];
-  }), {
+  }, {
     "../platform/CCClass": 273,
     "./mat3": 396,
     "./quat": 398,
@@ -59738,7 +59762,7 @@
     "./value-type": 403,
     "./vec3": 405
   } ],
-  398: [ (function(require, module, exports) {
+  398: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -59765,7 +59789,7 @@
     var _y = 0;
     var _z = 0;
     var _w = 0;
-    var Quat = exports["default"] = (function(_ValueType) {
+    var Quat = exports["default"] = function(_ValueType) {
       function Quat(x, y, z, w) {
         var _this;
         void 0 === x && (x = 0);
@@ -60201,7 +60225,7 @@
         return Quat.rotateAround(out, rot, axis, rad);
       };
       return Quat;
-    })(_valueType["default"]);
+    }(_valueType["default"]);
     _Quat = Quat;
     Quat.mul = _Quat.multiply;
     Quat.scale = _Quat.multiplyScalar;
@@ -60223,14 +60247,14 @@
     };
     cc.Quat = Quat;
     module.exports = exports["default"];
-  }), {
+  }, {
     "../platform/CCClass": 273,
     "./mat3": 396,
     "./utils": 402,
     "./value-type": 403,
     "./vec3": 405
   } ],
-  399: [ (function(require, module, exports) {
+  399: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -60277,7 +60301,7 @@
         return t.__proto__ = e, t;
       }, _setPrototypeOf(t, e);
     }
-    var Rect = exports["default"] = (function(_ValueType) {
+    var Rect = exports["default"] = function(_ValueType) {
       function Rect(x, y, w, h) {
         var _this;
         void 0 === x && (x = 0);
@@ -60452,7 +60476,7 @@
           this.height = value.height;
         }
       } ]);
-    })(_valueType["default"]);
+    }(_valueType["default"]);
     _CCClass["default"].fastDefine("cc.Rect", Rect, {
       x: 0,
       y: 0,
@@ -60464,13 +60488,13 @@
       return new Rect(x, y, w, h);
     };
     module.exports = exports["default"];
-  }), {
+  }, {
     "../platform/CCClass": 273,
     "./size": 400,
     "./value-type": 403,
     "./vec2": 404
   } ],
-  400: [ (function(require, module, exports) {
+  400: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -60516,7 +60540,7 @@
         return t.__proto__ = e, t;
       }, _setPrototypeOf(t, e);
     }
-    var Size = exports["default"] = (function(_ValueType) {
+    var Size = exports["default"] = function(_ValueType) {
       function Size(width, height) {
         var _this;
         void 0 === width && (width = 0);
@@ -60563,7 +60587,7 @@
           return new Size();
         }
       } ]);
-    })(_valueType["default"]);
+    }(_valueType["default"]);
     _Size = Size;
     Size.ZERO_R = _Size.ZERO;
     _CCClass["default"].fastDefine("cc.Size", Size, {
@@ -60575,11 +60599,11 @@
     };
     cc.Size = Size;
     module.exports = exports["default"];
-  }), {
+  }, {
     "../platform/CCClass": 273,
     "./value-type": 403
   } ],
-  401: [ (function(require, module, exports) {
+  401: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -60590,7 +60614,7 @@
       };
     }
     var tmp_quat = new _quat["default"]();
-    var Trs = exports["default"] = (function() {
+    var Trs = exports["default"] = function() {
       function Trs() {}
       Trs.toRotation = function toRotation(out, a) {
         out.x = a[3];
@@ -60687,13 +60711,13 @@
         return out;
       };
       return Trs;
-    })();
+    }();
     cc.Trs = Trs;
     module.exports = exports["default"];
-  }), {
+  }, {
     "./quat": 398
   } ],
-  402: [ (function(require, module, exports) {
+  402: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.INT_MIN = exports.INT_MAX = exports.INT_BITS = exports.FLOAT_BYTES = exports.FLOAT_ARRAY_TYPE = exports.EPSILON = void 0;
@@ -60786,8 +60810,8 @@
     function sign(v) {
       return (v > 0) - (v < 0);
     }
-  }), {} ],
-  403: [ (function(require, module, exports) {
+  }, {} ],
+  403: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -60797,7 +60821,7 @@
         default: e
       };
     }
-    var ValueType = exports["default"] = (function() {
+    var ValueType = exports["default"] = function() {
       function ValueType() {}
       var _proto = ValueType.prototype;
       _proto.clone = function clone() {
@@ -60819,14 +60843,14 @@
         return "" + {};
       };
       return ValueType;
-    })();
+    }();
     _js["default"].setClassName("cc.ValueType", ValueType);
     cc.ValueType = ValueType;
     module.exports = exports["default"];
-  }), {
+  }, {
     "../platform/js": 295
   } ],
-  404: [ (function(require, module, exports) {
+  404: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -60876,7 +60900,7 @@
     }
     var _x = 0;
     var _y = 0;
-    var Vec2 = exports["default"] = (function(_ValueType) {
+    var Vec2 = exports["default"] = function(_ValueType) {
       function Vec2(x, y) {
         var _this;
         void 0 === x && (x = 0);
@@ -61256,7 +61280,7 @@
           return new Vec2(1, 0);
         }
       } ]);
-    })(_valueType["default"]);
+    }(_valueType["default"]);
     _Vec = Vec2;
     Vec2.sub = _Vec.subtract;
     Vec2.mul = _Vec.multiply;
@@ -61279,13 +61303,13 @@
     };
     cc.Vec2 = Vec2;
     module.exports = exports["default"];
-  }), {
+  }, {
     "../platform/CCClass": 273,
     "../utils/misc": 380,
     "./utils": 402,
     "./value-type": 403
   } ],
-  405: [ (function(require, module, exports) {
+  405: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -61337,7 +61361,7 @@
     var _x = 0;
     var _y = 0;
     var _z = 0;
-    var Vec3 = exports["default"] = (function(_ValueType) {
+    var Vec3 = exports["default"] = function(_ValueType) {
       function Vec3(x, y, z) {
         var _this;
         void 0 === x && (x = 0);
@@ -61860,7 +61884,7 @@
           return new Vec3(0, 0, 1);
         }
       } ]);
-    })(_valueType["default"]);
+    }(_valueType["default"]);
     _Vec = Vec3;
     Vec3.sub = _Vec.subtract;
     Vec3.mul = _Vec.multiply;
@@ -61885,14 +61909,14 @@
     };
     cc.Vec3 = Vec3;
     module.exports = exports["default"];
-  }), {
+  }, {
     "../platform/CCClass": 273,
     "../utils/misc": 380,
     "./utils": 402,
     "./value-type": 403,
     "./vec2": 404
   } ],
-  406: [ (function(require, module, exports) {
+  406: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -61944,7 +61968,7 @@
     var _y = 0;
     var _z = 0;
     var _w = 0;
-    var Vec4 = exports["default"] = (function(_ValueType) {
+    var Vec4 = exports["default"] = function(_ValueType) {
       function Vec4(x, y, z, w) {
         var _this;
         void 0 === x && (x = 0);
@@ -62414,7 +62438,7 @@
           return new Vec4(-1, -1, -1, -1);
         }
       } ]);
-    })(_valueType["default"]);
+    }(_valueType["default"]);
     _Vec = Vec4;
     Vec4.sub = _Vec.subtract;
     Vec4.mul = _Vec.multiply;
@@ -62436,12 +62460,12 @@
     }
     cc.v4 = v4;
     cc.Vec4 = Vec4;
-  }), {
+  }, {
     "../platform/CCClass": 273,
     "./utils": 402,
     "./value-type": 403
   } ],
-  407: [ (function(require, module, exports) {
+  407: [ function(require, module, exports) {
     "use strict";
     var js = cc.js;
     true;
@@ -62467,38 +62491,38 @@
     var markAsRemoved = function markAsRemoved(ownerCtor, removedProps, ownerName) {
       if (!ownerCtor) return;
       ownerName = ownerName || js.getClassName(ownerCtor);
-      removedProps.forEach((function(prop) {
+      removedProps.forEach(function(prop) {
         function error() {
           cc.errorID(1406, ownerName, prop);
         }
         js.getset(ownerCtor.prototype, prop, error, error);
-      }));
+      });
     };
     var markAsDeprecated = function markAsDeprecated(ownerCtor, deprecatedProps, ownerName) {
       if (!ownerCtor) return;
       ownerName = ownerName || js.getClassName(ownerCtor);
       var descriptors = Object.getOwnPropertyDescriptors(ownerCtor.prototype);
-      deprecatedProps.forEach((function(prop) {
+      deprecatedProps.forEach(function(prop) {
         var deprecatedProp = prop[0];
         var newProp = prop[1];
         var descriptor = descriptors[deprecatedProp];
-        js.getset(ownerCtor.prototype, deprecatedProp, (function() {
+        js.getset(ownerCtor.prototype, deprecatedProp, function() {
           cc.warnID(1400, ownerName + "." + deprecatedProp, ownerName + "." + newProp);
           return descriptor.get.call(this);
-        }), (function(v) {
+        }, function(v) {
           cc.warnID(1400, ownerName + "." + deprecatedProp, ownerName + "." + newProp);
           descriptor.set.call(this, v);
-        }));
-      }));
+        });
+      });
     };
     var markAsRemovedInObject = function markAsRemovedInObject(ownerObj, removedProps, ownerName) {
       if (!ownerObj) return;
-      removedProps.forEach((function(prop) {
+      removedProps.forEach(function(prop) {
         function error() {
           cc.errorID(1406, ownerName, prop);
         }
         js.getset(ownerObj, prop, error);
-      }));
+      });
     };
     var provideClearError = function provideClearError(owner, obj, ownerName) {
       if (!owner) return;
@@ -62509,9 +62533,9 @@
           function accessor(newProp) {
             cc.error(Info, prop, newProp);
           }
-          Array.isArray(getset) || (getset = getset.split(",").map((function(x) {
+          Array.isArray(getset) || (getset = getset.split(",").map(function(x) {
             return x.trim();
-          })));
+          }));
           try {
             js.getset(owner, prop, accessor.bind(null, getset[0]), getset[1] && accessor.bind(null, getset[1]));
           } catch (e) {}
@@ -62521,11 +62545,11 @@
           etProp = prop.slice(1);
           define("g" + etProp, getset);
           define("s" + etProp, getset);
-        } else prop.split(",").map((function(x) {
+        } else prop.split(",").map(function(x) {
           return x.trim();
-        })).forEach((function(x) {
+        }).forEach(function(x) {
           define(x, getset);
-        }));
+        });
       }, getset, etProp;
       for (var prop in obj) _loop();
     };
@@ -62543,86 +62567,86 @@
         ownerCtor[propName] = warn;
       })();
     };
-    js.get(cc, "info", (function() {
+    js.get(cc, "info", function() {
       cc.errorID(1400, "cc.info", "cc.log");
       return cc.log;
-    }));
-    js.get(cc, "spriteFrameCache", (function() {
+    });
+    js.get(cc, "spriteFrameCache", function() {
       cc.errorID(1404);
-    }));
-    js.get(cc, "vmath", (function() {
+    });
+    js.get(cc, "vmath", function() {
       cc.warnID(1400, "cc.vmath", "cc.math");
       return cc.math;
-    }));
-    js.get(cc.math, "vec2", (function() {
+    });
+    js.get(cc.math, "vec2", function() {
       cc.warnID(1400, "cc.vmath.vec2", "cc.Vec2");
       return cc.Vec2;
-    }));
-    js.get(cc.math, "vec3", (function() {
+    });
+    js.get(cc.math, "vec3", function() {
       cc.warnID(1400, "cc.vmath.vec3", "cc.Vec3");
       return cc.Vec3;
-    }));
-    js.get(cc.math, "vec4", (function() {
+    });
+    js.get(cc.math, "vec4", function() {
       cc.warnID(1400, "cc.vmath.vec4", "cc.Vec4");
       return cc.Vec4;
-    }));
-    js.get(cc.math, "mat4", (function() {
+    });
+    js.get(cc.math, "mat4", function() {
       cc.warnID(1400, "cc.vmath.mat4", "cc.Mat4");
       return cc.Mat4;
-    }));
-    js.get(cc.math, "mat3", (function() {
+    });
+    js.get(cc.math, "mat3", function() {
       cc.warnID(1400, "cc.vmath.mat3", "cc.Mat3");
       return cc.Mat3;
-    }));
-    js.get(cc.math, "quat", (function() {
+    });
+    js.get(cc.math, "quat", function() {
       cc.warnID(1400, "cc.vmath.quat", "cc.Quat");
       return cc.Quat;
-    }));
-    js.get(cc.SpriteFrame.prototype, "_textureLoaded", (function() {
+    });
+    js.get(cc.SpriteFrame.prototype, "_textureLoaded", function() {
       cc.errorID(1400, "spriteFrame._textureLoaded", "spriteFrame.textureLoaded()");
       return this.textureLoaded();
-    }));
+    });
     markAsRemoved(cc.SpriteFrame, [ "addLoadedEventListener" ]);
     markFunctionWarning(cc.Sprite.prototype, {
       setState: "cc.Sprite.setMaterial",
       getState: "cc.Sprite.getMaterial"
     }, "cc.Sprite");
-    js.get(cc.SpriteFrame.prototype, "clearTexture", (function() {
+    js.get(cc.SpriteFrame.prototype, "clearTexture", function() {
       cc.errorID(1406, "cc.SpriteFrame", "clearTexture");
       return function() {};
-    }));
-    js.get(cc, "textureCache", (function() {
+    });
+    js.get(cc, "textureCache", function() {
       cc.errorID(1406, "cc", "textureCache");
-    }));
+    });
     var Texture2D = cc.Texture2D;
-    js.get(Texture2D.prototype, "releaseTexture", (function() {
+    js.get(Texture2D.prototype, "releaseTexture", function() {
       cc.errorID(1400, "texture.releaseTexture()", "texture.destroy()");
       return this.destroy;
-    }));
-    js.get(Texture2D.prototype, "getName", (function() {
+    });
+    js.get(Texture2D.prototype, "getName", function() {
       cc.errorID(1400, "texture.getName()", "texture._glID");
       return function() {
         return this._glID || null;
       };
-    }));
-    js.get(Texture2D.prototype, "isLoaded", (function() {
+    });
+    js.get(Texture2D.prototype, "isLoaded", function() {
       cc.errorID(1400, "texture.isLoaded function", "texture.loaded property");
       return function() {
         return this.loaded;
       };
-    }));
-    js.get(Texture2D.prototype, "setAntiAliasTexParameters", (function() {
+    });
+    js.get(Texture2D.prototype, "setAntiAliasTexParameters", function() {
       cc.errorID(1400, "texture.setAntiAliasTexParameters()", "texture.setFilters(cc.Texture2D.Filter.LINEAR, cc.Texture2D.Filter.LINEAR)");
       return function() {
         this.setFilters(Texture2D.Filter.LINEAR, Texture2D.Filter.LINEAR);
       };
-    }));
-    js.get(Texture2D.prototype, "setAliasTexParameters", (function() {
+    });
+    js.get(Texture2D.prototype, "setAliasTexParameters", function() {
       cc.errorID(1400, "texture.setAntiAliasTexParameters()", "texture.setFilters(cc.Texture2D.Filter.NEAREST, cc.Texture2D.Filter.NEAREST)");
       return function() {
         this.setFilters(Texture2D.Filter.NEAREST, Texture2D.Filter.NEAREST);
       };
-    }));
+    });
     markAsRemovedInObject(cc.macro, [ "ENABLE_GL_STATE_CACHE", "FIX_ARTIFACTS_BY_STRECHING_TEXEL" ], "cc.macro");
     provideClearError(cc.macro, {
       PI: "Math.PI",
@@ -62730,13 +62754,13 @@
       getInstantiatedBuiltinMaterial: "cc.MaterialVariant.createWithBuiltin",
       getInstantiatedMaterial: "cc.MaterialVariant.create"
     });
-    cc.js.getset(cc.RenderComponent.prototype, "sharedMaterials", (function() {
+    cc.js.getset(cc.RenderComponent.prototype, "sharedMaterials", function() {
       cc.warnID(1400, "sharedMaterials", "getMaterials");
       return this.materials;
-    }), (function(v) {
+    }, function(v) {
       cc.warnID(1400, "sharedMaterials", "setMaterial");
       this.materials = v;
-    }));
+    });
     markFunctionWarning(cc.Follow.prototype, {
       setBoudarySet: "cc.Follow.setBoundarySet"
     });
@@ -62800,50 +62824,50 @@
     markFunctionWarning(cc.Color, {
       fromHex: "cc.Color.fromHEX"
     });
-    js.get(cc, "lerp", (function() {
+    js.get(cc, "lerp", function() {
       cc.errorID(1400, "cc.lerp", "cc.misc.lerp");
       return cc.misc.lerp;
-    }));
-    js.get(cc, "random0To1", (function() {
+    });
+    js.get(cc, "random0To1", function() {
       cc.errorID(1400, "cc.random0To1", "Math.random");
       return Math.random;
-    }));
-    js.get(cc, "degreesToRadians", (function() {
+    });
+    js.get(cc, "degreesToRadians", function() {
       cc.errorID(1400, "cc.degreesToRadians", "cc.misc.degreesToRadians");
       return cc.misc.degreesToRadians;
-    }));
-    js.get(cc, "radiansToDegrees", (function() {
+    });
+    js.get(cc, "radiansToDegrees", function() {
       cc.errorID(1400, "cc.radiansToDegrees", "cc.misc.radiansToDegrees");
       return cc.misc.radiansToDegrees;
-    }));
-    js.get(cc, "clampf", (function() {
+    });
+    js.get(cc, "clampf", function() {
       cc.errorID(1400, "cc.clampf", "cc.misc.clampf");
       return cc.misc.clampf;
-    }));
-    js.get(cc, "clamp01", (function() {
+    });
+    js.get(cc, "clamp01", function() {
       cc.errorID(1400, "cc.clamp01", "cc.misc.clamp01");
       return cc.misc.clamp01;
-    }));
-    js.get(cc, "ImageFormat", (function() {
+    });
+    js.get(cc, "ImageFormat", function() {
       cc.errorID(1400, "cc.ImageFormat", "cc.macro.ImageFormat");
       return cc.macro.ImageFormat;
-    }));
-    js.get(cc, "KEY", (function() {
+    });
+    js.get(cc, "KEY", function() {
       cc.errorID(1400, "cc.KEY", "cc.macro.KEY");
       return cc.macro.KEY;
-    }));
-    js.get(cc, "Easing", (function() {
+    });
+    js.get(cc, "Easing", function() {
       cc.errorID(1400, "cc.Easing", "cc.easing");
       return cc.easing;
-    }));
-    js.get(cc, "isChildClassOf", (function() {
+    });
+    js.get(cc, "isChildClassOf", function() {
       cc.errorID(1400, "cc.isChildClassOf", "cc.js.isChildClassOf");
       return cc.js.isChildClassOf;
-    }));
-    "object" === typeof dragonBones && "undefined" !== typeof dragonBones.CCFactory && js.get(dragonBones.CCFactory, "getFactory", (function() {
+    });
+    "object" === typeof dragonBones && "undefined" !== typeof dragonBones.CCFactory && js.get(dragonBones.CCFactory, "getFactory", function() {
       cc.errorID(1400, "dragonBones.CCFactory.getFactory", "dragonBones.CCFactory.getInstance");
       return dragonBones.CCFactory.getInstance;
-    }));
+    });
     cc.renderer.renderEngine = {
       get gfx() {
         cc.warnID(1400, "cc.renderer.renderEngine.gfx", "cc.gfx");
@@ -62859,16 +62883,16 @@
       }
     };
     markAsRemovedInObject(cc.audioEngine, [ "getProfile", "preload", "setMaxWebAudioSize" ], "cc.audioEngine");
-  }), {} ],
-  408: [ (function(require, module, exports) {
+  }, {} ],
+  408: [ function(require, module, exports) {
     "use strict";
     require("./core/CCGame");
     require("./actions");
-  }), {
+  }, {
     "./actions": 8,
     "./core/CCGame": 103
   } ],
-  409: [ (function(require, module, exports) {
+  409: [ function(require, module, exports) {
     "use strict";
     var zlib = require("../compression/zlib.min");
     var debug = require("../core/CCDebug");
@@ -63154,11 +63178,11 @@
       }
     };
     module.exports = PNGReader;
-  }), {
+  }, {
     "../compression/zlib.min": 26,
     "../core/CCDebug": 101
   } ],
-  410: [ (function(require, module, exports) {
+  410: [ function(require, module, exports) {
     "use strict";
     var Asset = require("../core/assets/CCAsset");
     var CCSpriteFrame = require("../core/assets/CCSpriteFrame");
@@ -63173,11 +63197,11 @@
       }
     });
     cc.ParticleAsset = module.exports = ParticleAsset;
-  }), {
+  }, {
     "../core/assets/CCAsset": 137,
     "../core/assets/CCSpriteFrame": 150
   } ],
-  411: [ (function(require, module, exports) {
+  411: [ function(require, module, exports) {
     "use strict";
     var macro = require("../core/platform/CCMacro");
     var ParticleAsset = require("./CCParticleAsset");
@@ -63499,7 +63523,7 @@
         var file = this._file;
         if (file) {
           var self = this;
-          cc.assetManager.postLoadNative(file, (function(err) {
+          cc.assetManager.postLoadNative(file, function(err) {
             if (err || !file._nativeAsset) {
               cc.errorID(6029);
               return;
@@ -63512,12 +63536,12 @@
               isDiffFrame && (self.spriteFrame = file.spriteFrame);
             }
             self._spriteFrame ? !self._renderSpriteFrame && self._spriteFrame && self._applySpriteFrame(self.spriteFrame) : file.spriteFrame ? self.spriteFrame = file.spriteFrame : self._custom && self._initTextureWithDictionary(file._nativeAsset);
-          }));
+          });
         }
       },
       _initTextureWithDictionary: function _initTextureWithDictionary(dict) {
         var imgPath = cc.path.changeBasename(this._plistFile, dict["textureFileName"] || "");
-        if (dict["textureFileName"]) textureUtil.loadImage(imgPath, (function(error, texture) {
+        if (dict["textureFileName"]) textureUtil.loadImage(imgPath, function(error, texture) {
           if (error) {
             dict["textureFileName"] = void 0;
             this._initTextureWithDictionary(dict);
@@ -63525,7 +63549,7 @@
             cc.assetManager.assets.add(imgPath, texture);
             this.spriteFrame = new cc.SpriteFrame(texture);
           }
-        }), this); else if (dict["textureImageData"]) {
+        }, this); else if (dict["textureImageData"]) {
           var textureData = dict["textureImageData"];
           if (!(textureData && textureData.length > 0)) return false;
           var tex = cc.assetManager.assets.get(imgPath);
@@ -63667,7 +63691,7 @@
       }
     });
     cc.ParticleSystem = module.exports = ParticleSystem;
-  }), {
+  }, {
     "../compression/ZipUtils": 23,
     "../core/assets/material/CCMaterial": 157,
     "../core/components/CCRenderComponent": 193,
@@ -63681,7 +63705,7 @@
     "./particle-simulator": 414,
     "fire-url": void 0
   } ],
-  412: [ (function(require, module, exports) {
+  412: [ function(require, module, exports) {
     "use strict";
     var debug = require("../core/CCDebug");
     var tiffReader = {
@@ -63742,9 +63766,9 @@
             fieldValues.push(this.getUint32(valueOffset + indexOffset + 4));
           } else cc.logID(8e3); else fieldValues.push(this.getBytes(fieldTypeLength, valueOffset + indexOffset));
         }
-        "ASCII" === fieldTypeName && fieldValues.forEach((function(e, i, a) {
+        "ASCII" === fieldTypeName && fieldValues.forEach(function(e, i, a) {
           a[i] = String.fromCharCode(e);
-        }));
+        });
         return fieldValues;
       },
       getBytes: function getBytes(numBytes, offset) {
@@ -63824,7 +63848,7 @@
         var sampleProperties = [];
         var bitsPerPixel = 0;
         var hasBytesPerPixel = false;
-        fileDirectory["BitsPerSample"].values.forEach((function(bitsPerSample, i, bitsPerSampleValues) {
+        fileDirectory["BitsPerSample"].values.forEach(function(bitsPerSample, i, bitsPerSampleValues) {
           sampleProperties[i] = {
             bitsPerSample: bitsPerSample,
             hasBytesPerSample: false,
@@ -63835,7 +63859,7 @@
             sampleProperties[i].bytesPerSample = bitsPerSample / 8;
           }
           bitsPerPixel += bitsPerSample;
-        }), this);
+        }, this);
         if (bitsPerPixel % 8 === 0) {
           hasBytesPerPixel = true;
           var bytesPerPixel = bitsPerPixel / 8;
@@ -63948,9 +63972,9 @@
               switch (photometricInterpretation) {
                case 0:
                 if (sampleProperties[0].hasBytesPerSample) var invertValue = Math.pow(16, 2 * sampleProperties[0].bytesPerSample);
-                pixelSamples.forEach((function(sample, index, samples) {
+                pixelSamples.forEach(function(sample, index, samples) {
                   samples[index] = invertValue - sample;
-                }));
+                });
 
                case 1:
                 red = green = blue = this.clampColorSample(pixelSamples[0], sampleProperties[0].bitsPerSample);
@@ -64091,22 +64115,22 @@
       }
     };
     module.exports = tiffReader;
-  }), {
+  }, {
     "../core/CCDebug": 101
   } ],
-  413: [ (function(require, module, exports) {
+  413: [ function(require, module, exports) {
     "use strict";
     require("./CCParticleAsset");
     require("./CCParticleSystem");
     require("./particle-simulator");
     require("./particle-system-assembler");
-  }), {
+  }, {
     "./CCParticleAsset": 410,
     "./CCParticleSystem": 411,
     "./particle-simulator": 414,
     "./particle-system-assembler": 415
   } ],
-  414: [ (function(require, module, exports) {
+  414: [ function(require, module, exports) {
     "use strict";
     var js = require("../core/platform/js");
     var misc = require("../core/utils/misc");
@@ -64428,11 +64452,11 @@
       }
     };
     module.exports = Simulator;
-  }), {
+  }, {
     "../core/platform/js": 295,
     "../core/utils/misc": 380
   } ],
-  415: [ (function(require, module, exports) {
+  415: [ function(require, module, exports) {
     "use strict";
     var _assembler = _interopRequireDefault(require("../core/renderer/assembler"));
     var _inputAssembler = _interopRequireDefault(require("../renderer/core/input-assembler"));
@@ -64453,7 +64477,7 @@
     var renderer = require("../core/renderer/");
     var QuadBuffer = require("../core/renderer/webgl/quad-buffer");
     var vfmtPosUvColor = require("../core/renderer/webgl/vertex-format").vfmtPosUvColor;
-    var ParticleAssembler = (function(_Assembler) {
+    var ParticleAssembler = function(_Assembler) {
       function ParticleAssembler(comp) {
         var _this;
         _this = _Assembler.call(this, comp) || this;
@@ -64483,10 +64507,10 @@
         renderer._flushIA(this._ia);
       };
       return ParticleAssembler;
-    })(_assembler["default"]);
+    }(_assembler["default"]);
     _assembler["default"].register(ParticleSystem, ParticleAssembler);
     module.exports = ParticleAssembler;
-  }), {
+  }, {
     "../core/renderer/": 323,
     "../core/renderer/assembler": 303,
     "../core/renderer/webgl/quad-buffer": 366,
@@ -64494,7 +64518,7 @@
     "../renderer/core/input-assembler": 418,
     "./CCParticleSystem": 411
   } ],
-  416: [ (function(require, module, exports) {
+  416: [ function(require, module, exports) {
     "use strict";
     var enums = {
       USAGE_STATIC: 35044,
@@ -64719,7 +64743,7 @@
       GFXStatus[GFXStatus["FAILED"] = 1] = "FAILED";
       GFXStatus[GFXStatus["SUCCESS"] = 2] = "SUCCESS";
     })(GFXStatus || (GFXStatus = {}));
-    var GFXObject = (function() {
+    var GFXObject = function() {
       function GFXObject(gfxType) {
         this._gfxType = GFXObjectType.UNKNOWN;
         this._status = GFXStatus.UNREADY;
@@ -64740,7 +64764,7 @@
         configurable: true
       });
       return GFXObject;
-    })();
+    }();
     var GFXAttributeName;
     (function(GFXAttributeName) {
       GFXAttributeName["ATTR_POSITION"] = "a_position";
@@ -65375,8 +65399,8 @@
       UniformBinding: UniformBinding
     };
     module.exports = mappings;
-  }), {} ],
-  417: [ (function(require, module, exports) {
+  }, {} ],
+  417: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -65428,7 +65452,7 @@
     var _int64_pool = new _memop.RecyclePool(function() {
       return new Int32Array(64);
     }, 8);
-    var Base = exports["default"] = (function() {
+    var Base = exports["default"] = function() {
       function Base(device, opts) {
         var _this$_type2defaultVa;
         this._device = device;
@@ -65627,9 +65651,9 @@
         }
       };
       return Base;
-    })();
+    }();
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../core/value-types": 395,
     "../enums": 423,
     "../gfx": 428,
@@ -65637,7 +65661,7 @@
     "./program-lib": 420,
     "./view": 422
   } ],
-  418: [ (function(require, module, exports) {
+  418: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -65673,7 +65697,7 @@
       }
       return ("string" === r ? String : Number)(t);
     }
-    var InputAssembler = exports["default"] = (function() {
+    var InputAssembler = exports["default"] = function() {
       function InputAssembler(vb, ib, pt) {
         void 0 === pt && (pt = _gfx["default"].PT_TRIANGLES);
         this._vertexBuffer = vb;
@@ -65691,12 +65715,12 @@
           return 0;
         }
       } ]);
-    })();
+    }();
     module.exports = exports["default"];
-  }), {
+  }, {
     "../gfx": 428
   } ],
-  419: [ (function(require, module, exports) {
+  419: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -65708,7 +65732,7 @@
         default: e
       };
     }
-    var Pass = exports["default"] = (function() {
+    var Pass = exports["default"] = function() {
       function Pass(name, detailName, programName, stage, properties, defines) {
         void 0 === properties && (properties = {});
         void 0 === defines && (defines = {});
@@ -65880,14 +65904,14 @@
         return pass;
       };
       return Pass;
-    })();
+    }();
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../core/value-types/value-type": 403,
     "../enums": 423,
     "../gfx": 428
   } ],
-  420: [ (function(require, module, exports) {
+  420: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -65935,7 +65959,7 @@
     function _replaceHighp(string) {
       return string.replace(/\bhighp\b/g, "mediump");
     }
-    var ProgramLib = exports["default"] = (function() {
+    var ProgramLib = exports["default"] = function() {
       function ProgramLib(device) {
         this._device = device;
         this._templates = {};
@@ -66031,14 +66055,14 @@
           var vertLines = vert.split("\n");
           var fragLines = frag.split("\n");
           var defineLength = tmpl.defines.length;
-          errors.forEach((function(err) {
+          errors.forEach(function(err) {
             var line = err.line - 1;
             var originLine = err.line - defineLength;
             var lines = "vs" === err.type ? vertLines : fragLines;
             var source = lines[line];
             var info = err.info || "Failed to compile " + err.type + " " + err.fileID + " (ln " + originLine + "): \n " + err.message + ": \n  " + source;
             cc.error(errPrefix + " : " + info);
-          }));
+          });
         }
         this._cache[key] = program;
         return program;
@@ -66055,12 +66079,12 @@
         this._highpSupported = highpSupported;
       };
       return ProgramLib;
-    })();
+    }();
     module.exports = exports["default"];
-  }), {
+  }, {
     "../gfx": 428
   } ],
-  421: [ (function(require, module, exports) {
+  421: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -66090,7 +66114,7 @@
       }
       return ("string" === r ? String : Number)(t);
     }
-    var Technique = exports["default"] = (function() {
+    var Technique = exports["default"] = function() {
       function Technique(name, passes) {
         this._name = name;
         this._passes = passes;
@@ -66112,10 +66136,10 @@
           return this._passes;
         }
       } ]);
-    })();
+    }();
     module.exports = exports["default"];
-  }), {} ],
-  422: [ (function(require, module, exports) {
+  }, {} ],
+  422: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -66128,7 +66152,7 @@
     }
     var _m4_tmp = new _valueTypes.Mat4();
     var _genID = 0;
-    var View = exports["default"] = (function() {
+    var View = exports["default"] = function() {
       function View() {
         this._id = _genID++;
         this._priority = 0;
@@ -66164,13 +66188,13 @@
         return _valueTypes.Mat4.getTranslation(out, _m4_tmp);
       };
       return View;
-    })();
+    }();
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../core/value-types": 395,
     "../enums": 423
   } ],
-  423: [ (function(require, module, exports) {
+  423: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -66211,10 +66235,10 @@
       BUFFER_VIEW_FLOAT32: 6
     };
     module.exports = exports["default"];
-  }), {
+  }, {
     "./build/mappings": 416
   } ],
-  424: [ (function(require, module, exports) {
+  424: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -66509,7 +66533,7 @@
       void 0 === face && (face = 0);
       attachment instanceof _texture2d["default"] ? gl.framebufferTexture2D(gl.FRAMEBUFFER, location, gl.TEXTURE_2D, attachment._glID, 0) : attachment instanceof _textureCube["default"] ? gl.framebufferTexture2D(gl.FRAMEBUFFER, location, gl.TEXTURE_CUBE_MAP_POSITIVE_X + face, attachment._glID, 0) : gl.framebufferRenderbuffer(gl.FRAMEBUFFER, location, gl.RENDERBUFFER, attachment._glID);
     }
-    var Device = exports["default"] = (function() {
+    var Device = exports["default"] = function() {
       function Device(canvasEL, opts) {
         var gl;
         opts = opts || {};
@@ -66892,15 +66916,15 @@
           return this._caps;
         }
       } ]);
-    })();
+    }();
     module.exports = exports["default"];
-  }), {
+  }, {
     "./enums": 425,
     "./state": 432,
     "./texture-2d": 433,
     "./texture-cube": 434
   } ],
-  425: [ (function(require, module, exports) {
+  425: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.attrTypeBytes = attrTypeBytes;
@@ -67387,12 +67411,12 @@
       }
       return result;
     }
-  }), {} ],
-  426: [ (function(require, module, exports) {
+  }, {} ],
+  426: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
-    var FrameBuffer = exports["default"] = (function() {
+    var FrameBuffer = exports["default"] = function() {
       function FrameBuffer(device, width, height, options) {
         this._device = device;
         this._width = width;
@@ -67421,10 +67445,10 @@
         return this._glID;
       };
       return FrameBuffer;
-    })();
+    }();
     module.exports = exports["default"];
-  }), {} ],
-  427: [ (function(require, module, exports) {
+  }, {} ],
+  427: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -67459,7 +67483,7 @@
     var BYTES_PER_INDEX = (_BYTES_PER_INDEX = {}, _BYTES_PER_INDEX[_enums.enums.INDEX_FMT_UINT8] = 1, 
     _BYTES_PER_INDEX[_enums.enums.INDEX_FMT_UINT16] = 2, _BYTES_PER_INDEX[_enums.enums.INDEX_FMT_UINT32] = 4, 
     _BYTES_PER_INDEX);
-    var IndexBuffer = (function() {
+    var IndexBuffer = function() {
       function IndexBuffer(device, format, usage, data) {
         this._device = device;
         this._format = format;
@@ -67516,14 +67540,14 @@
           return this._numIndices;
         }
       } ]);
-    })();
+    }();
     IndexBuffer.BYTES_PER_INDEX = BYTES_PER_INDEX;
     var _default = exports["default"] = IndexBuffer;
     module.exports = exports["default"];
-  }), {
+  }, {
     "./enums": 425
   } ],
-  428: [ (function(require, module, exports) {
+  428: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -67559,7 +67583,7 @@
     var _default = exports["default"] = gfx;
     cc.gfx = gfx;
     module.exports = exports["default"];
-  }), {
+  }, {
     "./device": 424,
     "./enums": 425,
     "./frame-buffer": 426,
@@ -67572,15 +67596,15 @@
     "./vertex-buffer": 436,
     "./vertex-format": 437
   } ],
-  429: [ (function(require, module, exports) {
+  429: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.isPow2 = isPow2;
     function isPow2(v) {
       return !(v & v - 1) && !!v;
     }
-  }), {} ],
-  430: [ (function(require, module, exports) {
+  }, {} ],
+  430: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -67613,7 +67637,7 @@
     var _genID = 0;
     function _parseError(out, type, errorLog) {
       if (!errorLog) return;
-      errorLog.split("\n").forEach((function(msg) {
+      errorLog.split("\n").forEach(function(msg) {
         if (msg.length < 5) return;
         var parts = /^ERROR:\s+(\d+):(\d+):\s*(.*)$/.exec(msg);
         parts ? out.push({
@@ -67627,9 +67651,9 @@
           line: 0,
           message: msg
         });
-      }));
+      });
     }
-    var Program = exports["default"] = (function() {
+    var Program = exports["default"] = function() {
       function Program(device, options) {
         this._device = device;
         this._attributes = [];
@@ -67714,7 +67738,7 @@
           return this._id;
         }
       } ]);
-    })();
+    }();
     function _createShader(gl, type, src) {
       var shader = gl.createShader(type);
       gl.shaderSource(shader, src);
@@ -67722,12 +67746,12 @@
       return shader;
     }
     module.exports = exports["default"];
-  }), {} ],
-  431: [ (function(require, module, exports) {
+  }, {} ],
+  431: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
-    var RenderBuffer = exports["default"] = (function() {
+    var RenderBuffer = exports["default"] = function() {
       function RenderBuffer(device, format, width, height) {
         this._device = device;
         this._format = format;
@@ -67754,10 +67778,10 @@
         this._glID = null;
       };
       return RenderBuffer;
-    })();
+    }();
     module.exports = exports["default"];
-  }), {} ],
-  432: [ (function(require, module, exports) {
+  }, {} ],
+  432: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -67801,7 +67825,7 @@
       textureUnits: [],
       program: null
     };
-    var State = exports["default"] = (function() {
+    var State = exports["default"] = function() {
       function State(device) {
         this.vertexBuffers = new Array(device._caps.maxVertexStreams);
         this.vertexBufferOffsets = new Array(device._caps.maxVertexStreams);
@@ -67857,12 +67881,12 @@
         this.program = cpy.program;
       };
       return State;
-    })();
+    }();
     module.exports = exports["default"];
-  }), {
+  }, {
     "./enums": 425
   } ],
-  433: [ (function(require, module, exports) {
+  433: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -67883,7 +67907,7 @@
       }, _setPrototypeOf(t, e);
     }
     var cacheFrameBuffer = null;
-    var Texture2D = exports["default"] = (function(_Texture) {
+    var Texture2D = exports["default"] = function(_Texture) {
       function Texture2D(device, options) {
         var _this;
         _this = _Texture.call(this, device) || this;
@@ -68041,14 +68065,14 @@
         ext && gl.texParameteri(gl.TEXTURE_2D, ext.TEXTURE_MAX_ANISOTROPY_EXT, this._anisotropy);
       };
       return Texture2D;
-    })(_texture["default"]);
+    }(_texture["default"]);
     module.exports = exports["default"];
-  }), {
+  }, {
     "./enums": 425,
     "./misc": 429,
     "./texture": 435
   } ],
-  434: [ (function(require, module, exports) {
+  434: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -68068,7 +68092,7 @@
         return t.__proto__ = e, t;
       }, _setPrototypeOf(t, e);
     }
-    var TextureCube = exports["default"] = (function(_Texture) {
+    var TextureCube = exports["default"] = function(_Texture) {
       function TextureCube(device, options) {
         var _this;
         _this = _Texture.call(this, device) || this;
@@ -68202,21 +68226,21 @@
         ext && gl.texParameteri(gl.TEXTURE_CUBE_MAP, ext.TEXTURE_MAX_ANISOTROPY_EXT, this._anisotropy);
       };
       return TextureCube;
-    })(_texture["default"]);
+    }(_texture["default"]);
     module.exports = exports["default"];
-  }), {
+  }, {
     "./enums": 425,
     "./misc": 429,
     "./texture": 435
   } ],
-  435: [ (function(require, module, exports) {
+  435: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
     var _enums = require("./enums");
     var _nullWebGLTexture = null;
     var _textureID = 0;
-    var Texture = exports["default"] = (function() {
+    var Texture = exports["default"] = function() {
       function Texture(device) {
         this._device = device;
         this._width = 4;
@@ -68245,12 +68269,12 @@
         this._glID = _nullWebGLTexture;
       };
       return Texture;
-    })();
+    }();
     module.exports = exports["default"];
-  }), {
+  }, {
     "./enums": 425
   } ],
-  436: [ (function(require, module, exports) {
+  436: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -68281,7 +68305,7 @@
       }
       return ("string" === r ? String : Number)(t);
     }
-    var VertexBuffer = (function() {
+    var VertexBuffer = function() {
       function VertexBuffer(device, format, usage, data) {
         this._device = device;
         this._format = format;
@@ -68341,13 +68365,13 @@
           return this._numVertices;
         }
       } ]);
-    })();
+    }();
     var _default = exports["default"] = VertexBuffer;
     module.exports = exports["default"];
-  }), {
+  }, {
     "./enums": 425
   } ],
-  437: [ (function(require, module, exports) {
+  437: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -68358,7 +68382,7 @@
         default: e
       };
     }
-    var VertexFormat = exports["default"] = (function() {
+    var VertexFormat = exports["default"] = function() {
       function VertexFormat(infos) {
         this._attr2el = {};
         this._elements = [];
@@ -68395,17 +68419,17 @@
         return this._hash;
       };
       return VertexFormat;
-    })();
+    }();
     module.exports = exports["default"];
-  }), {
+  }, {
     "../murmurhash2_gc": 446,
     "./enums": 425
   } ],
-  438: [ (function(require, module, exports) {
+  438: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
-    var CircularPool = exports["default"] = (function() {
+    var CircularPool = exports["default"] = function() {
       function CircularPool(fn, size) {
         this._cursor = 0;
         this._data = new Array(size);
@@ -68418,10 +68442,10 @@
         return item;
       };
       return CircularPool;
-    })();
+    }();
     module.exports = exports["default"];
-  }), {} ],
-  439: [ (function(require, module, exports) {
+  }, {} ],
+  439: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -68457,7 +68481,7 @@
       }
       return ("string" === r ? String : Number)(t);
     }
-    var FixedArray = exports["default"] = (function() {
+    var FixedArray = exports["default"] = function() {
       function FixedArray(size) {
         this._count = 0;
         this._data = new Array(size);
@@ -68506,12 +68530,12 @@
           return this._data;
         }
       } ]);
-    })();
+    }();
     module.exports = exports["default"];
-  }), {
+  }, {
     "./timsort": 444
   } ],
-  440: [ (function(require, module, exports) {
+  440: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.TypedArrayPool = exports.RecyclePool = exports.Pool = exports.LinkedArray = exports.FixedArray = exports.CircularPool = void 0;
@@ -68532,7 +68556,7 @@
         default: e
       };
     }
-  }), {
+  }, {
     "./circular-pool": 438,
     "./fixed-array": 439,
     "./linked-array": 441,
@@ -68540,7 +68564,7 @@
     "./recycle-pool": 443,
     "./typed-array-pool": 445
   } ],
-  441: [ (function(require, module, exports) {
+  441: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -68576,7 +68600,7 @@
       }
       return ("string" === r ? String : Number)(t);
     }
-    var LinkedArray = exports["default"] = (function() {
+    var LinkedArray = exports["default"] = function() {
       function LinkedArray(fn, size) {
         this._fn = fn;
         this._count = 0;
@@ -68632,16 +68656,16 @@
           return this._count;
         }
       } ]);
-    })();
+    }();
     module.exports = exports["default"];
-  }), {
+  }, {
     "./pool": 442
   } ],
-  442: [ (function(require, module, exports) {
+  442: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
-    var Pool = exports["default"] = (function() {
+    var Pool = exports["default"] = function() {
       function Pool(fn, size) {
         this._fn = fn;
         this._idx = size - 1;
@@ -68674,10 +68698,10 @@
         this._idx = -1;
       };
       return Pool;
-    })();
+    }();
     module.exports = exports["default"];
-  }), {} ],
-  443: [ (function(require, module, exports) {
+  }, {} ],
+  443: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -68713,7 +68737,7 @@
       }
       return ("string" === r ? String : Number)(t);
     }
-    var RecyclePool = exports["default"] = (function() {
+    var RecyclePool = exports["default"] = function() {
       function RecyclePool(fn, size) {
         this._fn = fn;
         this._count = 0;
@@ -68753,13 +68777,13 @@
           return this._data;
         }
       } ]);
-    })();
+    }();
     cc.RecyclePool = RecyclePool;
     module.exports = exports["default"];
-  }), {
+  }, {
     "./timsort": 444
   } ],
-  444: [ (function(require, module, exports) {
+  444: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = _default;
@@ -68929,7 +68953,7 @@
       }
       return offset;
     }
-    var TimSort = (function() {
+    var TimSort = function() {
       function TimSort(array, compare) {
         this.array = array;
         this.compare = compare;
@@ -69187,7 +69211,7 @@
         }
       };
       return TimSort;
-    })();
+    }();
     function _default(array, lo, hi, compare) {
       if (!Array.isArray(array)) throw new TypeError("Can only sort arrays");
       void 0 === lo && (lo = 0);
@@ -69219,8 +69243,8 @@
       ts.forceMergeRuns();
     }
     module.exports = exports["default"];
-  }), {} ],
-  445: [ (function(require, module, exports) {
+  }, {} ],
+  445: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -69309,8 +69333,8 @@
       }
     };
     module.exports = exports["default"];
-  }), {} ],
-  446: [ (function(require, module, exports) {
+  }, {} ],
+  446: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = murmurhash2_32_gc;
@@ -69342,8 +69366,8 @@
       return h >>> 0;
     }
     module.exports = exports["default"];
-  }), {} ],
-  447: [ (function(require, module, exports) {
+  }, {} ],
+  447: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -69383,7 +69407,7 @@
     function sortView(a, b) {
       return a._priority - b._priority;
     }
-    var ForwardRenderer = exports["default"] = (function(_BaseRenderer) {
+    var ForwardRenderer = exports["default"] = function(_BaseRenderer) {
       function ForwardRenderer(device, builtin) {
         var _this;
         _this = _BaseRenderer.call(this, device, builtin) || this;
@@ -69540,10 +69564,10 @@
         this._device.setUniform("cc_shadow_info", shadowInfo);
       };
       _proto._sortItems = function _sortItems(items) {
-        items.sort((function(a, b) {
+        items.sort(function(a, b) {
           if (a.passes.length !== b.passes.length) return a.passes.length - b.passes.length;
           return a.sortKey - b.sortKey;
-        }));
+        });
       };
       _proto._shadowStage = function _shadowStage(view, items) {
         this._submitShadowStageUniforms(view);
@@ -69594,15 +69618,15 @@
         this._drawItems(view, items);
       };
       return ForwardRenderer;
-    })(_baseRenderer["default"]);
+    }(_baseRenderer["default"]);
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../core/value-types": 395,
     "../core/base-renderer": 417,
     "../enums": 423,
     "../memop": 440
   } ],
-  448: [ (function(require, module, exports) {
+  448: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -69648,7 +69672,7 @@
     var _matInvViewProj = new _valueTypes.Mat4();
     var _tmp_v3 = new _valueTypes.Vec3();
     var _tmp2_v3 = new _valueTypes.Vec3();
-    var Camera = exports["default"] = (function() {
+    var Camera = exports["default"] = function() {
       function Camera() {
         this._poolID = -1;
         this._node = null;
@@ -69870,14 +69894,14 @@
           this._cullingMask = mask;
         }
       } ]);
-    })();
+    }();
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../core/geom-utils": 228,
     "../../core/value-types": 395,
     "../enums": 423
   } ],
-  449: [ (function(require, module, exports) {
+  449: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -69935,7 +69959,7 @@
       _valueTypes.Mat4.invert(outView, outView);
       _valueTypes.Mat4.perspective(outProj, (0, _valueTypes.toRadian)(179), 1, light._shadowMinDepth, light._shadowMaxDepth);
     }
-    var Light = exports["default"] = (function() {
+    var Light = exports["default"] = function() {
       function Light() {
         this._poolID = -1;
         this._node = null;
@@ -70186,18 +70210,18 @@
           return this._shadowFrustumSize;
         }
       } ]);
-    })();
+    }();
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../core/value-types": 395,
     "../enums": 423,
     "../gfx": 428
   } ],
-  450: [ (function(require, module, exports) {
+  450: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
-    var Model = exports["default"] = (function() {
+    var Model = exports["default"] = function() {
       function Model() {
         this._type = "default";
         this._poolID = -1;
@@ -70230,15 +70254,15 @@
         out.effect = this._effect;
       };
       return Model;
-    })();
+    }();
     module.exports = exports["default"];
-  }), {} ],
-  451: [ (function(require, module, exports) {
+  }, {} ],
+  451: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
     var _memop = require("../memop");
-    var Scene = (function() {
+    var Scene = function() {
       function Scene(app) {
         this._lights = new _memop.FixedArray(16);
         this._models = new _memop.FixedArray(16);
@@ -70312,13 +70336,13 @@
         -1 !== idx && this._views.splice(idx, 1);
       };
       return Scene;
-    })();
+    }();
     var _default = exports["default"] = Scene;
     module.exports = exports["default"];
-  }), {
+  }, {
     "../memop": 440
   } ],
-  452: [ (function(require, module, exports) {
+  452: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports.getClassName = exports.enums2default = exports.ctor2enums = void 0;
@@ -70409,13 +70433,13 @@
       }
       return editor;
     }
-  }), {
+  }, {
     "../core/assets/CCTexture2D": 153,
     "../core/value-types": 395,
     "./enums": 423,
     "./gfx/texture-2d": 433
   } ],
-  453: [ (function(require, module, exports) {
+  453: [ function(require, module, exports) {
     "use strict";
     var codec = require("../compression/ZipUtils");
     var zlib = require("../compression/zlib.min");
@@ -71022,9 +71046,9 @@
             objectProp["type"] || (objectProp["type"] = cc.TiledMap.TMXObjectType.RECT);
             objectGroup._objects.push(objectProp);
           }
-          "index" !== draworder && objectGroup._objects.sort((function(a, b) {
+          "index" !== draworder && objectGroup._objects.sort(function(a, b) {
             return a.y - b.y;
-          }));
+          });
         }
         return objectGroup;
       },
@@ -71069,13 +71093,13 @@
     cc.TMXLayerInfo.ATTRIB_BASE64 = 2;
     cc.TMXLayerInfo.ATTRIB_GZIP = 4;
     cc.TMXLayerInfo.ATTRIB_ZLIB = 8;
-  }), {
+  }, {
     "../compression/ZipUtils": 23,
     "../compression/zlib.min": 26,
     "../core/platform/CCSAXParser": 280,
     "../core/platform/js": 295
   } ],
-  454: [ (function(require, module, exports) {
+  454: [ function(require, module, exports) {
     "use strict";
     var _valueTypes = require("../core/value-types");
     var _materialVariant = _interopRequireDefault(require("../core/assets/material/material-variant"));
@@ -71750,9 +71774,9 @@
         var index = Math.floor(x) + Math.floor(y) * this._layerSize.width;
         this._tiledTiles[index] = tiledTile;
         this._cullingDirty = true;
-        this._hasTiledNodeGrid = !!tiledTile || this._tiledTiles.some((function(tiledNode, index) {
+        this._hasTiledNodeGrid = !!tiledTile || this._tiledTiles.some(function(tiledNode, index) {
           return !!tiledNode;
-        }));
+        });
         return tiledTile;
       },
       getTexture: function getTexture(index) {
@@ -71921,14 +71945,14 @@
       }
     });
     cc.TiledLayer = module.exports = TiledLayer;
-  }), {
+  }, {
     "../core/assets/material/CCMaterial": 157,
     "../core/assets/material/material-variant": 164,
     "../core/components/CCRenderComponent": 193,
     "../core/renderer/render-flow": 324,
     "../core/value-types": 395
   } ],
-  455: [ (function(require, module, exports) {
+  455: [ function(require, module, exports) {
     "use strict";
     require("./CCTMXXMLParser");
     require("./CCTiledMapAsset");
@@ -72264,8 +72288,8 @@
           this._textures[i] = tilesetInfo.sourceImage;
           totalTextures.push(tilesetInfo.sourceImage);
         }
-        for (var _i0 = 0; _i0 < this._imageLayers.length; _i0++) {
-          var imageLayer = this._imageLayers[_i0];
+        for (var _i10 = 0; _i10 < this._imageLayers.length; _i10++) {
+          var imageLayer = this._imageLayers[_i10];
           if (!imageLayer || !imageLayer.sourceImage) continue;
           totalTextures.push(imageLayer.sourceImage);
         }
@@ -72305,9 +72329,9 @@
       };
       for (var i = 0; i < totalNum; i++) {
         var tex = textures[i];
-        tex.loaded ? itemCallback() : tex.once("load", (function() {
+        tex.loaded ? itemCallback() : tex.once("load", function() {
           itemCallback();
-        }));
+        });
       }
     };
     cc.TiledMap.fillTextureGrids = function(tileset, texGrids, texId) {
@@ -72348,18 +72372,18 @@
       }
     };
     cc.js.obsolete(cc.TiledMap.prototype, "cc.TiledMap.tmxFile", "tmxAsset", true);
-    cc.js.get(cc.TiledMap.prototype, "mapLoaded", (function() {
+    cc.js.get(cc.TiledMap.prototype, "mapLoaded", function() {
       cc.errorID(7203);
       return [];
-    }), false);
-  }), {
+    }, false);
+  }, {
     "./CCTMXXMLParser": 453,
     "./CCTiledLayer": 454,
     "./CCTiledMapAsset": 456,
     "./CCTiledObjectGroup": 458,
     "./CCTiledTile": 459
   } ],
-  456: [ (function(require, module, exports) {
+  456: [ function(require, module, exports) {
     "use strict";
     var TiledMapAsset = cc.Class({
       name: "cc.TiledMapAsset",
@@ -72390,8 +72414,8 @@
     });
     cc.TiledMapAsset = TiledMapAsset;
     module.exports = TiledMapAsset;
-  }), {} ],
-  457: [ (function(require, module, exports) {
+  }, {} ],
+  457: [ function(require, module, exports) {
     "use strict";
     var _inputAssembler = _interopRequireDefault(require("../renderer/core/input-assembler"));
     function _interopRequireDefault(e) {
@@ -72431,10 +72455,10 @@
       }
     });
     cc.TiledMapRenderDataList = module.exports = TiledMapRenderDataList;
-  }), {
+  }, {
     "../renderer/core/input-assembler": 418
   } ],
-  458: [ (function(require, module, exports) {
+  458: [ function(require, module, exports) {
     "use strict";
     var TiledObjectGroup = cc.Class({
       name: "cc.TiledObjectGroup",
@@ -72595,8 +72619,8 @@
       }
     });
     cc.TiledObjectGroup = module.exports = TiledObjectGroup;
-  }), {} ],
-  459: [ (function(require, module, exports) {
+  }, {} ],
+  459: [ function(require, module, exports) {
     "use strict";
     var TiledTile = cc.Class({
       name: "cc.TiledTile",
@@ -72675,20 +72699,20 @@
       }
     });
     cc.TiledTile = module.exports = TiledTile;
-  }), {} ],
-  460: [ (function(require, module, exports) {
+  }, {} ],
+  460: [ function(require, module, exports) {
     "use strict";
     require("./CCTiledMap");
     require("./CCTiledMapRenderDataList");
     require("./tiledmap-buffer");
     require("./tmx-layer-assembler");
-  }), {
+  }, {
     "./CCTiledMap": 455,
     "./CCTiledMapRenderDataList": 457,
     "./tiledmap-buffer": 461,
     "./tmx-layer-assembler": 462
   } ],
-  461: [ (function(require, module, exports) {
+  461: [ function(require, module, exports) {
     "use strict";
     var TiledMapBuffer = cc.Class({
       name: "cc.TiledMapBuffer",
@@ -72708,10 +72732,10 @@
       }
     });
     cc.TiledMapBuffer = module.exports = TiledMapBuffer;
-  }), {
+  }, {
     "../core/renderer/webgl/quad-buffer": 366
   } ],
-  462: [ (function(require, module, exports) {
+  462: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -72847,7 +72871,7 @@
         _uvd = tempVal;
       }
     }
-    var TmxAssembler = exports["default"] = (function(_Assembler) {
+    var TmxAssembler = exports["default"] = function(_Assembler) {
       function TmxAssembler() {
         return _Assembler.apply(this, arguments) || this;
       }
@@ -73081,10 +73105,10 @@
         uintbuf[_vfOffset + 19] = color;
       };
       return TmxAssembler;
-    })(_assembler["default"]);
+    }(_assembler["default"]);
     _assembler["default"].register(TiledLayer, TmxAssembler);
     module.exports = exports["default"];
-  }), {
+  }, {
     "../core/renderer/": 323,
     "../core/renderer/assembler": 303,
     "../core/renderer/render-flow": 324,
@@ -73093,7 +73117,7 @@
     "./CCTiledLayer": 454,
     "./CCTiledMap": 455
   } ],
-  463: [ (function(require, module, exports) {
+  463: [ function(require, module, exports) {
     "use strict";
     var VideoPlayerImpl = require("./video-player-impl");
     var EventType = VideoPlayerImpl.EventType;
@@ -73349,10 +73373,10 @@
       }
     });
     cc.VideoPlayer = module.exports = VideoPlayer;
-  }), {
+  }, {
     "./video-player-impl": 464
   } ],
-  464: [ (function(require, module, exports) {
+  464: [ function(require, module, exports) {
     "use strict";
     var utils = require("../core/platform/utils");
     var sys = require("../core/platform/CCSys");
@@ -73705,7 +73729,7 @@
     };
     VideoPlayerImpl.elements = [];
     VideoPlayerImpl.pauseElements = [];
-    cc.game.on(cc.game.EVENT_HIDE, (function() {
+    cc.game.on(cc.game.EVENT_HIDE, function() {
       var list = VideoPlayerImpl.elements;
       for (var element, i = 0; i < list.length; i++) {
         element = list[i];
@@ -73714,15 +73738,15 @@
           VideoPlayerImpl.pauseElements.push(element);
         }
       }
-    }));
-    cc.game.on(cc.game.EVENT_SHOW, (function() {
+    });
+    cc.game.on(cc.game.EVENT_SHOW, function() {
       var list = VideoPlayerImpl.pauseElements;
       var element = list.pop();
       while (element) {
         element.play();
         element = list.pop();
       }
-    }));
+    });
     VideoPlayerImpl._polyfill = {
       devicePixelRatio: false,
       event: "canplay",
@@ -73742,12 +73766,12 @@
     style.innerHTML = ".cocosVideo:-moz-full-screen{transform:matrix(1,0,0,1,0,0) !important;}.cocosVideo:full-screen{transform:matrix(1,0,0,1,0,0) !important;}.cocosVideo:-webkit-full-screen{transform:matrix(1,0,0,1,0,0) !important;}";
     document.head.appendChild(style);
     module.exports = VideoPlayerImpl;
-  }), {
+  }, {
     "../core/platform/CCMacro": 278,
     "../core/platform/CCSys": 282,
     "../core/platform/utils": 298
   } ],
-  465: [ (function(require, module, exports) {
+  465: [ function(require, module, exports) {
     "use strict";
     var WebViewImpl = require("./webview-impl");
     var EventType = WebViewImpl.EventType;
@@ -73836,10 +73860,10 @@
       }
     });
     cc.WebView = module.exports = WebView;
-  }), {
+  }, {
     "./webview-impl": 466
   } ],
-  466: [ (function(require, module, exports) {
+  466: [ function(require, module, exports) {
     "use strict";
     var utils = require("../core/platform/utils");
     var sys = require("../core/platform/CCSys");
@@ -73862,6 +73886,7 @@
         this._m13 = 0;
         this._w = 0;
         this._h = 0;
+        this._opacity = -1;
         this.__eventListeners = {};
       },
       _updateVisibility: function _updateVisibility() {
@@ -74048,7 +74073,7 @@
         var renderCamera = cc.Camera._findRendererCamera(node);
         renderCamera && renderCamera.worldMatrixToScreen(_mat4_temp, _mat4_temp, cc.game.canvas.width, cc.game.canvas.height);
         var _mat4_tempm = _mat4_temp.m;
-        if (!this._forceUpdate && this._m00 === _mat4_tempm[0] && this._m01 === _mat4_tempm[1] && this._m04 === _mat4_tempm[4] && this._m05 === _mat4_tempm[5] && this._m12 === _mat4_tempm[12] && this._m13 === _mat4_tempm[13] && this._w === node._contentSize.width && this._h === node._contentSize.height) return;
+        if (!this._forceUpdate && this._opacity === node.opacity && this._m00 === _mat4_tempm[0] && this._m01 === _mat4_tempm[1] && this._m04 === _mat4_tempm[4] && this._m05 === _mat4_tempm[5] && this._m12 === _mat4_tempm[12] && this._m13 === _mat4_tempm[13] && this._w === node._contentSize.width && this._h === node._contentSize.height) return;
         this._m00 = _mat4_tempm[0];
         this._m01 = _mat4_tempm[1];
         this._m04 = _mat4_tempm[4];
@@ -74057,6 +74082,7 @@
         this._m13 = _mat4_tempm[13];
         this._w = node._contentSize.width;
         this._h = node._contentSize.height;
+        this._opacity = node.opacity;
         var dpr = cc.view._devicePixelRatio;
         var scaleX = 1 / dpr;
         var scaleY = 1 / dpr;
@@ -74092,11 +74118,11 @@
     sys.os === sys.OS_IOS && (polyfill.enableDiv = true);
     sys.isMobile ? sys.browserType === sys.BROWSER_TYPE_FIREFOX && (polyfill.enableBG = true) : sys.browserType === sys.BROWSER_TYPE_IE && (polyfill.closeHistory = true);
     module.exports = WebViewImpl;
-  }), {
+  }, {
     "../core/platform/CCSys": 282,
     "../core/platform/utils": 298
   } ],
-  467: [ (function(require, module, exports) {
+  467: [ function(require, module, exports) {
     "use strict";
     require("./cocos2d/core");
     require("./cocos2d/animation");
@@ -74112,7 +74138,7 @@
     require("./extensions/dragonbones");
     true;
     require("./cocos2d/deprecated");
-  }), {
+  }, {
     "./cocos2d/actions": 8,
     "./cocos2d/animation": 17,
     "./cocos2d/core": 240,
@@ -74128,7 +74154,7 @@
     "./extensions/dragonbones": 478,
     "./extensions/spine": 483
   } ],
-  468: [ (function(require, module, exports) {
+  468: [ function(require, module, exports) {
     "use strict";
     cc.NodePool = function(poolHandlerComp) {
       this.poolHandlerComp = poolHandlerComp;
@@ -74163,8 +74189,8 @@
       }
     };
     module.exports = cc.NodePool;
-  }), {} ],
-  469: [ (function(require, module, exports) {
+  }, {} ],
+  469: [ function(require, module, exports) {
     "use strict";
     var MaxCacheTime = 30;
     var FrameTime = 1 / 60;
@@ -74539,8 +74565,8 @@
       }
       return true;
     }, module.exports = ArmatureCache;
-  }), {} ],
-  470: [ (function(require, module, exports) {
+  }, {} ],
+  470: [ function(require, module, exports) {
     "use strict";
     var RenderComponent = require("../../cocos2d/core/components/CCRenderComponent");
     var EventTarget = require("../../cocos2d/core/event/event-target");
@@ -74991,7 +75017,7 @@
       }
     });
     module.exports = dragonBones.ArmatureDisplay = ArmatureDisplay;
-  }), {
+  }, {
     "../../cocos2d/core/components/CCRenderComponent": 193,
     "../../cocos2d/core/event/event-target": 220,
     "../../cocos2d/core/graphics/graphics": 236,
@@ -74999,7 +75025,7 @@
     "./ArmatureCache": 469,
     "./AttachUtil": 471
   } ],
-  471: [ (function(require, module, exports) {
+  471: [ function(require, module, exports) {
     "use strict";
     var _mat = _interopRequireDefault(require("../../cocos2d/core/value-types/mat4"));
     function _interopRequireDefault(e) {
@@ -75100,9 +75126,9 @@
       },
       _sortNodeArray: function _sortNodeArray() {
         var nodeArray = this._attachedNodeArray;
-        nodeArray.sort((function(a, b) {
+        nodeArray.sort(function(a, b) {
           return a._boneIndex < b._boneIndex ? -1 : 1;
-        }));
+        });
       },
       _getNodeByBoneIndex: function _getNodeByBoneIndex(boneIndex) {
         var findMap = this._boneIndexToNode;
@@ -75335,11 +75361,11 @@
       }
     });
     module.exports = dragonBones.AttachUtil = AttachUtil;
-  }), {
+  }, {
     "../../cocos2d/core/renderer/render-flow": 324,
     "../../cocos2d/core/value-types/mat4": 397
   } ],
-  472: [ (function(require, module, exports) {
+  472: [ function(require, module, exports) {
     "use strict";
     var EventTarget = require("../../cocos2d/core/event/event-target");
     dragonBones.CCArmatureDisplay = cc.Class({
@@ -75411,10 +75437,10 @@
         this._eventTarget.emit(type, eventObject);
       }
     });
-  }), {
+  }, {
     "../../cocos2d/core/event/event-target": 220
   } ],
-  473: [ (function(require, module, exports) {
+  473: [ function(require, module, exports) {
     "use strict";
     var BaseObject = dragonBones.BaseObject, BaseFactory = dragonBones.BaseFactory;
     var CCFactory = dragonBones.CCFactory = cc.Class({
@@ -75511,8 +75537,8 @@
         }
       }
     });
-  }), {} ],
-  474: [ (function(require, module, exports) {
+  }, {} ],
+  474: [ function(require, module, exports) {
     "use strict";
     var _mat = _interopRequireDefault(require("../../cocos2d/core/value-types/mat4"));
     function _interopRequireDefault(e) {
@@ -75782,10 +75808,10 @@
         this._worldMatrixDirty = false;
       }
     });
-  }), {
+  }, {
     "../../cocos2d/core/value-types/mat4": 397
   } ],
-  475: [ (function(require, module, exports) {
+  475: [ function(require, module, exports) {
     "use strict";
     dragonBones.CCTextureAtlasData = cc.Class({
       extends: dragonBones.TextureAtlasData,
@@ -75850,8 +75876,8 @@
         this.spriteFrame = null;
       }
     });
-  }), {} ],
-  476: [ (function(require, module, exports) {
+  }, {} ],
+  476: [ function(require, module, exports) {
     "use strict";
     var ArmatureCache = (true, require("./ArmatureCache").sharedCache);
     var DragonBonesAsset = cc.Class({
@@ -75921,10 +75947,10 @@
       }
     });
     dragonBones.DragonBonesAsset = module.exports = DragonBonesAsset;
-  }), {
+  }, {
     "./ArmatureCache": 469
   } ],
-  477: [ (function(require, module, exports) {
+  477: [ function(require, module, exports) {
     "use strict";
     var ArmatureCache = (true, require("./ArmatureCache").sharedCache);
     var DragonBonesAtlasAsset = cc.Class({
@@ -75987,10 +76013,10 @@
       }
     });
     dragonBones.DragonBonesAtlasAsset = module.exports = DragonBonesAtlasAsset;
-  }), {
+  }, {
     "./ArmatureCache": 469
   } ],
-  478: [ (function(require, module, exports) {
+  478: [ function(require, module, exports) {
     "use strict";
     var _global = "undefined" === typeof window ? global : window;
     true;
@@ -76089,7 +76115,7 @@
       require("./ArmatureDisplay");
       require("./webgl-assembler");
     }
-  }), {
+  }, {
     "./ArmatureCache": 469,
     "./ArmatureDisplay": 470,
     "./CCArmatureDisplay": 472,
@@ -76101,9 +76127,9 @@
     "./lib/dragonBones": 479,
     "./webgl-assembler": 480
   } ],
-  479: [ (function(require, module, exports) {
+  479: [ function(require, module, exports) {
     "use strict";
-    var __extends = (void 0, (function() {
+    var __extends = (void 0, function() {
       var extendStatics = Object.setPrototypeOf || {
         __proto__: []
       } instanceof Array && function(d, b) {
@@ -76118,12 +76144,12 @@
         }
         d.prototype = null === b ? Object.create(b) : (__.prototype = b.prototype, new __());
       };
-    })());
+    }());
     var dragonBones;
     (function(dragonBones) {})(dragonBones || (dragonBones = {}));
     var dragonBones;
     (function(dragonBones) {
-      var DragonBones = (function() {
+      var DragonBones = function() {
         function DragonBones(eventManager) {
           this._clock = new dragonBones.WorldClock();
           this._events = [];
@@ -76180,7 +76206,7 @@
         DragonBones.debugDraw = false;
         DragonBones.webAssembly = false;
         return DragonBones;
-      })();
+      }();
       dragonBones.DragonBones = DragonBones;
     })(dragonBones || (dragonBones = {}));
     console.warn || (console.warn = function() {});
@@ -76197,7 +76223,7 @@
     };
     var dragonBones;
     (function(dragonBones) {
-      var BaseObject = (function() {
+      var BaseObject = function() {
         function BaseObject() {
           this.hashCode = BaseObject._hashCode++;
           this._isInPool = false;
@@ -76262,12 +76288,12 @@
         BaseObject._maxCountMap = {};
         BaseObject._poolsMap = {};
         return BaseObject;
-      })();
+      }();
       dragonBones.BaseObject = BaseObject;
     })(dragonBones || (dragonBones = {}));
     var dragonBones;
     (function(dragonBones) {
-      var Matrix = (function() {
+      var Matrix = function() {
         function Matrix(a, b, c, d, tx, ty) {
           void 0 === a && (a = 1);
           void 0 === b && (b = 0);
@@ -76426,12 +76452,12 @@
           rectangle.height = Math.ceil((y1 > y3 ? y1 : y3) - rectangle.y);
         };
         return Matrix;
-      })();
+      }();
       dragonBones.Matrix = Matrix;
     })(dragonBones || (dragonBones = {}));
     var dragonBones;
     (function(dragonBones) {
-      var Transform = (function() {
+      var Transform = function() {
         function Transform(x, y, skew, rotation, scaleX, scaleY) {
           void 0 === x && (x = 0);
           void 0 === y && (y = 0);
@@ -76541,12 +76567,12 @@
         Transform.RAD_DEG = 180 / Math.PI;
         Transform.DEG_RAD = Math.PI / 180;
         return Transform;
-      })();
+      }();
       dragonBones.Transform = Transform;
     })(dragonBones || (dragonBones = {}));
     var dragonBones;
     (function(dragonBones) {
-      var ColorTransform = (function() {
+      var ColorTransform = function() {
         function ColorTransform(alphaMultiplier, redMultiplier, greenMultiplier, blueMultiplier, alphaOffset, redOffset, greenOffset, blueOffset) {
           void 0 === alphaMultiplier && (alphaMultiplier = 1);
           void 0 === redMultiplier && (redMultiplier = 1);
@@ -76580,12 +76606,12 @@
           this.alphaOffset = this.redOffset = this.greenOffset = this.blueOffset = 0;
         };
         return ColorTransform;
-      })();
+      }();
       dragonBones.ColorTransform = ColorTransform;
     })(dragonBones || (dragonBones = {}));
     var dragonBones;
     (function(dragonBones) {
-      var Point = (function() {
+      var Point = function() {
         function Point(x, y) {
           void 0 === x && (x = 0);
           void 0 === y && (y = 0);
@@ -76600,12 +76626,12 @@
           this.x = this.y = 0;
         };
         return Point;
-      })();
+      }();
       dragonBones.Point = Point;
     })(dragonBones || (dragonBones = {}));
     var dragonBones;
     (function(dragonBones) {
-      var Rectangle = (function() {
+      var Rectangle = function() {
         function Rectangle(x, y, width, height) {
           void 0 === x && (x = 0);
           void 0 === y && (y = 0);
@@ -76627,12 +76653,12 @@
           this.width = this.height = 0;
         };
         return Rectangle;
-      })();
+      }();
       dragonBones.Rectangle = Rectangle;
     })(dragonBones || (dragonBones = {}));
     var dragonBones;
     (function(dragonBones) {
-      var UserData = (function(_super) {
+      var UserData = function(_super) {
         __extends(UserData, _super);
         function UserData() {
           var _this = null !== _super && _super.apply(this, arguments) || this;
@@ -76671,9 +76697,9 @@
           return index >= 0 && index < this.strings.length ? this.strings[index] : "";
         };
         return UserData;
-      })(dragonBones.BaseObject);
+      }(dragonBones.BaseObject);
       dragonBones.UserData = UserData;
-      var ActionData = (function(_super) {
+      var ActionData = function(_super) {
         __extends(ActionData, _super);
         function ActionData() {
           var _this = null !== _super && _super.apply(this, arguments) || this;
@@ -76692,12 +76718,12 @@
           this.data = null;
         };
         return ActionData;
-      })(dragonBones.BaseObject);
+      }(dragonBones.BaseObject);
       dragonBones.ActionData = ActionData;
     })(dragonBones || (dragonBones = {}));
     var dragonBones;
     (function(dragonBones) {
-      var DragonBonesData = (function(_super) {
+      var DragonBonesData = function(_super) {
         __extends(DragonBonesData, _super);
         function DragonBonesData() {
           var _this = null !== _super && _super.apply(this, arguments) || this;
@@ -76751,12 +76777,12 @@
           this.returnToPool();
         };
         return DragonBonesData;
-      })(dragonBones.BaseObject);
+      }(dragonBones.BaseObject);
       dragonBones.DragonBonesData = DragonBonesData;
     })(dragonBones || (dragonBones = {}));
     var dragonBones;
     (function(dragonBones) {
-      var ArmatureData = (function(_super) {
+      var ArmatureData = function(_super) {
         __extends(ArmatureData, _super);
         function ArmatureData() {
           var _this = null !== _super && _super.apply(this, arguments) || this;
@@ -76954,9 +76980,9 @@
           return animationName in this.animations ? this.animations[animationName] : null;
         };
         return ArmatureData;
-      })(dragonBones.BaseObject);
+      }(dragonBones.BaseObject);
       dragonBones.ArmatureData = ArmatureData;
-      var BoneData = (function(_super) {
+      var BoneData = function(_super) {
         __extends(BoneData, _super);
         function BoneData() {
           var _this = null !== _super && _super.apply(this, arguments) || this;
@@ -76981,9 +77007,9 @@
           this.parent = null;
         };
         return BoneData;
-      })(dragonBones.BaseObject);
+      }(dragonBones.BaseObject);
       dragonBones.BoneData = BoneData;
-      var SurfaceData = (function(_super) {
+      var SurfaceData = function(_super) {
         __extends(SurfaceData, _super);
         function SurfaceData() {
           var _this = null !== _super && _super.apply(this, arguments) || this;
@@ -77001,9 +77027,9 @@
           this.vertices.length = 0;
         };
         return SurfaceData;
-      })(BoneData);
+      }(BoneData);
       dragonBones.SurfaceData = SurfaceData;
-      var SlotData = (function(_super) {
+      var SlotData = function(_super) {
         __extends(SlotData, _super);
         function SlotData() {
           var _this = null !== _super && _super.apply(this, arguments) || this;
@@ -77029,12 +77055,12 @@
         };
         SlotData.DEFAULT_COLOR = new dragonBones.ColorTransform();
         return SlotData;
-      })(dragonBones.BaseObject);
+      }(dragonBones.BaseObject);
       dragonBones.SlotData = SlotData;
     })(dragonBones || (dragonBones = {}));
     var dragonBones;
     (function(dragonBones) {
-      var ConstraintData = (function(_super) {
+      var ConstraintData = function(_super) {
         __extends(ConstraintData, _super);
         function ConstraintData() {
           return null !== _super && _super.apply(this, arguments) || this;
@@ -77048,9 +77074,9 @@
           this.bone = null;
         };
         return ConstraintData;
-      })(dragonBones.BaseObject);
+      }(dragonBones.BaseObject);
       dragonBones.ConstraintData = ConstraintData;
-      var IKConstraintData = (function(_super) {
+      var IKConstraintData = function(_super) {
         __extends(IKConstraintData, _super);
         function IKConstraintData() {
           return null !== _super && _super.apply(this, arguments) || this;
@@ -77065,9 +77091,9 @@
           this.weight = 1;
         };
         return IKConstraintData;
-      })(ConstraintData);
+      }(ConstraintData);
       dragonBones.IKConstraintData = IKConstraintData;
-      var PathConstraintData = (function(_super) {
+      var PathConstraintData = function(_super) {
         __extends(PathConstraintData, _super);
         function PathConstraintData() {
           var _this = null !== _super && _super.apply(this, arguments) || this;
@@ -77095,12 +77121,12 @@
           this.bones.push(value);
         };
         return PathConstraintData;
-      })(ConstraintData);
+      }(ConstraintData);
       dragonBones.PathConstraintData = PathConstraintData;
     })(dragonBones || (dragonBones = {}));
     var dragonBones;
     (function(dragonBones) {
-      var CanvasData = (function(_super) {
+      var CanvasData = function(_super) {
         __extends(CanvasData, _super);
         function CanvasData() {
           return null !== _super && _super.apply(this, arguments) || this;
@@ -77117,12 +77143,12 @@
           this.height = 0;
         };
         return CanvasData;
-      })(dragonBones.BaseObject);
+      }(dragonBones.BaseObject);
       dragonBones.CanvasData = CanvasData;
     })(dragonBones || (dragonBones = {}));
     var dragonBones;
     (function(dragonBones) {
-      var SkinData = (function(_super) {
+      var SkinData = function(_super) {
         __extends(SkinData, _super);
         function SkinData() {
           var _this = null !== _super && _super.apply(this, arguments) || this;
@@ -77163,12 +77189,12 @@
           return this.displays[slotName];
         };
         return SkinData;
-      })(dragonBones.BaseObject);
+      }(dragonBones.BaseObject);
       dragonBones.SkinData = SkinData;
     })(dragonBones || (dragonBones = {}));
     var dragonBones;
     (function(dragonBones) {
-      var VerticesData = (function() {
+      var VerticesData = function() {
         function VerticesData() {
           this.weight = null;
         }
@@ -77186,9 +77212,9 @@
           this.weight = value.weight;
         };
         return VerticesData;
-      })();
+      }();
       dragonBones.VerticesData = VerticesData;
-      var DisplayData = (function(_super) {
+      var DisplayData = function(_super) {
         __extends(DisplayData, _super);
         function DisplayData() {
           var _this = null !== _super && _super.apply(this, arguments) || this;
@@ -77202,9 +77228,9 @@
           this.parent = null;
         };
         return DisplayData;
-      })(dragonBones.BaseObject);
+      }(dragonBones.BaseObject);
       dragonBones.DisplayData = DisplayData;
-      var ImageDisplayData = (function(_super) {
+      var ImageDisplayData = function(_super) {
         __extends(ImageDisplayData, _super);
         function ImageDisplayData() {
           var _this = null !== _super && _super.apply(this, arguments) || this;
@@ -77221,9 +77247,9 @@
           this.texture = null;
         };
         return ImageDisplayData;
-      })(DisplayData);
+      }(DisplayData);
       dragonBones.ImageDisplayData = ImageDisplayData;
-      var ArmatureDisplayData = (function(_super) {
+      var ArmatureDisplayData = function(_super) {
         __extends(ArmatureDisplayData, _super);
         function ArmatureDisplayData() {
           var _this = null !== _super && _super.apply(this, arguments) || this;
@@ -77248,9 +77274,9 @@
           this.actions.push(value);
         };
         return ArmatureDisplayData;
-      })(DisplayData);
+      }(DisplayData);
       dragonBones.ArmatureDisplayData = ArmatureDisplayData;
-      var MeshDisplayData = (function(_super) {
+      var MeshDisplayData = function(_super) {
         __extends(MeshDisplayData, _super);
         function MeshDisplayData() {
           var _this = null !== _super && _super.apply(this, arguments) || this;
@@ -77267,9 +77293,9 @@
           this.texture = null;
         };
         return MeshDisplayData;
-      })(DisplayData);
+      }(DisplayData);
       dragonBones.MeshDisplayData = MeshDisplayData;
-      var BoundingBoxDisplayData = (function(_super) {
+      var BoundingBoxDisplayData = function(_super) {
         __extends(BoundingBoxDisplayData, _super);
         function BoundingBoxDisplayData() {
           var _this = null !== _super && _super.apply(this, arguments) || this;
@@ -77286,9 +77312,9 @@
           this.boundingBox = null;
         };
         return BoundingBoxDisplayData;
-      })(DisplayData);
+      }(DisplayData);
       dragonBones.BoundingBoxDisplayData = BoundingBoxDisplayData;
-      var PathDisplayData = (function(_super) {
+      var PathDisplayData = function(_super) {
         __extends(PathDisplayData, _super);
         function PathDisplayData() {
           var _this = null !== _super && _super.apply(this, arguments) || this;
@@ -77308,9 +77334,9 @@
           this.curveLengths.length = 0;
         };
         return PathDisplayData;
-      })(DisplayData);
+      }(DisplayData);
       dragonBones.PathDisplayData = PathDisplayData;
-      var WeightData = (function(_super) {
+      var WeightData = function(_super) {
         __extends(WeightData, _super);
         function WeightData() {
           var _this = null !== _super && _super.apply(this, arguments) || this;
@@ -77329,12 +77355,12 @@
           this.bones.push(value);
         };
         return WeightData;
-      })(dragonBones.BaseObject);
+      }(dragonBones.BaseObject);
       dragonBones.WeightData = WeightData;
     })(dragonBones || (dragonBones = {}));
     var dragonBones;
     (function(dragonBones) {
-      var BoundingBoxData = (function(_super) {
+      var BoundingBoxData = function(_super) {
         __extends(BoundingBoxData, _super);
         function BoundingBoxData() {
           return null !== _super && _super.apply(this, arguments) || this;
@@ -77345,9 +77371,9 @@
           this.height = 0;
         };
         return BoundingBoxData;
-      })(dragonBones.BaseObject);
+      }(dragonBones.BaseObject);
       dragonBones.BoundingBoxData = BoundingBoxData;
-      var RectangleBoundingBoxData = (function(_super) {
+      var RectangleBoundingBoxData = function(_super) {
         __extends(RectangleBoundingBoxData, _super);
         function RectangleBoundingBoxData() {
           return null !== _super && _super.apply(this, arguments) || this;
@@ -77467,9 +77493,9 @@
           return intersectionCount;
         };
         return RectangleBoundingBoxData;
-      })(BoundingBoxData);
+      }(BoundingBoxData);
       dragonBones.RectangleBoundingBoxData = RectangleBoundingBoxData;
-      var EllipseBoundingBoxData = (function(_super) {
+      var EllipseBoundingBoxData = function(_super) {
         __extends(EllipseBoundingBoxData, _super);
         function EllipseBoundingBoxData() {
           return null !== _super && _super.apply(this, arguments) || this;
@@ -77575,9 +77601,9 @@
           return intersectionCount;
         };
         return EllipseBoundingBoxData;
-      })(BoundingBoxData);
+      }(BoundingBoxData);
       dragonBones.EllipseBoundingBoxData = EllipseBoundingBoxData;
-      var PolygonBoundingBoxData = (function(_super) {
+      var PolygonBoundingBoxData = function(_super) {
         __extends(PolygonBoundingBoxData, _super);
         function PolygonBoundingBoxData() {
           var _this = null !== _super && _super.apply(this, arguments) || this;
@@ -77717,12 +77743,12 @@
           return intersectionCount;
         };
         return PolygonBoundingBoxData;
-      })(BoundingBoxData);
+      }(BoundingBoxData);
       dragonBones.PolygonBoundingBoxData = PolygonBoundingBoxData;
     })(dragonBones || (dragonBones = {}));
     var dragonBones;
     (function(dragonBones) {
-      var AnimationData = (function(_super) {
+      var AnimationData = function(_super) {
         __extends(AnimationData, _super);
         function AnimationData() {
           var _this = null !== _super && _super.apply(this, arguments) || this;
@@ -77857,9 +77883,9 @@
           return slotName in this.slotCachedFrameIndices ? this.slotCachedFrameIndices[slotName] : null;
         };
         return AnimationData;
-      })(dragonBones.BaseObject);
+      }(dragonBones.BaseObject);
       dragonBones.AnimationData = AnimationData;
-      var TimelineData = (function(_super) {
+      var TimelineData = function(_super) {
         __extends(TimelineData, _super);
         function TimelineData() {
           return null !== _super && _super.apply(this, arguments) || this;
@@ -77873,12 +77899,12 @@
           this.frameIndicesOffset = -1;
         };
         return TimelineData;
-      })(dragonBones.BaseObject);
+      }(dragonBones.BaseObject);
       dragonBones.TimelineData = TimelineData;
     })(dragonBones || (dragonBones = {}));
     var dragonBones;
     (function(dragonBones) {
-      var AnimationConfig = (function(_super) {
+      var AnimationConfig = function(_super) {
         __extends(AnimationConfig, _super);
         function AnimationConfig() {
           var _this = null !== _super && _super.apply(this, arguments) || this;
@@ -77971,12 +77997,12 @@
           }
         };
         return AnimationConfig;
-      })(dragonBones.BaseObject);
+      }(dragonBones.BaseObject);
       dragonBones.AnimationConfig = AnimationConfig;
     })(dragonBones || (dragonBones = {}));
     var dragonBones;
     (function(dragonBones) {
-      var TextureAtlasData = (function(_super) {
+      var TextureAtlasData = function(_super) {
         __extends(TextureAtlasData, _super);
         function TextureAtlasData() {
           var _this = null !== _super && _super.apply(this, arguments) || this;
@@ -78024,9 +78050,9 @@
           return textureName in this.textures ? this.textures[textureName] : null;
         };
         return TextureAtlasData;
-      })(dragonBones.BaseObject);
+      }(dragonBones.BaseObject);
       dragonBones.TextureAtlasData = TextureAtlasData;
-      var TextureData = (function(_super) {
+      var TextureData = function(_super) {
         __extends(TextureData, _super);
         function TextureData() {
           var _this = null !== _super && _super.apply(this, arguments) || this;
@@ -78053,12 +78079,12 @@
           null !== this.frame && null !== value.frame && this.frame.copyFrom(value.frame);
         };
         return TextureData;
-      })(dragonBones.BaseObject);
+      }(dragonBones.BaseObject);
       dragonBones.TextureData = TextureData;
     })(dragonBones || (dragonBones = {}));
     var dragonBones;
     (function(dragonBones) {
-      var DeformVertices = (function(_super) {
+      var DeformVertices = function(_super) {
         __extends(DeformVertices, _super);
         function DeformVertices() {
           var _this = null !== _super && _super.apply(this, arguments) || this;
@@ -78103,12 +78129,12 @@
           return false;
         };
         return DeformVertices;
-      })(dragonBones.BaseObject);
+      }(dragonBones.BaseObject);
       dragonBones.DeformVertices = DeformVertices;
     })(dragonBones || (dragonBones = {}));
     var dragonBones;
     (function(dragonBones_1) {
-      var Armature = (function(_super) {
+      var Armature = function(_super) {
         __extends(Armature, _super);
         function Armature() {
           var _this = null !== _super && _super.apply(this, arguments) || this;
@@ -78526,12 +78552,12 @@
           return this._display;
         };
         return Armature;
-      })(dragonBones_1.BaseObject);
+      }(dragonBones_1.BaseObject);
       dragonBones_1.Armature = Armature;
     })(dragonBones || (dragonBones = {}));
     var dragonBones;
     (function(dragonBones) {
-      var TransformObject = (function(_super) {
+      var TransformObject = function(_super) {
         __extends(TransformObject, _super);
         function TransformObject() {
           var _this = null !== _super && _super.apply(this, arguments) || this;
@@ -78566,12 +78592,12 @@
         TransformObject._helpTransform = new dragonBones.Transform();
         TransformObject._helpPoint = new dragonBones.Point();
         return TransformObject;
-      })(dragonBones.BaseObject);
+      }(dragonBones.BaseObject);
       dragonBones.TransformObject = TransformObject;
     })(dragonBones || (dragonBones = {}));
     var dragonBones;
     (function(dragonBones) {
-      var Bone = (function(_super) {
+      var Bone = function(_super) {
         __extends(Bone, _super);
         function Bone() {
           var _this = null !== _super && _super.apply(this, arguments) || this;
@@ -78834,12 +78860,12 @@
           configurable: true
         });
         return Bone;
-      })(dragonBones.TransformObject);
+      }(dragonBones.TransformObject);
       dragonBones.Bone = Bone;
     })(dragonBones || (dragonBones = {}));
     var dragonBones;
     (function(dragonBones) {
-      var Surface = (function(_super) {
+      var Surface = function(_super) {
         __extends(Surface, _super);
         function Surface() {
           var _this = null !== _super && _super.apply(this, arguments) || this;
@@ -79131,12 +79157,12 @@
           this._localDirty = true;
         };
         return Surface;
-      })(dragonBones.Bone);
+      }(dragonBones.Bone);
       dragonBones.Surface = Surface;
     })(dragonBones || (dragonBones = {}));
     var dragonBones;
     (function(dragonBones) {
-      var Slot = (function(_super) {
+      var Slot = function(_super) {
         __extends(Slot, _super);
         function Slot() {
           var _this = null !== _super && _super.apply(this, arguments) || this;
@@ -79658,12 +79684,12 @@
           this.display = value;
         };
         return Slot;
-      })(dragonBones.TransformObject);
+      }(dragonBones.TransformObject);
       dragonBones.Slot = Slot;
     })(dragonBones || (dragonBones = {}));
     var dragonBones;
     (function(dragonBones) {
-      var Constraint = (function(_super) {
+      var Constraint = function(_super) {
         __extends(Constraint, _super);
         function Constraint() {
           return null !== _super && _super.apply(this, arguments) || this;
@@ -79685,9 +79711,9 @@
         Constraint._helpTransform = new dragonBones.Transform();
         Constraint._helpPoint = new dragonBones.Point();
         return Constraint;
-      })(dragonBones.BaseObject);
+      }(dragonBones.BaseObject);
       dragonBones.Constraint = Constraint;
-      var IKConstraint = (function(_super) {
+      var IKConstraint = function(_super) {
         __extends(IKConstraint, _super);
         function IKConstraint() {
           return null !== _super && _super.apply(this, arguments) || this;
@@ -79795,9 +79821,9 @@
           null !== this._bone && this._bone.invalidUpdate();
         };
         return IKConstraint;
-      })(Constraint);
+      }(Constraint);
       dragonBones.IKConstraint = IKConstraint;
-      var PathConstraint = (function(_super) {
+      var PathConstraint = function(_super) {
         __extends(PathConstraint, _super);
         function PathConstraint() {
           var _this = null !== _super && _super.apply(this, arguments) || this;
@@ -80209,12 +80235,12 @@
         };
         PathConstraint.prototype.invalidUpdate = function() {};
         return PathConstraint;
-      })(Constraint);
+      }(Constraint);
       dragonBones.PathConstraint = PathConstraint;
     })(dragonBones || (dragonBones = {}));
     var dragonBones;
     (function(dragonBones) {
-      var WorldClock = (function() {
+      var WorldClock = function() {
         function WorldClock(time) {
           void 0 === time && (time = 0);
           this.time = 0;
@@ -80293,12 +80319,12 @@
         });
         WorldClock.clock = new WorldClock();
         return WorldClock;
-      })();
+      }();
       dragonBones.WorldClock = WorldClock;
     })(dragonBones || (dragonBones = {}));
     var dragonBones;
     (function(dragonBones) {
-      var Animation = (function(_super) {
+      var Animation = function(_super) {
         __extends(Animation, _super);
         function Animation() {
           var _this = null !== _super && _super.apply(this, arguments) || this;
@@ -80732,12 +80758,12 @@
           configurable: true
         });
         return Animation;
-      })(dragonBones.BaseObject);
+      }(dragonBones.BaseObject);
       dragonBones.Animation = Animation;
     })(dragonBones || (dragonBones = {}));
     var dragonBones;
     (function(dragonBones) {
-      var AnimationState = (function(_super) {
+      var AnimationState = function(_super) {
         __extends(AnimationState, _super);
         function AnimationState() {
           var _this = null !== _super && _super.apply(this, arguments) || this;
@@ -81345,9 +81371,9 @@
           configurable: true
         });
         return AnimationState;
-      })(dragonBones.BaseObject);
+      }(dragonBones.BaseObject);
       dragonBones.AnimationState = AnimationState;
-      var BonePose = (function(_super) {
+      var BonePose = function(_super) {
         __extends(BonePose, _super);
         function BonePose() {
           var _this = null !== _super && _super.apply(this, arguments) || this;
@@ -81365,9 +81391,9 @@
           this.result.identity();
         };
         return BonePose;
-      })(dragonBones.BaseObject);
+      }(dragonBones.BaseObject);
       dragonBones.BonePose = BonePose;
-      var BlendState = (function() {
+      var BlendState = function() {
         function BlendState() {}
         BlendState.prototype.update = function(weight, p_layer) {
           if (this.dirty) {
@@ -81401,12 +81427,12 @@
           this.blendWeight = 0;
         };
         return BlendState;
-      })();
+      }();
       dragonBones.BlendState = BlendState;
     })(dragonBones || (dragonBones = {}));
     var dragonBones;
     (function(dragonBones) {
-      var TimelineState = (function(_super) {
+      var TimelineState = function(_super) {
         __extends(TimelineState, _super);
         function TimelineState() {
           return null !== _super && _super.apply(this, arguments) || this;
@@ -81520,9 +81546,9 @@
           }
         };
         return TimelineState;
-      })(dragonBones.BaseObject);
+      }(dragonBones.BaseObject);
       dragonBones.TimelineState = TimelineState;
-      var TweenTimelineState = (function(_super) {
+      var TweenTimelineState = function(_super) {
         __extends(TweenTimelineState, _super);
         function TweenTimelineState() {
           return null !== _super && _super.apply(this, arguments) || this;
@@ -81581,9 +81607,9 @@
           } else this._tweenProgress = 0;
         };
         return TweenTimelineState;
-      })(TimelineState);
+      }(TimelineState);
       dragonBones.TweenTimelineState = TweenTimelineState;
-      var BoneTimelineState = (function(_super) {
+      var BoneTimelineState = function(_super) {
         __extends(BoneTimelineState, _super);
         function BoneTimelineState() {
           return null !== _super && _super.apply(this, arguments) || this;
@@ -81622,9 +81648,9 @@
           0 === this._animationState._fadeState && 0 === this._animationState._subFadeState || (this.bone._transformDirty = true);
         };
         return BoneTimelineState;
-      })(TweenTimelineState);
+      }(TweenTimelineState);
       dragonBones.BoneTimelineState = BoneTimelineState;
-      var SlotTimelineState = (function(_super) {
+      var SlotTimelineState = function(_super) {
         __extends(SlotTimelineState, _super);
         function SlotTimelineState() {
           return null !== _super && _super.apply(this, arguments) || this;
@@ -81634,9 +81660,9 @@
           this.slot = null;
         };
         return SlotTimelineState;
-      })(TweenTimelineState);
+      }(TweenTimelineState);
       dragonBones.SlotTimelineState = SlotTimelineState;
-      var ConstraintTimelineState = (function(_super) {
+      var ConstraintTimelineState = function(_super) {
         __extends(ConstraintTimelineState, _super);
         function ConstraintTimelineState() {
           return null !== _super && _super.apply(this, arguments) || this;
@@ -81646,12 +81672,12 @@
           this.constraint = null;
         };
         return ConstraintTimelineState;
-      })(TweenTimelineState);
+      }(TweenTimelineState);
       dragonBones.ConstraintTimelineState = ConstraintTimelineState;
     })(dragonBones || (dragonBones = {}));
     var dragonBones;
     (function(dragonBones) {
-      var ActionTimelineState = (function(_super) {
+      var ActionTimelineState = function(_super) {
         __extends(ActionTimelineState, _super);
         function ActionTimelineState() {
           return null !== _super && _super.apply(this, arguments) || this;
@@ -81795,9 +81821,9 @@
           this._frameIndex = -1;
         };
         return ActionTimelineState;
-      })(dragonBones.TimelineState);
+      }(dragonBones.TimelineState);
       dragonBones.ActionTimelineState = ActionTimelineState;
-      var ZOrderTimelineState = (function(_super) {
+      var ZOrderTimelineState = function(_super) {
         __extends(ZOrderTimelineState, _super);
         function ZOrderTimelineState() {
           return null !== _super && _super.apply(this, arguments) || this;
@@ -81813,9 +81839,9 @@
         };
         ZOrderTimelineState.prototype._onUpdateFrame = function() {};
         return ZOrderTimelineState;
-      })(dragonBones.TimelineState);
+      }(dragonBones.TimelineState);
       dragonBones.ZOrderTimelineState = ZOrderTimelineState;
-      var BoneAllTimelineState = (function(_super) {
+      var BoneAllTimelineState = function(_super) {
         __extends(BoneAllTimelineState, _super);
         function BoneAllTimelineState() {
           return null !== _super && _super.apply(this, arguments) || this;
@@ -81890,9 +81916,9 @@
           result.skew = dragonBones.Transform.normalizeRadian(result.skew);
         };
         return BoneAllTimelineState;
-      })(dragonBones.BoneTimelineState);
+      }(dragonBones.BoneTimelineState);
       dragonBones.BoneAllTimelineState = BoneAllTimelineState;
-      var BoneTranslateTimelineState = (function(_super) {
+      var BoneTranslateTimelineState = function(_super) {
         __extends(BoneTranslateTimelineState, _super);
         function BoneTranslateTimelineState() {
           return null !== _super && _super.apply(this, arguments) || this;
@@ -81938,9 +81964,9 @@
           result.y = current.y + delta.y * this._tweenProgress;
         };
         return BoneTranslateTimelineState;
-      })(dragonBones.BoneTimelineState);
+      }(dragonBones.BoneTimelineState);
       dragonBones.BoneTranslateTimelineState = BoneTranslateTimelineState;
-      var BoneRotateTimelineState = (function(_super) {
+      var BoneRotateTimelineState = function(_super) {
         __extends(BoneRotateTimelineState, _super);
         function BoneRotateTimelineState() {
           return null !== _super && _super.apply(this, arguments) || this;
@@ -81992,9 +82018,9 @@
           result.skew = dragonBones.Transform.normalizeRadian(result.skew);
         };
         return BoneRotateTimelineState;
-      })(dragonBones.BoneTimelineState);
+      }(dragonBones.BoneTimelineState);
       dragonBones.BoneRotateTimelineState = BoneRotateTimelineState;
-      var BoneScaleTimelineState = (function(_super) {
+      var BoneScaleTimelineState = function(_super) {
         __extends(BoneScaleTimelineState, _super);
         function BoneScaleTimelineState() {
           return null !== _super && _super.apply(this, arguments) || this;
@@ -82039,9 +82065,9 @@
           result.scaleY = current.scaleY + delta.scaleY * this._tweenProgress;
         };
         return BoneScaleTimelineState;
-      })(dragonBones.BoneTimelineState);
+      }(dragonBones.BoneTimelineState);
       dragonBones.BoneScaleTimelineState = BoneScaleTimelineState;
-      var SurfaceTimelineState = (function(_super) {
+      var SurfaceTimelineState = function(_super) {
         __extends(SurfaceTimelineState, _super);
         function SurfaceTimelineState() {
           var _this = null !== _super && _super.apply(this, arguments) || this;
@@ -82113,9 +82139,9 @@
           0 === this._animationState._fadeState && 0 === this._animationState._subFadeState || (this.surface._transformDirty = true);
         };
         return SurfaceTimelineState;
-      })(dragonBones.TweenTimelineState);
+      }(dragonBones.TweenTimelineState);
       dragonBones.SurfaceTimelineState = SurfaceTimelineState;
-      var SlotDislayTimelineState = (function(_super) {
+      var SlotDislayTimelineState = function(_super) {
         __extends(SlotDislayTimelineState, _super);
         function SlotDislayTimelineState() {
           return null !== _super && _super.apply(this, arguments) || this;
@@ -82130,9 +82156,9 @@
           }
         };
         return SlotDislayTimelineState;
-      })(dragonBones.SlotTimelineState);
+      }(dragonBones.SlotTimelineState);
       dragonBones.SlotDislayTimelineState = SlotDislayTimelineState;
-      var SlotColorTimelineState = (function(_super) {
+      var SlotColorTimelineState = function(_super) {
         __extends(SlotColorTimelineState, _super);
         function SlotColorTimelineState() {
           var _this = null !== _super && _super.apply(this, arguments) || this;
@@ -82239,9 +82265,9 @@
           }
         };
         return SlotColorTimelineState;
-      })(dragonBones.SlotTimelineState);
+      }(dragonBones.SlotTimelineState);
       dragonBones.SlotColorTimelineState = SlotColorTimelineState;
-      var DeformTimelineState = (function(_super) {
+      var DeformTimelineState = function(_super) {
         __extends(DeformTimelineState, _super);
         function DeformTimelineState() {
           var _this = null !== _super && _super.apply(this, arguments) || this;
@@ -82328,9 +82354,9 @@
           }
         };
         return DeformTimelineState;
-      })(dragonBones.SlotTimelineState);
+      }(dragonBones.SlotTimelineState);
       dragonBones.DeformTimelineState = DeformTimelineState;
-      var IKConstraintTimelineState = (function(_super) {
+      var IKConstraintTimelineState = function(_super) {
         __extends(IKConstraintTimelineState, _super);
         function IKConstraintTimelineState() {
           return null !== _super && _super.apply(this, arguments) || this;
@@ -82372,9 +82398,9 @@
           ikConstraint.invalidUpdate();
         };
         return IKConstraintTimelineState;
-      })(dragonBones.ConstraintTimelineState);
+      }(dragonBones.ConstraintTimelineState);
       dragonBones.IKConstraintTimelineState = IKConstraintTimelineState;
-      var AnimationTimelineState = (function(_super) {
+      var AnimationTimelineState = function(_super) {
         __extends(AnimationTimelineState, _super);
         function AnimationTimelineState() {
           var _this = null !== _super && _super.apply(this, arguments) || this;
@@ -82423,12 +82449,12 @@
           }
         };
         return AnimationTimelineState;
-      })(dragonBones.TweenTimelineState);
+      }(dragonBones.TweenTimelineState);
       dragonBones.AnimationTimelineState = AnimationTimelineState;
     })(dragonBones || (dragonBones = {}));
     var dragonBones;
     (function(dragonBones) {
-      var EventObject = (function(_super) {
+      var EventObject = function(_super) {
         __extends(EventObject, _super);
         function EventObject() {
           return null !== _super && _super.apply(this, arguments) || this;
@@ -82466,12 +82492,12 @@
         EventObject.FRAME_EVENT = "frameEvent";
         EventObject.SOUND_EVENT = "soundEvent";
         return EventObject;
-      })(dragonBones.BaseObject);
+      }(dragonBones.BaseObject);
       dragonBones.EventObject = EventObject;
     })(dragonBones || (dragonBones = {}));
     var dragonBones;
     (function(dragonBones) {
-      var DataParser = (function() {
+      var DataParser = function() {
         function DataParser() {}
         DataParser._getArmatureType = function(value) {
           switch (value.toLowerCase()) {
@@ -82804,12 +82830,12 @@
         DataParser.GOTO_AND_PLAY = "gotoAndPlay";
         DataParser.DEFAULT_NAME = "default";
         return DataParser;
-      })();
+      }();
       dragonBones.DataParser = DataParser;
     })(dragonBones || (dragonBones = {}));
     var dragonBones;
     (function(dragonBones) {
-      var ObjectDataParser = (function(_super) {
+      var ObjectDataParser = function(_super) {
         __extends(ObjectDataParser, _super);
         function ObjectDataParser() {
           var _this = null !== _super && _super.apply(this, arguments) || this;
@@ -83538,9 +83564,9 @@
               var rawTimeline = rawTimelines_3[_b];
               this._parseSlotTimeline(rawTimeline);
             }
-            this._actionFrames.sort((function(a, b) {
+            this._actionFrames.sort(function(a, b) {
               return a.frameStart - b.frameStart;
-            }));
+            });
           }
           if (dragonBones.DataParser.FFD in rawData) {
             var rawTimelines = rawData[dragonBones.DataParser.FFD];
@@ -84183,20 +84209,20 @@
         };
         ObjectDataParser._objectDataParserInstance = null;
         return ObjectDataParser;
-      })(dragonBones.DataParser);
+      }(dragonBones.DataParser);
       dragonBones.ObjectDataParser = ObjectDataParser;
-      var ActionFrame = (function() {
+      var ActionFrame = function() {
         function ActionFrame() {
           this.frameStart = 0;
           this.actions = [];
         }
         return ActionFrame;
-      })();
+      }();
       dragonBones.ActionFrame = ActionFrame;
     })(dragonBones || (dragonBones = {}));
     var dragonBones;
     (function(dragonBones) {
-      var BinaryDataParser = (function(_super) {
+      var BinaryDataParser = function(_super) {
         __extends(BinaryDataParser, _super);
         function BinaryDataParser() {
           return null !== _super && _super.apply(this, arguments) || this;
@@ -84476,12 +84502,12 @@
         };
         BinaryDataParser._binaryDataParserInstance = null;
         return BinaryDataParser;
-      })(dragonBones.ObjectDataParser);
+      }(dragonBones.ObjectDataParser);
       dragonBones.BinaryDataParser = BinaryDataParser;
     })(dragonBones || (dragonBones = {}));
     var dragonBones;
     (function(dragonBones) {
-      var BaseFactory = (function() {
+      var BaseFactory = function() {
         function BaseFactory(dataParser) {
           void 0 === dataParser && (dataParser = null);
           this.autoSearch = false;
@@ -84900,21 +84926,21 @@
         BaseFactory._objectParser = null;
         BaseFactory._binaryParser = null;
         return BaseFactory;
-      })();
+      }();
       dragonBones.BaseFactory = BaseFactory;
-      var BuildArmaturePackage = (function() {
+      var BuildArmaturePackage = function() {
         function BuildArmaturePackage() {
           this.dataName = "";
           this.textureAtlasName = "";
           this.skin = null;
         }
         return BuildArmaturePackage;
-      })();
+      }();
       dragonBones.BuildArmaturePackage = BuildArmaturePackage;
     })(dragonBones || (dragonBones = {}));
     module.exports = dragonBones;
-  }), {} ],
-  480: [ (function(require, module, exports) {
+  }, {} ],
+  480: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -84992,7 +85018,7 @@
       _b = color.b * _nodeB * _multiply;
       _c = (_a << 24 >>> 0) + (_b << 16) + (_g << 8) + _r;
     }
-    var ArmatureAssembler = exports["default"] = (function(_Assembler) {
+    var ArmatureAssembler = exports["default"] = function(_Assembler) {
       function ArmatureAssembler() {
         return _Assembler.apply(this, arguments) || this;
       }
@@ -85188,16 +85214,16 @@
         renderer.worldMatDirty--;
       };
       return ArmatureAssembler;
-    })(_assembler["default"]);
+    }(_assembler["default"]);
     _assembler["default"].register(Armature, ArmatureAssembler);
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../cocos2d/core/renderer/assembler": 303,
     "../../cocos2d/core/renderer/render-flow": 324,
     "../../cocos2d/core/value-types/mat4": 397,
     "./ArmatureDisplay": 470
   } ],
-  481: [ (function(require, module, exports) {
+  481: [ function(require, module, exports) {
     "use strict";
     var _mat = _interopRequireDefault(require("../../cocos2d/core/value-types/mat4"));
     function _interopRequireDefault(e) {
@@ -85298,9 +85324,9 @@
       },
       _sortNodeArray: function _sortNodeArray() {
         var nodeArray = this._attachedNodeArray;
-        nodeArray.sort((function(a, b) {
+        nodeArray.sort(function(a, b) {
           return a._boneIndex < b._boneIndex ? -1 : 1;
-        }));
+        });
       },
       _getNodeByBoneIndex: function _getNodeByBoneIndex(boneIndex) {
         var findMap = this._boneIndexToNode;
@@ -85480,11 +85506,11 @@
       }
     });
     module.exports = sp.AttachUtil = AttachUtil;
-  }), {
+  }, {
     "../../cocos2d/core/renderer/render-flow": 324,
     "../../cocos2d/core/value-types/mat4": 397
   } ],
-  482: [ (function(require, module, exports) {
+  482: [ function(require, module, exports) {
     "use strict";
     var TrackEntryListeners = require("./track-entry-listeners");
     var RenderComponent = require("../../cocos2d/core/components/CCRenderComponent");
@@ -86116,7 +86142,7 @@
       }
     });
     module.exports = sp.Skeleton;
-  }), {
+  }, {
     "../../cocos2d/core/components/CCRenderComponent": 193,
     "../../cocos2d/core/graphics/graphics": 236,
     "../../cocos2d/core/renderer/render-flow": 324,
@@ -86125,7 +86151,7 @@
     "./skeleton-cache": 485,
     "./track-entry-listeners": 489
   } ],
-  483: [ (function(require, module, exports) {
+  483: [ function(require, module, exports) {
     "use strict";
     var _global = "undefined" === typeof window ? global : window;
     var _isUseSpine = true;
@@ -86166,7 +86192,7 @@
       require("./Skeleton");
       require("./spine-assembler");
     }
-  }), {
+  }, {
     "./Skeleton": 482,
     "./lib/spine": 484,
     "./skeleton-data": 486,
@@ -86174,9 +86200,9 @@
     "./spine-assembler": 488,
     "./vertex-effect-delegate": 490
   } ],
-  484: [ (function(require, module, exports) {
+  484: [ function(require, module, exports) {
     "use strict";
-    var __extends = (void 0, (function() {
+    var __extends = (void 0, function() {
       var _extendStatics = function extendStatics(d, b) {
         _extendStatics = Object.setPrototypeOf || {
           __proto__: []
@@ -86195,10 +86221,10 @@
         }
         d.prototype = null === b ? Object.create(b) : (__.prototype = b.prototype, new __());
       };
-    })());
+    }());
     var spine;
     (function(spine) {
-      var Animation = (function() {
+      var Animation = function() {
         function Animation(name, timelines, duration) {
           if (null == name) throw new Error("name cannot be null.");
           if (null == timelines) throw new Error("timelines cannot be null.");
@@ -86237,7 +86263,7 @@
           return -1;
         };
         return Animation;
-      })();
+      }();
       spine.Animation = Animation;
       var MixBlend;
       (function(MixBlend) {
@@ -86269,7 +86295,7 @@
         TimelineType[TimelineType["pathConstraintMix"] = 13] = "pathConstraintMix";
         TimelineType[TimelineType["twoColor"] = 14] = "twoColor";
       })(TimelineType = spine.TimelineType || (spine.TimelineType = {}));
-      var CurveTimeline = (function() {
+      var CurveTimeline = function() {
         function CurveTimeline(frameCount) {
           if (frameCount <= 0) throw new Error("frameCount must be > 0: " + frameCount);
           this.curves = spine.Utils.newFloatArray((frameCount - 1) * CurveTimeline.BEZIER_SIZE);
@@ -86342,9 +86368,9 @@
         CurveTimeline.BEZIER = 2;
         CurveTimeline.BEZIER_SIZE = 19;
         return CurveTimeline;
-      })();
+      }();
       spine.CurveTimeline = CurveTimeline;
-      var RotateTimeline = (function(_super) {
+      var RotateTimeline = function(_super) {
         __extends(RotateTimeline, _super);
         function RotateTimeline(frameCount) {
           var _this = _super.call(this, frameCount) || this;
@@ -86416,9 +86442,9 @@
         RotateTimeline.PREV_ROTATION = -1;
         RotateTimeline.ROTATION = 1;
         return RotateTimeline;
-      })(CurveTimeline);
+      }(CurveTimeline);
       spine.RotateTimeline = RotateTimeline;
-      var TranslateTimeline = (function(_super) {
+      var TranslateTimeline = function(_super) {
         __extends(TranslateTimeline, _super);
         function TranslateTimeline(frameCount) {
           var _this = _super.call(this, frameCount) || this;
@@ -86488,9 +86514,9 @@
         TranslateTimeline.X = 1;
         TranslateTimeline.Y = 2;
         return TranslateTimeline;
-      })(CurveTimeline);
+      }(CurveTimeline);
       spine.TranslateTimeline = TranslateTimeline;
-      var ScaleTimeline = (function(_super) {
+      var ScaleTimeline = function(_super) {
         __extends(ScaleTimeline, _super);
         function ScaleTimeline(frameCount) {
           return _super.call(this, frameCount) || this;
@@ -86582,9 +86608,9 @@
           }
         };
         return ScaleTimeline;
-      })(TranslateTimeline);
+      }(TranslateTimeline);
       spine.ScaleTimeline = ScaleTimeline;
-      var ShearTimeline = (function(_super) {
+      var ShearTimeline = function(_super) {
         __extends(ShearTimeline, _super);
         function ShearTimeline(frameCount) {
           return _super.call(this, frameCount) || this;
@@ -86640,9 +86666,9 @@
           }
         };
         return ShearTimeline;
-      })(TranslateTimeline);
+      }(TranslateTimeline);
       spine.ShearTimeline = ShearTimeline;
-      var ColorTimeline = (function(_super) {
+      var ColorTimeline = function(_super) {
         __extends(ColorTimeline, _super);
         function ColorTimeline(frameCount) {
           var _this = _super.call(this, frameCount) || this;
@@ -86713,9 +86739,9 @@
         ColorTimeline.B = 3;
         ColorTimeline.A = 4;
         return ColorTimeline;
-      })(CurveTimeline);
+      }(CurveTimeline);
       spine.ColorTimeline = ColorTimeline;
-      var TwoColorTimeline = (function(_super) {
+      var TwoColorTimeline = function(_super) {
         __extends(TwoColorTimeline, _super);
         function TwoColorTimeline(frameCount) {
           var _this = _super.call(this, frameCount) || this;
@@ -86813,9 +86839,9 @@
         TwoColorTimeline.G2 = 6;
         TwoColorTimeline.B2 = 7;
         return TwoColorTimeline;
-      })(CurveTimeline);
+      }(CurveTimeline);
       spine.TwoColorTimeline = TwoColorTimeline;
-      var AttachmentTimeline = (function() {
+      var AttachmentTimeline = function() {
         function AttachmentTimeline(frameCount) {
           this.frames = spine.Utils.newFloatArray(frameCount);
           this.attachmentNames = new Array(frameCount);
@@ -86851,10 +86877,10 @@
           slot.setAttachment(null == attachmentName ? null : skeleton.getAttachment(this.slotIndex, attachmentName));
         };
         return AttachmentTimeline;
-      })();
+      }();
       spine.AttachmentTimeline = AttachmentTimeline;
       var zeros = null;
-      var DeformTimeline = (function(_super) {
+      var DeformTimeline = function(_super) {
         __extends(DeformTimeline, _super);
         function DeformTimeline(frameCount) {
           var _this = _super.call(this, frameCount) || this;
@@ -86996,9 +87022,9 @@
           }
         };
         return DeformTimeline;
-      })(CurveTimeline);
+      }(CurveTimeline);
       spine.DeformTimeline = DeformTimeline;
-      var EventTimeline = (function() {
+      var EventTimeline = function() {
         function EventTimeline(frameCount) {
           this.frames = spine.Utils.newFloatArray(frameCount);
           this.events = new Array(frameCount);
@@ -87034,9 +87060,9 @@
           for (;frame < frameCount && time >= frames[frame]; frame++) firedEvents.push(this.events[frame]);
         };
         return EventTimeline;
-      })();
+      }();
       spine.EventTimeline = EventTimeline;
-      var DrawOrderTimeline = (function() {
+      var DrawOrderTimeline = function() {
         function DrawOrderTimeline(frameCount) {
           this.frames = spine.Utils.newFloatArray(frameCount);
           this.drawOrders = new Array(frameCount);
@@ -87069,9 +87095,9 @@
           if (null == drawOrderToSetupIndex) spine.Utils.arrayCopy(slots, 0, drawOrder, 0, slots.length); else for (var i = 0, n = drawOrderToSetupIndex.length; i < n; i++) drawOrder[i] = slots[drawOrderToSetupIndex[i]];
         };
         return DrawOrderTimeline;
-      })();
+      }();
       spine.DrawOrderTimeline = DrawOrderTimeline;
-      var IkConstraintTimeline = (function(_super) {
+      var IkConstraintTimeline = function(_super) {
         __extends(IkConstraintTimeline, _super);
         function IkConstraintTimeline(frameCount) {
           var _this = _super.call(this, frameCount) || this;
@@ -87177,9 +87203,9 @@
         IkConstraintTimeline.COMPRESS = 4;
         IkConstraintTimeline.STRETCH = 5;
         return IkConstraintTimeline;
-      })(CurveTimeline);
+      }(CurveTimeline);
       spine.IkConstraintTimeline = IkConstraintTimeline;
-      var TransformConstraintTimeline = (function(_super) {
+      var TransformConstraintTimeline = function(_super) {
         __extends(TransformConstraintTimeline, _super);
         function TransformConstraintTimeline(frameCount) {
           var _this = _super.call(this, frameCount) || this;
@@ -87263,9 +87289,9 @@
         TransformConstraintTimeline.SCALE = 3;
         TransformConstraintTimeline.SHEAR = 4;
         return TransformConstraintTimeline;
-      })(CurveTimeline);
+      }(CurveTimeline);
       spine.TransformConstraintTimeline = TransformConstraintTimeline;
-      var PathConstraintPositionTimeline = (function(_super) {
+      var PathConstraintPositionTimeline = function(_super) {
         __extends(PathConstraintPositionTimeline, _super);
         function PathConstraintPositionTimeline(frameCount) {
           var _this = _super.call(this, frameCount) || this;
@@ -87310,9 +87336,9 @@
         PathConstraintPositionTimeline.PREV_VALUE = -1;
         PathConstraintPositionTimeline.VALUE = 1;
         return PathConstraintPositionTimeline;
-      })(CurveTimeline);
+      }(CurveTimeline);
       spine.PathConstraintPositionTimeline = PathConstraintPositionTimeline;
-      var PathConstraintSpacingTimeline = (function(_super) {
+      var PathConstraintSpacingTimeline = function(_super) {
         __extends(PathConstraintSpacingTimeline, _super);
         function PathConstraintSpacingTimeline(frameCount) {
           return _super.call(this, frameCount) || this;
@@ -87346,9 +87372,9 @@
           blend == MixBlend.setup ? constraint.spacing = constraint.data.spacing + (spacing - constraint.data.spacing) * alpha : constraint.spacing += (spacing - constraint.spacing) * alpha;
         };
         return PathConstraintSpacingTimeline;
-      })(PathConstraintPositionTimeline);
+      }(PathConstraintPositionTimeline);
       spine.PathConstraintSpacingTimeline = PathConstraintSpacingTimeline;
-      var PathConstraintMixTimeline = (function(_super) {
+      var PathConstraintMixTimeline = function(_super) {
         __extends(PathConstraintMixTimeline, _super);
         function PathConstraintMixTimeline(frameCount) {
           var _this = _super.call(this, frameCount) || this;
@@ -87409,12 +87435,12 @@
         PathConstraintMixTimeline.ROTATE = 1;
         PathConstraintMixTimeline.TRANSLATE = 2;
         return PathConstraintMixTimeline;
-      })(CurveTimeline);
+      }(CurveTimeline);
       spine.PathConstraintMixTimeline = PathConstraintMixTimeline;
     })(spine || (spine = {}));
     var spine;
     (function(spine) {
-      var AnimationState = (function() {
+      var AnimationState = function() {
         function AnimationState(data) {
           this.tracks = new Array();
           this.timeScale = 1;
@@ -87932,9 +87958,9 @@
         AnimationState.SETUP = 1;
         AnimationState.CURRENT = 2;
         return AnimationState;
-      })();
+      }();
       spine.AnimationState = AnimationState;
-      var TrackEntry = (function() {
+      var TrackEntry = function() {
         function TrackEntry() {
           this.mixBlend = spine.MixBlend.replace;
           this.timelineMode = new Array();
@@ -87970,9 +87996,9 @@
           this.timelinesRotation.length = 0;
         };
         return TrackEntry;
-      })();
+      }();
       spine.TrackEntry = TrackEntry;
-      var EventQueue = (function() {
+      var EventQueue = function() {
         function EventQueue(animState) {
           this.objects = [];
           this.drainDisabled = false;
@@ -88052,7 +88078,7 @@
           this.objects.length = 0;
         };
         return EventQueue;
-      })();
+      }();
       spine.EventQueue = EventQueue;
       var EventType;
       (function(EventType) {
@@ -88063,7 +88089,7 @@
         EventType[EventType["complete"] = 4] = "complete";
         EventType[EventType["event"] = 5] = "event";
       })(EventType = spine.EventType || (spine.EventType = {}));
-      var AnimationStateAdapter = (function() {
+      var AnimationStateAdapter = function() {
         function AnimationStateAdapter() {}
         AnimationStateAdapter.prototype.start = function(entry) {};
         AnimationStateAdapter.prototype.interrupt = function(entry) {};
@@ -88072,12 +88098,12 @@
         AnimationStateAdapter.prototype.complete = function(entry) {};
         AnimationStateAdapter.prototype.event = function(entry, event) {};
         return AnimationStateAdapter;
-      })();
+      }();
       spine.AnimationStateAdapter = AnimationStateAdapter;
     })(spine || (spine = {}));
     var spine;
     (function(spine) {
-      var AnimationStateData = (function() {
+      var AnimationStateData = function() {
         function AnimationStateData(skeletonData) {
           this.animationToMixTime = {};
           this.defaultMix = 0;
@@ -88103,12 +88129,12 @@
           return void 0 === value ? this.defaultMix : value;
         };
         return AnimationStateData;
-      })();
+      }();
       spine.AnimationStateData = AnimationStateData;
     })(spine || (spine = {}));
     var spine;
     (function(spine) {
-      var AssetManager = (function() {
+      var AssetManager = function() {
         function AssetManager(textureLoader, pathPrefix) {
           void 0 === pathPrefix && (pathPrefix = "");
           this.assets = {};
@@ -88154,17 +88180,17 @@
           void 0 === error && (error = null);
           path = this.pathPrefix + path;
           this.toLoad++;
-          this.downloadBinary(path, (function(data) {
+          this.downloadBinary(path, function(data) {
             _this.assets[path] = data;
             success && success(path, data);
             _this.toLoad--;
             _this.loaded++;
-          }), (function(state, responseText) {
+          }, function(state, responseText) {
             _this.errors[path] = "Couldn't load binary " + path + ": status " + status + ", " + responseText;
             error && error(path, "Couldn't load binary " + path + ": status " + status + ", " + responseText);
             _this.toLoad--;
             _this.loaded++;
-          }));
+          });
         };
         AssetManager.prototype.loadText = function(path, success, error) {
           var _this = this;
@@ -88172,17 +88198,17 @@
           void 0 === error && (error = null);
           path = this.pathPrefix + path;
           this.toLoad++;
-          this.downloadText(path, (function(data) {
+          this.downloadText(path, function(data) {
             _this.assets[path] = data;
             success && success(path, data);
             _this.toLoad--;
             _this.loaded++;
-          }), (function(state, responseText) {
+          }, function(state, responseText) {
             _this.errors[path] = "Couldn't load text " + path + ": status " + status + ", " + responseText;
             error && error(path, "Couldn't load text " + path + ": status " + status + ", " + responseText);
             _this.toLoad--;
             _this.loaded++;
-          }));
+          });
         };
         AssetManager.prototype.loadTexture = function(path, success, error) {
           var _this = this;
@@ -88216,7 +88242,7 @@
           var parent = path.lastIndexOf("/") >= 0 ? path.substring(0, path.lastIndexOf("/")) : "";
           path = this.pathPrefix + path;
           this.toLoad++;
-          this.downloadText(path, (function(atlasData) {
+          this.downloadText(path, function(atlasData) {
             var pagesLoaded = {
               count: 0
             };
@@ -88239,7 +88265,7 @@
             }
             var _loop_1 = function _loop_1(atlasPage) {
               var pageLoadError = false;
-              _this.loadTexture(atlasPage, (function(imagePath, image) {
+              _this.loadTexture(atlasPage, function(imagePath, image) {
                 pagesLoaded.count++;
                 if (pagesLoaded.count == atlasPages.length) if (pageLoadError) {
                   _this.errors[path] = "Couldn't load texture atlas page " + imagePath + "} of atlas " + path;
@@ -88261,7 +88287,7 @@
                   _this.toLoad--;
                   _this.loaded++;
                 }
-              }), (function(imagePath, errorMessage) {
+              }, function(imagePath, errorMessage) {
                 pageLoadError = true;
                 pagesLoaded.count++;
                 if (pagesLoaded.count == atlasPages.length) {
@@ -88270,18 +88296,18 @@
                   _this.toLoad--;
                   _this.loaded++;
                 }
-              }));
+              });
             };
             for (var _i = 0, atlasPages_1 = atlasPages; _i < atlasPages_1.length; _i++) {
               var atlasPage = atlasPages_1[_i];
               _loop_1(atlasPage);
             }
-          }), (function(state, responseText) {
+          }, function(state, responseText) {
             _this.errors[path] = "Couldn't load texture atlas " + path + ": status " + status + ", " + responseText;
             error && error(path, "Couldn't load texture atlas " + path + ": status " + status + ", " + responseText);
             _this.toLoad--;
             _this.loaded++;
-          }));
+          });
         };
         AssetManager.prototype.get = function(path) {
           path = this.pathPrefix + path;
@@ -88319,12 +88345,12 @@
           return this.errors;
         };
         return AssetManager;
-      })();
+      }();
       spine.AssetManager = AssetManager;
     })(spine || (spine = {}));
     var spine;
     (function(spine) {
-      var AtlasAttachmentLoader = (function() {
+      var AtlasAttachmentLoader = function() {
         function AtlasAttachmentLoader(atlas) {
           this.atlas = atlas;
         }
@@ -88357,7 +88383,7 @@
           return new spine.ClippingAttachment(name);
         };
         return AtlasAttachmentLoader;
-      })();
+      }();
       spine.AtlasAttachmentLoader = AtlasAttachmentLoader;
     })(spine || (spine = {}));
     var spine;
@@ -88372,7 +88398,7 @@
     })(spine || (spine = {}));
     var spine;
     (function(spine) {
-      var Bone = (function() {
+      var Bone = function() {
         function Bone(data, skeleton, parent) {
           this.children = new Array();
           this.x = 0;
@@ -88612,12 +88638,12 @@
           this.appliedValid = false;
         };
         return Bone;
-      })();
+      }();
       spine.Bone = Bone;
     })(spine || (spine = {}));
     var spine;
     (function(spine) {
-      var BoneData = (function() {
+      var BoneData = function() {
         function BoneData(index, name, parent) {
           this.x = 0;
           this.y = 0;
@@ -88636,7 +88662,7 @@
           this.parent = parent;
         }
         return BoneData;
-      })();
+      }();
       spine.BoneData = BoneData;
       var TransformMode;
       (function(TransformMode) {
@@ -88649,41 +88675,41 @@
     })(spine || (spine = {}));
     var spine;
     (function(spine) {
-      var ConstraintData = (function() {
+      var ConstraintData = function() {
         function ConstraintData(name, order, skinRequired) {
           this.name = name;
           this.order = order;
           this.skinRequired = skinRequired;
         }
         return ConstraintData;
-      })();
+      }();
       spine.ConstraintData = ConstraintData;
     })(spine || (spine = {}));
     var spine;
     (function(spine) {
-      var Event = (function() {
+      var Event = function() {
         function Event(time, data) {
           if (null == data) throw new Error("data cannot be null.");
           this.time = time;
           this.data = data;
         }
         return Event;
-      })();
+      }();
       spine.Event = Event;
     })(spine || (spine = {}));
     var spine;
     (function(spine) {
-      var EventData = (function() {
+      var EventData = function() {
         function EventData(name) {
           this.name = name;
         }
         return EventData;
-      })();
+      }();
       spine.EventData = EventData;
     })(spine || (spine = {}));
     var spine;
     (function(spine) {
-      var IkConstraint = (function() {
+      var IkConstraint = function() {
         function IkConstraint(data, skeleton) {
           this.bendDirection = 0;
           this.compress = false;
@@ -88901,12 +88927,12 @@
           child.updateWorldTransformWith(cx, cy, rotation + a2 * alpha, child.ascaleX, child.ascaleY, child.ashearX, child.ashearY);
         };
         return IkConstraint;
-      })();
+      }();
       spine.IkConstraint = IkConstraint;
     })(spine || (spine = {}));
     var spine;
     (function(spine) {
-      var IkConstraintData = (function(_super) {
+      var IkConstraintData = function(_super) {
         __extends(IkConstraintData, _super);
         function IkConstraintData(name) {
           var _this = _super.call(this, name, 0, false) || this;
@@ -88920,12 +88946,12 @@
           return _this;
         }
         return IkConstraintData;
-      })(spine.ConstraintData);
+      }(spine.ConstraintData);
       spine.IkConstraintData = IkConstraintData;
     })(spine || (spine = {}));
     var spine;
     (function(spine) {
-      var PathConstraint = (function() {
+      var PathConstraint = function() {
         function PathConstraint(data, skeleton) {
           this.position = 0;
           this.spacing = 0;
@@ -89261,12 +89287,12 @@
         PathConstraint.AFTER = -3;
         PathConstraint.epsilon = 1e-5;
         return PathConstraint;
-      })();
+      }();
       spine.PathConstraint = PathConstraint;
     })(spine || (spine = {}));
     var spine;
     (function(spine) {
-      var PathConstraintData = (function(_super) {
+      var PathConstraintData = function(_super) {
         __extends(PathConstraintData, _super);
         function PathConstraintData(name) {
           var _this = _super.call(this, name, 0, false) || this;
@@ -89274,7 +89300,7 @@
           return _this;
         }
         return PathConstraintData;
-      })(spine.ConstraintData);
+      }(spine.ConstraintData);
       spine.PathConstraintData = PathConstraintData;
       var PositionMode;
       (function(PositionMode) {
@@ -89296,7 +89322,7 @@
     })(spine || (spine = {}));
     var spine;
     (function(spine) {
-      var Assets = (function() {
+      var Assets = function() {
         function Assets(clientId) {
           this.toLoad = new Array();
           this.assets = {};
@@ -89308,8 +89334,8 @@
           return i;
         };
         return Assets;
-      })();
-      var SharedAssetManager = (function() {
+      }();
+      var SharedAssetManager = function() {
         function SharedAssetManager(pathPrefix) {
           void 0 === pathPrefix && (pathPrefix = "");
           this.clientAssets = {};
@@ -89364,17 +89390,17 @@
             var options = {
               mode: "cors"
             };
-            fetch(path, options).then((function(response) {
+            fetch(path, options).then(function(response) {
               response.ok || (_this.errors[path] = "Couldn't load image " + path);
               return response.blob();
-            })).then((function(blob) {
+            }).then(function(blob) {
               return createImageBitmap(blob, {
                 premultiplyAlpha: "none",
                 colorSpaceConversion: "none"
               });
-            })).then((function(bitmap) {
+            }).then(function(bitmap) {
               _this.rawAssets[path] = bitmap;
-            }));
+            });
           } else {
             var img_1 = new Image();
             img_1.crossOrigin = "anonymous";
@@ -89420,12 +89446,12 @@
           return this.errors;
         };
         return SharedAssetManager;
-      })();
+      }();
       spine.SharedAssetManager = SharedAssetManager;
     })(spine || (spine = {}));
     var spine;
     (function(spine) {
-      var Skeleton = (function() {
+      var Skeleton = function() {
         function Skeleton(data) {
           this._updateCache = new Array();
           this.updateCacheReset = new Array();
@@ -89813,12 +89839,12 @@
           this.time += delta;
         };
         return Skeleton;
-      })();
+      }();
       spine.Skeleton = Skeleton;
     })(spine || (spine = {}));
     var spine;
     (function(spine) {
-      var SkeletonBinary = (function() {
+      var SkeletonBinary = function() {
         function SkeletonBinary(attachmentLoader) {
           this.scale = 1;
           this.linkedMeshes = new Array();
@@ -90435,9 +90461,9 @@
         SkeletonBinary.CURVE_STEPPED = 1;
         SkeletonBinary.CURVE_BEZIER = 2;
         return SkeletonBinary;
-      })();
+      }();
       spine.SkeletonBinary = SkeletonBinary;
-      var BinaryInput = (function() {
+      var BinaryInput = function() {
         function BinaryInput(data, strings, index, buffer) {
           void 0 === strings && (strings = new Array());
           void 0 === index && (index = 0);
@@ -90526,8 +90552,8 @@
           return 0 != this.readByte();
         };
         return BinaryInput;
-      })();
-      var LinkedMesh = (function() {
+      }();
+      var LinkedMesh = function() {
         function LinkedMesh(mesh, skin, slotIndex, parent, inheritDeform) {
           this.mesh = mesh;
           this.skin = skin;
@@ -90536,8 +90562,8 @@
           this.inheritDeform = inheritDeform;
         }
         return LinkedMesh;
-      })();
-      var Vertices = (function() {
+      }();
+      var Vertices = function() {
         function Vertices(bones, vertices) {
           void 0 === bones && (bones = null);
           void 0 === vertices && (vertices = null);
@@ -90545,11 +90571,11 @@
           this.vertices = vertices;
         }
         return Vertices;
-      })();
+      }();
     })(spine || (spine = {}));
     var spine;
     (function(spine) {
-      var SkeletonBounds = (function() {
+      var SkeletonBounds = function() {
         function SkeletonBounds() {
           this.minX = 0;
           this.minY = 0;
@@ -90693,12 +90719,12 @@
           return this.maxY - this.minY;
         };
         return SkeletonBounds;
-      })();
+      }();
       spine.SkeletonBounds = SkeletonBounds;
     })(spine || (spine = {}));
     var spine;
     (function(spine) {
-      var SkeletonClipping = (function() {
+      var SkeletonClipping = function() {
         function SkeletonClipping() {
           this.triangulator = new spine.Triangulator();
           this.clippingPolygon = new Array();
@@ -90979,12 +91005,12 @@
           }
         };
         return SkeletonClipping;
-      })();
+      }();
       spine.SkeletonClipping = SkeletonClipping;
     })(spine || (spine = {}));
     var spine;
     (function(spine) {
-      var SkeletonData = (function() {
+      var SkeletonData = function() {
         function SkeletonData() {
           this.bones = new Array();
           this.slots = new Array();
@@ -91087,12 +91113,12 @@
           return -1;
         };
         return SkeletonData;
-      })();
+      }();
       spine.SkeletonData = SkeletonData;
     })(spine || (spine = {}));
     var spine;
     (function(spine) {
-      var SkeletonJson = (function() {
+      var SkeletonJson = function() {
         function SkeletonJson(attachmentLoader) {
           this.scale = 1;
           this.linkedMeshes = new Array();
@@ -91737,9 +91763,9 @@
           throw new Error("Unknown transform mode: " + str);
         };
         return SkeletonJson;
-      })();
+      }();
       spine.SkeletonJson = SkeletonJson;
-      var LinkedMesh = (function() {
+      var LinkedMesh = function() {
         function LinkedMesh(mesh, skin, slotIndex, parent, inheritDeform) {
           this.mesh = mesh;
           this.skin = skin;
@@ -91748,20 +91774,20 @@
           this.inheritDeform = inheritDeform;
         }
         return LinkedMesh;
-      })();
+      }();
     })(spine || (spine = {}));
     var spine;
     (function(spine) {
-      var SkinEntry = (function() {
+      var SkinEntry = function() {
         function SkinEntry(slotIndex, name, attachment) {
           this.slotIndex = slotIndex;
           this.name = name;
           this.attachment = attachment;
         }
         return SkinEntry;
-      })();
+      }();
       spine.SkinEntry = SkinEntry;
-      var Skin = (function() {
+      var Skin = function() {
         function Skin(name) {
           this.attachments = new Array();
           this.bones = Array();
@@ -91884,12 +91910,12 @@
           }
         };
         return Skin;
-      })();
+      }();
       spine.Skin = Skin;
     })(spine || (spine = {}));
     var spine;
     (function(spine) {
-      var Slot = (function() {
+      var Slot = function() {
         function Slot(data, bone) {
           this.deform = new Array();
           if (null == data) throw new Error("data cannot be null.");
@@ -91927,12 +91953,12 @@
           }
         };
         return Slot;
-      })();
+      }();
       spine.Slot = Slot;
     })(spine || (spine = {}));
     var spine;
     (function(spine) {
-      var SlotData = (function() {
+      var SlotData = function() {
         function SlotData(index, name, boneData) {
           this.color = new spine.Color(1, 1, 1, 1);
           if (index < 0) throw new Error("index must be >= 0.");
@@ -91943,12 +91969,12 @@
           this.boneData = boneData;
         }
         return SlotData;
-      })();
+      }();
       spine.SlotData = SlotData;
     })(spine || (spine = {}));
     var spine;
     (function(spine) {
-      var Texture = (function() {
+      var Texture = function() {
         function Texture(image) {
           this._image = image;
         }
@@ -91998,7 +92024,7 @@
           }
         };
         return Texture;
-      })();
+      }();
       spine.Texture = Texture;
       var TextureFilter;
       (function(TextureFilter) {
@@ -92016,7 +92042,7 @@
         TextureWrap[TextureWrap["ClampToEdge"] = 33071] = "ClampToEdge";
         TextureWrap[TextureWrap["Repeat"] = 10497] = "Repeat";
       })(TextureWrap = spine.TextureWrap || (spine.TextureWrap = {}));
-      var TextureRegion = (function() {
+      var TextureRegion = function() {
         function TextureRegion() {
           this.u = 0;
           this.v = 0;
@@ -92031,9 +92057,9 @@
           this.originalHeight = 0;
         }
         return TextureRegion;
-      })();
+      }();
       spine.TextureRegion = TextureRegion;
-      var FakeTexture = (function(_super) {
+      var FakeTexture = function(_super) {
         __extends(FakeTexture, _super);
         function FakeTexture() {
           return null !== _super && _super.apply(this, arguments) || this;
@@ -92042,12 +92068,12 @@
         FakeTexture.prototype.setWraps = function(uWrap, vWrap) {};
         FakeTexture.prototype.dispose = function() {};
         return FakeTexture;
-      })(Texture);
+      }(Texture);
       spine.FakeTexture = FakeTexture;
     })(spine || (spine = {}));
     var spine;
     (function(spine) {
-      var TextureAtlas = (function() {
+      var TextureAtlas = function() {
         function TextureAtlas(atlasText, textureLoader) {
           this.pages = new Array();
           this.regions = new Array();
@@ -92129,9 +92155,9 @@
           for (var i = 0; i < this.pages.length; i++) this.pages[i].texture.dispose();
         };
         return TextureAtlas;
-      })();
+      }();
       spine.TextureAtlas = TextureAtlas;
-      var TextureAtlasReader = (function() {
+      var TextureAtlasReader = function() {
         function TextureAtlasReader(text) {
           this.index = 0;
           this.lines = text.split(/\r\n|\r|\n/);
@@ -92161,24 +92187,24 @@
           return i + 1;
         };
         return TextureAtlasReader;
-      })();
-      var TextureAtlasPage = (function() {
+      }();
+      var TextureAtlasPage = function() {
         function TextureAtlasPage() {}
         return TextureAtlasPage;
-      })();
+      }();
       spine.TextureAtlasPage = TextureAtlasPage;
-      var TextureAtlasRegion = (function(_super) {
+      var TextureAtlasRegion = function(_super) {
         __extends(TextureAtlasRegion, _super);
         function TextureAtlasRegion() {
           return null !== _super && _super.apply(this, arguments) || this;
         }
         return TextureAtlasRegion;
-      })(spine.TextureRegion);
+      }(spine.TextureRegion);
       spine.TextureAtlasRegion = TextureAtlasRegion;
     })(spine || (spine = {}));
     var spine;
     (function(spine) {
-      var TransformConstraint = (function() {
+      var TransformConstraint = function() {
         function TransformConstraint(data, skeleton) {
           this.rotateMix = 0;
           this.translateMix = 0;
@@ -92373,12 +92399,12 @@
           }
         };
         return TransformConstraint;
-      })();
+      }();
       spine.TransformConstraint = TransformConstraint;
     })(spine || (spine = {}));
     var spine;
     (function(spine) {
-      var TransformConstraintData = (function(_super) {
+      var TransformConstraintData = function(_super) {
         __extends(TransformConstraintData, _super);
         function TransformConstraintData(name) {
           var _this = _super.call(this, name, 0, false) || this;
@@ -92398,12 +92424,12 @@
           return _this;
         }
         return TransformConstraintData;
-      })(spine.ConstraintData);
+      }(spine.ConstraintData);
       spine.TransformConstraintData = TransformConstraintData;
     })(spine || (spine = {}));
     var spine;
     (function(spine) {
-      var Triangulator = (function() {
+      var Triangulator = function() {
         function Triangulator() {
           this.convexPolygons = new Array();
           this.convexPolygonsIndices = new Array();
@@ -92596,12 +92622,12 @@
           return p3x * py - p3y * px + px * p1y - p1x * py >= 0 ? 1 : -1;
         };
         return Triangulator;
-      })();
+      }();
       spine.Triangulator = Triangulator;
     })(spine || (spine = {}));
     var spine;
     (function(spine) {
-      var IntSet = (function() {
+      var IntSet = function() {
         function IntSet() {
           this.array = new Array();
         }
@@ -92620,9 +92646,9 @@
           this.array.length = 0;
         };
         return IntSet;
-      })();
+      }();
       spine.IntSet = IntSet;
-      var Color = (function() {
+      var Color = function() {
         function Color(r, g, b, a) {
           void 0 === r && (r = 0);
           void 0 === g && (g = 0);
@@ -92688,9 +92714,9 @@
         Color.BLUE = new Color(0, 0, 1, 1);
         Color.MAGENTA = new Color(1, 0, 1, 1);
         return Color;
-      })();
+      }();
       spine.Color = Color;
-      var MathUtils = (function() {
+      var MathUtils = function() {
         function MathUtils() {}
         MathUtils.clamp = function(value, min, max) {
           if (value < min) return min;
@@ -92729,17 +92755,17 @@
         MathUtils.degreesToRadians = MathUtils.PI / 180;
         MathUtils.degRad = MathUtils.degreesToRadians;
         return MathUtils;
-      })();
+      }();
       spine.MathUtils = MathUtils;
-      var Interpolation = (function() {
+      var Interpolation = function() {
         function Interpolation() {}
         Interpolation.prototype.apply = function(start, end, a) {
           return start + (end - start) * this.applyInternal(a);
         };
         return Interpolation;
-      })();
+      }();
       spine.Interpolation = Interpolation;
-      var Pow = (function(_super) {
+      var Pow = function(_super) {
         __extends(Pow, _super);
         function Pow(power) {
           var _this = _super.call(this) || this;
@@ -92752,9 +92778,9 @@
           return Math.pow(2 * (a - 1), this.power) / (this.power % 2 == 0 ? -2 : 2) + 1;
         };
         return Pow;
-      })(Interpolation);
+      }(Interpolation);
       spine.Pow = Pow;
-      var PowOut = (function(_super) {
+      var PowOut = function(_super) {
         __extends(PowOut, _super);
         function PowOut(power) {
           return _super.call(this, power) || this;
@@ -92763,9 +92789,9 @@
           return Math.pow(a - 1, this.power) * (this.power % 2 == 0 ? -1 : 1) + 1;
         };
         return PowOut;
-      })(Pow);
+      }(Pow);
       spine.PowOut = PowOut;
-      var Utils = (function() {
+      var Utils = function() {
         function Utils() {}
         Utils.arrayCopy = function(source, sourceStart, dest, destStart, numElements) {
           for (var i = sourceStart, j = destStart; i < sourceStart + numElements; i++, j++) dest[j] = source[i];
@@ -92814,9 +92840,9 @@
         };
         Utils.SUPPORTS_TYPED_ARRAYS = "undefined" !== typeof Float32Array;
         return Utils;
-      })();
+      }();
       spine.Utils = Utils;
-      var DebugUtils = (function() {
+      var DebugUtils = function() {
         function DebugUtils() {}
         DebugUtils.logBones = function(skeleton) {
           for (var i = 0; i < skeleton.bones.length; i++) {
@@ -92825,9 +92851,9 @@
           }
         };
         return DebugUtils;
-      })();
+      }();
       spine.DebugUtils = DebugUtils;
-      var Pool = (function() {
+      var Pool = function() {
         function Pool(instantiator) {
           this.items = new Array();
           this.instantiator = instantiator;
@@ -92846,9 +92872,9 @@
           this.items.length = 0;
         };
         return Pool;
-      })();
+      }();
       spine.Pool = Pool;
-      var Vector2 = (function() {
+      var Vector2 = function() {
         function Vector2(x, y) {
           void 0 === x && (x = 0);
           void 0 === y && (y = 0);
@@ -92874,9 +92900,9 @@
           return this;
         };
         return Vector2;
-      })();
+      }();
       spine.Vector2 = Vector2;
-      var TimeKeeper = (function() {
+      var TimeKeeper = function() {
         function TimeKeeper() {
           this.maxDelta = .064;
           this.framesPerSecond = 0;
@@ -92901,9 +92927,9 @@
           }
         };
         return TimeKeeper;
-      })();
+      }();
       spine.TimeKeeper = TimeKeeper;
-      var WindowedMean = (function() {
+      var WindowedMean = function() {
         function WindowedMean(windowSize) {
           void 0 === windowSize && (windowSize = 32);
           this.addedValues = 0;
@@ -92934,27 +92960,27 @@
           return 0;
         };
         return WindowedMean;
-      })();
+      }();
       spine.WindowedMean = WindowedMean;
     })(spine || (spine = {}));
     (function() {
-      Math.fround || (Math.fround = (function(array) {
+      Math.fround || (Math.fround = function(array) {
         return function(x) {
           return array[0] = x, array[0];
         };
-      })(new Float32Array(1)));
+      }(new Float32Array(1)));
     })();
     var spine;
     (function(spine) {
-      var Attachment = (function() {
+      var Attachment = function() {
         function Attachment(name) {
           if (null == name) throw new Error("name cannot be null.");
           this.name = name;
         }
         return Attachment;
-      })();
+      }();
       spine.Attachment = Attachment;
-      var VertexAttachment = (function(_super) {
+      var VertexAttachment = function(_super) {
         __extends(VertexAttachment, _super);
         function VertexAttachment(name) {
           var _this = _super.call(this, name) || this;
@@ -93032,7 +93058,7 @@
         };
         VertexAttachment.nextID = 0;
         return VertexAttachment;
-      })(Attachment);
+      }(Attachment);
       spine.VertexAttachment = VertexAttachment;
     })(spine || (spine = {}));
     var spine;
@@ -93050,7 +93076,7 @@
     })(spine || (spine = {}));
     var spine;
     (function(spine) {
-      var BoundingBoxAttachment = (function(_super) {
+      var BoundingBoxAttachment = function(_super) {
         __extends(BoundingBoxAttachment, _super);
         function BoundingBoxAttachment(name) {
           var _this = _super.call(this, name) || this;
@@ -93064,12 +93090,12 @@
           return copy;
         };
         return BoundingBoxAttachment;
-      })(spine.VertexAttachment);
+      }(spine.VertexAttachment);
       spine.BoundingBoxAttachment = BoundingBoxAttachment;
     })(spine || (spine = {}));
     var spine;
     (function(spine) {
-      var ClippingAttachment = (function(_super) {
+      var ClippingAttachment = function(_super) {
         __extends(ClippingAttachment, _super);
         function ClippingAttachment(name) {
           var _this = _super.call(this, name) || this;
@@ -93084,12 +93110,12 @@
           return copy;
         };
         return ClippingAttachment;
-      })(spine.VertexAttachment);
+      }(spine.VertexAttachment);
       spine.ClippingAttachment = ClippingAttachment;
     })(spine || (spine = {}));
     var spine;
     (function(spine) {
-      var MeshAttachment = (function(_super) {
+      var MeshAttachment = function(_super) {
         __extends(MeshAttachment, _super);
         function MeshAttachment(name) {
           var _this = _super.call(this, name) || this;
@@ -93204,12 +93230,12 @@
           return copy;
         };
         return MeshAttachment;
-      })(spine.VertexAttachment);
+      }(spine.VertexAttachment);
       spine.MeshAttachment = MeshAttachment;
     })(spine || (spine = {}));
     var spine;
     (function(spine) {
-      var PathAttachment = (function(_super) {
+      var PathAttachment = function(_super) {
         __extends(PathAttachment, _super);
         function PathAttachment(name) {
           var _this = _super.call(this, name) || this;
@@ -93229,12 +93255,12 @@
           return copy;
         };
         return PathAttachment;
-      })(spine.VertexAttachment);
+      }(spine.VertexAttachment);
       spine.PathAttachment = PathAttachment;
     })(spine || (spine = {}));
     var spine;
     (function(spine) {
-      var PointAttachment = (function(_super) {
+      var PointAttachment = function(_super) {
         __extends(PointAttachment, _super);
         function PointAttachment(name) {
           var _this = _super.call(this, name) || this;
@@ -93261,12 +93287,12 @@
           return copy;
         };
         return PointAttachment;
-      })(spine.VertexAttachment);
+      }(spine.VertexAttachment);
       spine.PointAttachment = PointAttachment;
     })(spine || (spine = {}));
     var spine;
     (function(spine) {
-      var RegionAttachment = (function(_super) {
+      var RegionAttachment = function(_super) {
         __extends(RegionAttachment, _super);
         function RegionAttachment(name) {
           var _this = _super.call(this, name) || this;
@@ -93417,12 +93443,12 @@
         RegionAttachment.U4 = 30;
         RegionAttachment.V4 = 31;
         return RegionAttachment;
-      })(spine.Attachment);
+      }(spine.Attachment);
       spine.RegionAttachment = RegionAttachment;
     })(spine || (spine = {}));
     var spine;
     (function(spine) {
-      var JitterEffect = (function() {
+      var JitterEffect = function() {
         function JitterEffect(jitterX, jitterY) {
           this.jitterX = 0;
           this.jitterY = 0;
@@ -93436,12 +93462,12 @@
         };
         JitterEffect.prototype.end = function() {};
         return JitterEffect;
-      })();
+      }();
       spine.JitterEffect = JitterEffect;
     })(spine || (spine = {}));
     var spine;
     (function(spine) {
-      var SwirlEffect = (function() {
+      var SwirlEffect = function() {
         function SwirlEffect(radius) {
           this.centerX = 0;
           this.centerY = 0;
@@ -93471,12 +93497,12 @@
         SwirlEffect.prototype.end = function() {};
         SwirlEffect.interpolation = new spine.PowOut(2);
         return SwirlEffect;
-      })();
+      }();
       spine.SwirlEffect = SwirlEffect;
     })(spine || (spine = {}));
     module.exports = spine;
-  }), {} ],
-  485: [ (function(require, module, exports) {
+  }, {} ],
+  485: [ function(require, module, exports) {
     "use strict";
     var TrackEntryListeners = require("./track-entry-listeners");
     var spine = require("./lib/spine");
@@ -93934,11 +93960,11 @@
     SkeletonCache.FrameTime = FrameTime;
     SkeletonCache.sharedCache = new SkeletonCache();
     module.exports = SkeletonCache;
-  }), {
+  }, {
     "./lib/spine": 484,
     "./track-entry-listeners": 489
   } ],
-  486: [ (function(require, module, exports) {
+  486: [ function(require, module, exports) {
     "use strict";
     var SkeletonCache = (true, require("./skeleton-cache").sharedCache);
     var SkeletonData = cc.Class({
@@ -94086,10 +94112,10 @@
       }
     });
     sp.SkeletonData = module.exports = SkeletonData;
-  }), {
+  }, {
     "./skeleton-cache": 485
   } ],
-  487: [ (function(require, module, exports) {
+  487: [ function(require, module, exports) {
     "use strict";
     sp.SkeletonTexture = cc.Class({
       name: "sp.SkeletonTexture",
@@ -94110,8 +94136,8 @@
       },
       dispose: function dispose() {}
     });
-  }), {} ],
-  488: [ (function(require, module, exports) {
+  }, {} ],
+  488: [ function(require, module, exports) {
     "use strict";
     exports.__esModule = true;
     exports["default"] = void 0;
@@ -94233,7 +94259,7 @@
     function _spineColorToInt32(spineColor) {
       return (spineColor.a << 24 >>> 0) + (spineColor.b << 16) + (spineColor.g << 8) + spineColor.r;
     }
-    var SpineAssembler = exports["default"] = (function(_Assembler) {
+    var SpineAssembler = exports["default"] = function(_Assembler) {
       function SpineAssembler() {
         return _Assembler.apply(this, arguments) || this;
       }
@@ -94606,17 +94632,17 @@
         renderer.worldMatDirty--;
       };
       return SpineAssembler;
-    })(_assembler["default"]);
+    }(_assembler["default"]);
     _assembler["default"].register(Skeleton, SpineAssembler);
     module.exports = exports["default"];
-  }), {
+  }, {
     "../../cocos2d/core/renderer/assembler": 303,
     "../../cocos2d/core/renderer/render-flow": 324,
     "../../cocos2d/core/renderer/webgl/vertex-format": 369,
     "./Skeleton": 482,
     "./lib/spine": 484
   } ],
-  489: [ (function(require, module, exports) {
+  489: [ function(require, module, exports) {
     "use strict";
     var TrackEntryListeners = function TrackEntryListeners() {
       this.start = null;
@@ -94631,8 +94657,8 @@
       return entry.listener;
     };
     module.exports = TrackEntryListeners;
-  }), {} ],
-  490: [ (function(require, module, exports) {
+  }, {} ],
+  490: [ function(require, module, exports) {
     "use strict";
     var spine = require("./lib/spine");
     sp.VertexEffectDelegate = cc.Class({
@@ -94676,14 +94702,14 @@
       }
     });
     module.exports = sp.VertexEffectDelegate;
-  }), {
+  }, {
     "./lib/spine": 484
   } ],
-  491: [ (function(require, module, exports) {
+  491: [ function(require, module, exports) {
     "use strict";
     (function(global, factory) {
       "object" === typeof exports && "undefined" !== typeof module ? factory(exports) : "function" === typeof define && define.amd ? define([ "exports" ], factory) : factory(global.box2d = {});
-    })(void 0, (function(exports) {
+    })(void 0, function(exports) {
       function b2Assert(condition) {
         var args = [];
         for (var _i = 1; _i < arguments.length; _i++) args[_i - 1] = arguments[_i];
@@ -94735,7 +94761,7 @@
         var args = [];
         for (var _i = 1; _i < arguments.length; _i++) args[_i - 1] = arguments[_i];
       }
-      var b2Version = (function() {
+      var b2Version = function() {
         function b2Version(major, minor, revision) {
           void 0 === major && (major = 0);
           void 0 === minor && (minor = 0);
@@ -94751,7 +94777,7 @@
           return this.major + "." + this.minor + "." + this.revision;
         };
         return b2Version;
-      })();
+      }();
       var b2_version = new b2Version(2, 3, 2);
       var b2_branch = "master";
       var b2_commit = "fbf51801d80fc389d43dc46524520e89043b6faf";
@@ -94828,7 +94854,7 @@
       function b2RandomRange(lo, hi) {
         return (hi - lo) * Math.random() + lo;
       }
-      var b2Vec2 = (function() {
+      var b2Vec2 = function() {
         function b2Vec2(x, y) {
           void 0 === x && (x = 0);
           void 0 === y && (y = 0);
@@ -94970,9 +94996,9 @@
           return this;
         };
         b2Vec2.MakeArray = function(length) {
-          return b2MakeArray(length, (function(i) {
+          return b2MakeArray(length, function(i) {
             return new b2Vec2();
-          }));
+          });
         };
         b2Vec2.AbsV = function(v, out) {
           out.x = b2Abs(v.x);
@@ -95104,9 +95130,9 @@
         b2Vec2.s_t2 = new b2Vec2();
         b2Vec2.s_t3 = new b2Vec2();
         return b2Vec2;
-      })();
+      }();
       var b2Vec2_zero = new b2Vec2(0, 0);
-      var b2Vec3 = (function() {
+      var b2Vec3 = function() {
         function b2Vec3(x, y, z) {
           void 0 === x && (x = 0);
           void 0 === y && (y = 0);
@@ -95186,8 +95212,8 @@
         b2Vec3.ZERO = new b2Vec3(0, 0, 0);
         b2Vec3.s_t0 = new b2Vec3();
         return b2Vec3;
-      })();
-      var b2Mat22 = (function() {
+      }();
+      var b2Mat22 = function() {
         function b2Mat22() {
           this.ex = new b2Vec2(1, 0);
           this.ey = new b2Vec2(0, 1);
@@ -95335,8 +95361,8 @@
         };
         b2Mat22.IDENTITY = new b2Mat22();
         return b2Mat22;
-      })();
-      var b2Mat33 = (function() {
+      }();
+      var b2Mat33 = function() {
         function b2Mat33() {
           this.ex = new b2Vec3(1, 0, 0);
           this.ey = new b2Vec3(0, 1, 0);
@@ -95451,8 +95477,8 @@
         };
         b2Mat33.IDENTITY = new b2Mat33();
         return b2Mat33;
-      })();
-      var b2Rot = (function() {
+      }();
+      var b2Rot = function() {
         function b2Rot(angle) {
           void 0 === angle && (angle = 0);
           this.s = 0;
@@ -95523,8 +95549,8 @@
         };
         b2Rot.IDENTITY = new b2Rot();
         return b2Rot;
-      })();
-      var b2Transform = (function() {
+      }();
+      var b2Transform = function() {
         function b2Transform() {
           this.p = new b2Vec2();
           this.q = new b2Rot();
@@ -95607,8 +95633,8 @@
         };
         b2Transform.IDENTITY = new b2Transform();
         return b2Transform;
-      })();
-      var b2Sweep = (function() {
+      }();
+      var b2Sweep = function() {
         function b2Sweep() {
           this.localCenter = new b2Vec2();
           this.c0 = new b2Vec2();
@@ -95652,8 +95678,8 @@
           this.a -= d;
         };
         return b2Sweep;
-      })();
-      var b2Color = (function() {
+      }();
+      var b2Color = function() {
         function b2Color(rr, gg, bb, aa) {
           void 0 === rr && (rr = .5);
           void 0 === gg && (gg = .5);
@@ -95785,7 +95811,7 @@
         b2Color.GREEN = new b2Color(0, 1, 0);
         b2Color.BLUE = new b2Color(0, 0, 1);
         return b2Color;
-      })();
+      }();
       (function(b2DrawFlags) {
         b2DrawFlags[b2DrawFlags["e_none"] = 0] = "e_none";
         b2DrawFlags[b2DrawFlags["e_shapeBit"] = 1] = "e_shapeBit";
@@ -95797,7 +95823,7 @@
         b2DrawFlags[b2DrawFlags["e_controllerBit"] = 64] = "e_controllerBit";
         b2DrawFlags[b2DrawFlags["e_all"] = 63] = "e_all";
       })(exports.b2DrawFlags || (exports.b2DrawFlags = {}));
-      var b2Draw = (function() {
+      var b2Draw = function() {
         function b2Draw() {
           this.m_drawFlags = 0;
         }
@@ -95814,8 +95840,8 @@
           this.m_drawFlags &= ~flags;
         };
         return b2Draw;
-      })();
-      var b2Timer = (function() {
+      }();
+      var b2Timer = function() {
         function b2Timer() {
           this.m_start = Date.now();
         }
@@ -95827,8 +95853,8 @@
           return Date.now() - this.m_start;
         };
         return b2Timer;
-      })();
-      var b2Counter = (function() {
+      }();
+      var b2Counter = function() {
         function b2Counter() {
           this.m_count = 0;
           this.m_min_count = 0;
@@ -95863,14 +95889,14 @@
           this.m_min_count > this.m_count && (this.m_min_count = this.m_count);
         };
         return b2Counter;
-      })();
-      var b2GrowableStack = (function() {
+      }();
+      var b2GrowableStack = function() {
         function b2GrowableStack(N) {
           this.m_stack = [];
           this.m_count = 0;
-          this.m_stack = b2MakeArray(N, (function(index) {
+          this.m_stack = b2MakeArray(N, function(index) {
             return null;
-          }));
+          });
           this.m_count = 0;
         }
         b2GrowableStack.prototype.Reset = function() {
@@ -95892,16 +95918,16 @@
           return this.m_count;
         };
         return b2GrowableStack;
-      })();
-      var b2BlockAllocator = (function() {
+      }();
+      var b2BlockAllocator = function() {
         function b2BlockAllocator() {}
         return b2BlockAllocator;
-      })();
-      var b2StackAllocator = (function() {
+      }();
+      var b2StackAllocator = function() {
         function b2StackAllocator() {}
         return b2StackAllocator;
-      })();
-      var b2DistanceProxy = (function() {
+      }();
+      var b2DistanceProxy = function() {
         function b2DistanceProxy() {
           this.m_buffer = b2Vec2.MakeArray(2);
           this.m_vertices = this.m_buffer;
@@ -95963,8 +95989,8 @@
           return this.m_vertices[index];
         };
         return b2DistanceProxy;
-      })();
-      var b2SimplexCache = (function() {
+      }();
+      var b2SimplexCache = function() {
         function b2SimplexCache() {
           this.metric = 0;
           this.count = 0;
@@ -95977,8 +96003,8 @@
           return this;
         };
         return b2SimplexCache;
-      })();
-      var b2DistanceInput = (function() {
+      }();
+      var b2DistanceInput = function() {
         function b2DistanceInput() {
           this.proxyA = new b2DistanceProxy();
           this.proxyB = new b2DistanceProxy();
@@ -95995,8 +96021,8 @@
           return this;
         };
         return b2DistanceInput;
-      })();
-      var b2DistanceOutput = (function() {
+      }();
+      var b2DistanceOutput = function() {
         function b2DistanceOutput() {
           this.pointA = new b2Vec2();
           this.pointB = new b2Vec2();
@@ -96011,8 +96037,8 @@
           return this;
         };
         return b2DistanceOutput;
-      })();
-      var b2ShapeCastInput = (function() {
+      }();
+      var b2ShapeCastInput = function() {
         function b2ShapeCastInput() {
           this.proxyA = new b2DistanceProxy();
           this.proxyB = new b2DistanceProxy();
@@ -96021,8 +96047,8 @@
           this.translationB = new b2Vec2();
         }
         return b2ShapeCastInput;
-      })();
-      var b2ShapeCastOutput = (function() {
+      }();
+      var b2ShapeCastOutput = function() {
         function b2ShapeCastOutput() {
           this.point = new b2Vec2();
           this.normal = new b2Vec2();
@@ -96030,7 +96056,7 @@
           this.iterations = 0;
         }
         return b2ShapeCastOutput;
-      })();
+      }();
       exports.b2_gjkCalls = 0;
       exports.b2_gjkIters = 0;
       exports.b2_gjkMaxIters = 0;
@@ -96039,7 +96065,7 @@
         exports.b2_gjkIters = 0;
         exports.b2_gjkMaxIters = 0;
       }
-      var b2SimplexVertex = (function() {
+      var b2SimplexVertex = function() {
         function b2SimplexVertex() {
           this.wA = new b2Vec2();
           this.wB = new b2Vec2();
@@ -96058,8 +96084,8 @@
           return this;
         };
         return b2SimplexVertex;
-      })();
-      var b2Simplex = (function() {
+      }();
+      var b2Simplex = function() {
         function b2Simplex() {
           this.m_v1 = new b2SimplexVertex();
           this.m_v2 = new b2SimplexVertex();
@@ -96274,7 +96300,7 @@
         b2Simplex.s_e13 = new b2Vec2();
         b2Simplex.s_e23 = new b2Vec2();
         return b2Simplex;
-      })();
+      }();
       var b2Distance_s_simplex = new b2Simplex();
       var b2Distance_s_saveA = [ 0, 0, 0 ];
       var b2Distance_s_saveB = [ 0, 0, 0 ];
@@ -96446,7 +96472,7 @@
         b2ContactFeatureType[b2ContactFeatureType["e_vertex"] = 0] = "e_vertex";
         b2ContactFeatureType[b2ContactFeatureType["e_face"] = 1] = "e_face";
       })(exports.b2ContactFeatureType || (exports.b2ContactFeatureType = {}));
-      var b2ContactFeature = (function() {
+      var b2ContactFeature = function() {
         function b2ContactFeature() {
           this._key = 0;
           this._key_invalid = false;
@@ -96519,8 +96545,8 @@
           configurable: true
         });
         return b2ContactFeature;
-      })();
-      var b2ContactID = (function() {
+      }();
+      var b2ContactID = function() {
         function b2ContactID() {
           this.cf = new b2ContactFeature();
         }
@@ -96542,8 +96568,8 @@
           configurable: true
         });
         return b2ContactID;
-      })();
-      var b2ManifoldPoint = (function() {
+      }();
+      var b2ManifoldPoint = function() {
         function b2ManifoldPoint() {
           this.localPoint = new b2Vec2();
           this.normalImpulse = 0;
@@ -96551,9 +96577,9 @@
           this.id = new b2ContactID();
         }
         b2ManifoldPoint.MakeArray = function(length) {
-          return b2MakeArray(length, (function(i) {
+          return b2MakeArray(length, function(i) {
             return new b2ManifoldPoint();
-          }));
+          });
         };
         b2ManifoldPoint.prototype.Reset = function() {
           this.localPoint.SetZero();
@@ -96569,14 +96595,14 @@
           return this;
         };
         return b2ManifoldPoint;
-      })();
+      }();
       (function(b2ManifoldType) {
         b2ManifoldType[b2ManifoldType["e_unknown"] = -1] = "e_unknown";
         b2ManifoldType[b2ManifoldType["e_circles"] = 0] = "e_circles";
         b2ManifoldType[b2ManifoldType["e_faceA"] = 1] = "e_faceA";
         b2ManifoldType[b2ManifoldType["e_faceB"] = 2] = "e_faceB";
       })(exports.b2ManifoldType || (exports.b2ManifoldType = {}));
-      var b2Manifold = (function() {
+      var b2Manifold = function() {
         function b2Manifold() {
           this.points = b2ManifoldPoint.MakeArray(b2_maxManifoldPoints);
           this.localNormal = new b2Vec2();
@@ -96603,8 +96629,8 @@
           return new b2Manifold().Copy(this);
         };
         return b2Manifold;
-      })();
-      var b2WorldManifold = (function() {
+      }();
+      var b2WorldManifold = function() {
         function b2WorldManifold() {
           this.normal = new b2Vec2();
           this.points = b2Vec2.MakeArray(b2_maxManifoldPoints);
@@ -96658,7 +96684,7 @@
         b2WorldManifold.Initialize_s_planePoint = new b2Vec2();
         b2WorldManifold.Initialize_s_clipPoint = new b2Vec2();
         return b2WorldManifold;
-      })();
+      }();
       (function(b2PointState) {
         b2PointState[b2PointState["b2_nullState"] = 0] = "b2_nullState";
         b2PointState[b2PointState["b2_addState"] = 1] = "b2_addState";
@@ -96688,15 +96714,15 @@
         }
         for (;i < b2_maxManifoldPoints; ++i) state2[i] = exports.b2PointState.b2_nullState;
       }
-      var b2ClipVertex = (function() {
+      var b2ClipVertex = function() {
         function b2ClipVertex() {
           this.v = new b2Vec2();
           this.id = new b2ContactID();
         }
         b2ClipVertex.MakeArray = function(length) {
-          return b2MakeArray(length, (function(i) {
+          return b2MakeArray(length, function(i) {
             return new b2ClipVertex();
-          }));
+          });
         };
         b2ClipVertex.prototype.Copy = function(other) {
           this.v.Copy(other.v);
@@ -96704,8 +96730,8 @@
           return this;
         };
         return b2ClipVertex;
-      })();
-      var b2RayCastInput = (function() {
+      }();
+      var b2RayCastInput = function() {
         function b2RayCastInput() {
           this.p1 = new b2Vec2();
           this.p2 = new b2Vec2();
@@ -96718,8 +96744,8 @@
           return this;
         };
         return b2RayCastInput;
-      })();
-      var b2RayCastOutput = (function() {
+      }();
+      var b2RayCastOutput = function() {
         function b2RayCastOutput() {
           this.normal = new b2Vec2();
           this.fraction = 0;
@@ -96730,8 +96756,8 @@
           return this;
         };
         return b2RayCastOutput;
-      })();
-      var b2AABB = (function() {
+      }();
+      var b2AABB = function() {
         function b2AABB() {
           this.lowerBound = new b2Vec2();
           this.upperBound = new b2Vec2();
@@ -96858,7 +96884,7 @@
           return true;
         };
         return b2AABB;
-      })();
+      }();
       function b2TestOverlapAABB(a, b) {
         var d1_x = b.lowerBound.x - a.upperBound.x;
         var d1_y = b.lowerBound.y - a.upperBound.y;
@@ -96910,7 +96936,7 @@
         if (null === value) throw new Error();
         return value;
       }
-      var b2TreeNode = (function() {
+      var b2TreeNode = function() {
         function b2TreeNode(id) {
           void 0 === id && (id = 0);
           this.m_id = 0;
@@ -96925,8 +96951,8 @@
           return null === this.child1;
         };
         return b2TreeNode;
-      })();
-      var b2DynamicTree = (function() {
+      }();
+      var b2DynamicTree = function() {
         function b2DynamicTree() {
           this.m_root = null;
           this.m_freeList = null;
@@ -97310,15 +97336,15 @@
         b2DynamicTree.s_aabb = new b2AABB();
         b2DynamicTree.s_node_id = 0;
         return b2DynamicTree;
-      })();
-      var b2Pair = (function() {
+      }();
+      var b2Pair = function() {
         function b2Pair(proxyA, proxyB) {
           this.proxyA = proxyA;
           this.proxyB = proxyB;
         }
         return b2Pair;
-      })();
-      var b2BroadPhase = (function() {
+      }();
+      var b2BroadPhase = function() {
         function b2BroadPhase() {
           this.m_tree = new b2DynamicTree();
           this.m_proxyCount = 0;
@@ -97355,7 +97381,7 @@
             var queryProxy = this_1.m_moveBuffer[i_1];
             if (null === queryProxy) return "continue";
             var fatAABB = queryProxy.aabb;
-            this_1.m_tree.Query(fatAABB, (function(proxy) {
+            this_1.m_tree.Query(fatAABB, function(proxy) {
               if (proxy.m_id === queryProxy.m_id) return true;
               var proxyA;
               var proxyB;
@@ -97373,7 +97399,7 @@
               }
               ++_this.m_pairCount;
               return true;
-            }));
+            });
           };
           var this_1 = this;
           for (var i_1 = 0; i_1 < this.m_moveCount; ++i_1) _loop_1(i_1);
@@ -97424,7 +97450,7 @@
           this.m_moveBuffer[i] = null;
         };
         return b2BroadPhase;
-      })();
+      }();
       function b2PairLessThan(pair1, pair2) {
         if (pair1.proxyA.m_id === pair2.proxyA.m_id) return pair1.proxyB.m_id - pair2.proxyB.m_id;
         return pair1.proxyA.m_id - pair2.proxyA.m_id;
@@ -97452,7 +97478,7 @@
       var b2TimeOfImpact_s_normal = new b2Vec2();
       var b2TimeOfImpact_s_axisA = new b2Vec2();
       var b2TimeOfImpact_s_axisB = new b2Vec2();
-      var b2TOIInput = (function() {
+      var b2TOIInput = function() {
         function b2TOIInput() {
           this.proxyA = new b2DistanceProxy();
           this.proxyB = new b2DistanceProxy();
@@ -97461,7 +97487,7 @@
           this.tMax = 0;
         }
         return b2TOIInput;
-      })();
+      }();
       (function(b2TOIOutputState) {
         b2TOIOutputState[b2TOIOutputState["e_unknown"] = 0] = "e_unknown";
         b2TOIOutputState[b2TOIOutputState["e_failed"] = 1] = "e_failed";
@@ -97469,20 +97495,20 @@
         b2TOIOutputState[b2TOIOutputState["e_touching"] = 3] = "e_touching";
         b2TOIOutputState[b2TOIOutputState["e_separated"] = 4] = "e_separated";
       })(exports.b2TOIOutputState || (exports.b2TOIOutputState = {}));
-      var b2TOIOutput = (function() {
+      var b2TOIOutput = function() {
         function b2TOIOutput() {
           this.state = exports.b2TOIOutputState.e_unknown;
           this.t = 0;
         }
         return b2TOIOutput;
-      })();
+      }();
       (function(b2SeparationFunctionType) {
         b2SeparationFunctionType[b2SeparationFunctionType["e_unknown"] = -1] = "e_unknown";
         b2SeparationFunctionType[b2SeparationFunctionType["e_points"] = 0] = "e_points";
         b2SeparationFunctionType[b2SeparationFunctionType["e_faceA"] = 1] = "e_faceA";
         b2SeparationFunctionType[b2SeparationFunctionType["e_faceB"] = 2] = "e_faceB";
       })(exports.b2SeparationFunctionType || (exports.b2SeparationFunctionType = {}));
-      var b2SeparationFunction = (function() {
+      var b2SeparationFunction = function() {
         function b2SeparationFunction() {
           this.m_sweepA = new b2Sweep();
           this.m_sweepB = new b2Sweep();
@@ -97625,7 +97651,7 @@
           }
         };
         return b2SeparationFunction;
-      })();
+      }();
       var b2TimeOfImpact_s_timer = new b2Timer();
       var b2TimeOfImpact_s_cache = new b2SimplexCache();
       var b2TimeOfImpact_s_distanceInput = new b2DistanceInput();
@@ -98115,23 +98141,23 @@
         manifold.points[0].id.Copy(id);
         manifold.points[0].localPoint.Copy(circleB.m_p);
       }
-      var b2EPAxis = (function() {
+      var b2EPAxis = function() {
         function b2EPAxis() {
           this.type = 0;
           this.index = 0;
           this.separation = 0;
         }
         return b2EPAxis;
-      })();
-      var b2TempPolygon = (function() {
+      }();
+      var b2TempPolygon = function() {
         function b2TempPolygon() {
           this.vertices = b2Vec2.MakeArray(b2_maxPolygonVertices);
           this.normals = b2Vec2.MakeArray(b2_maxPolygonVertices);
           this.count = 0;
         }
         return b2TempPolygon;
-      })();
-      var b2ReferenceFace = (function() {
+      }();
+      var b2ReferenceFace = function() {
         function b2ReferenceFace() {
           this.i1 = 0;
           this.i2 = 0;
@@ -98144,8 +98170,8 @@
           this.sideOffset2 = 0;
         }
         return b2ReferenceFace;
-      })();
-      var b2EPCollider = (function() {
+      }();
+      var b2EPCollider = function() {
         function b2EPCollider() {
           this.m_polygonB = new b2TempPolygon();
           this.m_xf = new b2Transform();
@@ -98462,20 +98488,20 @@
         b2EPCollider.s_n = new b2Vec2();
         b2EPCollider.s_perp = new b2Vec2();
         return b2EPCollider;
-      })();
+      }();
       var b2CollideEdgeAndPolygon_s_collider = new b2EPCollider();
       function b2CollideEdgeAndPolygon(manifold, edgeA, xfA, polygonB, xfB) {
         var collider = b2CollideEdgeAndPolygon_s_collider;
         collider.Collide(manifold, edgeA, xfA, polygonB, xfB);
       }
-      var b2MassData = (function() {
+      var b2MassData = function() {
         function b2MassData() {
           this.mass = 0;
           this.center = new b2Vec2(0, 0);
           this.I = 0;
         }
         return b2MassData;
-      })();
+      }();
       (function(b2ShapeType) {
         b2ShapeType[b2ShapeType["e_unknown"] = -1] = "e_unknown";
         b2ShapeType[b2ShapeType["e_circleShape"] = 0] = "e_circleShape";
@@ -98484,7 +98510,7 @@
         b2ShapeType[b2ShapeType["e_chainShape"] = 3] = "e_chainShape";
         b2ShapeType[b2ShapeType["e_shapeTypeCount"] = 4] = "e_shapeTypeCount";
       })(exports.b2ShapeType || (exports.b2ShapeType = {}));
-      var b2Shape = (function() {
+      var b2Shape = function() {
         function b2Shape(type, radius) {
           this.m_type = exports.b2ShapeType.e_unknown;
           this.m_radius = 0;
@@ -98499,7 +98525,7 @@
           return this.m_type;
         };
         return b2Shape;
-      })();
+      }();
       var extendStatics = Object.setPrototypeOf || {
         __proto__: []
       } instanceof Array && function(d, b) {
@@ -98514,7 +98540,7 @@
         }
         d.prototype = null === b ? Object.create(b) : (__.prototype = b.prototype, new __());
       }
-      var b2CircleShape = (function(_super) {
+      var b2CircleShape = function(_super) {
         __extends(b2CircleShape, _super);
         function b2CircleShape(radius) {
           void 0 === radius && (radius = 0);
@@ -98613,8 +98639,8 @@
         b2CircleShape.RayCast_s_r = new b2Vec2();
         b2CircleShape.ComputeAABB_s_p = new b2Vec2();
         return b2CircleShape;
-      })(b2Shape);
-      var b2PolygonShape = (function(_super) {
+      }(b2Shape);
+      var b2PolygonShape = function(_super) {
         __extends(b2PolygonShape, _super);
         function b2PolygonShape() {
           var _this = _super.call(this, exports.b2ShapeType.e_polygonShape, b2_polygonRadius) || this;
@@ -98970,8 +98996,8 @@
         b2PolygonShape.ComputeCentroid_s_e1 = new b2Vec2();
         b2PolygonShape.ComputeCentroid_s_e2 = new b2Vec2();
         return b2PolygonShape;
-      })(b2Shape);
-      var b2EdgeShape = (function(_super) {
+      }(b2Shape);
+      var b2EdgeShape = function(_super) {
         __extends(b2EdgeShape, _super);
         function b2EdgeShape() {
           var _this = _super.call(this, exports.b2ShapeType.e_edgeShape, b2_polygonRadius) || this;
@@ -99094,8 +99120,8 @@
         b2EdgeShape.ComputeAABB_s_v1 = new b2Vec2();
         b2EdgeShape.ComputeAABB_s_v2 = new b2Vec2();
         return b2EdgeShape;
-      })(b2Shape);
-      var b2ChainShape = (function(_super) {
+      }(b2Shape);
+      var b2ChainShape = function(_super) {
         __extends(b2ChainShape, _super);
         function b2ChainShape() {
           var _this = _super.call(this, exports.b2ShapeType.e_chainShape, b2_polygonRadius) || this;
@@ -99231,8 +99257,8 @@
         b2ChainShape.ComputeAABB_s_v1 = new b2Vec2();
         b2ChainShape.ComputeAABB_s_v2 = new b2Vec2();
         return b2ChainShape;
-      })(b2Shape);
-      var b2Filter = (function() {
+      }(b2Shape);
+      var b2Filter = function() {
         function b2Filter() {
           this.categoryBits = 1;
           this.maskBits = 65535;
@@ -99249,8 +99275,8 @@
         };
         b2Filter.DEFAULT = new b2Filter();
         return b2Filter;
-      })();
-      var b2FixtureDef = (function() {
+      }();
+      var b2FixtureDef = function() {
         function b2FixtureDef() {
           this.userData = null;
           this.friction = .2;
@@ -99260,16 +99286,16 @@
           this.filter = new b2Filter();
         }
         return b2FixtureDef;
-      })();
-      var b2FixtureProxy = (function() {
+      }();
+      var b2FixtureProxy = function() {
         function b2FixtureProxy(fixture) {
           this.aabb = new b2AABB();
           this.childIndex = 0;
           this.fixture = fixture;
         }
         return b2FixtureProxy;
-      })();
-      var b2Fixture = (function() {
+      }();
+      var b2Fixture = function() {
         function b2Fixture(def, body) {
           this.m_density = 0;
           this.m_next = null;
@@ -99389,9 +99415,9 @@
           this.m_next = null;
           this.m_filter.Copy(b2Maybe(def.filter, b2Filter.DEFAULT));
           this.m_isSensor = b2Maybe(def.isSensor, false);
-          this.m_proxies = b2MakeArray(this.m_shape.GetChildCount(), (function(i) {
+          this.m_proxies = b2MakeArray(this.m_shape.GetChildCount(), function(i) {
             return new b2FixtureProxy(_this);
-          }));
+          });
           this.m_proxyCount = 0;
           this.m_density = b2Maybe(def.density, 0);
         };
@@ -99439,14 +99465,14 @@
         b2Fixture.Synchronize_s_aabb2 = new b2AABB();
         b2Fixture.Synchronize_s_displacement = new b2Vec2();
         return b2Fixture;
-      })();
+      }();
       (function(b2BodyType) {
         b2BodyType[b2BodyType["b2_unknown"] = -1] = "b2_unknown";
         b2BodyType[b2BodyType["b2_staticBody"] = 0] = "b2_staticBody";
         b2BodyType[b2BodyType["b2_kinematicBody"] = 1] = "b2_kinematicBody";
         b2BodyType[b2BodyType["b2_dynamicBody"] = 2] = "b2_dynamicBody";
       })(exports.b2BodyType || (exports.b2BodyType = {}));
-      var b2BodyDef = (function() {
+      var b2BodyDef = function() {
         function b2BodyDef() {
           this.type = exports.b2BodyType.b2_staticBody;
           this.position = new b2Vec2(0, 0);
@@ -99464,8 +99490,8 @@
           this.gravityScale = 1;
         }
         return b2BodyDef;
-      })();
-      var b2Body = (function() {
+      }();
+      var b2Body = function() {
         function b2Body(bd, world) {
           this.m_type = exports.b2BodyType.b2_staticBody;
           this.m_islandFlag = false;
@@ -100005,7 +100031,7 @@
         b2Body.ResetMassData_s_massData = new b2MassData();
         b2Body.SynchronizeFixtures_s_xf1 = new b2Transform();
         return b2Body;
-      })();
+      }();
       (function(b2JointType) {
         b2JointType[b2JointType["e_unknownJoint"] = 0] = "e_unknownJoint";
         b2JointType[b2JointType["e_revoluteJoint"] = 1] = "e_revoluteJoint";
@@ -100027,7 +100053,7 @@
         b2LimitState[b2LimitState["e_atUpperLimit"] = 2] = "e_atUpperLimit";
         b2LimitState[b2LimitState["e_equalLimits"] = 3] = "e_equalLimits";
       })(exports.b2LimitState || (exports.b2LimitState = {}));
-      var b2Jacobian = (function() {
+      var b2Jacobian = function() {
         function b2Jacobian() {
           this.linear = new b2Vec2();
           this.angularA = 0;
@@ -100046,8 +100072,8 @@
           return this;
         };
         return b2Jacobian;
-      })();
-      var b2JointEdge = (function() {
+      }();
+      var b2JointEdge = function() {
         function b2JointEdge(joint, other) {
           this.prev = null;
           this.next = null;
@@ -100055,8 +100081,8 @@
           this.other = other;
         }
         return b2JointEdge;
-      })();
-      var b2JointDef = (function() {
+      }();
+      var b2JointDef = function() {
         function b2JointDef(type) {
           this.type = exports.b2JointType.e_unknownJoint;
           this.userData = null;
@@ -100064,8 +100090,8 @@
           this.type = type;
         }
         return b2JointDef;
-      })();
-      var b2Joint = (function() {
+      }();
+      var b2Joint = function() {
         function b2Joint(def) {
           this.m_type = exports.b2JointType.e_unknownJoint;
           this.m_prev = null;
@@ -100111,8 +100137,8 @@
         };
         b2Joint.prototype.ShiftOrigin = function(newOrigin) {};
         return b2Joint;
-      })();
-      var b2DistanceJointDef = (function(_super) {
+      }();
+      var b2DistanceJointDef = function(_super) {
         __extends(b2DistanceJointDef, _super);
         function b2DistanceJointDef() {
           var _this = _super.call(this, exports.b2JointType.e_distanceJoint) || this;
@@ -100133,8 +100159,8 @@
           this.dampingRatio = 0;
         };
         return b2DistanceJointDef;
-      })(b2JointDef);
-      var b2DistanceJoint = (function(_super) {
+      }(b2JointDef);
+      var b2DistanceJoint = function(_super) {
         __extends(b2DistanceJoint, _super);
         function b2DistanceJoint(def) {
           var _this = _super.call(this, def) || this;
@@ -100326,8 +100352,8 @@
         b2DistanceJoint.SolveVelocityConstraints_s_P = new b2Vec2();
         b2DistanceJoint.SolvePositionConstraints_s_P = new b2Vec2();
         return b2DistanceJoint;
-      })(b2Joint);
-      var b2AreaJointDef = (function(_super) {
+      }(b2Joint);
+      var b2AreaJointDef = function(_super) {
         __extends(b2AreaJointDef, _super);
         function b2AreaJointDef() {
           var _this = _super.call(this, exports.b2JointType.e_areaJoint) || this;
@@ -100341,8 +100367,8 @@
           1 === this.bodies.length ? this.bodyA = body : 2 === this.bodies.length && (this.bodyB = body);
         };
         return b2AreaJointDef;
-      })(b2JointDef);
-      var b2AreaJoint = (function(_super) {
+      }(b2JointDef);
+      var b2AreaJoint = function(_super) {
         __extends(b2AreaJoint, _super);
         function b2AreaJoint(def) {
           var _this = _super.call(this, def) || this;
@@ -100479,8 +100505,8 @@
           return done;
         };
         return b2AreaJoint;
-      })(b2Joint);
-      var b2FrictionJointDef = (function(_super) {
+      }(b2Joint);
+      var b2FrictionJointDef = function(_super) {
         __extends(b2FrictionJointDef, _super);
         function b2FrictionJointDef() {
           var _this = _super.call(this, exports.b2JointType.e_frictionJoint) || this;
@@ -100497,8 +100523,8 @@
           this.bodyB.GetLocalPoint(anchor, this.localAnchorB);
         };
         return b2FrictionJointDef;
-      })(b2JointDef);
-      var b2FrictionJoint = (function(_super) {
+      }(b2JointDef);
+      var b2FrictionJoint = function(_super) {
         __extends(b2FrictionJoint, _super);
         function b2FrictionJoint(def) {
           var _this = _super.call(this, def) || this;
@@ -100663,8 +100689,8 @@
         b2FrictionJoint.SolveVelocityConstraints_s_impulseV = new b2Vec2();
         b2FrictionJoint.SolveVelocityConstraints_s_oldImpulseV = new b2Vec2();
         return b2FrictionJoint;
-      })(b2Joint);
-      var b2GearJointDef = (function(_super) {
+      }(b2Joint);
+      var b2GearJointDef = function(_super) {
         __extends(b2GearJointDef, _super);
         function b2GearJointDef() {
           var _this = _super.call(this, exports.b2JointType.e_gearJoint) || this;
@@ -100672,8 +100698,8 @@
           return _this;
         }
         return b2GearJointDef;
-      })(b2JointDef);
-      var b2GearJoint = (function(_super) {
+      }(b2JointDef);
+      var b2GearJoint = function(_super) {
         __extends(b2GearJoint, _super);
         function b2GearJoint(def) {
           var _this = _super.call(this, def) || this;
@@ -100999,8 +101025,8 @@
         b2GearJoint.SolvePositionConstraints_s_rC = new b2Vec2();
         b2GearJoint.SolvePositionConstraints_s_rD = new b2Vec2();
         return b2GearJoint;
-      })(b2Joint);
-      var b2MotorJointDef = (function(_super) {
+      }(b2Joint);
+      var b2MotorJointDef = function(_super) {
         __extends(b2MotorJointDef, _super);
         function b2MotorJointDef() {
           var _this = _super.call(this, exports.b2JointType.e_motorJoint) || this;
@@ -101020,8 +101046,8 @@
           this.angularOffset = angleB - angleA;
         };
         return b2MotorJointDef;
-      })(b2JointDef);
-      var b2MotorJoint = (function(_super) {
+      }(b2JointDef);
+      var b2MotorJoint = function(_super) {
         __extends(b2MotorJoint, _super);
         function b2MotorJoint(def) {
           var _this = _super.call(this, def) || this;
@@ -101210,8 +101236,8 @@
         b2MotorJoint.SolveVelocityConstraints_s_impulse_v2 = new b2Vec2();
         b2MotorJoint.SolveVelocityConstraints_s_oldImpulse_v2 = new b2Vec2();
         return b2MotorJoint;
-      })(b2Joint);
-      var b2MouseJointDef = (function(_super) {
+      }(b2Joint);
+      var b2MouseJointDef = function(_super) {
         __extends(b2MouseJointDef, _super);
         function b2MouseJointDef() {
           var _this = _super.call(this, exports.b2JointType.e_mouseJoint) || this;
@@ -101222,8 +101248,8 @@
           return _this;
         }
         return b2MouseJointDef;
-      })(b2JointDef);
-      var b2MouseJoint = (function(_super) {
+      }(b2JointDef);
+      var b2MouseJoint = function(_super) {
         __extends(b2MouseJoint, _super);
         function b2MouseJoint(def) {
           var _this = _super.call(this, def) || this;
@@ -101360,8 +101386,8 @@
         b2MouseJoint.SolveVelocityConstraints_s_impulse = new b2Vec2();
         b2MouseJoint.SolveVelocityConstraints_s_oldImpulse = new b2Vec2();
         return b2MouseJoint;
-      })(b2Joint);
-      var b2PrismaticJointDef = (function(_super) {
+      }(b2Joint);
+      var b2PrismaticJointDef = function(_super) {
         __extends(b2PrismaticJointDef, _super);
         function b2PrismaticJointDef() {
           var _this = _super.call(this, exports.b2JointType.e_prismaticJoint) || this;
@@ -101386,8 +101412,8 @@
           this.referenceAngle = this.bodyB.GetAngle() - this.bodyA.GetAngle();
         };
         return b2PrismaticJointDef;
-      })(b2JointDef);
-      var b2PrismaticJoint = (function(_super) {
+      }(b2JointDef);
+      var b2PrismaticJoint = function(_super) {
         __extends(b2PrismaticJoint, _super);
         function b2PrismaticJoint(def) {
           var _this = _super.call(this, def) || this;
@@ -101808,9 +101834,9 @@
         b2PrismaticJoint.GetJointTranslation_s_d = new b2Vec2();
         b2PrismaticJoint.GetJointTranslation_s_axis = new b2Vec2();
         return b2PrismaticJoint;
-      })(b2Joint);
+      }(b2Joint);
       var b2_minPulleyLength = 2;
-      var b2PulleyJointDef = (function(_super) {
+      var b2PulleyJointDef = function(_super) {
         __extends(b2PulleyJointDef, _super);
         function b2PulleyJointDef() {
           var _this = _super.call(this, exports.b2JointType.e_pulleyJoint) || this;
@@ -101836,8 +101862,8 @@
           this.ratio = r;
         };
         return b2PulleyJointDef;
-      })(b2JointDef);
-      var b2PulleyJoint = (function(_super) {
+      }(b2JointDef);
+      var b2PulleyJoint = function(_super) {
         __extends(b2PulleyJoint, _super);
         function b2PulleyJoint(def) {
           var _this = _super.call(this, def) || this;
@@ -102048,8 +102074,8 @@
         b2PulleyJoint.GetCurrentLengthA_s_p = new b2Vec2();
         b2PulleyJoint.GetCurrentLengthB_s_p = new b2Vec2();
         return b2PulleyJoint;
-      })(b2Joint);
-      var b2RevoluteJointDef = (function(_super) {
+      }(b2Joint);
+      var b2RevoluteJointDef = function(_super) {
         __extends(b2RevoluteJointDef, _super);
         function b2RevoluteJointDef() {
           var _this = _super.call(this, exports.b2JointType.e_revoluteJoint) || this;
@@ -102072,8 +102098,8 @@
           this.referenceAngle = this.bodyB.GetAngle() - this.bodyA.GetAngle();
         };
         return b2RevoluteJointDef;
-      })(b2JointDef);
-      var b2RevoluteJoint = (function(_super) {
+      }(b2JointDef);
+      var b2RevoluteJoint = function(_super) {
         __extends(b2RevoluteJoint, _super);
         function b2RevoluteJoint(def) {
           var _this = _super.call(this, def) || this;
@@ -102420,8 +102446,8 @@
         b2RevoluteJoint.SolvePositionConstraints_s_C_v2 = new b2Vec2();
         b2RevoluteJoint.SolvePositionConstraints_s_impulse = new b2Vec2();
         return b2RevoluteJoint;
-      })(b2Joint);
-      var b2RopeJointDef = (function(_super) {
+      }(b2Joint);
+      var b2RopeJointDef = function(_super) {
         __extends(b2RopeJointDef, _super);
         function b2RopeJointDef() {
           var _this = _super.call(this, exports.b2JointType.e_ropeJoint) || this;
@@ -102431,8 +102457,8 @@
           return _this;
         }
         return b2RopeJointDef;
-      })(b2JointDef);
-      var b2RopeJoint = (function(_super) {
+      }(b2JointDef);
+      var b2RopeJoint = function(_super) {
         __extends(b2RopeJoint, _super);
         function b2RopeJoint(def) {
           var _this = _super.call(this, def) || this;
@@ -102602,8 +102628,8 @@
         b2RopeJoint.SolveVelocityConstraints_s_P = new b2Vec2();
         b2RopeJoint.SolvePositionConstraints_s_P = new b2Vec2();
         return b2RopeJoint;
-      })(b2Joint);
-      var b2WeldJointDef = (function(_super) {
+      }(b2Joint);
+      var b2WeldJointDef = function(_super) {
         __extends(b2WeldJointDef, _super);
         function b2WeldJointDef() {
           var _this = _super.call(this, exports.b2JointType.e_weldJoint) || this;
@@ -102622,8 +102648,8 @@
           this.referenceAngle = this.bodyB.GetAngle() - this.bodyA.GetAngle();
         };
         return b2WeldJointDef;
-      })(b2JointDef);
-      var b2WeldJoint = (function(_super) {
+      }(b2JointDef);
+      var b2WeldJoint = function(_super) {
         __extends(b2WeldJoint, _super);
         function b2WeldJoint(def) {
           var _this = _super.call(this, def) || this;
@@ -102863,8 +102889,8 @@
         b2WeldJoint.SolvePositionConstraints_s_P = new b2Vec2();
         b2WeldJoint.SolvePositionConstraints_s_impulse = new b2Vec3();
         return b2WeldJoint;
-      })(b2Joint);
-      var b2WheelJointDef = (function(_super) {
+      }(b2Joint);
+      var b2WheelJointDef = function(_super) {
         __extends(b2WheelJointDef, _super);
         function b2WheelJointDef() {
           var _this = _super.call(this, exports.b2JointType.e_wheelJoint) || this;
@@ -102886,8 +102912,8 @@
           this.bodyA.GetLocalVector(axis, this.localAxisA);
         };
         return b2WheelJointDef;
-      })(b2JointDef);
-      var b2WheelJoint = (function(_super) {
+      }(b2JointDef);
+      var b2WheelJoint = function(_super) {
         __extends(b2WheelJoint, _super);
         function b2WheelJoint(def) {
           var _this = _super.call(this, def) || this;
@@ -103228,22 +103254,22 @@
         b2WheelJoint.SolvePositionConstraints_s_d = new b2Vec2();
         b2WheelJoint.SolvePositionConstraints_s_P = new b2Vec2();
         return b2WheelJoint;
-      })(b2Joint);
+      }(b2Joint);
       function b2MixFriction(friction1, friction2) {
         return b2Sqrt(friction1 * friction2);
       }
       function b2MixRestitution(restitution1, restitution2) {
         return restitution1 > restitution2 ? restitution1 : restitution2;
       }
-      var b2ContactEdge = (function() {
+      var b2ContactEdge = function() {
         function b2ContactEdge(contact) {
           this.prev = null;
           this.next = null;
           this.contact = contact;
         }
         return b2ContactEdge;
-      })();
-      var b2Contact = (function() {
+      }();
+      var b2Contact = function() {
         function b2Contact() {
           this.m_islandFlag = false;
           this.m_touchingFlag = false;
@@ -103412,8 +103438,8 @@
         b2Contact.ComputeTOI_s_input = new b2TOIInput();
         b2Contact.ComputeTOI_s_output = new b2TOIOutput();
         return b2Contact;
-      })();
-      var b2CircleContact = (function(_super) {
+      }();
+      var b2CircleContact = function(_super) {
         __extends(b2CircleContact, _super);
         function b2CircleContact() {
           return _super.call(this) || this;
@@ -103431,8 +103457,8 @@
           b2CollideCircles(manifold, shapeA, xfA, shapeB, xfB);
         };
         return b2CircleContact;
-      })(b2Contact);
-      var b2PolygonContact = (function(_super) {
+      }(b2Contact);
+      var b2PolygonContact = function(_super) {
         __extends(b2PolygonContact, _super);
         function b2PolygonContact() {
           return _super.call(this) || this;
@@ -103450,8 +103476,8 @@
           b2CollidePolygons(manifold, shapeA, xfA, shapeB, xfB);
         };
         return b2PolygonContact;
-      })(b2Contact);
-      var b2PolygonAndCircleContact = (function(_super) {
+      }(b2Contact);
+      var b2PolygonAndCircleContact = function(_super) {
         __extends(b2PolygonAndCircleContact, _super);
         function b2PolygonAndCircleContact() {
           return _super.call(this) || this;
@@ -103469,8 +103495,8 @@
           b2CollidePolygonAndCircle(manifold, shapeA, xfA, shapeB, xfB);
         };
         return b2PolygonAndCircleContact;
-      })(b2Contact);
-      var b2EdgeAndCircleContact = (function(_super) {
+      }(b2Contact);
+      var b2EdgeAndCircleContact = function(_super) {
         __extends(b2EdgeAndCircleContact, _super);
         function b2EdgeAndCircleContact() {
           return _super.call(this) || this;
@@ -103488,8 +103514,8 @@
           b2CollideEdgeAndCircle(manifold, shapeA, xfA, shapeB, xfB);
         };
         return b2EdgeAndCircleContact;
-      })(b2Contact);
-      var b2EdgeAndPolygonContact = (function(_super) {
+      }(b2Contact);
+      var b2EdgeAndPolygonContact = function(_super) {
         __extends(b2EdgeAndPolygonContact, _super);
         function b2EdgeAndPolygonContact() {
           return _super.call(this) || this;
@@ -103507,8 +103533,8 @@
           b2CollideEdgeAndPolygon(manifold, shapeA, xfA, shapeB, xfB);
         };
         return b2EdgeAndPolygonContact;
-      })(b2Contact);
-      var b2ChainAndCircleContact = (function(_super) {
+      }(b2Contact);
+      var b2ChainAndCircleContact = function(_super) {
         __extends(b2ChainAndCircleContact, _super);
         function b2ChainAndCircleContact() {
           return _super.call(this) || this;
@@ -103530,8 +103556,8 @@
         };
         b2ChainAndCircleContact.Evaluate_s_edge = new b2EdgeShape();
         return b2ChainAndCircleContact;
-      })(b2Contact);
-      var b2ChainAndPolygonContact = (function(_super) {
+      }(b2Contact);
+      var b2ChainAndPolygonContact = function(_super) {
         __extends(b2ChainAndPolygonContact, _super);
         function b2ChainAndPolygonContact() {
           return _super.call(this) || this;
@@ -103553,16 +103579,16 @@
         };
         b2ChainAndPolygonContact.Evaluate_s_edge = new b2EdgeShape();
         return b2ChainAndPolygonContact;
-      })(b2Contact);
-      var b2ContactRegister = (function() {
+      }(b2Contact);
+      var b2ContactRegister = function() {
         function b2ContactRegister() {
           this.createFcn = null;
           this.destroyFcn = null;
           this.primary = false;
         }
         return b2ContactRegister;
-      })();
-      var b2ContactFactory = (function() {
+      }();
+      var b2ContactFactory = function() {
         function b2ContactFactory(allocator) {
           this.m_allocator = null;
           this.m_allocator = allocator;
@@ -103570,9 +103596,9 @@
         }
         b2ContactFactory.prototype.AddType = function(createFcn, destroyFcn, type1, type2) {
           var _this = this;
-          var pool = b2MakeArray(256, (function(i) {
+          var pool = b2MakeArray(256, function(i) {
             return createFcn(_this.m_allocator);
-          }));
+          });
           function poolCreateFcn(allocator) {
             return pool.pop() || createFcn(allocator);
           }
@@ -103626,16 +103652,16 @@
           reg.destroyFcn && reg.destroyFcn(contact, this.m_allocator);
         };
         return b2ContactFactory;
-      })();
-      var b2DestructionListener = (function() {
+      }();
+      var b2DestructionListener = function() {
         function b2DestructionListener() {}
         b2DestructionListener.prototype.SayGoodbyeJoint = function(joint) {};
         b2DestructionListener.prototype.SayGoodbyeFixture = function(fixture) {};
         b2DestructionListener.prototype.SayGoodbyeParticleGroup = function(group) {};
         b2DestructionListener.prototype.SayGoodbyeParticle = function(system, index) {};
         return b2DestructionListener;
-      })();
-      var b2ContactFilter = (function() {
+      }();
+      var b2ContactFilter = function() {
         function b2ContactFilter() {}
         b2ContactFilter.prototype.ShouldCollide = function(fixtureA, fixtureB) {
           var bodyA = fixtureA.GetBody();
@@ -103656,16 +103682,16 @@
         };
         b2ContactFilter.b2_defaultFilter = new b2ContactFilter();
         return b2ContactFilter;
-      })();
-      var b2ContactImpulse = (function() {
+      }();
+      var b2ContactImpulse = function() {
         function b2ContactImpulse() {
           this.normalImpulses = b2MakeNumberArray(b2_maxManifoldPoints);
           this.tangentImpulses = b2MakeNumberArray(b2_maxManifoldPoints);
           this.count = 0;
         }
         return b2ContactImpulse;
-      })();
-      var b2ContactListener = (function() {
+      }();
+      var b2ContactListener = function() {
         function b2ContactListener() {}
         b2ContactListener.prototype.BeginContact = function(contact) {};
         b2ContactListener.prototype.EndContact = function(contact) {};
@@ -103677,8 +103703,8 @@
         b2ContactListener.prototype.PostSolve = function(contact, impulse) {};
         b2ContactListener.b2_defaultListener = new b2ContactListener();
         return b2ContactListener;
-      })();
-      var b2QueryCallback = (function() {
+      }();
+      var b2QueryCallback = function() {
         function b2QueryCallback() {}
         b2QueryCallback.prototype.ReportFixture = function(fixture) {
           return true;
@@ -103690,8 +103716,8 @@
           return true;
         };
         return b2QueryCallback;
-      })();
-      var b2RayCastCallback = (function() {
+      }();
+      var b2RayCastCallback = function() {
         function b2RayCastCallback() {}
         b2RayCastCallback.prototype.ReportFixture = function(fixture, point, normal, fraction) {
           return fraction;
@@ -103703,8 +103729,8 @@
           return true;
         };
         return b2RayCastCallback;
-      })();
-      var b2ContactManager = (function() {
+      }();
+      var b2ContactManager = function() {
         function b2ContactManager() {
           this.m_broadPhase = new b2BroadPhase();
           this.m_contactList = null;
@@ -103767,9 +103793,9 @@
         };
         b2ContactManager.prototype.FindNewContacts = function() {
           var _this = this;
-          this.m_broadPhase.UpdatePairs((function(proxyA, proxyB) {
+          this.m_broadPhase.UpdatePairs(function(proxyA, proxyB) {
             _this.AddPair(proxyA, proxyB);
-          }));
+          });
         };
         b2ContactManager.prototype.Destroy = function(c) {
           var fixtureA = c.GetFixtureA();
@@ -103827,8 +103853,8 @@
           }
         };
         return b2ContactManager;
-      })();
-      var b2Profile = (function() {
+      }();
+      var b2Profile = function() {
         function b2Profile() {
           this.step = 0;
           this.collide = 0;
@@ -103851,8 +103877,8 @@
           return this;
         };
         return b2Profile;
-      })();
-      var b2TimeStep = (function() {
+      }();
+      var b2TimeStep = function() {
         function b2TimeStep() {
           this.dt = 0;
           this.inv_dt = 0;
@@ -103873,39 +103899,39 @@
           return this;
         };
         return b2TimeStep;
-      })();
-      var b2Position = (function() {
+      }();
+      var b2Position = function() {
         function b2Position() {
           this.c = new b2Vec2();
           this.a = 0;
         }
         b2Position.MakeArray = function(length) {
-          return b2MakeArray(length, (function(i) {
+          return b2MakeArray(length, function(i) {
             return new b2Position();
-          }));
+          });
         };
         return b2Position;
-      })();
-      var b2Velocity = (function() {
+      }();
+      var b2Velocity = function() {
         function b2Velocity() {
           this.v = new b2Vec2();
           this.w = 0;
         }
         b2Velocity.MakeArray = function(length) {
-          return b2MakeArray(length, (function(i) {
+          return b2MakeArray(length, function(i) {
             return new b2Velocity();
-          }));
+          });
         };
         return b2Velocity;
-      })();
-      var b2SolverData = (function() {
+      }();
+      var b2SolverData = function() {
         function b2SolverData() {
           this.step = new b2TimeStep();
         }
         return b2SolverData;
-      })();
+      }();
       var g_blockSolve = false;
-      var b2VelocityConstraintPoint = (function() {
+      var b2VelocityConstraintPoint = function() {
         function b2VelocityConstraintPoint() {
           this.rA = new b2Vec2();
           this.rB = new b2Vec2();
@@ -103916,13 +103942,13 @@
           this.velocityBias = 0;
         }
         b2VelocityConstraintPoint.MakeArray = function(length) {
-          return b2MakeArray(length, (function(i) {
+          return b2MakeArray(length, function(i) {
             return new b2VelocityConstraintPoint();
-          }));
+          });
         };
         return b2VelocityConstraintPoint;
-      })();
-      var b2ContactVelocityConstraint = (function() {
+      }();
+      var b2ContactVelocityConstraint = function() {
         function b2ContactVelocityConstraint() {
           this.points = b2VelocityConstraintPoint.MakeArray(b2_maxManifoldPoints);
           this.normal = new b2Vec2();
@@ -103942,13 +103968,13 @@
           this.contactIndex = 0;
         }
         b2ContactVelocityConstraint.MakeArray = function(length) {
-          return b2MakeArray(length, (function(i) {
+          return b2MakeArray(length, function(i) {
             return new b2ContactVelocityConstraint();
-          }));
+          });
         };
         return b2ContactVelocityConstraint;
-      })();
-      var b2ContactPositionConstraint = (function() {
+      }();
+      var b2ContactPositionConstraint = function() {
         function b2ContactPositionConstraint() {
           this.localPoints = b2Vec2.MakeArray(b2_maxManifoldPoints);
           this.localNormal = new b2Vec2();
@@ -103967,21 +103993,21 @@
           this.pointCount = 0;
         }
         b2ContactPositionConstraint.MakeArray = function(length) {
-          return b2MakeArray(length, (function(i) {
+          return b2MakeArray(length, function(i) {
             return new b2ContactPositionConstraint();
-          }));
+          });
         };
         return b2ContactPositionConstraint;
-      })();
-      var b2ContactSolverDef = (function() {
+      }();
+      var b2ContactSolverDef = function() {
         function b2ContactSolverDef() {
           this.step = new b2TimeStep();
           this.count = 0;
           this.allocator = null;
         }
         return b2ContactSolverDef;
-      })();
-      var b2PositionSolverManifold = (function() {
+      }();
+      var b2PositionSolverManifold = function() {
         function b2PositionSolverManifold() {
           this.normal = new b2Vec2();
           this.point = new b2Vec2();
@@ -104023,8 +104049,8 @@
         b2PositionSolverManifold.Initialize_s_planePoint = new b2Vec2();
         b2PositionSolverManifold.Initialize_s_clipPoint = new b2Vec2();
         return b2PositionSolverManifold;
-      })();
-      var b2ContactSolver = (function() {
+      }();
+      var b2ContactSolver = function() {
         function b2ContactSolver() {
           this.m_step = new b2TimeStep();
           this.m_allocator = null;
@@ -104495,8 +104521,8 @@
         b2ContactSolver.SolveTOIPositionConstraints_s_rB = new b2Vec2();
         b2ContactSolver.SolveTOIPositionConstraints_s_P = new b2Vec2();
         return b2ContactSolver;
-      })();
-      var b2Island = (function() {
+      }();
+      var b2Island = function() {
         function b2Island() {
           this.m_allocator = null;
           this.m_bodies = [];
@@ -104732,7 +104758,7 @@
         b2Island.s_translation = new b2Vec2();
         b2Island.s_impulse = new b2ContactImpulse();
         return b2Island;
-      })();
+      }();
       (function(b2ParticleFlag) {
         b2ParticleFlag[b2ParticleFlag["b2_waterParticle"] = 0] = "b2_waterParticle";
         b2ParticleFlag[b2ParticleFlag["b2_zombieParticle"] = 2] = "b2_zombieParticle";
@@ -104753,7 +104779,7 @@
         b2ParticleFlag[b2ParticleFlag["b2_fixtureContactFilterParticle"] = 65536] = "b2_fixtureContactFilterParticle";
         b2ParticleFlag[b2ParticleFlag["b2_particleContactFilterParticle"] = 131072] = "b2_particleContactFilterParticle";
       })(exports.b2ParticleFlag || (exports.b2ParticleFlag = {}));
-      var b2ParticleDef = (function() {
+      var b2ParticleDef = function() {
         function b2ParticleDef() {
           this.flags = 0;
           this.position = new b2Vec2();
@@ -104764,14 +104790,14 @@
           this.group = null;
         }
         return b2ParticleDef;
-      })();
+      }();
       function b2CalculateParticleIterations(gravity, radius, timeStep) {
         var B2_MAX_RECOMMENDED_PARTICLE_ITERATIONS = 8;
         var B2_RADIUS_THRESHOLD = .01;
         var iterations = Math.ceil(Math.sqrt(gravity / (B2_RADIUS_THRESHOLD * radius)) * timeStep);
         return b2Clamp(iterations, 1, B2_MAX_RECOMMENDED_PARTICLE_ITERATIONS);
       }
-      var b2ParticleHandle = (function() {
+      var b2ParticleHandle = function() {
         function b2ParticleHandle() {
           this.m_index = b2_invalidParticleIndex;
         }
@@ -104782,7 +104808,7 @@
           this.m_index = index;
         };
         return b2ParticleHandle;
-      })();
+      }();
       (function(b2ParticleGroupFlag) {
         b2ParticleGroupFlag[b2ParticleGroupFlag["b2_solidParticleGroup"] = 1] = "b2_solidParticleGroup";
         b2ParticleGroupFlag[b2ParticleGroupFlag["b2_rigidParticleGroup"] = 2] = "b2_rigidParticleGroup";
@@ -104791,7 +104817,7 @@
         b2ParticleGroupFlag[b2ParticleGroupFlag["b2_particleGroupNeedsUpdateDepth"] = 16] = "b2_particleGroupNeedsUpdateDepth";
         b2ParticleGroupFlag[b2ParticleGroupFlag["b2_particleGroupInternalMask"] = 24] = "b2_particleGroupInternalMask";
       })(exports.b2ParticleGroupFlag || (exports.b2ParticleGroupFlag = {}));
-      var b2ParticleGroupDef = (function() {
+      var b2ParticleGroupDef = function() {
         function b2ParticleGroupDef() {
           this.flags = 0;
           this.groupFlags = 0;
@@ -104809,8 +104835,8 @@
           this.group = null;
         }
         return b2ParticleGroupDef;
-      })();
-      var b2ParticleGroup = (function() {
+      }();
+      var b2ParticleGroup = function() {
         function b2ParticleGroup(system) {
           this.m_firstIndex = 0;
           this.m_lastIndex = 0;
@@ -104939,15 +104965,15 @@
         };
         b2ParticleGroup.GetLinearVelocityFromWorldPoint_s_t0 = new b2Vec2();
         return b2ParticleGroup;
-      })();
-      var b2StackQueue = (function() {
+      }();
+      var b2StackQueue = function() {
         function b2StackQueue(capacity) {
           this.m_front = 0;
           this.m_back = 0;
           this.m_capacity = 0;
-          this.m_buffer = b2MakeArray(capacity, (function(index) {
+          this.m_buffer = b2MakeArray(capacity, function(index) {
             return null;
-          }));
+          });
           this.m_capacity = capacity;
         }
         b2StackQueue.prototype.Push = function(item) {
@@ -104956,14 +104982,14 @@
             this.m_back -= this.m_front;
             this.m_front = 0;
             if (this.m_back >= this.m_capacity) if (this.m_capacity > 0) {
-              this.m_buffer.concat(b2MakeArray(this.m_capacity, (function(index) {
+              this.m_buffer.concat(b2MakeArray(this.m_capacity, function(index) {
                 return null;
-              })));
+              }));
               this.m_capacity *= 2;
             } else {
-              this.m_buffer.concat(b2MakeArray(1, (function(index) {
+              this.m_buffer.concat(b2MakeArray(1, function(index) {
                 return null;
-              })));
+              }));
               this.m_capacity = 1;
             }
           }
@@ -104983,17 +105009,17 @@
           return item;
         };
         return b2StackQueue;
-      })();
-      var b2VoronoiDiagram = (function() {
+      }();
+      var b2VoronoiDiagram = function() {
         function b2VoronoiDiagram(generatorCapacity) {
           this.m_generatorCapacity = 0;
           this.m_generatorCount = 0;
           this.m_countX = 0;
           this.m_countY = 0;
           this.m_diagram = [];
-          this.m_generatorBuffer = b2MakeArray(generatorCapacity, (function(index) {
+          this.m_generatorBuffer = b2MakeArray(generatorCapacity, function(index) {
             return new b2VoronoiDiagram.Generator();
-          }));
+          });
           this.m_generatorCapacity = generatorCapacity;
         }
         b2VoronoiDiagram.prototype.AddGenerator = function(center, tag, necessary) {
@@ -105108,18 +105134,18 @@
           }
         };
         return b2VoronoiDiagram;
-      })();
+      }();
       (function(b2VoronoiDiagram) {
-        var Generator = (function() {
+        var Generator = function() {
           function Generator() {
             this.center = new b2Vec2();
             this.tag = 0;
             this.necessary = false;
           }
           return Generator;
-        })();
+        }();
         b2VoronoiDiagram.Generator = Generator;
-        var Task = (function() {
+        var Task = function() {
           function Task(x, y, i, g) {
             this.m_x = x;
             this.m_y = y;
@@ -105127,7 +105153,7 @@
             this.m_generator = g;
           }
           return Task;
-        })();
+        }();
         b2VoronoiDiagram.Task = Task;
       })(b2VoronoiDiagram || (b2VoronoiDiagram = {}));
       function std_iter_swap(array, a, b) {
@@ -105220,7 +105246,7 @@
         while (++first !== last) cmp(array[result], array[first]) || std_iter_swap(array, ++result, first);
         return ++result;
       }
-      var b2GrowableBuffer = (function() {
+      var b2GrowableBuffer = function() {
         function b2GrowableBuffer(allocator) {
           this.data = [];
           this.count = 0;
@@ -105266,8 +105292,8 @@
           this.count = std_unique(this.data, 0, this.count, pred);
         };
         return b2GrowableBuffer;
-      })();
-      var b2FixtureParticleQueryCallback = (function(_super) {
+      }();
+      var b2FixtureParticleQueryCallback = function(_super) {
         __extends(b2FixtureParticleQueryCallback, _super);
         function b2FixtureParticleQueryCallback(system) {
           var _this = _super.call(this) || this;
@@ -105294,8 +105320,8 @@
         };
         b2FixtureParticleQueryCallback.prototype.ReportFixtureAndParticle = function(fixture, childIndex, index) {};
         return b2FixtureParticleQueryCallback;
-      })(b2QueryCallback);
-      var b2ParticleContact = (function() {
+      }(b2QueryCallback);
+      var b2ParticleContact = function() {
         function b2ParticleContact() {
           this.indexA = 0;
           this.indexB = 0;
@@ -105343,8 +105369,8 @@
           return this.indexA === rhs.indexA && this.indexB === rhs.indexB && this.flags === rhs.flags && b2Abs(this.weight - rhs.weight) < MAX_WEIGHT_DIFF && b2Vec2.DistanceSquaredVV(this.normal, rhs.normal) < MAX_NORMAL_DIFF_SQ;
         };
         return b2ParticleContact;
-      })();
-      var b2ParticleBodyContact = (function() {
+      }();
+      var b2ParticleBodyContact = function() {
         function b2ParticleBodyContact() {
           this.index = 0;
           this.weight = 0;
@@ -105352,8 +105378,8 @@
           this.mass = 0;
         }
         return b2ParticleBodyContact;
-      })();
-      var b2ParticlePair = (function() {
+      }();
+      var b2ParticlePair = function() {
         function b2ParticlePair() {
           this.indexA = 0;
           this.indexB = 0;
@@ -105362,8 +105388,8 @@
           this.distance = 0;
         }
         return b2ParticlePair;
-      })();
-      var b2ParticleTriad = (function() {
+      }();
+      var b2ParticleTriad = function() {
         function b2ParticleTriad() {
           this.indexA = 0;
           this.indexB = 0;
@@ -105379,8 +105405,8 @@
           this.s = 0;
         }
         return b2ParticleTriad;
-      })();
-      var b2ParticleSystemDef = (function() {
+      }();
+      var b2ParticleSystemDef = function() {
         function b2ParticleSystemDef() {
           this.strictContactCheck = false;
           this.density = 1;
@@ -105432,8 +105458,8 @@
           return new b2ParticleSystemDef().Copy(this);
         };
         return b2ParticleSystemDef;
-      })();
-      exports.b2ParticleSystem = (function() {
+      }();
+      exports.b2ParticleSystem = function() {
         function b2ParticleSystem(def, world) {
           this.m_paused = false;
           this.m_timestamp = 0;
@@ -105675,9 +105701,9 @@
         b2ParticleSystem.prototype.SplitParticleGroup = function(group) {
           this.UpdateContacts(true);
           var particleCount = group.GetParticleCount();
-          var nodeBuffer = b2MakeArray(particleCount, (function(index) {
+          var nodeBuffer = b2MakeArray(particleCount, function(index) {
             return new b2ParticleSystem.ParticleListNode();
-          }));
+          });
           b2ParticleSystem.InitializeParticleLists(group, nodeBuffer);
           this.MergeParticleListsInContact(group, nodeBuffer);
           var survivingList = b2ParticleSystem.FindLongestParticleList(group, nodeBuffer);
@@ -107764,17 +107790,17 @@
         b2ParticleSystem.RemoveSpuriousBodyContacts_s_pos = new b2Vec2();
         b2ParticleSystem.RemoveSpuriousBodyContacts_s_normal = new b2Vec2();
         return b2ParticleSystem;
-      })();
+      }();
       (function(b2ParticleSystem) {
-        var UserOverridableBuffer = (function() {
+        var UserOverridableBuffer = function() {
           function UserOverridableBuffer() {
             this.data = null;
             this.userSuppliedCapacity = 0;
           }
           return UserOverridableBuffer;
-        })();
+        }();
         b2ParticleSystem.UserOverridableBuffer = UserOverridableBuffer;
-        var Proxy = (function() {
+        var Proxy = function() {
           function Proxy() {
             this.index = b2_invalidParticleIndex;
             this.tag = 0;
@@ -107789,9 +107815,9 @@
             return a.tag < b;
           };
           return Proxy;
-        })();
+        }();
         b2ParticleSystem.Proxy = Proxy;
-        var InsideBoundsEnumerator = (function() {
+        var InsideBoundsEnumerator = function() {
           function InsideBoundsEnumerator(system, lower, upper, first, last) {
             this.m_system = system;
             this.m_xLower = (lower & b2ParticleSystem.xMask) >>> 0;
@@ -107810,18 +107836,18 @@
             return b2_invalidParticleIndex;
           };
           return InsideBoundsEnumerator;
-        })();
+        }();
         b2ParticleSystem.InsideBoundsEnumerator = InsideBoundsEnumerator;
-        var ParticleListNode = (function() {
+        var ParticleListNode = function() {
           function ParticleListNode() {
             this.next = null;
             this.count = 0;
             this.index = 0;
           }
           return ParticleListNode;
-        })();
+        }();
         b2ParticleSystem.ParticleListNode = ParticleListNode;
-        var FixedSetAllocator = (function() {
+        var FixedSetAllocator = function() {
           function FixedSetAllocator() {}
           FixedSetAllocator.prototype.Allocate = function(itemSize, count) {
             return count;
@@ -107839,18 +107865,18 @@
           };
           FixedSetAllocator.prototype.SetCount = function(count) {};
           return FixedSetAllocator;
-        })();
+        }();
         b2ParticleSystem.FixedSetAllocator = FixedSetAllocator;
-        var FixtureParticle = (function() {
+        var FixtureParticle = function() {
           function FixtureParticle(fixture, particle) {
             this.second = b2_invalidParticleIndex;
             this.first = fixture;
             this.second = particle;
           }
           return FixtureParticle;
-        })();
+        }();
         b2ParticleSystem.FixtureParticle = FixtureParticle;
-        var FixtureParticleSet = (function(_super) {
+        var FixtureParticleSet = function(_super) {
           __extends(FixtureParticleSet, _super);
           function FixtureParticleSet() {
             return null !== _super && _super.apply(this, arguments) || this;
@@ -107860,9 +107886,9 @@
             return b2_invalidParticleIndex;
           };
           return FixtureParticleSet;
-        })(b2ParticleSystem.FixedSetAllocator);
+        }(b2ParticleSystem.FixedSetAllocator);
         b2ParticleSystem.FixtureParticleSet = FixtureParticleSet;
-        var ParticlePair = (function() {
+        var ParticlePair = function() {
           function ParticlePair(particleA, particleB) {
             this.first = b2_invalidParticleIndex;
             this.second = b2_invalidParticleIndex;
@@ -107870,9 +107896,9 @@
             this.second = particleB;
           }
           return ParticlePair;
-        })();
+        }();
         b2ParticleSystem.ParticlePair = ParticlePair;
-        var b2ParticlePairSet = (function(_super) {
+        var b2ParticlePairSet = function(_super) {
           __extends(b2ParticlePairSet, _super);
           function b2ParticlePairSet() {
             return null !== _super && _super.apply(this, arguments) || this;
@@ -107882,9 +107908,9 @@
             return b2_invalidParticleIndex;
           };
           return b2ParticlePairSet;
-        })(b2ParticleSystem.FixedSetAllocator);
+        }(b2ParticleSystem.FixedSetAllocator);
         b2ParticleSystem.b2ParticlePairSet = b2ParticlePairSet;
-        var ConnectionFilter = (function() {
+        var ConnectionFilter = function() {
           function ConnectionFilter() {}
           ConnectionFilter.prototype.IsNecessary = function(index) {
             return true;
@@ -107896,9 +107922,9 @@
             return true;
           };
           return ConnectionFilter;
-        })();
+        }();
         b2ParticleSystem.ConnectionFilter = ConnectionFilter;
-        var DestroyParticlesInShapeCallback = (function(_super) {
+        var DestroyParticlesInShapeCallback = function(_super) {
           __extends(DestroyParticlesInShapeCallback, _super);
           function DestroyParticlesInShapeCallback(system, shape, xf, callDestructionListener) {
             var _this = _super.call(this) || this;
@@ -107927,9 +107953,9 @@
             return this.m_destroyed;
           };
           return DestroyParticlesInShapeCallback;
-        })(b2QueryCallback);
+        }(b2QueryCallback);
         b2ParticleSystem.DestroyParticlesInShapeCallback = DestroyParticlesInShapeCallback;
-        var JoinParticleGroupsFilter = (function(_super) {
+        var JoinParticleGroupsFilter = function(_super) {
           __extends(JoinParticleGroupsFilter, _super);
           function JoinParticleGroupsFilter(threshold) {
             var _this = _super.call(this) || this;
@@ -107944,9 +107970,9 @@
             return (a < this.m_threshold || b < this.m_threshold || c < this.m_threshold) && (this.m_threshold <= a || this.m_threshold <= b || this.m_threshold <= c);
           };
           return JoinParticleGroupsFilter;
-        })(b2ParticleSystem.ConnectionFilter);
+        }(b2ParticleSystem.ConnectionFilter);
         b2ParticleSystem.JoinParticleGroupsFilter = JoinParticleGroupsFilter;
-        var CompositeShape = (function(_super) {
+        var CompositeShape = function(_super) {
           __extends(CompositeShape, _super);
           function CompositeShape(shapes, shapeCount) {
             void 0 === shapeCount && (shapeCount = shapes.length);
@@ -107994,9 +108020,9 @@
           };
           CompositeShape.prototype.Dump = function(log) {};
           return CompositeShape;
-        })(b2Shape);
+        }(b2Shape);
         b2ParticleSystem.CompositeShape = CompositeShape;
-        var ReactiveFilter = (function(_super) {
+        var ReactiveFilter = function(_super) {
           __extends(ReactiveFilter, _super);
           function ReactiveFilter(flagsBuffer) {
             var _this = _super.call(this) || this;
@@ -108008,9 +108034,9 @@
             return 0 !== (this.m_flagsBuffer.data[index] & exports.b2ParticleFlag.b2_reactiveParticle);
           };
           return ReactiveFilter;
-        })(b2ParticleSystem.ConnectionFilter);
+        }(b2ParticleSystem.ConnectionFilter);
         b2ParticleSystem.ReactiveFilter = ReactiveFilter;
-        var UpdateBodyContactsCallback = (function(_super) {
+        var UpdateBodyContactsCallback = function(_super) {
           __extends(UpdateBodyContactsCallback, _super);
           function UpdateBodyContactsCallback(system, contactFilter) {
             var _this = _super.call(this, system) || this;
@@ -108056,9 +108082,9 @@
           UpdateBodyContactsCallback.ReportFixtureAndParticle_s_n = new b2Vec2();
           UpdateBodyContactsCallback.ReportFixtureAndParticle_s_rp = new b2Vec2();
           return UpdateBodyContactsCallback;
-        })(b2FixtureParticleQueryCallback);
+        }(b2FixtureParticleQueryCallback);
         b2ParticleSystem.UpdateBodyContactsCallback = UpdateBodyContactsCallback;
-        var SolveCollisionCallback = (function(_super) {
+        var SolveCollisionCallback = function(_super) {
           __extends(SolveCollisionCallback, _super);
           function SolveCollisionCallback(system, step) {
             var _this = _super.call(this, system) || this;
@@ -108116,10 +108142,10 @@
           SolveCollisionCallback.ReportFixtureAndParticle_s_v = new b2Vec2();
           SolveCollisionCallback.ReportFixtureAndParticle_s_f = new b2Vec2();
           return SolveCollisionCallback;
-        })(b2FixtureParticleQueryCallback);
+        }(b2FixtureParticleQueryCallback);
         b2ParticleSystem.SolveCollisionCallback = SolveCollisionCallback;
       })(exports.b2ParticleSystem || (exports.b2ParticleSystem = {}));
-      var b2World = (function() {
+      var b2World = function() {
         function b2World(gravity) {
           this.m_newFixture = false;
           this.m_locked = false;
@@ -108437,45 +108463,45 @@
           if (flags & exports.b2DrawFlags.e_controllerBit) for (var c = this.m_controllerList; c; c = c.m_next) c.Draw(this.m_debugDraw);
         };
         b2World.prototype.QueryAABB = function(callback, aabb, fn) {
-          this.m_contactManager.m_broadPhase.Query(aabb, (function(proxy) {
+          this.m_contactManager.m_broadPhase.Query(aabb, function(proxy) {
             var fixture_proxy = proxy.userData;
             var fixture = fixture_proxy.fixture;
             if (callback) return callback.ReportFixture(fixture);
             if (fn) return fn(fixture);
             return true;
-          }));
+          });
           if (callback instanceof b2QueryCallback) for (var p = this.m_particleSystemList; p; p = p.m_next) callback.ShouldQueryParticleSystem(p) && p.QueryAABB(callback, aabb);
         };
         b2World.prototype.QueryAllAABB = function(aabb, out) {
           void 0 === out && (out = []);
-          this.QueryAABB(null, aabb, (function(fixture) {
+          this.QueryAABB(null, aabb, function(fixture) {
             out.push(fixture);
             return true;
-          }));
+          });
           return out;
         };
         b2World.prototype.QueryPointAABB = function(callback, point, fn) {
-          this.m_contactManager.m_broadPhase.QueryPoint(point, (function(proxy) {
+          this.m_contactManager.m_broadPhase.QueryPoint(point, function(proxy) {
             var fixture_proxy = proxy.userData;
             var fixture = fixture_proxy.fixture;
             if (callback) return callback.ReportFixture(fixture);
             if (fn) return fn(fixture);
             return true;
-          }));
+          });
           if (callback instanceof b2QueryCallback) for (var p = this.m_particleSystemList; p; p = p.m_next) callback.ShouldQueryParticleSystem(p) && p.QueryPointAABB(callback, point);
         };
         b2World.prototype.QueryAllPointAABB = function(point, out) {
           void 0 === out && (out = []);
-          this.QueryPointAABB(null, point, (function(fixture) {
+          this.QueryPointAABB(null, point, function(fixture) {
             out.push(fixture);
             return true;
-          }));
+          });
           return out;
         };
         b2World.prototype.QueryFixtureShape = function(callback, shape, index, transform, fn) {
           var aabb = b2World.QueryFixtureShape_s_aabb;
           shape.ComputeAABB(aabb, transform, index);
-          this.m_contactManager.m_broadPhase.Query(aabb, (function(proxy) {
+          this.m_contactManager.m_broadPhase.Query(aabb, function(proxy) {
             var fixture_proxy = proxy.userData;
             var fixture = fixture_proxy.fixture;
             if (b2TestOverlapShape(shape, index, fixture.GetShape(), fixture_proxy.childIndex, transform, fixture.GetBody().GetTransform())) {
@@ -108483,19 +108509,19 @@
               if (fn) return fn(fixture);
             }
             return true;
-          }));
+          });
           if (callback instanceof b2QueryCallback) for (var p = this.m_particleSystemList; p; p = p.m_next) callback.ShouldQueryParticleSystem(p) && p.QueryAABB(callback, aabb);
         };
         b2World.prototype.QueryAllFixtureShape = function(shape, index, transform, out) {
           void 0 === out && (out = []);
-          this.QueryFixtureShape(null, shape, index, transform, (function(fixture) {
+          this.QueryFixtureShape(null, shape, index, transform, function(fixture) {
             out.push(fixture);
             return true;
-          }));
+          });
           return out;
         };
         b2World.prototype.QueryFixturePoint = function(callback, point, fn) {
-          this.m_contactManager.m_broadPhase.QueryPoint(point, (function(proxy) {
+          this.m_contactManager.m_broadPhase.QueryPoint(point, function(proxy) {
             var fixture_proxy = proxy.userData;
             var fixture = fixture_proxy.fixture;
             if (fixture.TestPoint(point)) {
@@ -108503,15 +108529,15 @@
               if (fn) return fn(fixture);
             }
             return true;
-          }));
+          });
           if (callback) for (var p = this.m_particleSystemList; p; p = p.m_next) callback.ShouldQueryParticleSystem(p) && p.QueryPointAABB(callback, point);
         };
         b2World.prototype.QueryAllFixturePoint = function(point, out) {
           void 0 === out && (out = []);
-          this.QueryFixturePoint(null, point, (function(fixture) {
+          this.QueryFixturePoint(null, point, function(fixture) {
             out.push(fixture);
             return true;
-          }));
+          });
           return out;
         };
         b2World.prototype.RayCast = function(callback, point1, point2, fn) {
@@ -108519,7 +108545,7 @@
           input.maxFraction = 1;
           input.p1.Copy(point1);
           input.p2.Copy(point2);
-          this.m_contactManager.m_broadPhase.RayCast(input, (function(input, proxy) {
+          this.m_contactManager.m_broadPhase.RayCast(input, function(input, proxy) {
             var fixture_proxy = proxy.userData;
             var fixture = fixture_proxy.fixture;
             var index = fixture_proxy.childIndex;
@@ -108533,27 +108559,27 @@
               if (fn) return fn(fixture, point, output.normal, fraction);
             }
             return input.maxFraction;
-          }));
+          });
           if (callback) for (var p = this.m_particleSystemList; p; p = p.m_next) callback.ShouldQueryParticleSystem(p) && p.RayCast(callback, point1, point2);
         };
         b2World.prototype.RayCastOne = function(point1, point2) {
           var result = null;
           var min_fraction = 1;
-          this.RayCast(null, point1, point2, (function(fixture, point, normal, fraction) {
+          this.RayCast(null, point1, point2, function(fixture, point, normal, fraction) {
             if (fraction < min_fraction) {
               min_fraction = fraction;
               result = fixture;
             }
             return min_fraction;
-          }));
+          });
           return result;
         };
         b2World.prototype.RayCastAll = function(point1, point2, out) {
           void 0 === out && (out = []);
-          this.RayCast(null, point1, point2, (function(fixture, point, normal, fraction) {
+          this.RayCast(null, point1, point2, function(fixture, point, normal, fraction) {
             out.push(fixture);
             return 1;
-          }));
+          });
           return out;
         };
         b2World.prototype.GetBodyList = function() {
@@ -109040,8 +109066,8 @@
         b2World.SolveTOI_s_toi_input = new b2TOIInput();
         b2World.SolveTOI_s_toi_output = new b2TOIOutput();
         return b2World;
-      })();
-      var b2ControllerEdge = (function() {
+      }();
+      var b2ControllerEdge = function() {
         function b2ControllerEdge(controller, body) {
           this.prevBody = null;
           this.nextBody = null;
@@ -109051,8 +109077,8 @@
           this.body = body;
         }
         return b2ControllerEdge;
-      })();
-      var b2Controller = (function() {
+      }();
+      var b2Controller = function() {
         function b2Controller() {
           this.m_bodyList = null;
           this.m_bodyCount = 0;
@@ -109100,8 +109126,8 @@
           this.m_bodyCount = 0;
         };
         return b2Controller;
-      })();
-      var b2BuoyancyController = (function(_super) {
+      }();
+      var b2BuoyancyController = function(_super) {
         __extends(b2BuoyancyController, _super);
         function b2BuoyancyController() {
           var _this = null !== _super && _super.apply(this, arguments) || this;
@@ -109165,8 +109191,8 @@
           debugDraw.DrawSegment(p1, p2, color);
         };
         return b2BuoyancyController;
-      })(b2Controller);
-      var b2ConstantAccelController = (function(_super) {
+      }(b2Controller);
+      var b2ConstantAccelController = function(_super) {
         __extends(b2ConstantAccelController, _super);
         function b2ConstantAccelController() {
           var _this = null !== _super && _super.apply(this, arguments) || this;
@@ -109184,8 +109210,8 @@
         b2ConstantAccelController.prototype.Draw = function(draw) {};
         b2ConstantAccelController.Step_s_dtA = new b2Vec2();
         return b2ConstantAccelController;
-      })(b2Controller);
-      var b2ConstantForceController = (function(_super) {
+      }(b2Controller);
+      var b2ConstantForceController = function(_super) {
         __extends(b2ConstantForceController, _super);
         function b2ConstantForceController() {
           var _this = null !== _super && _super.apply(this, arguments) || this;
@@ -109201,8 +109227,8 @@
         };
         b2ConstantForceController.prototype.Draw = function(draw) {};
         return b2ConstantForceController;
-      })(b2Controller);
-      var b2GravityController = (function(_super) {
+      }(b2Controller);
+      var b2GravityController = function(_super) {
         __extends(b2GravityController, _super);
         function b2GravityController() {
           var _this = null !== _super && _super.apply(this, arguments) || this;
@@ -109250,8 +109276,8 @@
         b2GravityController.prototype.Draw = function(draw) {};
         b2GravityController.Step_s_f = new b2Vec2();
         return b2GravityController;
-      })(b2Controller);
-      var b2TensorDampingController = (function(_super) {
+      }(b2Controller);
+      var b2TensorDampingController = function(_super) {
         __extends(b2TensorDampingController, _super);
         function b2TensorDampingController() {
           var _this = null !== _super && _super.apply(this, arguments) || this;
@@ -109280,8 +109306,8 @@
         };
         b2TensorDampingController.Step_s_damping = new b2Vec2();
         return b2TensorDampingController;
-      })(b2Controller);
-      var b2RopeDef = (function() {
+      }(b2Controller);
+      var b2RopeDef = function() {
         function b2RopeDef() {
           this.vertices = [];
           this.count = 0;
@@ -109292,8 +109318,8 @@
           this.k3 = .1;
         }
         return b2RopeDef;
-      })();
-      var b2Rope = (function() {
+      }();
+      var b2Rope = function() {
         function b2Rope() {
           this.m_count = 0;
           this.m_ps = [];
@@ -109439,7 +109465,7 @@
         b2Rope.s_J1 = new b2Vec2();
         b2Rope.s_J2 = new b2Vec2();
         return b2Rope;
-      })();
+      }();
       exports.b2Assert = b2Assert;
       exports.b2Maybe = b2Maybe;
       exports.b2_maxFloat = b2_maxFloat;
@@ -109666,19 +109692,19 @@
       Object.defineProperty(exports, "__esModule", {
         value: true
       });
-    }));
-  }), {} ],
-  492: [ (function(require, module, exports) {
+    });
+  }, {} ],
+  492: [ function(require, module, exports) {
     "use strict";
-    !(function(e) {
+    !function(e) {
       if ("object" == typeof exports && "undefined" != typeof module) module.exports = e(); else if ("function" == typeof define && define.amd) define([], e); else {
         var f;
         "undefined" != typeof window ? f = window : "undefined" != typeof global ? f = global : "undefined" != typeof self && (f = self), 
         f.CANNON = e();
       }
-    })((function() {
+    }(function() {
       var define, module, exports;
-      return (function e(t, n, r) {
+      return function e(t, n, r) {
         function s(o, u) {
           if (!n[o]) {
             if (!t[o]) {
@@ -109690,18 +109716,18 @@
             var f = n[o] = {
               exports: {}
             };
-            t[o][0].call(f.exports, (function(e) {
+            t[o][0].call(f.exports, function(e) {
               var n = t[o][1][e];
               return s(n || e);
-            }), f, f.exports, e, t, n, r);
+            }, f, f.exports, e, t, n, r);
           }
           return n[o].exports;
         }
         var i = "function" == typeof require && require;
         for (var o = 0; o < r.length; o++) s(r[o]);
         return s;
-      })({
-        1: [ (function(_dereq_, module, exports) {
+      }({
+        1: [ function(_dereq_, module, exports) {
           module.exports = {
             name: "@cocos/cannon",
             version: "1.1.1-exp.3",
@@ -109742,8 +109768,8 @@
             },
             dependencies: {}
           };
-        }), {} ],
-        2: [ (function(_dereq_, module, exports) {
+        }, {} ],
+        2: [ function(_dereq_, module, exports) {
           module.exports = {
             version: _dereq_("../package.json").version,
             AABB: _dereq_("./collision/AABB"),
@@ -109797,7 +109823,7 @@
             Octree: _dereq_("./utils/Octree"),
             CMath: _dereq_("./math/CMath")
           };
-        }), {
+        }, {
           "../package.json": 1,
           "./collision/AABB": 3,
           "./collision/ArrayCollisionMatrix": 4,
@@ -109850,7 +109876,7 @@
           "./world/Narrowphase": 57,
           "./world/World": 58
         } ],
-        3: [ (function(_dereq_, module, exports) {
+        3: [ function(_dereq_, module, exports) {
           var Vec3 = _dereq_("../math/Vec3");
           var Utils = _dereq_("../utils/Utils");
           module.exports = AABB;
@@ -109988,11 +110014,11 @@
             if (tmin > tmax) return false;
             return true;
           };
-        }), {
+        }, {
           "../math/Vec3": 32,
           "../utils/Utils": 55
         } ],
-        4: [ (function(_dereq_, module, exports) {
+        4: [ function(_dereq_, module, exports) {
           module.exports = ArrayCollisionMatrix;
           function ArrayCollisionMatrix() {
             this.matrix = [];
@@ -110023,8 +110049,8 @@
           ArrayCollisionMatrix.prototype.setNumObjects = function(n) {
             this.matrix.length = n * (n - 1) >> 1;
           };
-        }), {} ],
-        5: [ (function(_dereq_, module, exports) {
+        }, {} ],
+        5: [ function(_dereq_, module, exports) {
           var Body = _dereq_("../objects/Body");
           var Vec3 = _dereq_("../math/Vec3");
           var Quaternion = _dereq_("../math/Quaternion");
@@ -110102,14 +110128,14 @@
             console.warn(".aabbQuery is not implemented in this Broadphase subclass.");
             return [];
           };
-        }), {
+        }, {
           "../math/Quaternion": 30,
           "../math/Vec3": 32,
           "../objects/Body": 33,
           "../shapes/Plane": 44,
           "../shapes/Shape": 45
         } ],
-        6: [ (function(_dereq_, module, exports) {
+        6: [ function(_dereq_, module, exports) {
           module.exports = GridBroadphase;
           var Broadphase = _dereq_("./Broadphase");
           var Vec3 = _dereq_("../math/Vec3");
@@ -110216,12 +110242,12 @@
             }
             this.makePairsUnique(pairs1, pairs2);
           };
-        }), {
+        }, {
           "../math/Vec3": 32,
           "../shapes/Shape": 45,
           "./Broadphase": 5
         } ],
-        7: [ (function(_dereq_, module, exports) {
+        7: [ function(_dereq_, module, exports) {
           module.exports = NaiveBroadphase;
           var Broadphase = _dereq_("./Broadphase");
           var AABB = _dereq_("./AABB");
@@ -110249,11 +110275,11 @@
             }
             return result;
           };
-        }), {
+        }, {
           "./AABB": 3,
           "./Broadphase": 5
         } ],
-        8: [ (function(_dereq_, module, exports) {
+        8: [ function(_dereq_, module, exports) {
           module.exports = ObjectCollisionMatrix;
           function ObjectCollisionMatrix() {
             this.matrix = {};
@@ -110282,8 +110308,8 @@
             this.matrix = {};
           };
           ObjectCollisionMatrix.prototype.setNumObjects = function(n) {};
-        }), {} ],
-        9: [ (function(_dereq_, module, exports) {
+        }, {} ],
+        9: [ function(_dereq_, module, exports) {
           module.exports = OverlapKeeper;
           function OverlapKeeper() {
             this.current = [];
@@ -110337,8 +110363,8 @@
               found || unpackAndPush(removals, keyB);
             }
           };
-        }), {} ],
-        10: [ (function(_dereq_, module, exports) {
+        }, {} ],
+        10: [ function(_dereq_, module, exports) {
           module.exports = Ray;
           var Vec3 = _dereq_("../math/Vec3");
           var Quaternion = _dereq_("../math/Quaternion");
@@ -110719,7 +110745,7 @@
             var distance = position.distanceTo(intersect);
             return distance;
           }
-        }), {
+        }, {
           "../collision/AABB": 3,
           "../collision/RaycastResult": 11,
           "../math/Quaternion": 30,
@@ -110729,7 +110755,7 @@
           "../shapes/ConvexPolyhedron": 40,
           "../shapes/Shape": 45
         } ],
-        11: [ (function(_dereq_, module, exports) {
+        11: [ function(_dereq_, module, exports) {
           var Vec3 = _dereq_("../math/Vec3");
           module.exports = RaycastResult;
           function RaycastResult() {
@@ -110768,10 +110794,10 @@
             this.body = body;
             this.distance = distance;
           };
-        }), {
+        }, {
           "../math/Vec3": 32
         } ],
-        12: [ (function(_dereq_, module, exports) {
+        12: [ function(_dereq_, module, exports) {
           var Shape = _dereq_("../shapes/Shape");
           var Broadphase = _dereq_("../collision/Broadphase");
           module.exports = SAPBroadphase;
@@ -110912,11 +110938,11 @@
             }
             return result;
           };
-        }), {
+        }, {
           "../collision/Broadphase": 5,
           "../shapes/Shape": 45
         } ],
-        13: [ (function(_dereq_, module, exports) {
+        13: [ function(_dereq_, module, exports) {
           module.exports = ConeTwistConstraint;
           var Constraint = _dereq_("./Constraint");
           var PointToPointConstraint = _dereq_("./PointToPointConstraint");
@@ -110959,7 +110985,7 @@
             cone.angle = this.angle;
             twist.maxAngle = this.twistAngle;
           };
-        }), {
+        }, {
           "../equations/ConeEquation": 19,
           "../equations/ContactEquation": 20,
           "../equations/RotationalEquation": 23,
@@ -110967,7 +110993,7 @@
           "./Constraint": 14,
           "./PointToPointConstraint": 18
         } ],
-        14: [ (function(_dereq_, module, exports) {
+        14: [ function(_dereq_, module, exports) {
           module.exports = Constraint;
           var Utils = _dereq_("../utils/Utils");
           function Constraint(bodyA, bodyB, options) {
@@ -110997,10 +111023,10 @@
             for (var i = 0; i < eqs.length; i++) eqs[i].enabled = false;
           };
           Constraint.idCounter = 0;
-        }), {
+        }, {
           "../utils/Utils": 55
         } ],
-        15: [ (function(_dereq_, module, exports) {
+        15: [ function(_dereq_, module, exports) {
           module.exports = DistanceConstraint;
           var Constraint = _dereq_("./Constraint");
           var ContactEquation = _dereq_("../equations/ContactEquation");
@@ -111026,11 +111052,11 @@
             normal.mult(halfDist, eq.ri);
             normal.mult(-halfDist, eq.rj);
           };
-        }), {
+        }, {
           "../equations/ContactEquation": 20,
           "./Constraint": 14
         } ],
-        16: [ (function(_dereq_, module, exports) {
+        16: [ function(_dereq_, module, exports) {
           module.exports = HingeConstraint;
           var Constraint = _dereq_("./Constraint");
           var PointToPointConstraint = _dereq_("./PointToPointConstraint");
@@ -111086,7 +111112,7 @@
               bodyB.quaternion.vmult(this.axisB, motor.axisB);
             }
           };
-        }), {
+        }, {
           "../equations/ContactEquation": 20,
           "../equations/RotationalEquation": 23,
           "../equations/RotationalMotorEquation": 24,
@@ -111094,7 +111120,7 @@
           "./Constraint": 14,
           "./PointToPointConstraint": 18
         } ],
-        17: [ (function(_dereq_, module, exports) {
+        17: [ function(_dereq_, module, exports) {
           module.exports = LockConstraint;
           var Constraint = _dereq_("./Constraint");
           var PointToPointConstraint = _dereq_("./PointToPointConstraint");
@@ -111138,7 +111164,7 @@
             bodyA.vectorToWorldFrame(this.zA, r3.axisA);
             bodyB.vectorToWorldFrame(this.xB, r3.axisB);
           };
-        }), {
+        }, {
           "../equations/ContactEquation": 20,
           "../equations/RotationalEquation": 23,
           "../equations/RotationalMotorEquation": 24,
@@ -111146,7 +111172,7 @@
           "./Constraint": 14,
           "./PointToPointConstraint": 18
         } ],
-        18: [ (function(_dereq_, module, exports) {
+        18: [ function(_dereq_, module, exports) {
           module.exports = PointToPointConstraint;
           var Constraint = _dereq_("./Constraint");
           var ContactEquation = _dereq_("../equations/ContactEquation");
@@ -111180,12 +111206,12 @@
             z.ri.copy(x.ri);
             z.rj.copy(x.rj);
           };
-        }), {
+        }, {
           "../equations/ContactEquation": 20,
           "../math/Vec3": 32,
           "./Constraint": 14
         } ],
-        19: [ (function(_dereq_, module, exports) {
+        19: [ function(_dereq_, module, exports) {
           module.exports = ConeEquation;
           var Vec3 = _dereq_("../math/Vec3");
           var Mat3 = _dereq_("../math/Mat3");
@@ -111213,13 +111239,13 @@
             var B = -g * a - GW * b - h * GiMf;
             return B;
           };
-        }), {
+        }, {
           "../math/CMath": 27,
           "../math/Mat3": 29,
           "../math/Vec3": 32,
           "./Equation": 21
         } ],
-        20: [ (function(_dereq_, module, exports) {
+        20: [ function(_dereq_, module, exports) {
           module.exports = ContactEquation;
           var Equation = _dereq_("./Equation");
           var Vec3 = _dereq_("../math/Vec3");
@@ -111276,12 +111302,12 @@
             vi.vsub(vj, relVel);
             return this.ni.dot(relVel);
           };
-        }), {
+        }, {
           "../math/Mat3": 29,
           "../math/Vec3": 32,
           "./Equation": 21
         } ],
-        21: [ (function(_dereq_, module, exports) {
+        21: [ function(_dereq_, module, exports) {
           module.exports = Equation;
           var JacobianElement = _dereq_("../math/JacobianElement"), Vec3 = _dereq_("../math/Vec3");
           function Equation(bi, bj, minForce, maxForce) {
@@ -111355,11 +111381,11 @@
           Equation.prototype.computeC = function() {
             return this.computeGiMGt() + this.eps;
           };
-        }), {
+        }, {
           "../math/JacobianElement": 28,
           "../math/Vec3": 32
         } ],
-        22: [ (function(_dereq_, module, exports) {
+        22: [ function(_dereq_, module, exports) {
           module.exports = FrictionEquation;
           var Equation = _dereq_("./Equation");
           var Vec3 = _dereq_("../math/Vec3");
@@ -111388,12 +111414,12 @@
             var B = -GW * b - h * GiMf;
             return B;
           };
-        }), {
+        }, {
           "../math/Mat3": 29,
           "../math/Vec3": 32,
           "./Equation": 21
         } ],
-        23: [ (function(_dereq_, module, exports) {
+        23: [ function(_dereq_, module, exports) {
           module.exports = RotationalEquation;
           var Vec3 = _dereq_("../math/Vec3");
           var Mat3 = _dereq_("../math/Mat3");
@@ -111421,13 +111447,13 @@
             var B = -g * a - GW * b - h * GiMf;
             return B;
           };
-        }), {
+        }, {
           "../math/CMath": 27,
           "../math/Mat3": 29,
           "../math/Vec3": 32,
           "./Equation": 21
         } ],
-        24: [ (function(_dereq_, module, exports) {
+        24: [ function(_dereq_, module, exports) {
           module.exports = RotationalMotorEquation;
           var Vec3 = _dereq_("../math/Vec3");
           var Mat3 = _dereq_("../math/Mat3");
@@ -111449,12 +111475,12 @@
             var B = -GW * b - h * GiMf;
             return B;
           };
-        }), {
+        }, {
           "../math/Mat3": 29,
           "../math/Vec3": 32,
           "./Equation": 21
         } ],
-        25: [ (function(_dereq_, module, exports) {
+        25: [ function(_dereq_, module, exports) {
           var Utils = _dereq_("../utils/Utils");
           module.exports = ContactMaterial;
           function ContactMaterial(m1, m2, options) {
@@ -111476,10 +111502,10 @@
             this.frictionEquationRelaxation = options.frictionEquationRelaxation;
           }
           ContactMaterial.idCounter = 0;
-        }), {
+        }, {
           "../utils/Utils": 55
         } ],
-        26: [ (function(_dereq_, module, exports) {
+        26: [ function(_dereq_, module, exports) {
           module.exports = Material;
           function Material(options) {
             var name = "";
@@ -111494,8 +111520,8 @@
             this.restitution = "undefined" !== typeof options.restitution ? options.restitution : -1;
           }
           Material.idCounter = 0;
-        }), {} ],
-        27: [ (function(_dereq_, module, exports) {
+        }, {} ],
+        27: [ function(_dereq_, module, exports) {
           var rad2ang = 180 / Math.PI;
           function radian2angle(rad) {
             return rad * rad2ang;
@@ -111582,8 +111608,8 @@
             }
           });
           module.exports = CMath;
-        }), {} ],
-        28: [ (function(_dereq_, module, exports) {
+        }, {} ],
+        28: [ function(_dereq_, module, exports) {
           module.exports = JacobianElement;
           var Vec3 = _dereq_("./Vec3");
           function JacobianElement() {
@@ -111596,10 +111622,10 @@
           JacobianElement.prototype.multiplyVectors = function(spatial, rotational) {
             return spatial.dot(this.spatial) + rotational.dot(this.rotational);
           };
-        }), {
+        }, {
           "./Vec3": 32
         } ],
-        29: [ (function(_dereq_, module, exports) {
+        29: [ function(_dereq_, module, exports) {
           module.exports = Mat3;
           var Vec3 = _dereq_("./Vec3");
           function Mat3(elements) {
@@ -111815,10 +111841,10 @@
             for (var i = 0; 3 !== i; i++) for (var j = 0; 3 !== j; j++) Mt[3 * i + j] = M[3 * j + i];
             return target;
           };
-        }), {
+        }, {
           "./Vec3": 32
         } ],
-        30: [ (function(_dereq_, module, exports) {
+        30: [ function(_dereq_, module, exports) {
           module.exports = Quaternion;
           var Vec3 = _dereq_("./Vec3");
           var CMath = _dereq_("./CMath");
@@ -112076,11 +112102,11 @@
             target.w += half_dt * (-ax * bx - ay * by - az * bz);
             return target;
           };
-        }), {
+        }, {
           "./CMath": 27,
           "./Vec3": 32
         } ],
-        31: [ (function(_dereq_, module, exports) {
+        31: [ function(_dereq_, module, exports) {
           var Vec3 = _dereq_("./Vec3");
           var Quaternion = _dereq_("./Quaternion");
           module.exports = Transform;
@@ -112127,11 +112153,11 @@
             quaternion.w *= -1;
             return result;
           };
-        }), {
+        }, {
           "./Quaternion": 30,
           "./Vec3": 32
         } ],
-        32: [ (function(_dereq_, module, exports) {
+        32: [ function(_dereq_, module, exports) {
           module.exports = Vec3;
           var Mat3 = _dereq_("./Mat3");
           function Vec3(x, y, z) {
@@ -112319,10 +112345,10 @@
           Vec3.prototype.clone = function() {
             return new Vec3(this.x, this.y, this.z);
           };
-        }), {
+        }, {
           "./Mat3": 29
         } ],
-        33: [ (function(_dereq_, module, exports) {
+        33: [ function(_dereq_, module, exports) {
           module.exports = Body;
           var EventTarget = _dereq_("../utils/EventTarget");
           var Shape = _dereq_("../shapes/Shape");
@@ -112659,7 +112685,7 @@
               if (this.hasTrigger) break;
             }
           };
-        }), {
+        }, {
           "../collision/AABB": 3,
           "../material/Material": 26,
           "../math/Mat3": 29,
@@ -112670,7 +112696,7 @@
           "../utils/EventTarget": 51,
           "../world/World": 58
         } ],
-        34: [ (function(_dereq_, module, exports) {
+        34: [ function(_dereq_, module, exports) {
           var Body = _dereq_("./Body");
           var Vec3 = _dereq_("../math/Vec3");
           var Quaternion = _dereq_("../math/Quaternion");
@@ -113052,7 +113078,7 @@
             var impulse = -contactDamping * rel_vel * massTerm;
             return impulse;
           }
-        }), {
+        }, {
           "../collision/Ray": 10,
           "../collision/RaycastResult": 11,
           "../math/Quaternion": 30,
@@ -113060,7 +113086,7 @@
           "../objects/WheelInfo": 38,
           "./Body": 33
         } ],
-        35: [ (function(_dereq_, module, exports) {
+        35: [ function(_dereq_, module, exports) {
           var Body = _dereq_("./Body");
           var Sphere = _dereq_("../shapes/Sphere");
           var Box = _dereq_("../shapes/Box");
@@ -113154,7 +113180,7 @@
             this.chassisBody.vectorToWorldFrame(axis, worldAxis);
             return w.dot(worldAxis);
           };
-        }), {
+        }, {
           "../constraints/HingeConstraint": 16,
           "../math/CMath": 27,
           "../math/Vec3": 32,
@@ -113162,7 +113188,7 @@
           "../shapes/Sphere": 46,
           "./Body": 33
         } ],
-        36: [ (function(_dereq_, module, exports) {
+        36: [ function(_dereq_, module, exports) {
           module.exports = SPHSystem;
           var Shape = _dereq_("../shapes/Shape");
           var Vec3 = _dereq_("../math/Vec3");
@@ -113268,7 +113294,7 @@
             var nabla = 945 / (32 * Math.PI * Math.pow(h, 9)) * (h * h - r * r) * (7 * r * r - 3 * h * h);
             return nabla;
           };
-        }), {
+        }, {
           "../material/Material": 26,
           "../math/Quaternion": 30,
           "../math/Vec3": 32,
@@ -113276,7 +113302,7 @@
           "../shapes/Particle": 43,
           "../shapes/Shape": 45
         } ],
-        37: [ (function(_dereq_, module, exports) {
+        37: [ function(_dereq_, module, exports) {
           var Vec3 = _dereq_("../math/Vec3");
           module.exports = Spring;
           function Spring(bodyA, bodyB, options) {
@@ -113330,10 +113356,10 @@
             bodyA.torque.vsub(ri_x_f, bodyA.torque);
             bodyB.torque.vadd(rj_x_f, bodyB.torque);
           };
-        }), {
+        }, {
           "../math/Vec3": 32
         } ],
-        38: [ (function(_dereq_, module, exports) {
+        38: [ function(_dereq_, module, exports) {
           var Vec3 = _dereq_("../math/Vec3");
           var Transform = _dereq_("../math/Transform");
           var RaycastResult = _dereq_("../collision/RaycastResult");
@@ -113430,13 +113456,13 @@
               this.clippedInvContactDotSuspension = 1;
             }
           };
-        }), {
+        }, {
           "../collision/RaycastResult": 11,
           "../math/Transform": 31,
           "../math/Vec3": 32,
           "../utils/Utils": 55
         } ],
-        39: [ (function(_dereq_, module, exports) {
+        39: [ function(_dereq_, module, exports) {
           module.exports = Box;
           var Shape = _dereq_("./Shape");
           var Vec3 = _dereq_("../math/Vec3");
@@ -113542,12 +113568,12 @@
               z < min.z && (min.z = z);
             }
           };
-        }), {
+        }, {
           "../math/Vec3": 32,
           "./ConvexPolyhedron": 40,
           "./Shape": 45
         } ],
-        40: [ (function(_dereq_, module, exports) {
+        40: [ function(_dereq_, module, exports) {
           module.exports = ConvexPolyhedron;
           var Shape = _dereq_("./Shape");
           var Vec3 = _dereq_("../math/Vec3");
@@ -113991,13 +114017,13 @@
             result[0] = max;
             result[1] = min;
           };
-        }), {
+        }, {
           "../math/Quaternion": 30,
           "../math/Transform": 31,
           "../math/Vec3": 32,
           "./Shape": 45
         } ],
-        41: [ (function(_dereq_, module, exports) {
+        41: [ function(_dereq_, module, exports) {
           module.exports = Cylinder;
           var Shape = _dereq_("./Shape");
           var Vec3 = _dereq_("../math/Vec3");
@@ -114057,14 +114083,14 @@
             ConvexPolyhedron.call(this, verts, faces, axes);
           }
           Cylinder.prototype = new ConvexPolyhedron();
-        }), {
+        }, {
           "../math/CMath": 27,
           "../math/Quaternion": 30,
           "../math/Vec3": 32,
           "./ConvexPolyhedron": 40,
           "./Shape": 45
         } ],
-        42: [ (function(_dereq_, module, exports) {
+        42: [ function(_dereq_, module, exports) {
           var Shape = _dereq_("./Shape");
           var ConvexPolyhedron = _dereq_("./ConvexPolyhedron");
           var Vec3 = _dereq_("../math/Vec3");
@@ -114372,13 +114398,13 @@
             this.updateMinValue();
             this.update();
           };
-        }), {
+        }, {
           "../math/Vec3": 32,
           "../utils/Utils": 55,
           "./ConvexPolyhedron": 40,
           "./Shape": 45
         } ],
-        43: [ (function(_dereq_, module, exports) {
+        43: [ function(_dereq_, module, exports) {
           module.exports = Particle;
           var Shape = _dereq_("./Shape");
           var Vec3 = _dereq_("../math/Vec3");
@@ -114404,11 +114430,11 @@
             min.copy(pos);
             max.copy(pos);
           };
-        }), {
+        }, {
           "../math/Vec3": 32,
           "./Shape": 45
         } ],
-        44: [ (function(_dereq_, module, exports) {
+        44: [ function(_dereq_, module, exports) {
           module.exports = Plane;
           var Shape = _dereq_("./Shape");
           var Vec3 = _dereq_("../math/Vec3");
@@ -114452,11 +114478,11 @@
           Plane.prototype.updateBoundingSphereRadius = function() {
             this.boundingSphereRadius = Number.MAX_VALUE;
           };
-        }), {
+        }, {
           "../math/Vec3": 32,
           "./Shape": 45
         } ],
-        45: [ (function(_dereq_, module, exports) {
+        45: [ function(_dereq_, module, exports) {
           module.exports = Shape;
           var EventTarget = _dereq_("../utils/EventTarget");
           var Shape = _dereq_("./Shape");
@@ -114498,14 +114524,14 @@
             CYLINDER: 128,
             TRIMESH: 256
           };
-        }), {
+        }, {
           "../material/Material": 26,
           "../math/Quaternion": 30,
           "../math/Vec3": 32,
           "../utils/EventTarget": 51,
           "./Shape": 45
         } ],
-        46: [ (function(_dereq_, module, exports) {
+        46: [ function(_dereq_, module, exports) {
           module.exports = Sphere;
           var Shape = _dereq_("./Shape");
           var Vec3 = _dereq_("../math/Vec3");
@@ -114542,11 +114568,11 @@
               max[ax] = pos[ax] + r;
             }
           };
-        }), {
+        }, {
           "../math/Vec3": 32,
           "./Shape": 45
         } ],
-        47: [ (function(_dereq_, module, exports) {
+        47: [ function(_dereq_, module, exports) {
           module.exports = Trimesh;
           var Shape = _dereq_("./Shape");
           var Vec3 = _dereq_("../math/Vec3");
@@ -114788,7 +114814,7 @@
             }
             return new Trimesh(vertices, indices);
           };
-        }), {
+        }, {
           "../collision/AABB": 3,
           "../math/CMath": 27,
           "../math/Quaternion": 30,
@@ -114797,7 +114823,7 @@
           "../utils/Octree": 52,
           "./Shape": 45
         } ],
-        48: [ (function(_dereq_, module, exports) {
+        48: [ function(_dereq_, module, exports) {
           module.exports = GSSolver;
           var Vec3 = _dereq_("../math/Vec3");
           var Quaternion = _dereq_("../math/Quaternion");
@@ -114859,12 +114885,12 @@
             }
             return iter;
           };
-        }), {
+        }, {
           "../math/Quaternion": 30,
           "../math/Vec3": 32,
           "./Solver": 49
         } ],
-        49: [ (function(_dereq_, module, exports) {
+        49: [ function(_dereq_, module, exports) {
           module.exports = Solver;
           function Solver() {
             this.equations = [];
@@ -114883,8 +114909,8 @@
           Solver.prototype.removeAllEquations = function() {
             this.equations.length = 0;
           };
-        }), {} ],
-        50: [ (function(_dereq_, module, exports) {
+        }, {} ],
+        50: [ function(_dereq_, module, exports) {
           module.exports = SplitSolver;
           var Vec3 = _dereq_("../math/Vec3");
           var Quaternion = _dereq_("../math/Quaternion");
@@ -114986,13 +115012,13 @@
           function sortById(a, b) {
             return b.id - a.id;
           }
-        }), {
+        }, {
           "../math/Quaternion": 30,
           "../math/Vec3": 32,
           "../objects/Body": 33,
           "./Solver": 49
         } ],
-        51: [ (function(_dereq_, module, exports) {
+        51: [ function(_dereq_, module, exports) {
           var EventTarget = function EventTarget() {};
           module.exports = EventTarget;
           EventTarget.prototype = {
@@ -115034,8 +115060,8 @@
               return this;
             }
           };
-        }), {} ],
-        52: [ (function(_dereq_, module, exports) {
+        }, {} ],
+        52: [ function(_dereq_, module, exports) {
           var AABB = _dereq_("../collision/AABB");
           var Vec3 = _dereq_("../math/Vec3");
           module.exports = Octree;
@@ -115151,11 +115177,11 @@
               this.children[i].children.length || this.children[i].data.length || this.children.splice(i, 1);
             }
           };
-        }), {
+        }, {
           "../collision/AABB": 3,
           "../math/Vec3": 32
         } ],
-        53: [ (function(_dereq_, module, exports) {
+        53: [ function(_dereq_, module, exports) {
           module.exports = Pool;
           function Pool() {
             this.objects = [];
@@ -115178,8 +115204,8 @@
             while (objects.length < size) objects.push(this.constructObject());
             return this;
           };
-        }), {} ],
-        54: [ (function(_dereq_, module, exports) {
+        }, {} ],
+        54: [ function(_dereq_, module, exports) {
           module.exports = TupleDictionary;
           function TupleDictionary() {
             this.data = {
@@ -115234,8 +115260,8 @@
           TupleDictionary.prototype.getDataByKey = function(Key) {
             return this.data[Key];
           };
-        }), {} ],
-        55: [ (function(_dereq_, module, exports) {
+        }, {} ],
+        55: [ function(_dereq_, module, exports) {
           function Utils() {}
           module.exports = Utils;
           Utils.defaults = function(options, defaults) {
@@ -115243,8 +115269,8 @@
             for (var key in defaults) key in options || (options[key] = defaults[key]);
             return options;
           };
-        }), {} ],
-        56: [ (function(_dereq_, module, exports) {
+        }, {} ],
+        56: [ function(_dereq_, module, exports) {
           module.exports = Vec3Pool;
           var Vec3 = _dereq_("../math/Vec3");
           var Pool = _dereq_("./Pool");
@@ -115256,11 +115282,11 @@
           Vec3Pool.prototype.constructObject = function() {
             return new Vec3();
           };
-        }), {
+        }, {
           "../math/Vec3": 32,
           "./Pool": 53
         } ],
-        57: [ (function(_dereq_, module, exports) {
+        57: [ function(_dereq_, module, exports) {
           module.exports = Narrowphase;
           var AABB = _dereq_("../collision/AABB");
           var Body = _dereq_("../objects/Body");
@@ -116200,7 +116226,7 @@
               if (numContacts > 2) return;
             }
           };
-        }), {
+        }, {
           "../collision/AABB": 3,
           "../collision/Ray": 10,
           "../equations/ContactEquation": 20,
@@ -116214,7 +116240,7 @@
           "../solver/Solver": 49,
           "../utils/Vec3Pool": 56
         } ],
-        58: [ (function(_dereq_, module, exports) {
+        58: [ function(_dereq_, module, exports) {
           module.exports = World;
           var Shape = _dereq_("../shapes/Shape");
           var Vec3 = _dereq_("../math/Vec3");
@@ -116583,7 +116609,7 @@
               }
             } else World.SLEEPING = false;
           };
-          World.prototype.emitContactEvents = (function() {
+          World.prototype.emitContactEvents = function() {
             var additions = [];
             var removals = [];
             var beginContactEvent = {
@@ -116659,7 +116685,7 @@
                 endShapeContactEvent.bodyA = endShapeContactEvent.bodyB = endShapeContactEvent.shapeA = endShapeContactEvent.shapeB = null;
               }
             };
-          })();
+          }();
           World.prototype.clearForces = function() {
             var bodies = this.bodies;
             var N = bodies.length;
@@ -116816,7 +116842,7 @@
             cc_oldContacts = this.contacts.slice();
             this.contacts.length = 0;
           };
-        }), {
+        }, {
           "../collision/AABB": 3,
           "../collision/ArrayCollisionMatrix": 4,
           "../collision/NaiveBroadphase": 7,
@@ -116838,9 +116864,9 @@
           "./Narrowphase": 57
         } ]
       }, {}, [ 2 ])(2);
-    }));
-  }), {} ],
-  493: [ (function(require, module, exports) {
+    });
+  }, {} ],
+  493: [ function(require, module, exports) {
     "use strict";
     var _global = "undefined" === typeof window ? global : window;
     _global.cc = _global.cc || {};
@@ -116860,7 +116886,7 @@
     require("./extends");
     false;
     module.exports = _global.cc;
-  }), {
+  }, {
     "./cocos2d": 408,
     "./cocos2d/core/predefine": 299,
     "./extends": 467,
@@ -116874,7 +116900,7 @@
     "./polyfill/typescript": 500,
     "./predefine": 501
   } ],
-  494: [ (function(require, module, exports) {
+  494: [ function(require, module, exports) {
     "use strict";
     if (!ArrayBuffer.isView) {
       var TypedArray = Object.getPrototypeOf(Int8Array);
@@ -116886,8 +116912,8 @@
         return ctor === Float64Array || ctor === Float32Array || ctor === Uint8Array || ctor === Uint32Array || ctor === Int8Array;
       };
     }
-  }), {} ],
-  495: [ (function(require, module, exports) {
+  }, {} ],
+  495: [ function(require, module, exports) {
     "use strict";
     Array.isArray || (Array.isArray = function(arg) {
       return "[object Array]" === Object.prototype.toString.call(arg);
@@ -116903,8 +116929,8 @@
     Array.prototype.includes || (Array.prototype.includes = function(value) {
       return -1 !== this.indexOf(value);
     });
-  }), {} ],
-  496: [ (function(require, module, exports) {
+  }, {} ],
+  496: [ function(require, module, exports) {
     "use strict";
     Math.sign || (Math.sign = function(x) {
       x = +x;
@@ -116929,13 +116955,13 @@
         console.log(label + ": " + duration + "ms");
       };
     }
-  }), {} ],
-  497: [ (function(require, module, exports) {
+  }, {} ],
+  497: [ function(require, module, exports) {
     "use strict";
     Number.parseFloat = Number.parseFloat || parseFloat;
     Number.parseInt = Number.parseInt || parseInt;
-  }), {} ],
-  498: [ (function(require, module, exports) {
+  }, {} ],
+  498: [ function(require, module, exports) {
     "use strict";
     Object.assign || (Object.assign = function(target, source) {
       return cc.js.mixin(target, source);
@@ -116950,8 +116976,8 @@
       }
       return descriptors;
     });
-  }), {} ],
-  499: [ (function(require, module, exports) {
+  }, {} ],
+  499: [ function(require, module, exports) {
     "use strict";
     String.prototype.startsWith || (String.prototype.startsWith = function(searchString, position) {
       position = position || 0;
@@ -116966,8 +116992,8 @@
     String.prototype.trimLeft || (String.prototype.trimLeft = function() {
       return this.replace(/^\s+/, "");
     });
-  }), {} ],
-  500: [ (function(require, module, exports) {
+  }, {} ],
+  500: [ function(require, module, exports) {
     "use strict";
     var extendStatics = Object.setPrototypeOf || {
       __proto__: []
@@ -117221,9 +117247,9 @@
     };
     window.__asyncDelegator = function(o) {
       var i, p;
-      return i = {}, verb("next"), verb("throw", (function(e) {
+      return i = {}, verb("next"), verb("throw", function(e) {
         throw e;
-      })), verb("return"), i[Symbol.iterator] = function() {
+      }), verb("return"), i[Symbol.iterator] = function() {
         return this;
       }, i;
       function verb(n, f) {
@@ -117250,12 +117276,12 @@
         };
       }
       function settle(resolve, reject, d, v) {
-        Promise.resolve(v).then((function(v) {
+        Promise.resolve(v).then(function(v) {
           resolve({
             value: v,
             done: d
           });
-        }), reject);
+        }, reject);
       }
     };
     window.__makeTemplateObject = function(cooked, raw) {
@@ -117293,8 +117319,8 @@
       privateMap.set(receiver, value);
       return value;
     };
-  }), {} ],
-  501: [ (function(require, module, exports) {
+  }, {} ],
+  501: [ function(require, module, exports) {
     "use strict";
     var _global = "undefined" === typeof window ? global : window;
     function defineMacro(name, defaultValue) {
@@ -117337,6 +117363,6 @@
     cc._Test = {};
     var engineVersion = "2.4.14";
     _global["CocosEngine"] = cc.ENGINE_VERSION = engineVersion;
-  }), {} ]
+  }, {} ]
 }, {}, [ 493 ]);
 //# sourceMappingURL=cocos2d-js-for-preview.js.map

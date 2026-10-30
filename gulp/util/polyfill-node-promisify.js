@@ -33,7 +33,7 @@ module.exports = function (filename) {
             var content = data.toString();
             if (REPLACE.test(content)) { // fast test
                 content = content.replace(REPLACE, AS);
-                data = new Buffer(content);
+                data = Buffer.from(content);
             }
             callback(null, data);
         });
