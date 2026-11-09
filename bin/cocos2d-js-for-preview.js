@@ -29953,7 +29953,7 @@
       },
       _updateRenderData: function _updateRenderData() {
         var label = this.node.getComponent(cc.Label);
-        label && label.setVertsDirty();
+        cc.isValid(label) && label.setVertsDirty();
       }
     });
     cc.LabelOutline = module.exports = LabelOutline;
@@ -30013,7 +30013,7 @@
       },
       _updateRenderData: function _updateRenderData() {
         var label = this.node.getComponent(cc.Label);
-        label && label.setVertsDirty();
+        cc.isValid(label) && label.setVertsDirty();
       }
     });
     cc.LabelShadow = module.exports = LabelShadow;
