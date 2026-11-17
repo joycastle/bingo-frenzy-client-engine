@@ -10,6 +10,37 @@ const dropPureExport = require('../gulp/util/drop-pure-export');
 const inlineProp = require('../gulp/util/inline-prop');
 const convert = require('convert-source-map');
 const { SourceMapConsumer } = require('source-map');
+const { spawnSync } = require('node:child_process');
+
+test('所有构建入口完成回调并输出可执行脚本，不触发弃用警告', t => {
+    const root = fs.mkdtempSync(path.join(os.tmpdir(), 'engine-output-'));
+    t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+    const filename = path.join(root, 'Probe.js');
+    fs.writeFileSync(filename, 'globalThis.__engineOutputProbe = 42;');
+    for (const method of ['buildCocosJs', 'buildCocosJsMin', 'buildPreview', 'buildJsbPreview', 'buildJsb', 'buildJsbMin', 'buildRuntime', 'buildRuntimeMin', 'buildTest']) {
+        const outputPath = path.join(root, method, 'engine.js');
+        const script = `
+            const build = require('./gulp/tasks/engine');
+            let completed = false;
+            const done = error => { if (error) throw error; completed = true; };
+            process.on('exit', () => { if (!completed) { console.error('构建未完成回调'); process.exitCode = 1; } });
+            const method = ${JSON.stringify(method)};
+            const args = [${JSON.stringify(filename)}, ${JSON.stringify(outputPath)}];
+            if (method === 'buildPreview') args.push(done);
+            else if (method === 'buildJsbPreview') args.push([], done);
+            else args.push([], {}, done, true);
+            if (method === 'buildTest') require('./gulp/tasks/test').build(args[0], args[1], args[0] + '.absent', args[1] + '.extends', false, done);
+            else build[method].apply(null, args);
+        `;
+        const result = spawnSync(process.execPath, ['--throw-deprecation', '-e', script], {
+            cwd: path.join(__dirname, '..'), encoding: 'utf8',
+        });
+        assert.equal(result.status, 0, method + ': ' + result.stderr);
+        const context = vm.createContext({});
+        vm.runInContext(fs.readFileSync(outputPath, 'utf8'), context);
+        assert.equal(context.__engineOutputProbe, 42, method);
+    }
+});
 
 async function transform(source, factory, options = {}) {
     const input = Buffer.from(source);

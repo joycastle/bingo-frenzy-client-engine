@@ -101,7 +101,7 @@ exports.build = function (sourceFile, outputFile, sourceFileForExtends, outputFi
         Es.merge(engine, engineExtends).on('end', callback);
     }
     else {
-        engine.on('end', callback);
+        engine.on('end', callback).resume();
     }
 };
 
@@ -115,7 +115,8 @@ exports.unit = function (outDir, libs, callback) {
         .pipe(Fb.toFileList())
         .pipe(Fb.generateRunner('test/qunit/lib/qunit-runner.html', outDir, title, libs))
         .pipe(Gulp.dest(outDir))
-        .on('end', callback);
+        .on('end', callback)
+        .resume();
 };
 
 exports.test = function (callback) {
@@ -165,5 +166,6 @@ exports.buildTestCase = function (outDir, callback) {
             compact: false
         }))
         .pipe(Gulp.dest(outDir))
-        .on('end', callback);
+        .on('end', callback)
+        .resume();
 };

@@ -21949,10 +21949,12 @@
         img.removeEventListener("error", errorCallback);
         onComplete && onComplete(null, img);
       }
-      function errorCallback() {
+      function errorCallback(event) {
         img.removeEventListener("load", loadCallback);
         img.removeEventListener("error", errorCallback);
-        onComplete && onComplete(new Error(cc.debug.getError(4930, url)));
+        var message = "Image load failed: " + url;
+        event.message && (message += "; " + event.message);
+        onComplete && onComplete(new Error(message));
       }
       img.addEventListener("load", loadCallback);
       img.addEventListener("error", errorCallback);

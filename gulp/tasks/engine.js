@@ -294,7 +294,8 @@ exports.buildPreview = function (sourceFile, outputFile, callback, devMode) {
     }
     bundler
         .pipe(Gulp.dest(outDir))
-        .on('end', callback);
+        .on('end', callback)
+        .resume();
 };
 
 exports.buildJsbPreview = function (sourceFile, outputFile, excludes, callback) {
@@ -321,7 +322,8 @@ exports.buildJsbPreview = function (sourceFile, outputFile, excludes, callback) 
             sourceMap: false
         }))
         .pipe(Gulp.dest(outDir))
-        .on('end', callback);
+        .on('end', callback)
+        .resume();
 };
 
 exports.buildJsb = function (sourceFile, outputFile, excludes, opt_macroFlags, callback, createMap) {
@@ -382,7 +384,8 @@ exports.buildJsb = function (sourceFile, outputFile, excludes, opt_macroFlags, c
             }
         })
         .pipe(Gulp.dest(outDir))
-        .on('end', callback);
+        .on('end', callback)
+        .resume();
 };
 
 exports.buildJsbMin = function (sourceFile, outputFile, excludes, opt_macroFlags, callback, createMap) {
@@ -446,7 +449,8 @@ exports.buildJsbMin = function (sourceFile, outputFile, excludes, opt_macroFlags
             }
         })
         .pipe(Gulp.dest(outDir))
-        .on('end', callback);
+        .on('end', callback)
+        .resume();
 };
 
 exports.buildRuntime = function (sourceFile, outputFile, excludes, opt_macroFlags, callback, createMap) {
@@ -491,7 +495,8 @@ exports.buildRuntime = function (sourceFile, outputFile, excludes, opt_macroFlag
             sourceMap: false
         }))
         .pipe(Gulp.dest(outDir))
-        .on('end', callback);
+        .on('end', callback)
+        .resume();
 };
 
 exports.buildRuntimeMin = function (sourceFile, outputFile, excludes, opt_macroFlags, callback, createMap) {
@@ -538,7 +543,8 @@ exports.buildRuntimeMin = function (sourceFile, outputFile, excludes, opt_macroF
             sourceMap: false
         }))
         .pipe(Gulp.dest(outDir))
-        .on('end', callback);
+        .on('end', callback)
+        .resume();
 };
 
 exports.excludeAllDepends = function (excludedModules) {
