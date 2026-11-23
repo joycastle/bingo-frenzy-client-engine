@@ -1026,7 +1026,7 @@ cc.js.mixin(View.prototype, {
      */
     getCutoutRects (node) {
         const layout = this._getNormalizedCornerLayout();
-        if (!layout || !layout.cutouts.length) {
+        if (!layout) {
             return [];
         }
 

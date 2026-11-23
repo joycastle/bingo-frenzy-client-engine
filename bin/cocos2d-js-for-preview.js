@@ -45025,7 +45025,7 @@
       getCutoutRects: function getCutoutRects(node) {
         var _this = this;
         var layout = this._getNormalizedCornerLayout();
-        if (!layout || !layout.cutouts.length) return [];
+        if (!layout) return [];
         var rects = layout.cutouts;
         var bounds = this._getFrameBounds();
         var camera = node ? cc.Camera.findCamera(node) : cc.Camera.main;
