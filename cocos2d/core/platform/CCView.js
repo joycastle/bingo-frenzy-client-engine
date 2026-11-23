@@ -978,6 +978,81 @@ cc.js.mixin(View.prototype, {
         point.y = (point.y - viewport.y) / this._scaleY;
     },
 
+    // Platform and preview adapters return { horizontalInset, cutouts } normalized to the frame with a
+    // top-left origin, or null when the platform publishes no corner layout.
+    _getNormalizedCornerLayout () {
+        return null;
+    },
+
+    _getFrameBounds () {
+        const frame = this._frameSize;
+        return {
+            left: 0,
+            top: 0,
+            width: this._isRotated ? frame.height : frame.width,
+            height: this._isRotated ? frame.width : frame.height
+        };
+    },
+
+    /**
+     * !#en Returns the symmetric horizontal inset that clears the display corners, in the same units as
+     * cc.sys.getSafeAreaRect(), or null when the platform publishes no corner layout.
+     * !#zh 返回只让开屏幕圆角的对称横向边距，单位与 cc.sys.getSafeAreaRect() 相同；平台不提供时返回 null。
+     * @method getCornerInset
+     * @return {Number|null}
+     */
+    getCornerInset () {
+        const layout = this._getNormalizedCornerLayout();
+        if (!layout) {
+            return null;
+        }
+        const bounds = this._getFrameBounds();
+        const origin = cc.v2();
+        const inset = cc.v2();
+        this.convertToLocationInView(0, 0, bounds, origin);
+        this._convertPointWithScale(origin);
+        this.convertToLocationInView(layout.horizontalInset * bounds.width, 0, bounds, inset);
+        this._convertPointWithScale(inset);
+        return inset.x - origin.x;
+    },
+
+    /**
+     * !#en Returns the corner regions to avoid as world-space bounding rectangles for 2D UI.
+     * !#zh 返回需要避让的屏幕角落区域在 2D UI 世界坐标中的轴对齐包围矩形，没有时返回空数组。
+     * 布局初始化时读取，收到 CANVAS_SIZE_CHANGED 后重新读取。
+     * @method getCutoutRects
+     * @param {Node} [node] - Uses the camera rendering this node. Defaults to the main camera.
+     * @return {Rect[]}
+     */
+    getCutoutRects (node) {
+        const layout = this._getNormalizedCornerLayout();
+        if (!layout || !layout.cutouts.length) {
+            return [];
+        }
+
+        const rects = layout.cutouts;
+        const bounds = this._getFrameBounds();
+        const camera = node ? cc.Camera.findCamera(node) : cc.Camera.main;
+        const point = cc.v2();
+        const worldPoint = cc.v2();
+
+        return rects.map(({ x, y, width, height }) => {
+            let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+            for (const cornerX of [x, x + width]) {
+                for (const cornerY of [y, y + height]) {
+                    this.convertToLocationInView(cornerX * bounds.width, cornerY * bounds.height, bounds, point);
+                    this._convertPointWithScale(point);
+                    const world = camera ? camera.getScreenToWorldPoint(point, worldPoint) : point;
+                    minX = Math.min(minX, world.x);
+                    minY = Math.min(minY, world.y);
+                    maxX = Math.max(maxX, world.x);
+                    maxY = Math.max(maxY, world.y);
+                }
+            }
+            return cc.rect(minX, minY, maxX - minX, maxY - minY);
+        });
+    },
+
     _convertTouchesWithScale: function (touches) {
         var viewport = this._viewportRect, scaleX = this._scaleX, scaleY = this._scaleY,
             selTouch, selPoint, selPrePoint;

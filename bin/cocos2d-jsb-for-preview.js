@@ -44859,6 +44859,58 @@
         point.x = (point.x - viewport.x) / this._scaleX;
         point.y = (point.y - viewport.y) / this._scaleY;
       },
+      _getNormalizedCornerLayout: function _getNormalizedCornerLayout() {
+        return null;
+      },
+      _getFrameBounds: function _getFrameBounds() {
+        var frame = this._frameSize;
+        return {
+          left: 0,
+          top: 0,
+          width: this._isRotated ? frame.height : frame.width,
+          height: this._isRotated ? frame.width : frame.height
+        };
+      },
+      getCornerInset: function getCornerInset() {
+        var layout = this._getNormalizedCornerLayout();
+        if (!layout) return null;
+        var bounds = this._getFrameBounds();
+        var origin = cc.v2();
+        var inset = cc.v2();
+        this.convertToLocationInView(0, 0, bounds, origin);
+        this._convertPointWithScale(origin);
+        this.convertToLocationInView(layout.horizontalInset * bounds.width, 0, bounds, inset);
+        this._convertPointWithScale(inset);
+        return inset.x - origin.x;
+      },
+      getCutoutRects: function getCutoutRects(node) {
+        var _this = this;
+        var layout = this._getNormalizedCornerLayout();
+        if (!layout || !layout.cutouts.length) return [];
+        var rects = layout.cutouts;
+        var bounds = this._getFrameBounds();
+        var camera = node ? cc.Camera.findCamera(node) : cc.Camera.main;
+        var point = cc.v2();
+        var worldPoint = cc.v2();
+        return rects.map((function(_ref) {
+          var x = _ref.x, y = _ref.y, width = _ref.width, height = _ref.height;
+          var minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+          for (var _i = 0, _arr = [ x, x + width ]; _i < _arr.length; _i++) {
+            var cornerX = _arr[_i];
+            for (var _i2 = 0, _arr2 = [ y, y + height ]; _i2 < _arr2.length; _i2++) {
+              var cornerY = _arr2[_i2];
+              _this.convertToLocationInView(cornerX * bounds.width, cornerY * bounds.height, bounds, point);
+              _this._convertPointWithScale(point);
+              var world = camera ? camera.getScreenToWorldPoint(point, worldPoint) : point;
+              minX = Math.min(minX, world.x);
+              minY = Math.min(minY, world.y);
+              maxX = Math.max(maxX, world.x);
+              maxY = Math.max(maxY, world.y);
+            }
+          }
+          return cc.rect(minX, minY, maxX - minX, maxY - minY);
+        }));
+      },
       _convertTouchesWithScale: function _convertTouchesWithScale(touches) {
         var viewport = this._viewportRect, scaleX = this._scaleX, scaleY = this._scaleY, selTouch, selPoint, selPrePoint;
         for (var i = 0; i < touches.length; i++) {
