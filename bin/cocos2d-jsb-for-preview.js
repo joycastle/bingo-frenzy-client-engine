@@ -44560,6 +44560,7 @@
         view._resizing = true;
         width > 0 && view.setDesignResolutionSize(width, height, view._resolutionPolicy);
         view._resizing = false;
+        view._cornerLayoutCache = void 0;
         view.emit("canvas-resize");
         view._resizeCallback && view._resizeCallback.call();
       },
@@ -44862,6 +44863,10 @@
       _getNormalizedCornerLayout: function _getNormalizedCornerLayout() {
         return null;
       },
+      _getCornerLayout: function _getCornerLayout() {
+        void 0 === this._cornerLayoutCache && (this._cornerLayoutCache = this._getNormalizedCornerLayout());
+        return this._cornerLayoutCache;
+      },
       _getFrameBounds: function _getFrameBounds() {
         var frame = this._frameSize;
         return {
@@ -44872,7 +44877,7 @@
         };
       },
       getCornerInset: function getCornerInset() {
-        var layout = this._getNormalizedCornerLayout();
+        var layout = this._getCornerLayout();
         if (!layout) return null;
         var bounds = this._getFrameBounds();
         var origin = cc.v2();
@@ -44885,7 +44890,7 @@
       },
       getCutoutRects: function getCutoutRects(node) {
         var _this = this;
-        var layout = this._getNormalizedCornerLayout();
+        var layout = this._getCornerLayout();
         if (!layout) return [];
         var rects = layout.cutouts;
         var bounds = this._getFrameBounds();

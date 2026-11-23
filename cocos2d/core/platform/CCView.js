@@ -201,6 +201,8 @@ cc.js.mixin(View.prototype, {
             view.setDesignResolutionSize(width, height, view._resolutionPolicy);
         view._resizing = false;
 
+        // 角落布局随视图重新适配而变化，下次读取时重新向平台获取。
+        view._cornerLayoutCache = undefined;
         view.emit('canvas-resize');
         if (view._resizeCallback) {
             view._resizeCallback.call();
@@ -984,6 +986,14 @@ cc.js.mixin(View.prototype, {
         return null;
     },
 
+    // 平台调用（JSB）结果在两次视图重新适配之间不变，缓存后各调用方共用，_resizeEvent 时失效。
+    _getCornerLayout () {
+        if (this._cornerLayoutCache === undefined) {
+            this._cornerLayoutCache = this._getNormalizedCornerLayout();
+        }
+        return this._cornerLayoutCache;
+    },
+
     _getFrameBounds () {
         const frame = this._frameSize;
         return {
@@ -1002,7 +1012,7 @@ cc.js.mixin(View.prototype, {
      * @return {Number|null}
      */
     getCornerInset () {
-        const layout = this._getNormalizedCornerLayout();
+        const layout = this._getCornerLayout();
         if (!layout) {
             return null;
         }
@@ -1025,7 +1035,7 @@ cc.js.mixin(View.prototype, {
      * @return {Rect[]}
      */
     getCutoutRects (node) {
-        const layout = this._getNormalizedCornerLayout();
+        const layout = this._getCornerLayout();
         if (!layout) {
             return [];
         }
