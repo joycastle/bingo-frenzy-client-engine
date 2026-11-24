@@ -19124,6 +19124,7 @@
         _updateCullingMask(this);
         this._parent && this._parent._delaySort();
         this._renderFlag |= RenderFlow.FLAG_WORLD_TRANSFORM | RenderFlow.FLAG_OPACITY_COLOR;
+        this._worldMatDirty = true;
         this._onHierarchyChangedBase(oldParent);
         cc._widgetManager && (cc._widgetManager._nodesOrderDirty = true);
         oldParent && this._activeInHierarchy && this._checkListenerMask();

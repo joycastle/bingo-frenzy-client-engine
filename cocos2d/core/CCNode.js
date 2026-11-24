@@ -1797,6 +1797,8 @@ let NodeDefines = {
             this._parent._delaySort();
         }
         this._renderFlag |= RenderFlow.FLAG_WORLD_TRANSFORM | RenderFlow.FLAG_OPACITY_COLOR;
+        // 换父节点后世界矩阵立即失效：否则新父节点未变动时，渲染前的 convertToWorldSpaceAR 等仍按旧父节点计算。
+        this._worldMatDirty = true;
         this._onHierarchyChangedBase(oldParent);
         if (cc._widgetManager) {
             cc._widgetManager._nodesOrderDirty = true;
